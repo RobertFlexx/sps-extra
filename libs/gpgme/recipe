@@ -1,0 +1,16 @@
+name        gpgme
+version     2.1.2
+release     1
+description gpgme: GnuPG Made Easy
+
+source      https://gnupg.org/ftp/gcrypt/gpgme/gpgme-2.1.2.tar.bz2
+hash        sha256:0687a95b299871c4141f507c0f740de6b429c9ac067d0fa4e062e3264df5fb77
+
+depend      filesystem
+depend      libgpg-error
+depend      libassuan
+depend      gnupg
+
+configure   ./configure --prefix=/usr --disable-static --disable-gpg-test --enable-languages=cl
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

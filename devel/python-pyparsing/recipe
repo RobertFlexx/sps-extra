@@ -1,0 +1,13 @@
+name        python-pyparsing
+version     3.3.2
+release     1
+arch        any
+description python-pyparsing: Python parsing module
+
+source      https://github.com/pyparsing/pyparsing/archive/refs/tags/3.3.2.tar.gz
+hash        sha256:2fc0d57452389101faf2a0148c8803fc6420448df2819dc33a0df83141c1b8f7
+
+depend      filesystem
+depend      python
+
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); mkdir -p "$PKG/usr/lib/python$pyver/site-packages"; cp -a pyparsing "$PKG/usr/lib/python$pyver/site-packages/"

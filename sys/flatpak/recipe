@@ -1,6 +1,6 @@
 name        flatpak
 version     1.18.2
-release     1
+release     2
 description flatpak: application sandbox
 
 source      https://github.com/flatpak/flatpak/releases/download/1.18.2/flatpak-1.18.2.tar.xz
@@ -12,7 +12,19 @@ depend      bubblewrap
 depend      xdg-dbus-proxy
 depend      glib
 depend      libxml2
+depend      json-glib
+depend      gpgme
+depend      appstream
+depend      libseccomp
+depend      fuse3
+depend      libarchive
+depend      libcap
+depend      zstd
+depend      curl
+depend      gdk-pixbuf
+builddep    python-pyparsing
+optional    polkit
 
-configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false -Ddocbook_docs=disabled -Dgtkdoc=disabled -Dsystem_helper=disabled
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false -Ddocbook_docs=disabled -Dgtkdoc=disabled -Dsystem_helper=disabled -Dselinux_module=disabled -Dsystem_bubblewrap=/usr/bin/bwrap -Dsystem_dbus_proxy=/usr/bin/xdg-dbus-proxy
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild

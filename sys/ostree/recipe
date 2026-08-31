@@ -1,6 +1,6 @@
 name        ostree
 version     2026.4
-release     1
+release     2
 description ostree: content-addressed filesystem
 
 source      https://github.com/ostreedev/ostree/releases/download/v2026.4/libostree-2026.4.tar.xz
@@ -10,6 +10,10 @@ depend      filesystem
 depend      glib
 depend      libarchive
 depend      openssl
+depend      curl
+depend      zstd
+depend      gpgme
+depend      fuse3
 
 configure   ./configure --prefix=/usr --without-selinux --with-soup=no --with-curl
 build       make -j"$MAKEJOBS"

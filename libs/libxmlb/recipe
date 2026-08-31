@@ -1,0 +1,17 @@
+name        libxmlb
+version     0.3.29
+release     1
+description libxmlb: binary XML library
+
+source      https://github.com/hughsie/libxmlb/releases/download/0.3.29/libxmlb-0.3.29.tar.xz
+hash        sha256:448294be33bfae62f00fa66e506f1cae80237ce71b7ab6530aefa75005eeb08a
+
+depend      filesystem
+depend      glib
+depend      zstd
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dgtkdoc=false -Dintrospection=false -Dtests=false
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild
