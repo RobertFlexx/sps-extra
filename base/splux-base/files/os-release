@@ -1,0 +1,6 @@
+NAME="Splux"
+PRETTY_NAME="Splux Linux"
+ID=splux
+VERSION_ID="1.0"
+LOGO=splux
+HOME_URL="https://github.com/RobertFlexx/SPS"

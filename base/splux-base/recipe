@@ -1,0 +1,20 @@
+name        splux-base
+version     1.0
+release     1
+arch        any
+description Splux identity, os-release, and Fastfetch branding
+
+depend      filesystem
+depend      fastfetch
+
+install     mkdir -p "$PKG/etc" "$PKG/etc/fastfetch" \
+            "$PKG/usr/share/fastfetch/logos" \
+            "$PKG/usr/share/fastfetch/presets"
+install     cp "$SRC/files/os-release" "$PKG/etc/os-release"
+install     cp "$SRC/files/config.jsonc" "$PKG/etc/fastfetch/config.jsonc"
+install     cp "$SRC/files/splux.txt" "$PKG/usr/share/fastfetch/logos/splux.txt"
+install     cp "$SRC/files/splux.jsonc" "$PKG/usr/share/fastfetch/presets/splux.jsonc"
+install     chmod 0644 "$PKG/etc/os-release" \
+            "$PKG/etc/fastfetch/config.jsonc" \
+            "$PKG/usr/share/fastfetch/logos/splux.txt" \
+            "$PKG/usr/share/fastfetch/presets/splux.jsonc"
