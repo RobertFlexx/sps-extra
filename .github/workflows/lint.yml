@@ -1,0 +1,46 @@
+name: repository-check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out extra tree
+        uses: actions/checkout@v4
+        with:
+          path: extra
+      - name: Check out core tree
+        uses: actions/checkout@v4
+        with:
+          repository: RobertFlexx/sps-core
+          path: core
+      - name: Check out SPS
+        uses: actions/checkout@v4
+        with:
+          repository: RobertFlexx/SPS
+          path: sps
+      - name: Validate recipes and dependency graph
+        shell: sh
+        run: |
+          set -eu
+          work=$(mktemp -d)
+          trap 'rm -rf "$work"' 0 1 2 3 15
+          mkdir -p "$work/root" "$work/db" "$work/cache" "$work/build"
+          : >"$work/sps.conf"
+          {
+            printf 'dir core %s 100\n' "$GITHUB_WORKSPACE/core"
+            printf 'dir extra %s 80\n' "$GITHUB_WORKSPACE/extra"
+          } >"$work/repos.conf"
+          SPS_ROOT="$work/root" \
+          SPS_DB="$work/db" \
+          SPS_CACHE="$work/cache" \
+          SPS_BUILD="$work/build" \
+          SPS_CONFIG="$work/sps.conf" \
+          SPS_REPOS_CONFIG="$work/repos.conf" \
+          "$GITHUB_WORKSPACE/sps/bin/src" update
