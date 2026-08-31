@@ -1,0 +1,15 @@
+name        ripgrep
+version     15.2.0
+release     1
+description ripgrep: recursive line-oriented search
+
+source      https://github.com/BurntSushi/ripgrep/archive/refs/tags/${version}.tar.gz
+hash        sha256:7605249d3eb0d5f170e3414498e3344e26b1e7a147aec518b57090b80036a562
+
+depend      filesystem
+depend      pcre2
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked --features pcre2
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/rg" "$PKG/usr/bin/rg"
+install     chmod 755 "$PKG/usr/bin/rg"

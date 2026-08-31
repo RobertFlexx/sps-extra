@@ -1,0 +1,15 @@
+name        fish
+version     4.8.1
+release     1
+description fish: the friendly interactive shell
+
+source      https://github.com/fish-shell/fish-shell/releases/download/${version}/fish-${version}.tar.xz
+hash        sha256:0eb86a851e865e934a7c2091a73d7695225e78f0e00a7bb96d5f877d76c65782
+
+depend      filesystem
+depend      ncurses
+depend      pcre2
+
+configure   unset CARGO_TARGET_DIR; cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+build       unset CARGO_TARGET_DIR; cmake --build build --parallel "$MAKEJOBS"
+install     unset CARGO_TARGET_DIR; DESTDIR="$PKG" cmake --install build

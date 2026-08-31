@@ -1,0 +1,13 @@
+name        neovim
+version     0.12.5
+release     1
+description neovim: hyperextensible Vim-based text editor
+
+source      https://github.com/neovim/neovim/archive/refs/tags/v${version}.tar.gz
+hash        sha256:a810c95332317bd0017e1ca07e376a8472c79075cbed00fa3737d190a8a0a45a
+
+depend      filesystem
+depend      ncurses
+
+build       make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/usr"
+install     make DESTDIR="$PKG" install

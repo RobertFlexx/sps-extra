@@ -10,8 +10,7 @@ Package categories are organizational and are created only when they contain a
 package:
 
 ```text
-audio/  desktop/  devel/  editors/  fonts/  graphics/  libs/
-multimedia/  net/  shells/  utils/  wayland/  xorg/
+cli/  editors/  fonts/  shells/  term/
 ```
 
 Configure the tree after core:
@@ -25,9 +24,9 @@ Then run:
 
 ```sh
 src update
-src search mesa
-src show mesa
-src which mesa
+src search nano
+src show nano
+src which nano
 ```
 
 Git checkouts default to `/usr/src/sps/core` and `/usr/src/sps/extra`. They are
