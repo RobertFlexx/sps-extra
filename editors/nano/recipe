@@ -1,0 +1,15 @@
+name        nano
+version     9.2
+release     1
+description GNU nano: small friendly text editor
+
+source      https://www.nano-editor.org/dist/v9/nano-${version}.tar.xz
+hash        sha256:05ecb99247b782e8a5b3a25ed4101dd034b0236902f7449bc9795b717642f7e9
+
+depend      filesystem
+depend      ncurses
+depend      file
+
+configure   ./configure --prefix=/usr --enable-utf8
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
