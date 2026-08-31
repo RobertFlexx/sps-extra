@@ -1,0 +1,13 @@
+#!/sbin/openrc-run
+# OpenRC unit for power-profiles-daemon. systemd installs the upstream
+# unit into /usr/lib/systemd/system from meson.
+
+description="Power Profiles daemon"
+command="/usr/libexec/power-profiles-daemon"
+command_background="yes"
+pidfile="/run/power-profiles-daemon.pid"
+
+depend() {
+  need dbus
+  after dbus
+}
