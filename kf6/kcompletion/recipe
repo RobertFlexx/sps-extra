@@ -1,0 +1,17 @@
+name        kcompletion
+version     6.26.0
+release     1
+description kcompletion: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kcompletion-6.26.0.tar.xz
+hash        sha256:95f71eb807e4de40ecdfe7234c9c3d844423171ac52588aecca642f78d904e48
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

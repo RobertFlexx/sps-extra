@@ -1,0 +1,14 @@
+name        iso-codes
+version     4.18.0
+release     1
+arch        any
+description iso-codes: ISO country and language lists
+
+source      https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/v4.18.0/iso-codes-v4.18.0.tar.gz
+hash        sha256:511f67bf4b51aa77f17c45adbff533242b50f1e370fe49a5706b6341902fac87
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

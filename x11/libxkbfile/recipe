@@ -1,0 +1,16 @@
+name        libxkbfile
+version     1.1.3
+release     1
+description libxkbfile: XKB file handling
+
+source      https://www.x.org/releases/individual/lib/libxkbfile-1.1.3.tar.xz
+hash        sha256:a9b63eea997abb9ee6a8b4fbb515831c841f471af845a09de443b28003874bec
+
+depend      filesystem
+depend      libx11
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

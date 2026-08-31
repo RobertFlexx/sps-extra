@@ -1,0 +1,14 @@
+name        lame
+version     3.100
+release     1
+description lame: MP3 encoder
+
+source      http://deb.debian.org/debian/pool/main/l/lame/lame_3.100.orig.tar.gz
+hash        sha256:ddfe36cab873794038ae2c1210557ad34857a4b6bdc515785d1da9e175b1da1e
+
+depend      filesystem
+depend      ncurses
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,16 @@
+name        libx11
+version     1.8.13
+release     1
+description libx11: X11 client library
+
+source      https://www.x.org/releases/individual/lib/libX11-1.8.13.tar.xz
+hash        sha256:69606f485c2c07c14ef64f75b7bb326d48587af33795d9ab3e607c0b5f94f11c
+
+depend      filesystem
+depend      libxcb
+depend      xtrans
+depend      xorgproto
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

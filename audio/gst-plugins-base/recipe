@@ -1,0 +1,15 @@
+name        gst-plugins-base
+version     1.26.5
+release     1
+description gst-plugins-base: GStreamer base plugins
+
+source      https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-1.26.5.tar.xz
+hash        sha256:f0c0e26cbedaa57732cb6a578e8cc13a1164bf18d737d55c333061c52f0c48d7
+
+depend      filesystem
+depend      gstreamer
+depend      glib
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=disabled -Dexamples=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

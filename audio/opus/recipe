@@ -1,0 +1,15 @@
+name        opus
+version     1.5.2
+release     1
+description opus: Opus audio codec
+
+source      https://downloads.xiph.org/releases/opus/opus-1.5.2.tar.gz
+hash        sha256:65c1d2f78b9f2fb20082c38cbe47c951ad5839345876e46941612ee87f9a7ce1
+
+depend      filesystem
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

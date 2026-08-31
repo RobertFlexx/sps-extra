@@ -1,0 +1,15 @@
+name        helix
+version     25.07.1
+release     1
+description helix: modal text editor
+
+source      https://github.com/helix-editor/helix/archive/refs/tags/25.07.1.tar.gz
+hash        sha256:27c8bc3eba46bc7bab1e3629c6b28ff94882eeff17366b3ea69cd8ceffba7541
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/hx" "$PKG/usr/bin/hx"
+install     chmod 755 "$PKG/usr/bin/hx"

@@ -1,0 +1,17 @@
+name        kfilemetadata
+version     6.26.0
+release     1
+description kfilemetadata: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kfilemetadata-6.26.0.tar.xz
+hash        sha256:f75942b9a3d1be0b0910cd50a22c3c432ededdc506858c8d5511ddf5498051f2
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

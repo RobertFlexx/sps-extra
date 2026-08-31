@@ -1,0 +1,18 @@
+name        flatpak
+version     1.18.2
+release     1
+description flatpak: application sandbox
+
+source      https://github.com/flatpak/flatpak/releases/download/1.18.2/flatpak-1.18.2.tar.xz
+hash        sha256:800ff8cb14c369a3c19984932ae2cbea1b0d38363daa57cfb8ef04b8d7f08e10
+
+depend      filesystem
+depend      ostree
+depend      bubblewrap
+depend      xdg-dbus-proxy
+depend      glib
+depend      libxml2
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false -Ddocbook_docs=disabled -Dgtkdoc=disabled -Dsystem_helper=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

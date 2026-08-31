@@ -1,0 +1,15 @@
+name        delta
+version     0.19.2
+release     1
+description delta: git diff highlighter
+
+source      https://github.com/dandavison/delta/archive/refs/tags/0.19.2.tar.gz
+hash        sha256:f59b86f8c8dda4d76a3ba34b8553777a20c3b461646917d8e480fac6531bba9f
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/delta" "$PKG/usr/bin/delta"
+install     chmod 755 "$PKG/usr/bin/delta"

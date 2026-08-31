@@ -1,0 +1,31 @@
+name        plasma-full
+version     6.7.4
+release     1
+arch        any
+description plasma-full: complete Plasma desktop and KDE applications
+
+depend      filesystem
+depend      plasma-desktop
+depend      kde-apps
+depend      discover
+depend      kdeplasma-addons
+depend      bluedevil
+depend      drkonqi
+depend      plasma-browser-integration
+depend      plasma-disks
+depend      plasma-firewall
+depend      plasma-thunderbolt
+depend      plasma-vault
+depend      plasma-welcome
+depend      print-manager
+depend      flatpak-kcm
+depend      wacomtablet
+depend      sddm-kcm
+depend      ocean-sound-theme
+depend      krdp
+depend      kwin-x11
+depend      union
+depend      plasma-sdk
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "plasma-full" >"$PKG/usr/share/sps/sets/plasma-full"

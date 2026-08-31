@@ -1,0 +1,14 @@
+name        libslirp
+version     4.9.1
+release     1
+description libslirp: user-mode networking library
+
+source      https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.1/libslirp-v4.9.1.tar.gz
+hash        sha256:3970542143b7c11e6a09a4d2b50f30a133473c41f15ed0bdcc3b7a1c450d9a5c
+
+depend      filesystem
+depend      glib
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

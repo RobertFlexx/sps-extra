@@ -1,0 +1,17 @@
+name        kcontacts
+version     6.26.0
+release     1
+description kcontacts: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kcontacts-6.26.0.tar.xz
+hash        sha256:dce9af34050fcf09c8b4ece6df5a0abedbaf02fe85039fc371c5e11e91443cf0
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

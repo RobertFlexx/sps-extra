@@ -1,0 +1,17 @@
+name        kcodecs
+version     6.26.0
+release     1
+description kcodecs: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kcodecs-6.26.0.tar.xz
+hash        sha256:ee1fe3bd8bcd93a84d44186a5fc50395b6bf43dd2bf8972338a7aad72aa0bcb4
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

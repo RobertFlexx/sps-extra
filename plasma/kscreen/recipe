@@ -1,0 +1,18 @@
+name        kscreen
+version     6.7.4
+release     1
+description kscreen: KDE component
+
+source      https://download.kde.org/stable/plasma/6.7.4/kscreen-6.7.4.tar.xz
+hash        sha256:8918c970ae363c7c1b8db76b21dc969162b5f41353fd88bde8667b46536eb8a6
+
+depend      filesystem
+depend      qt6
+depend      kf6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

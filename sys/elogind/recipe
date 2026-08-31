@@ -1,0 +1,16 @@
+name        elogind
+version     255.17
+release     1
+description elogind: systemd-logind without systemd
+
+source      https://github.com/elogind/elogind/archive/refs/tags/v255.17.tar.gz
+hash        sha256:a9725ae3f73f8d910de84c108bc11bfd4c782bef6a4190b2ec70c5d2f22344db
+
+depend      filesystem
+depend      dbus
+depend      libcap
+depend      linux-pam
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dhalt-path=/usr/bin/halt -Dreboot-path=/usr/bin/reboot -Dcgroup-controller=elogind
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

@@ -1,0 +1,14 @@
+name        libxxf86vm
+version     1.1.6
+release     1
+description libxxf86vm: X Free86 video mode extension
+
+source      https://www.x.org/releases/individual/lib/libXxf86vm-1.1.6.tar.xz
+hash        sha256:96af414c73ce1d5449ad04be7f9f27fa8330f844b6dda843ef22e3e1befb3ee3
+
+depend      filesystem
+depend      libxext
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

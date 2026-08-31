@@ -1,0 +1,13 @@
+name        seatd
+version     0.9.1
+release     1
+description seatd: seat management daemon
+
+source      https://git.sr.ht/~kennylevinsen/seatd/archive/0.9.1.tar.gz
+hash        sha256:819979c922a0be258aed133d93920bce6a3d3565a60588d6d372ce9db2712cd3
+
+depend      filesystem
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

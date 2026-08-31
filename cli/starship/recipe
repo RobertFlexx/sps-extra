@@ -1,0 +1,15 @@
+name        starship
+version     1.26.0
+release     1
+description starship: shell prompt
+
+source      https://github.com/starship/starship/archive/refs/tags/v1.26.0.tar.gz
+hash        sha256:8c95e8a6c596b29ac192104eae00dd991e8c8fd66083fd2b34d6b223a5803a59
+
+depend      filesystem
+
+builddep    rust
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/starship" "$PKG/usr/bin/starship"
+install     chmod 755 "$PKG/usr/bin/starship"

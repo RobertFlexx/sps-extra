@@ -1,0 +1,17 @@
+name        gptfdisk
+version     1.0.10
+release     1
+description gptfdisk: GPT partitioning tools
+
+source      https://downloads.sourceforge.net/project/gptfdisk/gptfdisk/1.0.10/gptfdisk-1.0.10.tar.gz
+hash        sha256:2abed61bc6d2b9ec498973c0440b8b804b7a72d7144069b5a9209b2ad693a282
+
+depend      filesystem
+depend      popt
+depend      util-linux
+depend      ncurses
+
+build       make -j"$MAKEJOBS"
+install     mkdir -p "$PKG/usr/sbin"
+install     cp gdisk sgdisk cgdisk fixparts "$PKG/usr/sbin/"
+install     chmod 755 "$PKG/usr/sbin/gdisk" "$PKG/usr/sbin/sgdisk" "$PKG/usr/sbin/cgdisk" "$PKG/usr/sbin/fixparts"

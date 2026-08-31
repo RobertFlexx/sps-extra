@@ -1,0 +1,17 @@
+name        kidletime
+version     6.26.0
+release     1
+description kidletime: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kidletime-6.26.0.tar.xz
+hash        sha256:f0efd67ee0e5b5eb9200e924e9478c1ecb179b4a38e0cf125b377e7fa373ef07
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

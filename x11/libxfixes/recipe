@@ -1,0 +1,16 @@
+name        libxfixes
+version     6.0.2
+release     1
+description libxfixes: X Fixes extension
+
+source      https://www.x.org/releases/individual/lib/libXfixes-6.0.2.tar.xz
+hash        sha256:39f115d72d9c5f8111e4684164d3d68cc1fd21f9b27ff2401b08fddfc0f409ba
+
+depend      filesystem
+depend      libx11
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

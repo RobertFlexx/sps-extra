@@ -1,0 +1,15 @@
+name        yq
+version     4.53.6
+release     1
+description yq: YAML processor
+
+source      https://github.com/mikefarah/yq/archive/refs/tags/v4.53.6.tar.gz
+hash        sha256:132a28a669526f99dba52486ac80de3bdafdf9a1a52a0c6bd6045301aca0cd25
+
+depend      filesystem
+
+builddep    go
+build       GOPROXY=https://proxy.golang.org,direct CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o yq .
+install     mkdir -p "$PKG/usr/bin"
+install     cp yq "$PKG/usr/bin/yq"
+install     chmod 755 "$PKG/usr/bin/yq"

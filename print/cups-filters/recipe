@@ -1,0 +1,16 @@
+name        cups-filters
+version     2.0.1
+release     1
+description cups-filters: CUPS filters
+
+source      https://github.com/OpenPrinting/cups-filters/releases/download/2.0.1/cups-filters-2.0.1.tar.xz
+hash        sha256:39e71de3ce06762b342749f1dc7cba6817738f7bf4d322c1bb9ab10b8569ab80
+
+depend      filesystem
+depend      cups
+depend      qpdf
+depend      poppler
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

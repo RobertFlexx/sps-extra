@@ -1,0 +1,17 @@
+name        kded
+version     6.26.0
+release     1
+description kded: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kded-6.26.0.tar.xz
+hash        sha256:4265d1162cbd7febf16d103bf1bd9fab858fa3f54f52797ed0938436bee347af
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,19 @@
+name        kate
+version     26.08.0
+release     1
+description kate: KDE component
+
+source      https://download.kde.org/stable/release-service/26.08.0/src/kate-26.08.0.tar.xz
+hash        sha256:abe6ceb81155eaa4c046fbff21deaed2a1cd3b031f732acfb95aa283e68d0f52
+
+depend      filesystem
+depend      qt6
+depend      kf6
+depend      plasma-desktop
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

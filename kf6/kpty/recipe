@@ -1,0 +1,17 @@
+name        kpty
+version     6.26.0
+release     1
+description kpty: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kpty-6.26.0.tar.xz
+hash        sha256:7613c26cfaa7465a2fe28a22762ceb38266414e7f4a94a127c09dc0628625553
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

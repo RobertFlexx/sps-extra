@@ -1,0 +1,13 @@
+name        noto-fonts-emoji
+version     2.047
+release     1
+description noto-fonts-emoji: Noto Color Emoji
+
+source      https://github.com/googlefonts/noto-emoji/archive/refs/tags/v2.047.tar.gz
+hash        sha256:2cfaf5a427eb26334cdb30d98e4a0c005b660504a339249dc54373e566f09b50
+
+arch        any
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/share/fonts/noto"
+install     sh -c "test -f fonts/NotoColorEmoji.ttf && cp fonts/NotoColorEmoji.ttf "$PKG/usr/share/fonts/noto/" || find . -name NotoColorEmoji.ttf -exec cp {} "$PKG/usr/share/fonts/noto/" \;"

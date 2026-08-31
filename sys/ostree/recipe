@@ -1,0 +1,16 @@
+name        ostree
+version     2026.4
+release     1
+description ostree: content-addressed filesystem
+
+source      https://github.com/ostreedev/ostree/releases/download/v2026.4/libostree-2026.4.tar.xz
+hash        sha256:b26c9016eb03bb4ee52cc00c642d56e00fc79ae7faac6bf4aa317d7451339ef7
+
+depend      filesystem
+depend      glib
+depend      libarchive
+depend      openssl
+
+configure   ./configure --prefix=/usr --without-selinux --with-soup=no --with-curl
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

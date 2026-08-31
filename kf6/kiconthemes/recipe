@@ -1,0 +1,17 @@
+name        kiconthemes
+version     6.26.0
+release     1
+description kiconthemes: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kiconthemes-6.26.0.tar.xz
+hash        sha256:ed6c0c0bfed517dd5b6462d9b1c84ebe7bc99c7a75214921b5978f086df8653d
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

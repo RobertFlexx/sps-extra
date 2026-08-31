@@ -1,0 +1,17 @@
+name        power-profiles-daemon
+version     0.23
+release     1
+description power-profiles-daemon: power profiles
+
+source      https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/archive/0.23/power-profiles-daemon-0.23.tar.gz
+hash        sha256:ccf6e00093dc5300be48d66d439540bb6239460b602bbd85001c937860de2e5f
+
+depend      filesystem
+depend      glib
+depend      polkit
+depend      upower
+depend      dbus
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false -Dsystemdsystemunitdir=no
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

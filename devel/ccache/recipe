@@ -1,0 +1,14 @@
+name        ccache
+version     4.14
+release     1
+description ccache: compiler cache
+
+source      https://github.com/ccache/ccache/releases/download/v4.14/ccache-4.14.tar.xz
+hash        sha256:b093ac5d38204cb4d9f29b0bbd570675aa5a592a78e6675b2c506dbe045234e7
+
+depend      filesystem
+depend      zstd
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DREDIS_STORAGE_BACKEND=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,13 @@
+name        libpcap
+version     1.10.5
+release     1
+description libpcap: packet capture
+
+source      https://www.tcpdump.org/release/libpcap-1.10.5.tar.xz
+hash        sha256:84fa89ac6d303028c1c5b754abff77224f45eca0a94eb1a34ff0aa9ceece3925
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

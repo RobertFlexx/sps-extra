@@ -1,0 +1,14 @@
+name        gstreamer
+version     1.26.5
+release     1
+description gstreamer: multimedia framework
+
+source      https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-1.26.5.tar.xz
+hash        sha256:0a7edb0e7b42dbe6b575fce61a4808a3f6b20e085a1eaecbc025d0ec21f1e774
+
+depend      filesystem
+depend      glib
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=disabled -Dexamples=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

@@ -1,0 +1,12 @@
+name        lm-sensors
+version     3.6.2
+release     1
+description lm-sensors: hardware monitoring
+
+source      https://github.com/lm-sensors/lm-sensors/archive/refs/tags/V3-6-2.tar.gz
+hash        sha256:c6a0587e565778a40d88891928bf8943f27d353f382d5b745a997d635978a8f0
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr BUILD_STATIC_LIB=0
+install     make install DESTDIR="$PKG" PREFIX=/usr BUILD_STATIC_LIB=0

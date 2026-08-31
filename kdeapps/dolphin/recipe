@@ -1,0 +1,19 @@
+name        dolphin
+version     26.08.0
+release     1
+description dolphin: KDE component
+
+source      https://download.kde.org/stable/release-service/26.08.0/src/dolphin-26.08.0.tar.xz
+hash        sha256:a7e4ec09c25cb971d098875c8d3db1f0aded69d995fd5ec3769e18548eb2ad7e
+
+depend      filesystem
+depend      qt6
+depend      kf6
+depend      plasma-desktop
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

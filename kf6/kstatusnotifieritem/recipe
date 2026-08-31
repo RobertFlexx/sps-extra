@@ -1,0 +1,17 @@
+name        kstatusnotifieritem
+version     6.26.0
+release     1
+description kstatusnotifieritem: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kstatusnotifieritem-6.26.0.tar.xz
+hash        sha256:898914c94820f99889d879f33cabbb5fbe7b9f4e24a6a1d9a9b4439489bc3266
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

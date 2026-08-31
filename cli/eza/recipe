@@ -1,0 +1,15 @@
+name        eza
+version     0.23.5
+release     1
+description eza: modern ls
+
+source      https://github.com/eza-community/eza/archive/refs/tags/v0.23.5.tar.gz
+hash        sha256:bbf179f2611c904014431740b559e8055276c12fcf978a7e31c271663548337f
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/eza" "$PKG/usr/bin/eza"
+install     chmod 755 "$PKG/usr/bin/eza"

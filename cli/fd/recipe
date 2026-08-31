@@ -1,0 +1,15 @@
+name        fd
+version     10.5.0
+release     1
+description fd: fast find alternative
+
+source      https://github.com/sharkdp/fd/archive/refs/tags/v10.5.0.tar.gz
+hash        sha256:e6d9e90730bf316101691e49d59cc02565278dc3779d33a77423801569484851
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/fd" "$PKG/usr/bin/fd"
+install     chmod 755 "$PKG/usr/bin/fd"

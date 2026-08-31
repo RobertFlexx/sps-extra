@@ -1,0 +1,14 @@
+name        xtrans
+version     1.6.0
+release     1
+arch        any
+description xtrans: X network transport layer
+
+source      https://www.x.org/releases/individual/lib/xtrans-1.6.0.tar.xz
+hash        sha256:faafea166bf2451a173d9d593352940ec6404145c5d1da5c213423ce4d359e92
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

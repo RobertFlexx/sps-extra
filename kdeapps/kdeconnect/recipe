@@ -1,0 +1,19 @@
+name        kdeconnect
+version     26.08.0
+release     1
+description kdeconnect: KDE component
+
+source      https://download.kde.org/stable/release-service/26.08.0/src/kdeconnect-kde-26.08.0.tar.xz
+hash        sha256:9acf2e9bed4537eda6cd009eccfc9cce80dafbe2f9bfdb8054c2f0ebf92d0bfc
+
+depend      filesystem
+depend      qt6
+depend      kf6
+depend      plasma-desktop
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

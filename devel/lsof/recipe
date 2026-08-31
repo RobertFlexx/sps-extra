@@ -1,0 +1,14 @@
+name        lsof
+version     4.99.7
+release     1
+description lsof: list open files
+
+source      https://github.com/lsof-org/lsof/releases/download/4.99.7/lsof-4.99.7.tar.gz
+hash        sha256:4a10391aab0b8ce1f539e82a1966693b2a6cf225972a6504ebb7ec4fa71675de
+
+depend      filesystem
+depend      ncurses
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

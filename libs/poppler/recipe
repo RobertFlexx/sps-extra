@@ -1,0 +1,20 @@
+name        poppler
+version     25.08.0
+release     1
+description poppler: PDF rendering
+
+source      https://poppler.freedesktop.org/poppler-25.08.0.tar.xz
+hash        sha256:425ed4d4515a093bdcdbbaac6876f20617451edc710df6a4fd6c45dd67eb418d
+
+depend      filesystem
+depend      cairo
+depend      freetype
+depend      fontconfig
+depend      nss
+depend      libjpeg-turbo
+depend      libpng
+depend      zlib
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

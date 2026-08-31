@@ -1,0 +1,16 @@
+name        vulkan-loader
+version     1.4.357.0
+release     1
+description vulkan-loader: Vulkan ICD loader
+
+source      https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/vulkan-sdk-1.4.357.0.tar.gz
+hash        sha256:54f2537df22313768da0317dda2abdaaab7711b4081c48c869a79db343d0ae70
+
+depend      filesystem
+depend      vulkan-headers
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

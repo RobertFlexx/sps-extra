@@ -1,0 +1,17 @@
+name        kbookmarks
+version     6.26.0
+release     1
+description kbookmarks: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kbookmarks-6.26.0.tar.xz
+hash        sha256:82e8794281870686da9e7e7b5ddc0839f50b15d919357490d508faccb2635030
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

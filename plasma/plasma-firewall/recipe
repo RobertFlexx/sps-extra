@@ -1,0 +1,18 @@
+name        plasma-firewall
+version     6.7.4
+release     1
+description plasma-firewall: KDE component
+
+source      https://download.kde.org/stable/plasma/6.7.4/plasma-firewall-6.7.4.tar.xz
+hash        sha256:7f26c2a3bfc935dde9936f1cc611dac4cf936d7d7d3cb3ea41f141064ebaac56
+
+depend      filesystem
+depend      qt6
+depend      kf6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

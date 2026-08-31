@@ -1,0 +1,17 @@
+name        networkmanager
+version     1.54.0
+release     1
+description networkmanager: network configuration
+
+source      https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/archive/1.54.0/NetworkManager-1.54.0.tar.gz
+hash        sha256:c5356e5a86b351dc79d23c8685d02b91917d1f107628c97d370c6441a8322a93
+
+depend      filesystem
+depend      glib
+depend      dbus
+depend      libndp
+depend      jansson
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dsystemd=false -Dsession_tracking=elogind -Dtests=no
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

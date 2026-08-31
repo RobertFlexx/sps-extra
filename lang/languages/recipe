@@ -1,0 +1,17 @@
+name        languages
+version     1.0
+release     1
+arch        any
+description languages: Python, Lua, Go, Rust, Node.js, Perl, and Ruby
+
+depend      filesystem
+depend      python
+depend      lua
+depend      go
+depend      rust
+depend      nodejs
+depend      perl
+depend      ruby
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "languages" >"$PKG/usr/share/sps/sets/languages"

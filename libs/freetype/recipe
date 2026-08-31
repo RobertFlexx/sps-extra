@@ -1,0 +1,16 @@
+name        freetype
+version     2.13.3
+release     1
+description freetype: font rasterizer
+
+source      https://download-mirror.savannah.gnu.org/releases/freetype/freetype-2.13.3.tar.xz
+hash        sha256:0550350666d427c74daeb85d5ac7bb353acba5f76956395995311a9c6f063289
+
+depend      filesystem
+depend      zlib
+depend      libpng
+depend      bzip2
+
+configure   ./configure --prefix=/usr --enable-freetype-config --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

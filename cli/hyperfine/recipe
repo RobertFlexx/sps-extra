@@ -1,0 +1,15 @@
+name        hyperfine
+version     1.20.0
+release     1
+description hyperfine: command-line benchmarking
+
+source      https://github.com/sharkdp/hyperfine/archive/refs/tags/v1.20.0.tar.gz
+hash        sha256:f90c3b096af568438be7da52336784635a962c9822f10f98e5ad11ae8c7f5c64
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/hyperfine" "$PKG/usr/bin/hyperfine"
+install     chmod 755 "$PKG/usr/bin/hyperfine"

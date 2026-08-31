@@ -1,0 +1,16 @@
+name        desktop-file-utils
+version     0.28
+release     1
+description desktop-file-utils: desktop entry tools
+
+source      https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.28.tar.xz
+hash        sha256:4401d4e231d842c2de8242395a74a395ca468cd96f5f610d822df33594898a70
+
+depend      filesystem
+depend      glib
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

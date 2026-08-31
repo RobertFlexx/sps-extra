@@ -1,0 +1,14 @@
+name        slirp4netns
+version     1.3.5
+release     1
+description slirp4netns: user-mode networking
+
+source      https://github.com/rootless-containers/slirp4netns/archive/refs/tags/v1.3.5.tar.gz
+hash        sha256:a27ed4c7311616516b56015cc74fa06c6431f5c8ebadaf331c0e08150d1a84ce
+
+depend      filesystem
+depend      libslirp
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

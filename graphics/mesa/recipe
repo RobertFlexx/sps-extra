@@ -1,0 +1,24 @@
+name        mesa
+version     25.3.0
+release     1
+description mesa: OpenGL and Vulkan implementation
+
+source      https://archive.mesa3d.org/mesa-25.3.0.tar.xz
+hash        sha256:0fd54fea7dbbddb154df05ac752b18621f26d97e27863db3be951417c6abe8ae
+
+depend      filesystem
+depend      libdrm
+depend      wayland
+depend      wayland-protocols
+depend      libglvnd
+depend      expat
+depend      zlib
+depend      zstd
+depend      libxml2
+depend      vulkan-headers
+depend      vulkan-loader
+depend      x11
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dllvm=disabled -Dgallium-drivers=auto -Dvulkan-drivers=auto -Dglvnd=enabled -Dgbm=enabled -Degl=enabled -Dgles2=enabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

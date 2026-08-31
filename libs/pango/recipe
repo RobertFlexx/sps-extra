@@ -1,0 +1,18 @@
+name        pango
+version     1.56.4
+release     1
+description pango: text layout library
+
+source      https://download.gnome.org/sources/pango/1.56/pango-1.56.4.tar.xz
+hash        sha256:17065e2fcc5f5a5bdbffc884c956bfc7c451a96e8c4fb2f8ad837c6413cb5a01
+
+depend      filesystem
+depend      cairo
+depend      harfbuzz
+depend      fontconfig
+depend      fribidi
+depend      glib
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=disabled -Dsysprof=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

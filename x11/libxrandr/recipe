@@ -1,0 +1,15 @@
+name        libxrandr
+version     1.5.4
+release     1
+description libxrandr: X Resize and Rotate extension
+
+source      https://www.x.org/releases/individual/lib/libXrandr-1.5.4.tar.xz
+hash        sha256:1ad5b065375f4a85915aa60611cc6407c060492a214d7f9daf214be752c3b4d3
+
+depend      filesystem
+depend      libxext
+depend      libxrender
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,15 @@
+name        sddm
+version     0.21.0
+release     1
+description sddm: display manager
+
+source      https://github.com/sddm/sddm/archive/refs/tags/v0.21.0.tar.gz
+hash        sha256:f895de2683627e969e4849dbfbbb2b500787481ca5ba0de6d6dfdae5f1549abf
+
+depend      filesystem
+depend      qt6
+depend      elogind
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DENABLE_JOURNALD=OFF -DNO_SYSTEMD=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

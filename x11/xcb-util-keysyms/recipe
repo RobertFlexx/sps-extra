@@ -1,0 +1,14 @@
+name        xcb-util-keysyms
+version     0.4.1
+release     1
+description xcb-util-keysyms: XCB keysyms
+
+source      https://www.x.org/releases/individual/lib/xcb-util-keysyms-0.4.1.tar.xz
+hash        sha256:7c260a5294412aed429df1da2f8afd3bd07b7cba3fec772fba15a613a6d5c638
+
+depend      filesystem
+depend      libxcb
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,13 @@
+name        libjpeg-turbo
+version     3.1.2
+release     1
+description libjpeg-turbo: JPEG library
+
+source      https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/3.1.2/libjpeg-turbo-3.1.2.tar.gz
+hash        sha256:8f0012234b464ce50890c490f18194f913a7b1f4e6a03d6644179fa0f867d0cf
+
+depend      filesystem
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

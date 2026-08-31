@@ -1,0 +1,12 @@
+name        traceroute
+version     2.1.6
+release     1
+description traceroute: trace the path to a host
+
+source      https://downloads.sourceforge.net/project/traceroute/traceroute/traceroute-2.1.6/traceroute-2.1.6.tar.gz
+hash        sha256:9ccef9cdb9d7a98ff7fbf93f79ebd0e48881664b525c4b232a0fcec7dcb9db5e
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" prefix=/usr
+install     make prefix=/usr DESTDIR="$PKG" install

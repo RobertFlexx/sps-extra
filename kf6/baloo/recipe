@@ -1,0 +1,17 @@
+name        baloo
+version     6.26.0
+release     1
+description baloo: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/baloo-6.26.0.tar.xz
+hash        sha256:702f5b868aaef48153c6c3828111b3b335403079491a8f37043ebd89c6995b30
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

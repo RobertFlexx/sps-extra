@@ -1,0 +1,17 @@
+name        ktexteditor
+version     6.26.0
+release     1
+description ktexteditor: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/ktexteditor-6.26.0.tar.xz
+hash        sha256:ec7bc094f93d514b5f675ae95c274dd24acc47769d971606d8708cc88f811341
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

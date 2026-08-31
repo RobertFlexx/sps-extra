@@ -1,0 +1,17 @@
+name        ksvg
+version     6.26.0
+release     1
+description ksvg: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/ksvg-6.26.0.tar.xz
+hash        sha256:f3a7412e227d13b1cafec91c1b58dd3f86980abefc08b2535b46bef362b4c07e
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

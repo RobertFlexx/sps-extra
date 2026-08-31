@@ -1,0 +1,14 @@
+name        xcb-proto
+version     1.17.0
+release     1
+arch        any
+description xcb-proto: XCB protocol descriptions
+
+source      https://www.x.org/releases/individual/proto/xcb-proto-1.17.0.tar.xz
+hash        sha256:2c1bacd2110f4799f74de6ebb714b94cf6f80fb112316b1219480fd22562148c
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

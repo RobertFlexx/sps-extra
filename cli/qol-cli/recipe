@@ -1,0 +1,33 @@
+name        qol-cli
+version     1.0
+release     1
+arch        any
+description qol-cli: quality-of-life command line tools
+
+depend      filesystem
+depend      ripgrep
+depend      jq
+depend      fd
+depend      bat
+depend      eza
+depend      fzf
+depend      zoxide
+depend      delta
+depend      bottom
+depend      tokei
+depend      hyperfine
+depend      dust
+depend      duf
+depend      tealdeer
+depend      lazygit
+depend      fastfetch
+depend      btop
+depend      htop
+depend      tmux
+depend      tree
+depend      starship
+depend      sd
+depend      yq
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "qol-cli" >"$PKG/usr/share/sps/sets/qol-cli"

@@ -1,0 +1,15 @@
+name        bat
+version     0.26.1
+release     1
+description bat: cat with syntax highlighting
+
+source      https://github.com/sharkdp/bat/archive/refs/tags/v0.26.1.tar.gz
+hash        sha256:4474de87e084953eefc1120cf905a79f72bbbf85091e30cf37c9214eafcaa9c9
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/bat" "$PKG/usr/bin/bat"
+install     chmod 755 "$PKG/usr/bin/bat"

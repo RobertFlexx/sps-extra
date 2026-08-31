@@ -1,0 +1,14 @@
+name        libxext
+version     1.3.6
+release     1
+description libxext: X11 miscellaneous extensions
+
+source      https://www.x.org/releases/individual/lib/libXext-1.3.6.tar.xz
+hash        sha256:edb59fa23994e405fdc5b400afdf5820ae6160b94f35e3dc3da4457a16e89753
+
+depend      filesystem
+depend      libx11
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

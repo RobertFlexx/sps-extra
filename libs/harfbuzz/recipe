@@ -1,0 +1,15 @@
+name        harfbuzz
+version     12.3.0
+release     1
+description harfbuzz: text shaping
+
+source      https://github.com/harfbuzz/harfbuzz/releases/download/12.3.0/harfbuzz-12.3.0.tar.xz
+hash        sha256:8660ebd3c27d9407fc8433b5d172bafba5f0317cb0bb4339f28e5370c93d42b7
+
+depend      filesystem
+depend      freetype
+depend      glib
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=disabled -Ddocs=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

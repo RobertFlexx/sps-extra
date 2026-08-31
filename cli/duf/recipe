@@ -1,0 +1,15 @@
+name        duf
+version     0.9.1
+release     1
+description duf: disk usage/free utility
+
+source      https://github.com/muesli/duf/archive/refs/tags/v0.9.1.tar.gz
+hash        sha256:1334d8c1a7957d0aceebe651e3af9e1c1e0c6f298f1feb39643dd0bd8ad1e955
+
+depend      filesystem
+builddep    go
+
+build       GOPROXY=https://proxy.golang.org,direct CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o "duf"
+install     mkdir -p "$PKG/usr/bin"
+install     cp "duf" "$PKG/usr/bin/duf"
+install     chmod 755 "$PKG/usr/bin/duf"

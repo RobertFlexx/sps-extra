@@ -1,0 +1,16 @@
+name        emacs
+version     30.2
+release     1
+description emacs: GNU Emacs
+
+source      https://ftp.gnu.org/gnu/emacs/emacs-30.2.tar.xz
+hash        sha256:b3f36f18a6dd2715713370166257de2fae01f9d38cfe878ced9b1e6ded5befd9
+
+depend      filesystem
+depend      ncurses
+depend      zlib
+depend      libxml2
+
+configure   ./configure --prefix=/usr --with-x=no --without-ns --without-dbus --with-gnutls=no
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

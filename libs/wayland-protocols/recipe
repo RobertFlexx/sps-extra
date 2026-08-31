@@ -1,0 +1,15 @@
+name        wayland-protocols
+version     1.45
+release     1
+description wayland-protocols: Wayland protocol XML
+
+source      https://gitlab.freedesktop.org/wayland/wayland-protocols/-/archive/1.45/wayland-protocols-1.45.tar.gz
+hash        sha256:460dad72a6c84b2a7d80745bee43d96ba117f4e3dfc4d7c45f83f66469ea27df
+
+arch        any
+depend      filesystem
+depend      wayland
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

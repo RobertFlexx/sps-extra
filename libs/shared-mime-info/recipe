@@ -1,0 +1,18 @@
+name        shared-mime-info
+version     2.4
+release     1
+arch        any
+description shared-mime-info: shared MIME database
+
+source      https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/2.4/shared-mime-info-2.4.tar.gz
+hash        sha256:531291d0387eb94e16e775d7e73788d06d2b2fdd8cd2ac6b6b15287593b6a2de
+
+depend      filesystem
+depend      glib
+depend      libxml2
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

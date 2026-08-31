@@ -1,0 +1,17 @@
+name        qt6-qtvirtualkeyboard
+version     6.11.2
+release     1
+description qt6-qtvirtualkeyboard: Qt 6 module
+
+source      https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtvirtualkeyboard-everywhere-src-6.11.2.tar.xz
+hash        sha256:4c6a26734a5c4e4acd5ff9ae5f192a5b883bc4514118f9df2fcf12064e647c2f
+
+depend      filesystem
+depend      qt6-qtbase
+depend      pkgconf
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_TESTS=OFF -DQT_FEATURE_system_zlib=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

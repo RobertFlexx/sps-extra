@@ -1,0 +1,14 @@
+name        ntfs-3g
+version     2022.10.3
+release     1
+description ntfs-3g: NTFS driver and tools
+
+source      https://tuxera.com/opensource/ntfs-3g_ntfsprogs-2022.10.3.tgz
+hash        sha256:f20e36ee68074b845e3629e6bced4706ad053804cbaf062fbae60738f854170c
+
+depend      filesystem
+depend      fuse3
+
+configure   ./configure --prefix=/usr --disable-static --with-fuse=external
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

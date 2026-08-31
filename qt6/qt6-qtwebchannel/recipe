@@ -1,0 +1,17 @@
+name        qt6-qtwebchannel
+version     6.11.2
+release     1
+description qt6-qtwebchannel: Qt 6 module
+
+source      https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtwebchannel-everywhere-src-6.11.2.tar.xz
+hash        sha256:feb3149758bda887f0c292656194812dd2c227595badc8fbdeb2fb2311c5575f
+
+depend      filesystem
+depend      qt6-qtbase
+depend      pkgconf
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_TESTS=OFF -DQT_FEATURE_system_zlib=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,16 @@
+name        qpdf
+version     12.2.0
+release     1
+description qpdf: PDF transformation
+
+source      https://github.com/qpdf/qpdf/releases/download/v12.2.0/qpdf-12.2.0.tar.gz
+hash        sha256:b3d1575b2218badc3549d6977524bb0f8c468c6528eebc8967bbe3078cf2cace
+
+depend      filesystem
+depend      zlib
+depend      libjpeg-turbo
+depend      openssl
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,16 @@
+name        wireshark-cli
+version     4.6.0
+release     1
+description wireshark-cli: tshark and dumpcap
+
+source      https://github.com/wireshark/wireshark/archive/refs/tags/v4.6.0.tar.gz
+hash        sha256:6517e75f65851bf8b4cc0b16add5f53c44a32ef48c33dde77c7fc7ae54d7f847
+
+depend      filesystem
+depend      glib
+depend      libpcap
+depend      zlib
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DBUILD_wireshark=OFF -DBUILD_logray=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

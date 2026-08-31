@@ -1,0 +1,14 @@
+name        wpa_supplicant
+version     2.11
+release     1
+description wpa_supplicant: Wi-Fi client
+
+source      https://w1.fi/releases/wpa_supplicant-2.11.tar.gz
+hash        sha256:912ea06f74e30a8e36fbb68064d6cdff218d8d591db0fc5d75dee6c81ac7fc0a
+
+depend      filesystem
+depend      openssl
+depend      libnl
+
+build       make -C wpa_supplicant -j"$MAKEJOBS"
+install     make -C wpa_supplicant DESTDIR="$PKG" BINDIR=/usr/sbin install

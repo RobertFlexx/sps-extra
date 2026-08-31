@@ -1,0 +1,14 @@
+name        xcb-util-image
+version     0.4.1
+release     1
+description xcb-util-image: XCB image helpers
+
+source      https://www.x.org/releases/individual/lib/xcb-util-image-0.4.1.tar.xz
+hash        sha256:ccad8ee5dadb1271fd4727ad14d9bd77a64e505608766c4e98267d9aede40d3d
+
+depend      filesystem
+depend      xcb-util
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

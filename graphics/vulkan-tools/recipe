@@ -1,0 +1,17 @@
+name        vulkan-tools
+version     1.4.357.0
+release     1
+description vulkan-tools: vulkaninfo and related tools
+
+source      https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/vulkan-sdk-1.4.357.0.tar.gz
+hash        sha256:6c94b86c850808aba316d999dd6742133d6197ae2135248d3a8aed9b32ebd1f7
+
+depend      filesystem
+depend      vulkan-headers
+depend      vulkan-loader
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

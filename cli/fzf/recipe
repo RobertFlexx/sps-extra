@@ -1,0 +1,15 @@
+name        fzf
+version     0.74.3
+release     1
+description fzf: fuzzy finder
+
+source      https://github.com/junegunn/fzf/archive/refs/tags/v0.74.3.tar.gz
+hash        sha256:5b142217c3068647a7d8faa9c678cffada100b5f11a48609aa79c94ce04b28ef
+
+depend      filesystem
+builddep    go
+
+build       GOPROXY=https://proxy.golang.org,direct CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o "fzf"
+install     mkdir -p "$PKG/usr/bin"
+install     cp "fzf" "$PKG/usr/bin/fzf"
+install     chmod 755 "$PKG/usr/bin/fzf"

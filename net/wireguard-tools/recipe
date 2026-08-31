@@ -1,0 +1,12 @@
+name        wireguard-tools
+version     1.0.20250521
+release     1
+description wireguard-tools: WireGuard userspace tools
+
+source      https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-1.0.20250521.tar.xz
+hash        sha256:61f520e7c1664ae9301fa36a2b8e90cf4680887a71f456c290d5d8b879f1e2e6
+
+depend      filesystem
+
+build       make -C src -j"$MAKEJOBS"
+install     make -C src install DESTDIR="$PKG" WITH_WGQUICK=yes PREFIX=/usr

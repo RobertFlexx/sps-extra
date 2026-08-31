@@ -1,0 +1,15 @@
+name        libxcursor
+version     1.2.3
+release     1
+description libxcursor: X cursor management
+
+source      https://www.x.org/releases/individual/lib/libXcursor-1.2.3.tar.xz
+hash        sha256:fde9402dd4cfe79da71e2d96bb980afc5e6ff4f8a7d74c159e1966afb2b2c2c0
+
+depend      filesystem
+depend      libxrender
+depend      libxfixes
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

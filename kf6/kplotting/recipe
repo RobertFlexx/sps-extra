@@ -1,0 +1,17 @@
+name        kplotting
+version     6.26.0
+release     1
+description kplotting: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kplotting-6.26.0.tar.xz
+hash        sha256:bb120f446e6bfc376129e03663e4b3b9e7146abc948ccc68da19187840f9f181
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

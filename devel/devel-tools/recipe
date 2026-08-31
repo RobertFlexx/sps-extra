@@ -1,0 +1,21 @@
+name        devel-tools
+version     1.0
+release     1
+arch        any
+description devel-tools: cmake, meson, ninja, autotools, gdb, and ccache
+
+depend      filesystem
+depend      pkgconf
+depend      cmake
+depend      ninja
+depend      meson
+depend      autoconf
+depend      automake
+depend      libtool
+depend      gdb
+depend      ccache
+depend      strace
+depend      lsof
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "devel-tools" >"$PKG/usr/share/sps/sets/devel-tools"

@@ -1,0 +1,14 @@
+name        iperf3
+version     3.19.1
+release     1
+description iperf3: network throughput test
+
+source      https://github.com/esnet/iperf/releases/download/3.19.1/iperf-3.19.1.tar.gz
+hash        sha256:dc63f89ec581ea99f8b558d8eb35109de06383010db5a1906c208a562ba0c270
+
+depend      filesystem
+depend      openssl
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

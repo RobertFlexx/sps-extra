@@ -1,0 +1,16 @@
+name        nodejs
+version     24.20.0
+release     1
+description nodejs: JavaScript runtime
+
+source      https://nodejs.org/dist/v24.20.0/node-v24.20.0.tar.xz
+hash        sha256:2732fc3f588dd335cd6779c06864f7cd424bb1b5ff9a1743059a66c54f9ca4a1
+
+depend      filesystem
+depend      openssl
+depend      zlib
+depend      libxml2
+
+configure   ./configure --prefix=/usr --shared-openssl --shared-zlib
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

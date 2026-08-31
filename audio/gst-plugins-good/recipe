@@ -1,0 +1,14 @@
+name        gst-plugins-good
+version     1.26.5
+release     1
+description gst-plugins-good: GStreamer good plugins
+
+source      https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.26.5.tar.xz
+hash        sha256:eb0862e93404b073e98ec50350ece7e6685ea2936cab8118c2b8e938e2cbea8b
+
+depend      filesystem
+depend      gst-plugins-base
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=disabled -Dexamples=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

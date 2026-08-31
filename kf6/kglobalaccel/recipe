@@ -1,0 +1,17 @@
+name        kglobalaccel
+version     6.26.0
+release     1
+description kglobalaccel: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kglobalaccel-6.26.0.tar.xz
+hash        sha256:3f19d22d143577e5ddcc883170fe19a56f8f65766e41c4f9c011c4dfbde17a61
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

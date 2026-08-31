@@ -8,6 +8,7 @@ hash        sha256:7605249d3eb0d5f170e3414498e3344e26b1e7a147aec518b57090b80036a
 
 depend      filesystem
 depend      pcre2
+builddep    rust
 
 build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked --features pcre2
 install     mkdir -p "$PKG/usr/bin"

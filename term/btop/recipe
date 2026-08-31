@@ -1,0 +1,13 @@
+name        btop
+version     1.4.7
+release     1
+description btop: resource monitor
+
+source      https://github.com/aristocratos/btop/archive/refs/tags/v1.4.7.tar.gz
+hash        sha256:933de2e4d1b2211a638be463eb6e8616891bfba73aef5d38060bd8319baeefc6
+
+depend      filesystem
+depend      ncurses
+
+build       make -j"$MAKEJOBS"
+install     make PREFIX="$PKG/usr" install

@@ -1,0 +1,15 @@
+name        iwd
+version     3.9
+release     1
+description iwd: iNet wireless daemon
+
+source      https://cdn.kernel.org/pub/linux/network/wireless/iwd-3.9.tar.xz
+hash        sha256:0cd7dc9b32b9d6809a4a5e5d063b5c5fd279f5ad3a0bf03d7799da66df5cad45
+
+depend      filesystem
+depend      ell
+depend      dbus
+
+configure   ./configure --prefix=/usr --disable-systemd-service
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

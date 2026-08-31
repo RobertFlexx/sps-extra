@@ -1,0 +1,37 @@
+name        qt6
+version     6.11.2
+release     1
+arch        any
+description qt6: Qt 6 toolkit
+
+depend      filesystem
+depend      qt6-qtbase
+depend      qt6-qt5compat
+depend      qt6-qtshadertools
+depend      qt6-qtdeclarative
+depend      qt6-qtsvg
+depend      qt6-qtwayland
+depend      qt6-qtimageformats
+depend      qt6-qttools
+depend      qt6-qttranslations
+depend      qt6-qtmultimedia
+depend      qt6-qtpositioning
+depend      qt6-qtspeech
+depend      qt6-qtquicktimeline
+depend      qt6-qtquick3d
+depend      qt6-qtsensors
+depend      qt6-qtconnectivity
+depend      qt6-qtwebsockets
+depend      qt6-qtwebchannel
+depend      qt6-qtvirtualkeyboard
+depend      qt6-qtlanguageserver
+depend      qt6-qtnetworkauth
+depend      qt6-qtserialport
+depend      qt6-qtcharts
+depend      qt6-qtlocation
+depend      qt6-qthttpserver
+depend      qt6-qtgraphs
+depend      qt6-qtscxml
+depend      qt6-qtremoteobjects
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "qt6" >"$PKG/usr/share/sps/sets/qt6"

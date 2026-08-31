@@ -1,0 +1,14 @@
+name        libsm
+version     1.2.6
+release     1
+description libsm: X Session Management
+
+source      https://www.x.org/releases/individual/lib/libSM-1.2.6.tar.xz
+hash        sha256:be7c0abdb15cbfd29ac62573c1c82e877f9d4047ad15321e7ea97d1e43d835be
+
+depend      filesystem
+depend      libice
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

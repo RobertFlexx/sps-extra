@@ -1,0 +1,15 @@
+name        xdg-desktop-portal
+version     1.20.0
+release     1
+description xdg-desktop-portal: desktop portals
+
+source      https://github.com/flatpak/xdg-desktop-portal/releases/download/1.20.0/xdg-desktop-portal-1.20.0.tar.xz
+hash        sha256:33d666f169efdf3f3bedd531bdbd272edc8f471caf6ca6cf6752efbbab57523a
+
+depend      filesystem
+depend      glib
+depend      pipewire
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=disabled -Ddocumentation=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

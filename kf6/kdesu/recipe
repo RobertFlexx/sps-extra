@@ -1,0 +1,17 @@
+name        kdesu
+version     6.26.0
+release     1
+description kdesu: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kdesu-6.26.0.tar.xz
+hash        sha256:37df33a1236850b6bebd773a1aeab56ca597e347432924ca5855369337d4be24
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

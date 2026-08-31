@@ -1,0 +1,15 @@
+name        zoxide
+version     0.10.0
+release     1
+description zoxide: smarter cd
+
+source      https://github.com/ajeetdsouza/zoxide/archive/refs/tags/v0.10.0.tar.gz
+hash        sha256:4fcd4272b013a10b637dbcc299c58a9924b94470a9042677ca1a204cc2e9150e
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/zoxide" "$PKG/usr/bin/zoxide"
+install     chmod 755 "$PKG/usr/bin/zoxide"

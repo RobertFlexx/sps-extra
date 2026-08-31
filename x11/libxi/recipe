@@ -1,0 +1,15 @@
+name        libxi
+version     1.8.2
+release     1
+description libxi: X Input extension
+
+source      https://www.x.org/releases/individual/lib/libXi-1.8.2.tar.xz
+hash        sha256:d0e0555e53d6e2114eabfa44226ba162d2708501a25e18d99cfb35c094c6c104
+
+depend      filesystem
+depend      libxext
+depend      libxfixes
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

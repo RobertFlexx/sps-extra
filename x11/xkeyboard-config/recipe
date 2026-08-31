@@ -1,0 +1,16 @@
+name        xkeyboard-config
+version     2.44
+release     1
+arch        any
+description xkeyboard-config: XKB keyboard layouts
+
+source      https://www.x.org/releases/individual/data/xkeyboard-config/xkeyboard-config-2.44.tar.xz
+hash        sha256:54d2c33eeebb031d48fa590c543e54c9bcbd0f00386ebc6489b2f47a0da4342a
+
+depend      filesystem
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

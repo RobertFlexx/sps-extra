@@ -1,0 +1,17 @@
+name        breeze-icons
+version     6.26.0
+release     1
+description breeze-icons: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/breeze-icons-6.26.0.tar.xz
+hash        sha256:4e123fac511dfab2b7c505857849a5cecfac2ce6194e3230c51ceec31676b06e
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

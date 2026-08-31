@@ -1,0 +1,13 @@
+name        libdrm
+version     2.4.125
+release     1
+description libdrm: Direct Rendering Manager library
+
+source      https://dri.freedesktop.org/libdrm/libdrm-2.4.125.tar.xz
+hash        sha256:d4bae92797a50f81a93524762e0410a49cd84cfa0f997795bc0172ac8fb1d96a
+
+depend      filesystem
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

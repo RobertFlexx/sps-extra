@@ -1,0 +1,21 @@
+name        firefox
+version     154.0.1
+release     1
+description firefox: Mozilla Firefox
+
+source      https://archive.mozilla.org/pub/firefox/releases/154.0.1/source/firefox-154.0.1.source.tar.xz
+hash        sha256:9cbe191fc74b46108376b1d9bf607c0a40288074e0f2333671253789d6ebbd15
+
+depend      filesystem
+depend      gtk3
+depend      dbus
+depend      nss
+depend      nspr
+depend      libevent
+depend      sqlite
+depend      rust
+depend      python
+
+configure   ./mach configure --prefix=/usr --disable-tests --disable-crashreporter --disable-updater
+build       ./mach build
+install     DESTDIR="$PKG" ./mach install

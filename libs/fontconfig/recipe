@@ -1,0 +1,16 @@
+name        fontconfig
+version     2.16.2
+release     1
+description fontconfig: font configuration
+
+source      https://gitlab.freedesktop.org/fontconfig/fontconfig/-/archive/2.16.2/fontconfig-2.16.2.tar.gz
+hash        sha256:8b9368ae99d9faf2fe26491645fbeebf0272d911cacc5d3e9cf954c2157c151e
+
+depend      filesystem
+depend      freetype
+depend      expat
+depend      libxml2
+
+configure   meson setup build --prefix=/usr --buildtype=release -Ddoc=disabled -Dtests=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

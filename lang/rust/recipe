@@ -1,0 +1,11 @@
+name        rust
+version     1.98.0
+release     1
+description rust: Rust toolchain (official linux-gnu distribution)
+
+source      https://static.rust-lang.org/dist/rust-1.98.0-x86_64-unknown-linux-gnu.tar.xz
+hash        sha256:ed8ee2df70909c88cbaf87a6cfa3920dac00b537de12a6abe6906641e0f5952f
+
+depend      filesystem
+
+install     ./install.sh --prefix=/usr --destdir="$PKG" --disable-ldconfig

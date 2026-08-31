@@ -1,0 +1,15 @@
+name        extra-cmake-modules
+version     6.26.0
+release     1
+description extra-cmake-modules: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/extra-cmake-modules-6.26.0.tar.xz
+hash        sha256:f4e10d9d45aafb5273e996196040f4e420f0bc4071c208282aae94d9ad8e1743
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

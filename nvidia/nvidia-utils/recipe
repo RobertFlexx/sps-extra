@@ -1,0 +1,15 @@
+name        nvidia-utils
+version     610.57.04
+release     1
+description nvidia-utils: NVIDIA user-space driver
+
+source      https://us.download.nvidia.com/XFree86/Linux-x86_64/610.57.04/NVIDIA-Linux-x86_64-610.57.04.run
+hash        sha256:b2e935c66b83bb00c0c857bc8e0ee0fd52de9286b40c9cc1eec29a7ce7eb116d
+
+depend      filesystem
+
+prepare     sh "$SRC/NVIDIA-Linux-x86_64-610.57.04.run" --extract-only --target extracted
+install     mkdir -p "$PKG/usr/lib" "$PKG/usr/bin" "$PKG/usr/share/nvidia"
+install     sh -c "cp extracted/*.so* "$PKG/usr/lib/" 2>/dev/null || :"
+install     sh -c "test -f extracted/nvidia-smi && cp extracted/nvidia-smi "$PKG/usr/bin/" && chmod 755 "$PKG/usr/bin/nvidia-smi" || :"
+install     printf "%s\n" "610.57.04" >"$PKG/usr/share/nvidia/version"

@@ -1,0 +1,14 @@
+name        fuse-overlayfs
+version     1.18
+release     1
+description fuse-overlayfs: FUSE overlay filesystem
+
+source      https://github.com/containers/fuse-overlayfs/archive/refs/tags/v1.18.tar.gz
+hash        sha256:fdd1896c8de35a15eb14444d7880be81d635fcbbc4ad162d8bc3ccf5627aa8c7
+
+depend      filesystem
+depend      fuse3
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

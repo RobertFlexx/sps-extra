@@ -1,0 +1,14 @@
+name        go
+version     1.27.0
+release     1
+description go: Go toolchain (official linux-amd64 distribution)
+
+source      https://go.dev/dl/go1.27.0.linux-amd64.tar.gz
+hash        sha256:675c26c449cbb18fc24b74650de1eabbae6e16f64326fd85a283fb3b58280685
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/lib" "$PKG/usr/bin"
+install     cp -a . "$PKG/usr/lib/go"
+install     ln -s ../lib/go/bin/go "$PKG/usr/bin/go"
+install     ln -s ../lib/go/bin/gofmt "$PKG/usr/bin/gofmt"

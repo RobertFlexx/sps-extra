@@ -1,0 +1,15 @@
+name        tealdeer
+version     1.9.0
+release     1
+description tealdeer: fast tldr client
+
+source      https://github.com/tealdeer-rs/tealdeer/archive/refs/tags/v1.9.0.tar.gz
+hash        sha256:1387a04ddba714668ff0925377a2de0d0ab14533d44dd0766d673fbbd71e3119
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/tldr" "$PKG/usr/bin/tldr"
+install     chmod 755 "$PKG/usr/bin/tldr"

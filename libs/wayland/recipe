@@ -1,0 +1,16 @@
+name        wayland
+version     1.24.0
+release     1
+description wayland: display protocol library
+
+source      https://gitlab.freedesktop.org/wayland/wayland/-/archive/1.24.0/wayland-1.24.0.tar.gz
+hash        sha256:7800858844751fc7113d7df3678dc6b58b26a056176a65c49a059763045bffd5
+
+depend      filesystem
+depend      libffi
+depend      expat
+depend      libxml2
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false -Ddocumentation=false
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

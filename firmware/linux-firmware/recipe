@@ -1,0 +1,10 @@
+name        linux-firmware
+version     20250808
+release     1
+arch        any
+description linux-firmware: blob directory marker; copy blobs onto the live ISO with mkiso
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/lib/firmware" "$PKG/usr/share/doc/linux-firmware"
+install     printf '%s\n' "Place linux-firmware blobs in /usr/lib/firmware. The live ISO copies the host tree when present." >"$PKG/usr/share/doc/linux-firmware/README"

@@ -1,0 +1,13 @@
+name        nvidia-open
+version     610.57.04
+release     1
+description nvidia-open: NVIDIA open kernel modules
+
+source      https://github.com/NVIDIA/open-gpu-kernel-modules/archive/refs/tags/610.57.04.tar.gz
+hash        sha256:619d7b5ce1f79c3211afdbf87d02b2174d268b10d005c5b8f994be22299be681
+
+depend      filesystem
+depend      linux-api-headers
+
+build       make -j"$MAKEJOBS" modules
+install     make modules_install INSTALL_MOD_PATH="$PKG"

@@ -1,0 +1,17 @@
+name        qqc2-desktop-style
+version     6.26.0
+release     1
+description qqc2-desktop-style: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/qqc2-desktop-style-6.26.0.tar.xz
+hash        sha256:1805fa31355ff86c02158fd2b8d396fd88835d01db97d8700314c48ee3360986
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

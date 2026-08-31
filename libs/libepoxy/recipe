@@ -1,0 +1,14 @@
+name        libepoxy
+version     1.5.10
+release     1
+description libepoxy: OpenGL function pointer management
+
+source      https://download.gnome.org/sources/libepoxy/1.5/libepoxy-1.5.10.tar.xz
+hash        sha256:072cda4b59dd098bba8c2363a6247299db1fa89411dc221c8b81b8ee8192e623
+
+depend      filesystem
+depend      libglvnd
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

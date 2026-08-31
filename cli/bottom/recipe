@@ -1,0 +1,15 @@
+name        bottom
+version     0.14.9
+release     1
+description bottom: process/system monitor (btm)
+
+source      https://github.com/ClementTsang/bottom/archive/refs/tags/0.14.9.tar.gz
+hash        sha256:1dbb940c763fb583b7e1c7dfa165b73ed9a0ba712e72cc97311c5b1c098d5b72
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/btm" "$PKG/usr/bin/btm"
+install     chmod 755 "$PKG/usr/bin/btm"

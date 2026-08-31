@@ -1,0 +1,13 @@
+name        smartmontools
+version     7.5
+release     1
+description smartmontools: S.M.A.R.T. disk monitoring
+
+source      https://github.com/smartmontools/smartmontools/releases/download/RELEASE_7_5/smartmontools-7.5.tar.gz
+hash        sha256:690b83ca331378da9ea0d9d61008c4b22dde391387b9bbad7f29387f2595f76e
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

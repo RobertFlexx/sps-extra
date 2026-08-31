@@ -1,0 +1,17 @@
+name        syndication
+version     6.26.0
+release     1
+description syndication: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/syndication-6.26.0.tar.xz
+hash        sha256:6130b8bc976cb078eda34b833ecd558a156b4e6bc4cb55e57ac362cb2998ba47
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

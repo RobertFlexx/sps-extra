@@ -1,0 +1,15 @@
+name        bind-tools
+version     9.20.11
+release     1
+description bind-tools: dig, host, nslookup, and BIND utilities
+
+source      https://downloads.isc.org/isc/bind9/9.20.11/bind-9.20.11.tar.xz
+hash        sha256:4da2d532e668bc21e883f6e6d9d3d81794d9ec60b181530385649a56f46ee17a
+
+depend      filesystem
+depend      openssl
+depend      libxml2
+
+configure   ./configure --prefix=/usr --disable-linux-caps --without-python
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

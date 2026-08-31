@@ -1,0 +1,18 @@
+name        libxft
+version     2.3.9
+release     1
+description libxft: X FreeType interface
+
+source      https://www.x.org/releases/individual/lib/libXft-2.3.9.tar.xz
+hash        sha256:60a25b78945ed6932635b3bb1899a517d31df7456e69867ffba27f89ff3976f5
+
+depend      filesystem
+depend      libxrender
+depend      freetype
+depend      fontconfig
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

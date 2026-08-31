@@ -1,0 +1,17 @@
+name        kitemmodels
+version     6.26.0
+release     1
+description kitemmodels: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kitemmodels-6.26.0.tar.xz
+hash        sha256:a996201062ff7d21f9db972debc2d9615762ddb0fd9da069a42b7fd7bba1e61d
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

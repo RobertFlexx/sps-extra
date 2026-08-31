@@ -1,0 +1,18 @@
+name        plasma-browser-integration
+version     6.7.4
+release     1
+description plasma-browser-integration: KDE component
+
+source      https://download.kde.org/stable/plasma/6.7.4/plasma-browser-integration-6.7.4.tar.xz
+hash        sha256:298ee5e14c935dd811ad3686a2a6422fe8d2ea7f0b6946595268c6ac6b252325
+
+depend      filesystem
+depend      qt6
+depend      kf6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

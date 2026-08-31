@@ -1,0 +1,17 @@
+name        kquickcharts
+version     6.26.0
+release     1
+description kquickcharts: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kquickcharts-6.26.0.tar.xz
+hash        sha256:ae3e0784a2a2d1396cb751cc61f43a567e066d6434971246b1a18365481a1b52
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

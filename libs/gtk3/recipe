@@ -1,0 +1,21 @@
+name        gtk3
+version     3.24.51
+release     1
+description gtk3: GIMP Toolkit 3
+
+source      https://download.gnome.org/sources/gtk/3.24/gtk-3.24.51.tar.xz
+hash        sha256:0013877c6bd23c2dbe42ad7c70a053d0e449be66736574e37867c49c5f905a4f
+
+depend      filesystem
+depend      glib
+depend      cairo
+depend      pango
+depend      gdk-pixbuf
+depend      libepoxy
+depend      wayland
+depend      harfbuzz
+depend      fontconfig
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=false -Dtests=false -Ddemos=false -Dexamples=false -Ddocumentation=false
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

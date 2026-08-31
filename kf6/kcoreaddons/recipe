@@ -1,0 +1,17 @@
+name        kcoreaddons
+version     6.26.0
+release     1
+description kcoreaddons: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kcoreaddons-6.26.0.tar.xz
+hash        sha256:92fdbfab68e52d9eacf44a992f01cb364d6395c24441e2fd47dd48a23b3281f6
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

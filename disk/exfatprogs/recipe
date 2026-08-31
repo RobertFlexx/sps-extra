@@ -1,0 +1,13 @@
+name        exfatprogs
+version     1.2.9
+release     1
+description exfatprogs: exFAT filesystem tools
+
+source      https://github.com/exfatprogs/exfatprogs/releases/download/1.2.9/exfatprogs-1.2.9.tar.gz
+hash        sha256:6233a422d7dae9f3b1f279e6a8dd35f3976d085358c587d5308be274f04725e0
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

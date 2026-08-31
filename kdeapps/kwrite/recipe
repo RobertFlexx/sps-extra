@@ -1,0 +1,10 @@
+name        kwrite
+version     26.08.0
+release     1
+arch        any
+description kwrite: shipped by kate
+
+depend      filesystem
+depend      kate
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "kwrite" >"$PKG/usr/share/sps/sets/kwrite"

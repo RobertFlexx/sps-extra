@@ -1,0 +1,14 @@
+name        xcb-util
+version     0.4.1
+release     1
+description xcb-util: XCB utility library
+
+source      https://www.x.org/releases/individual/lib/xcb-util-0.4.1.tar.xz
+hash        sha256:5abe3bbbd8e54f0fa3ec945291b7e8fa8cfd3cccc43718f8758430f94126e512
+
+depend      filesystem
+depend      libxcb
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

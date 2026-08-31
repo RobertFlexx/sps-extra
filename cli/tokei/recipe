@@ -1,0 +1,15 @@
+name        tokei
+version     14.0.0
+release     1
+description tokei: count lines of code
+
+source      https://github.com/XAMPPRocky/tokei/archive/refs/tags/v14.0.0.tar.gz
+hash        sha256:4e561dbb83ef1b46359714fc623fd45eddfb14821ece63a219470500fdd1cd26
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/tokei" "$PKG/usr/bin/tokei"
+install     chmod 755 "$PKG/usr/bin/tokei"

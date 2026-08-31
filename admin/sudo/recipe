@@ -1,0 +1,14 @@
+name        sudo
+version     1.9.17p2
+release     1
+description sudo: execute commands as another user
+
+source      https://www.sudo.ws/dist/sudo-1.9.17p2.tar.gz
+hash        sha256:4a38a1ab3adb1199257edc2a7c4a2bd714665eb605b04368843b06dada2cfcfb
+
+depend      filesystem
+depend      openssl
+
+configure   ./configure --prefix=/usr --with-rundir=/run/sudo --with-vardir=/var/db/sudo --disable-root-mailer --without-pam --with-env-editor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

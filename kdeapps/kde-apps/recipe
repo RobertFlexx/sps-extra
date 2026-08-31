@@ -1,0 +1,30 @@
+name        kde-apps
+version     26.08.0
+release     1
+arch        any
+description kde-apps: KDE application suite
+
+depend      filesystem
+depend      plasma-desktop
+depend      dolphin
+depend      konsole
+depend      kate
+depend      ark
+depend      gwenview
+depend      okular
+depend      spectacle
+depend      kcalc
+depend      kwrite
+depend      elisa
+depend      yakuake
+depend      filelight
+depend      kfind
+depend      partitionmanager
+depend      kdeconnect
+depend      falkon
+depend      kdenlive
+depend      khelpcenter
+depend      print-manager
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "kde-apps" >"$PKG/usr/share/sps/sets/kde-apps"

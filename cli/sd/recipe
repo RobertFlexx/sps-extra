@@ -1,0 +1,15 @@
+name        sd
+version     1.0.0
+release     1
+description sd: intuitive sed alternative
+
+source      https://github.com/chmln/sd/archive/refs/tags/v1.0.0.tar.gz
+hash        sha256:2adc1dec0d2c63cbffa94204b212926f2735a59753494fca72c3cfe4001d472f
+
+depend      filesystem
+
+builddep    rust
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/sd" "$PKG/usr/bin/sd"
+install     chmod 755 "$PKG/usr/bin/sd"

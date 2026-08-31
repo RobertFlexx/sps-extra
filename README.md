@@ -10,7 +10,9 @@ Package categories are organizational and are created only when they contain a
 package:
 
 ```text
-cli/  editors/  fonts/  shells/  term/
+admin/  audio/  cli/  desktop/  devel/  disk/  editors/  firmware/  fonts/
+graphics/  kdeapps/  kf6/  lang/  libs/  net/  nvidia/  plasma/  print/
+qt6/  shells/  sys/  term/  www/  x11/
 ```
 
 Configure the tree after core:
@@ -32,6 +34,13 @@ src which nano
 Git checkouts default to `/usr/src/sps/core` and `/usr/src/sps/extra`. They are
 ordinary repositories and may be inspected or pinned with Git. A local tree at
 priority 200 can override either official collection.
+
+The installer umbrellas `plasma-desktop` and `plasma-full` select a Plasma 6
+session, optional KDE applications, NVIDIA open kernel modules, Flatpak, and
+language/devel sets. Qt 6, KDE Frameworks, and Plasma leaves use verified
+SHA-256 hashes so `src update` can index the graph. Compile those stacks in
+dependency layers: pkgconf, Python, ninja/meson/cmake, libraries, Qt,
+Frameworks, then Plasma.
 
 Build a package from its directory with `mkpkg`, inspect the result, and test
 installation/check/removal in a disposable SPS root. See the SPS package

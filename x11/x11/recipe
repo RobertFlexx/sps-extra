@@ -1,0 +1,32 @@
+name        x11
+version     1.0
+release     1
+arch        any
+description x11: X11 client libraries used by Qt and Mesa
+
+depend      filesystem
+depend      xorgproto
+depend      libx11
+depend      libxext
+depend      libxrender
+depend      libxfixes
+depend      libxi
+depend      libxrandr
+depend      libxcursor
+depend      libxdamage
+depend      libxinerama
+depend      libxxf86vm
+depend      libxshmfence
+depend      libxcomposite
+depend      libxtst
+depend      libxkbfile
+depend      xcb-util
+depend      xcb-util-image
+depend      xcb-util-keysyms
+depend      xcb-util-renderutil
+depend      xcb-util-wm
+depend      xcb-util-cursor
+depend      xkeyboard-config
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "x11" >"$PKG/usr/share/sps/sets/x11"

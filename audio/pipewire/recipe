@@ -1,0 +1,16 @@
+name        pipewire
+version     1.4.7
+release     1
+description pipewire: multimedia server
+
+source      https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/1.4.7/pipewire-1.4.7.tar.gz
+hash        sha256:9d54f025e1e7ae73b980a6c8be2e8e6387e24d554d58478d6495734ce1ee5a93
+
+depend      filesystem
+depend      dbus
+depend      glib
+depend      alsa-lib
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dsession-managers=[] -Dtests=disabled -Dexamples=disabled
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

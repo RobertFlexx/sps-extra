@@ -1,0 +1,17 @@
+name        qt6-qthttpserver
+version     6.11.2
+release     1
+description qt6-qthttpserver: Qt 6 module
+
+source      https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qthttpserver-everywhere-src-6.11.2.tar.xz
+hash        sha256:f0f5763b2ba58f20f5cffdfbedb97e62e32b5c639df6d9a6378905028be7bd8e
+
+depend      filesystem
+depend      qt6-qtbase
+depend      pkgconf
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_TESTS=OFF -DQT_FEATURE_system_zlib=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

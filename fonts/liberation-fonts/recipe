@@ -1,0 +1,13 @@
+name        liberation-fonts
+version     2.1.5
+release     1
+description liberation-fonts: metric-compatible fonts
+
+source      https://github.com/liberationfonts/liberation-fonts/archive/refs/tags/2.1.5.tar.gz
+hash        sha256:9a823ccb33c8a8a865e84b982bcdc44d03ba4914adb91e6000df035dc0e55936
+
+arch        any
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/share/fonts/liberation"
+install     sh -c "find . -name '*.ttf' -exec cp {} "$PKG/usr/share/fonts/liberation/" \;"

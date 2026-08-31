@@ -1,0 +1,18 @@
+name        plasma-integration
+version     6.7.4
+release     1
+description plasma-integration: KDE component
+
+source      https://download.kde.org/stable/plasma/6.7.4/plasma-integration-6.7.4.tar.xz
+hash        sha256:54e65b1170499ccc567f9bb7586809d4739ea728efcf1bc877d1709db6e7347a
+
+depend      filesystem
+depend      qt6
+depend      kf6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

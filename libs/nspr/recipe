@@ -1,0 +1,13 @@
+name        nspr
+version     4.37
+release     1
+description nspr: Netscape Portable Runtime
+
+source      https://ftp.mozilla.org/pub/nspr/releases/v4.37/src/nspr-4.37.tar.gz
+hash        sha256:5f9344ed0e31855bd38f88b33c9d9ab94f70ce547ef3213e488d1520f61840fa
+
+depend      filesystem
+
+configure   ./nspr/configure --prefix=/usr --enable-64bit
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

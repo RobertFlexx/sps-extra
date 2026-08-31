@@ -1,0 +1,16 @@
+name        libxau
+version     1.0.12
+release     1
+description libxau: X11 authorization library
+
+source      https://www.x.org/releases/individual/lib/libXau-1.0.12.tar.xz
+hash        sha256:74d0e4dfa3d39ad8939e99bda37f5967aba528211076828464d2777d477fc0fb
+
+depend      filesystem
+depend      xorgproto
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

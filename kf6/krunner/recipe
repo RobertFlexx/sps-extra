@@ -1,0 +1,17 @@
+name        krunner
+version     6.26.0
+release     1
+description krunner: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/krunner-6.26.0.tar.xz
+hash        sha256:3519c7fe170be1359a4c38dd5269de64c0208ccfeb950661002ddfa4e92f2bf0
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

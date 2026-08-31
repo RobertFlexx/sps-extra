@@ -1,0 +1,18 @@
+name        milou
+version     6.7.4
+release     1
+description milou: KDE component
+
+source      https://download.kde.org/stable/plasma/6.7.4/milou-6.7.4.tar.xz
+hash        sha256:88ed9119b777c7107657b47b68af34a2c2de422f709d1409b7c2d7721463e247
+
+depend      filesystem
+depend      qt6
+depend      kf6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

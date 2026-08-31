@@ -1,0 +1,13 @@
+name        kakoune
+version     2026.05.21
+release     1
+description kakoune: modal text editor
+
+source      https://github.com/mawww/kakoune/archive/refs/tags/v2026.05.21.tar.gz
+hash        sha256:7ef778bd199e05977841e6f69aad2bee6cd58fb23b0e4bc265d012d42de17580
+
+depend      filesystem
+depend      ncurses
+
+build       make -j"$MAKEJOBS"
+install     make install PREFIX=/usr DESTDIR="$PKG"

@@ -1,0 +1,13 @@
+name        libevdev
+version     1.13.4
+release     1
+description libevdev: evdev wrapper
+
+source      https://www.freedesktop.org/software/libevdev/libevdev-1.13.4.tar.xz
+hash        sha256:f00ab8d42ad8b905296fab67e13b871f1a424839331516642100f82ad88127cd
+
+depend      filesystem
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

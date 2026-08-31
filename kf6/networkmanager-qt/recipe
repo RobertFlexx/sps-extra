@@ -1,0 +1,17 @@
+name        networkmanager-qt
+version     6.26.0
+release     1
+description networkmanager-qt: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/networkmanager-qt-6.26.0.tar.xz
+hash        sha256:a5cfed06af6156161f7fee56efe1521a6e9e26119327069f1799986f90b432e5
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

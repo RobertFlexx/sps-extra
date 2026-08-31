@@ -1,0 +1,16 @@
+name        xorgproto
+version     2025.1
+release     1
+arch        any
+description xorgproto: X11 protocol headers
+
+source      https://www.x.org/releases/individual/proto/xorgproto-2025.1.tar.xz
+hash        sha256:56898c716c0578df8a2d828c9c3e5c528277705c0484381a81960fe1a67668e8
+
+depend      filesystem
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

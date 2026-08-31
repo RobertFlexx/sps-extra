@@ -1,0 +1,13 @@
+name        libglvnd
+version     1.7.0
+release     1
+description libglvnd: GL vendor-neutral dispatch
+
+source      https://gitlab.freedesktop.org/glvnd/libglvnd/-/archive/v1.7.0/libglvnd-v1.7.0.tar.gz
+hash        sha256:2b6e15b06aafb4c0b6e2348124808cbd9b291c647299eaaba2e3202f51ff2f3d
+
+depend      filesystem
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

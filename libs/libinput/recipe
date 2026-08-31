@@ -1,0 +1,15 @@
+name        libinput
+version     1.28.1
+release     1
+description libinput: input device library
+
+source      https://gitlab.freedesktop.org/libinput/libinput/-/archive/1.28.1/libinput-1.28.1.tar.gz
+hash        sha256:a13f8c9a7d93df3c85c66afd135f0296701d8d32f911991b7aa4273fdd6a42a3
+
+depend      filesystem
+depend      libevdev
+depend      mtdev
+
+configure   meson setup build --prefix=/usr --buildtype=release
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

@@ -1,0 +1,16 @@
+name        nmap
+version     7.98
+release     1
+description nmap: network scanner
+
+source      https://nmap.org/dist/nmap-7.98.tgz
+hash        sha256:8c2f25d11c2a2a2ae76441cbe396ffa7f0ad718db5a145d9967269f1ca831370
+
+depend      filesystem
+depend      openssl
+depend      pcre2
+depend      zlib
+
+configure   ./configure --prefix=/usr --without-zenmap --without-ndiff
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

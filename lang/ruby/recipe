@@ -1,0 +1,18 @@
+name        ruby
+version     3.4.7
+release     1
+description ruby: Ruby interpreter
+
+source      https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.7.tar.gz
+hash        sha256:23815a6d095696f7919090fdc3e2f9459b2c83d57224b2e446ce1f5f7333ef36
+
+depend      filesystem
+depend      openssl
+depend      zlib
+depend      libffi
+depend      libyaml
+depend      readline
+
+configure   ./configure --prefix=/usr --enable-shared --disable-install-doc
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

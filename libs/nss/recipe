@@ -1,0 +1,16 @@
+name        nss
+version     3.115
+release     1
+description nss: Network Security Services
+
+source      https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_115_RTM/src/nss-3.115.tar.gz
+hash        sha256:ac2a47fb33bd79320159144e01c0d4af9a937a2d928c7c77ff06f5d9507861ab
+
+depend      filesystem
+depend      nspr
+depend      zlib
+depend      sqlite
+
+build       make -C nss -j"$MAKEJOBS" nss_build_all BUILD_OPT=1 USE_64=1 NSS_USE_SYSTEM_SQLITE=1
+install     mkdir -p "$PKG/usr/lib" "$PKG/usr/bin" "$PKG/usr/include/nss"
+install     sh -c 'cp -a dist/*/lib/* "$PKG/usr/lib/"; cp -a dist/*/bin/* "$PKG/usr/bin/"; cp -a dist/public/nss/* "$PKG/usr/include/nss/"'

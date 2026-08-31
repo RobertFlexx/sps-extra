@@ -1,0 +1,17 @@
+name        kimageformats
+version     6.26.0
+release     1
+description kimageformats: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kimageformats-6.26.0.tar.xz
+hash        sha256:c192552ee1831fd5e09af4e3633bb24726dfb4031170c4285024683bedaf9972
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

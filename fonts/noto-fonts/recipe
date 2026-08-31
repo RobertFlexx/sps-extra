@@ -1,0 +1,13 @@
+name        noto-fonts
+version     2.015
+release     1
+description noto-fonts: Noto Sans Latin Greek Cyrillic
+
+source      https://github.com/notofonts/latin-greek-cyrillic/archive/refs/tags/NotoSans-v2.015.tar.gz
+hash        sha256:5f372684b4b6dcd5da1ec4816c869fa49673225c6e3af87754a9b0720a3606e7
+
+arch        any
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/share/fonts/noto"
+install     sh -c "find . -name '*.ttf' -exec cp {} "$PKG/usr/share/fonts/noto/" \;"

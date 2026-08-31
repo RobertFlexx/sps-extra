@@ -1,0 +1,14 @@
+name        nvidia-settings
+version     610.57.04
+release     1
+description nvidia-settings: NVIDIA control panel
+
+source      https://github.com/NVIDIA/nvidia-settings/archive/refs/tags/610.57.04.tar.gz
+hash        sha256:0e548843a45e5ddb7e93c8ad9ba20d7a950c595a8fd8c80ae7fffc497ee149de
+
+depend      filesystem
+depend      nvidia-utils
+depend      gtk3
+
+build       make -j"$MAKEJOBS" PREFIX=/usr NV_USE_BUNDLED_LIBJANSSON=0
+install     make install PREFIX=/usr DESTDIR="$PKG"

@@ -1,0 +1,16 @@
+name        libxcb
+version     1.17.0
+release     1
+description libxcb: X C Binding
+
+source      https://www.x.org/releases/individual/lib/libxcb-1.17.0.tar.xz
+hash        sha256:599ebf9996710fea71622e6e184f3a8ad5b43d0e5fa8c4e407123c88a59a6d55
+
+depend      filesystem
+depend      xcb-proto
+depend      libxau
+depend      libxdmcp
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

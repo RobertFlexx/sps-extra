@@ -1,0 +1,16 @@
+name        libsndfile
+version     1.2.2
+release     1
+description libsndfile: audio file library
+
+source      https://github.com/libsndfile/libsndfile/releases/download/1.2.2/libsndfile-1.2.2.tar.xz
+hash        sha256:3799ca9924d3125038880367bf1468e53a1b7e3686a934f098b7e1d286cdb80e
+
+depend      filesystem
+depend      flac
+depend      libvorbis
+depend      opus
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

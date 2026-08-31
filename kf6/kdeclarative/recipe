@@ -1,0 +1,17 @@
+name        kdeclarative
+version     6.26.0
+release     1
+description kdeclarative: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kdeclarative-6.26.0.tar.xz
+hash        sha256:9a464e560e436cd3a626ca6aab894f414c6212d2de8b9c5a8eda33be213e00d8
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

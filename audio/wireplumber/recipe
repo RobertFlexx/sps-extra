@@ -1,0 +1,16 @@
+name        wireplumber
+version     0.5.10
+release     1
+description wireplumber: PipeWire session manager
+
+source      https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/0.5.10/wireplumber-0.5.10.tar.gz
+hash        sha256:c2e021d8e6ef1db644facd4a97f5a644b67481c641da9100e851aab6752ba446
+
+depend      filesystem
+depend      pipewire
+depend      glib
+depend      lua
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=disabled -Ddoc=disabled -Dtests=false
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild

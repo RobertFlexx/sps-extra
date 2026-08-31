@@ -1,0 +1,15 @@
+name        dust
+version     1.2.5
+release     1
+description dust: du with a tree view
+
+source      https://github.com/bootandy/dust/archive/refs/tags/v1.2.5.tar.gz
+hash        sha256:4445e61f1341ea567e9e49367f275a1f4b026a60526e60048265f7af4a4943fd
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/dust" "$PKG/usr/bin/dust"
+install     chmod 755 "$PKG/usr/bin/dust"

@@ -1,0 +1,19 @@
+name        kcalc
+version     26.08.0
+release     1
+description kcalc: KDE component
+
+source      https://download.kde.org/stable/release-service/26.08.0/src/kcalc-26.08.0.tar.xz
+hash        sha256:bd75d3d83c6ef300f2f1e91bda3061b85be1617aa31d8890a161f630f1b683e8
+
+depend      filesystem
+depend      qt6
+depend      kf6
+depend      plasma-desktop
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

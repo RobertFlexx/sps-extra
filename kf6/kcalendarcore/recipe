@@ -1,0 +1,17 @@
+name        kcalendarcore
+version     6.26.0
+release     1
+description kcalendarcore: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/kcalendarcore-6.26.0.tar.xz
+hash        sha256:386be0eee392d8432b6b7fafd3dead95dd1fc74f81790928c580f81e6222a17c
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

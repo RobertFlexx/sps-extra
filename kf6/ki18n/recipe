@@ -1,0 +1,17 @@
+name        ki18n
+version     6.26.0
+release     1
+description ki18n: KDE component
+
+source      https://download.kde.org/stable/frameworks/6.26/ki18n-6.26.0.tar.xz
+hash        sha256:484aad486bfafef6c86d8d5b26529258e67c74c96250c1ac212ddf568448c7c0
+
+depend      filesystem
+depend      qt6
+builddep    cmake
+builddep    ninja
+builddep    extra-cmake-modules
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DKDE_INSTALL_LIBDIR=lib
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build
