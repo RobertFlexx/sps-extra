@@ -1,0 +1,152 @@
+diff -Naur ff-a/doc/json_schema.json ff-b/doc/json_schema.json
+--- ff-a/doc/json_schema.json	2026-08-13 23:20:28.000000000 -0700
++++ ff-b/doc/json_schema.json	2026-08-31 04:15:39.123846672 -0700
+@@ -446,7 +446,7 @@
+             "type": "string"
+         },
+         "packagesFormat": {
+-            "description": "Output format for the `Packages` module. See Wiki for formatting syntax\n    1. {am-system}: Number of am-system packages\n    2. {am-user}: Number of am-user (aka appman) packages\n    3. {appimage}: Number of appimage packages\n    4. {apk}: Number of apk packages\n    5. {brew}: Number of brew packages\n    6. {brew-cask}: Number of brew-cask packages\n    7. {cards}: Number of cards packages\n    8. {choco}: Number of choco packages\n    9. {dpkg}: Number of dpkg packages\n    10. {emerge}: Number of emerge packages\n    11. {eopkg}: Number of eopkg packages\n    12. {flatpak-system}: Number of flatpak-system app packages\n    13. {flatpak-user}: Number of flatpak-user app packages\n    14. {guix-home}: Number of guix-home packages\n    15. {guix-system}: Number of guix-system packages\n    16. {guix-user}: Number of guix-user packages\n    17. {hpkg-system}: Number of hpkg-system packages\n    18. {hpkg-user}: Number of hpkg-user packages\n    19. {install-release}: Number of install-release packages\n    20. {kiss}: Number of kiss packages\n    21. {linglong}: Number of linglong packages\n    22. {lpkg}: Number of lpkg packages\n    23. {lpkgbuild}: Number of lpkgbuild packages\n    24. {macports}: Number of macports packages\n    25. {mport}: Number of mport packages\n    26. {moss}: Number of moss packages\n    27. {nix-default}: Number of nix-default packages\n    28. {nix-system}: Number of nix-system packages\n    29. {nix-user}: Number of nix-user packages\n    30. {opkg}: Number of opkg packages\n    31. {pacman}: Number of pacman packages\n    32. {pacman-branch}: Pacman branch on manjaro\n    33. {pacstall}: Number of pacstall packages\n    34. {paludis}: Number of paludis packages\n    35. {pisi}: Number of pisi packages\n    36. {pkg}: Number of pkg packages\n    37. {pkgsrc}: Number of pkgsrc packages\n    38. {pkgtool}: Number of pkgtool packages\n    39. {porg}: Number of porg packages\n    40. {rpm}: Number of rpm packages\n    41. {scoop-global}: Number of scoop-global packages\n    42. {scoop-user}: Number of scoop-user packages\n    43. {snap}: Number of snap packages\n    44. {soar}: Number of soar packages\n    45. {sorcery}: Number of sorcery packages\n    46. {winget}: Number of winget packages\n    47. {xbps}: Number of xbps packages\n    48. {brew-all}: Total number of all brew packages\n    49. {flatpak-all}: Total number of all flatpak app packages\n    50. {guix-all}: Total number of all guix packages\n    51. {hpkg-all}: Total number of all hpkg packages\n    52. {nix-all}: Total number of all nix packages\n    53. {all}: Number of all packages",
++            "description": "Output format for the `Packages` module. See Wiki for formatting syntax\n    1. {am-system}: Number of am-system packages\n    2. {am-user}: Number of am-user (aka appman) packages\n    3. {appimage}: Number of appimage packages\n    4. {apk}: Number of apk packages\n    5. {brew}: Number of brew packages\n    6. {brew-cask}: Number of brew-cask packages\n    7. {cards}: Number of cards packages\n    8. {choco}: Number of choco packages\n    9. {dpkg}: Number of dpkg packages\n    10. {emerge}: Number of emerge packages\n    11. {eopkg}: Number of eopkg packages\n    12. {flatpak-system}: Number of flatpak-system app packages\n    13. {flatpak-user}: Number of flatpak-user app packages\n    14. {guix-home}: Number of guix-home packages\n    15. {guix-system}: Number of guix-system packages\n    16. {guix-user}: Number of guix-user packages\n    17. {hpkg-system}: Number of hpkg-system packages\n    18. {hpkg-user}: Number of hpkg-user packages\n    19. {install-release}: Number of install-release packages\n    20. {kiss}: Number of kiss packages\n    21. {linglong}: Number of linglong packages\n    22. {lpkg}: Number of lpkg packages\n    23. {lpkgbuild}: Number of lpkgbuild packages\n    24. {macports}: Number of macports packages\n    25. {mport}: Number of mport packages\n    26. {moss}: Number of moss packages\n    27. {nix-default}: Number of nix-default packages\n    28. {nix-system}: Number of nix-system packages\n    29. {nix-user}: Number of nix-user packages\n    30. {opkg}: Number of opkg packages\n    31. {pacman}: Number of pacman packages\n    32. {pacman-branch}: Pacman branch on manjaro\n    33. {pacstall}: Number of pacstall packages\n    34. {paludis}: Number of paludis packages\n    35. {pisi}: Number of pisi packages\n    36. {pkg}: Number of pkg packages\n    37. {pkgsrc}: Number of pkgsrc packages\n    38. {pkgtool}: Number of pkgtool packages\n    39. {porg}: Number of porg packages\n    40. {rpm}: Number of rpm packages\n    41. {scoop-global}: Number of scoop-global packages\n    42. {scoop-user}: Number of scoop-user packages\n    43. {snap}: Number of snap packages\n    44. {soar}: Number of soar packages\n    45. {sorcery}: Number of sorcery packages\n    46. {sps}: Number of sps packages\n    47. {winget}: Number of winget packages\n    48. {xbps}: Number of xbps packages\n    49. {brew-all}: Total number of all brew packages\n    50. {flatpak-all}: Total number of all flatpak app packages\n    51. {guix-all}: Total number of all guix packages\n    52. {hpkg-all}: Total number of all hpkg packages\n    53. {nix-all}: Total number of all nix packages\n    54. {all}: Number of all packages",
+             "type": "string"
+         },
+         "physicaldiskFormat": {
+@@ -3671,6 +3671,7 @@
+                                                         "scoop",
+                                                         "snap",
+                                                         "sorcery",
++                                                        "sps",
+                                                         "winget",
+                                                         "xbps"
+                                                     ],
+diff -Naur ff-a/src/detection/packages/packages.h ff-b/src/detection/packages/packages.h
+--- ff-a/src/detection/packages/packages.h	2026-08-13 23:20:28.000000000 -0700
++++ ff-b/src/detection/packages/packages.h	2026-08-31 04:15:39.122120331 -0700
+@@ -48,6 +48,7 @@
+     uint32_t snap;
+     uint32_t soar;
+     uint32_t sorcery;
++    uint32_t sps;
+     uint32_t winget;
+     uint32_t xbps;
+ 
+diff -Naur ff-a/src/detection/packages/packages_linux.c ff-b/src/detection/packages/packages_linux.c
+--- ff-a/src/detection/packages/packages_linux.c	2026-08-13 23:20:28.000000000 -0700
++++ ff-b/src/detection/packages/packages_linux.c	2026-08-31 04:15:39.122240266 -0700
+@@ -483,6 +483,45 @@
+     return result;
+ }
+ 
++
++static uint32_t getSpsPackages(FFstrbuf* baseDir)
++{
++    uint32_t baseDirLength = baseDir->length;
++    ffStrbufAppendS(baseDir, "/var/lib/sps/installed");
++
++    FF_AUTO_CLOSE_DIR DIR* dirp = opendir(baseDir->chars);
++    if (dirp == nullptr)
++    {
++        ffStrbufSubstrBefore(baseDir, baseDirLength);
++        return 0;
++    }
++
++    uint32_t count = 0;
++    struct dirent* entry;
++    while ((entry = readdir(dirp)) != nullptr)
++    {
++        if (entry->d_name[0] == '.')
++            continue;
++
++        struct stat stbuf;
++        if (fstatat(dirfd(dirp), entry->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) != 0)
++            continue;
++        if (!S_ISDIR(stbuf.st_mode))
++            continue;
++
++        FF_STRBUF_AUTO_DESTROY metaName = ffStrbufCreateS(entry->d_name);
++        ffStrbufAppendS(&metaName, "/meta");
++        if (fstatat(dirfd(dirp), metaName.chars, &stbuf, AT_SYMLINK_NOFOLLOW) != 0)
++            continue;
++        if (!S_ISREG(stbuf.st_mode))
++            continue;
++        ++count;
++    }
++
++    ffStrbufSubstrBefore(baseDir, baseDirLength);
++    return count;
++}
++
+ static void getPackageCounts(FFstrbuf* baseDir, FFPackagesResult* packageCounts, FFPackagesOptions* options) {
+     if (FF_PACKAGES_IS_ENABLED(options, APK)) {
+         packageCounts->apk += getNumStrings(baseDir, "/lib/apk/db/installed", "C:Q", "apk");
+@@ -547,6 +586,9 @@
+     if (FF_PACKAGES_IS_ENABLED(options, SORCERY)) {
+         packageCounts->sorcery += getNumStrings(baseDir, "/var/state/sorcery/packages", ":installed:", "sorcery");
+     }
++    if (FF_PACKAGES_IS_ENABLED(options, SPS)) {
++        packageCounts->sps += getSpsPackages(baseDir);
++    }
+     if (FF_PACKAGES_IS_ENABLED(options, GUIX)) {
+         packageCounts->guixSystem += getGuixPackages(baseDir, "/run/current-system/profile");
+     }
+diff -Naur ff-a/src/modules/packages/option.h ff-b/src/modules/packages/option.h
+--- ff-a/src/modules/packages/option.h	2026-08-13 23:20:28.000000000 -0700
++++ ff-b/src/modules/packages/option.h	2026-08-31 04:15:39.122023108 -0700
+@@ -41,6 +41,7 @@
+     FF_PACKAGES_FLAG_CARDS_BIT = UINT64_C(1) << 34U,
+     FF_PACKAGES_FLAG_PORG_BIT = UINT64_C(1) << 35U,
+     FF_PACKAGES_FLAG_INSTALLRELEASE_BIT = UINT64_C(1) << 36U,
++    FF_PACKAGES_FLAG_SPS_BIT = UINT64_C(1) << 37U,
+ } FFPackagesFlags;
+ static_assert(sizeof(FFPackagesFlags) == sizeof(uint64_t), "");
+ 
+diff -Naur ff-a/src/modules/packages/packages.c ff-b/src/modules/packages/packages.c
+--- ff-a/src/modules/packages/packages.c	2026-08-13 23:20:28.000000000 -0700
++++ ff-b/src/modules/packages/packages.c	2026-08-31 04:15:39.122748259 -0700
+@@ -133,6 +133,7 @@
+         FF_PRINT_PACKAGE(snap)
+         FF_PRINT_PACKAGE(soar)
+         FF_PRINT_PACKAGE(sorcery)
++        FF_PRINT_PACKAGE(sps)
+         FF_PRINT_PACKAGE(winget)
+         FF_PRINT_PACKAGE(xbps)
+ 
+@@ -191,6 +192,7 @@
+                 FF_ARG(counts.snap, "snap"),
+                 FF_ARG(counts.soar, "soar"),
+                 FF_ARG(counts.sorcery, "sorcery"),
++                FF_ARG(counts.sps, "sps"),
+                 FF_ARG(counts.winget, "winget"),
+                 FF_ARG(counts.xbps, "xbps"),
+ 
+@@ -342,6 +344,7 @@
+                             FF_TEST_PACKAGE_NAME(SNAP)
+                             FF_TEST_PACKAGE_NAME(SOAR)
+                             FF_TEST_PACKAGE_NAME(SORCERY)
++                            FF_TEST_PACKAGE_NAME(SPS)
+                             break;
+                         case 'W':
+                             if (false)
+@@ -418,6 +421,7 @@
+     FF_TEST_PACKAGE_NAME(SNAP)
+     FF_TEST_PACKAGE_NAME(SOAR)
+     FF_TEST_PACKAGE_NAME(SORCERY)
++    FF_TEST_PACKAGE_NAME(SPS)
+     FF_TEST_PACKAGE_NAME(WINGET)
+     FF_TEST_PACKAGE_NAME(XBPS)
+     #undef FF_TEST_PACKAGE_NAME
+@@ -487,6 +491,7 @@
+     FF_APPEND_PACKAGE_COUNT(snap)
+     FF_APPEND_PACKAGE_COUNT(soar)
+     FF_APPEND_PACKAGE_COUNT(sorcery)
++    FF_APPEND_PACKAGE_COUNT(sps)
+     FF_APPEND_PACKAGE_COUNT(winget)
+     FF_APPEND_PACKAGE_COUNT(xbps)
+     if (counts.pacmanBranch.length > 0) {
+@@ -564,6 +569,7 @@
+         { "Number of snap packages", "snap" },
+         { "Number of soar packages", "soar" },
+         { "Number of sorcery packages", "sorcery" },
++        { "Number of sps packages", "sps" },
+         { "Number of winget packages", "winget" },
+         { "Number of xbps packages", "xbps" },
+ 
