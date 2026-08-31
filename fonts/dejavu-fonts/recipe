@@ -1,0 +1,19 @@
+name        dejavu-fonts
+version     2.37
+release     1
+arch        any
+description DejaVu TrueType font family
+
+source      https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-${version}.tar.bz2
+hash        sha256:fa9ca4d13871dd122f61258a80d01751d603b4d3ee14095d65453b4e846e17d7
+
+depend      filesystem
+optional    fontconfig
+
+# Fontconfig snippets will be reviewed with the fontconfig package. The fonts
+# themselves require no cache-generation hook to remain usable.
+install     mkdir -p "$PKG/usr/share/fonts/dejavu" \
+            "$PKG/usr/share/licenses/dejavu-fonts"
+install     install -m 0644 ttf/*.ttf "$PKG/usr/share/fonts/dejavu"
+install     install -m 0644 LICENSE \
+            "$PKG/usr/share/licenses/dejavu-fonts/LICENSE"
