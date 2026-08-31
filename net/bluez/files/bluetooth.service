@@ -1,0 +1,10 @@
+[Unit]
+Description=Bluetooth service
+After=dbus.service
+
+[Service]
+ExecStart=/usr/libexec/bluetooth/bluetoothd
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

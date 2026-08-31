@@ -1,6 +1,6 @@
 name        networkmanager
 version     1.54.0
-release     1
+release     2
 description networkmanager: network configuration
 
 source      https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/archive/1.54.0/NetworkManager-1.54.0.tar.gz
@@ -15,3 +15,6 @@ depend      jansson
 configure   meson setup build --prefix=/usr --buildtype=release -Dsystemd=false -Dsession_tracking=elogind -Dtests=no
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/NetworkManager.service" "$PKG/usr/lib/systemd/system/NetworkManager.service"
+install     install -m 0755 "$SRC/files/openrc-NetworkManager" "$PKG/etc/init.d/NetworkManager"

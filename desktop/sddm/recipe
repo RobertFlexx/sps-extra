@@ -1,6 +1,6 @@
 name        sddm
 version     0.21.0
-release     1
+release     2
 description sddm: display manager
 
 source      https://github.com/sddm/sddm/archive/refs/tags/v0.21.0.tar.gz
@@ -8,8 +8,13 @@ hash        sha256:f895de2683627e969e4849dbfbbb2b500787481ca5ba0de6d6dfdae5f1549
 
 depend      filesystem
 depend      qt6
-depend      elogind
+depend      dbus
+optional    elogind
+optional    systemd
 
 configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DENABLE_JOURNALD=OFF -DNO_SYSTEMD=ON
 build       cmake --build build --parallel "$MAKEJOBS"
 install     DESTDIR="$PKG" cmake --install build
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/sddm.service" "$PKG/usr/lib/systemd/system/sddm.service"
+install     install -m 0755 "$SRC/files/openrc-sddm" "$PKG/etc/init.d/sddm"

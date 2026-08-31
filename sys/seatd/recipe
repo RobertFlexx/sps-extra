@@ -1,6 +1,6 @@
 name        seatd
 version     0.9.1
-release     1
+release     2
 description seatd: seat management daemon
 
 source      https://git.sr.ht/~kennylevinsen/seatd/archive/0.9.1.tar.gz
@@ -11,3 +11,6 @@ depend      filesystem
 configure   meson setup build --prefix=/usr --buildtype=release
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/seatd.service" "$PKG/usr/lib/systemd/system/seatd.service"
+install     install -m 0755 "$SRC/files/openrc-seatd" "$PKG/etc/init.d/seatd"

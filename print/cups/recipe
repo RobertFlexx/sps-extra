@@ -1,6 +1,6 @@
 name        cups
 version     2.4.14
-release     1
+release     2
 description cups: Common UNIX Printing System
 
 source      https://github.com/OpenPrinting/cups/releases/download/v2.4.14/cups-2.4.14-source.tar.gz
@@ -13,3 +13,6 @@ depend      zlib
 configure   ./configure --prefix=/usr --with-rcdir=no --with-systemd=no --with-components=all
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/cups.service" "$PKG/usr/lib/systemd/system/cups.service"
+install     install -m 0755 "$SRC/files/openrc-cupsd" "$PKG/etc/init.d/cupsd"

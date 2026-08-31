@@ -1,0 +1,5 @@
+# Enable this package's service for the init recorded in $SPS_ROOT/etc/sps/init.
+[ -n "${SPS_LIBDIR-}" ] && [ -f "$SPS_LIBDIR/setup/service.sh" ] || exit 0
+# shellcheck disable=SC1091
+. "$SPS_LIBDIR/setup/service.sh"
+setup_service_hook_enable || :

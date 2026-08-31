@@ -1,0 +1,12 @@
+#!/sbin/openrc-run
+# OpenRC unit for SDDM. systemd installs sddm.service from files/.
+
+description="Simple Desktop Display Manager"
+command="/usr/bin/sddm"
+command_background="yes"
+pidfile="/run/sddm.pid"
+
+depend() {
+	need dbus
+	after dbus
+}

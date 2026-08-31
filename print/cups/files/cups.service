@@ -1,0 +1,10 @@
+[Unit]
+Description=CUPS Scheduler
+After=dbus.service
+
+[Service]
+ExecStart=/usr/sbin/cupsd -f
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

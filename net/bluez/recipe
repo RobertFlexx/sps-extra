@@ -1,6 +1,6 @@
 name        bluez
 version     5.84
-release     1
+release     2
 description bluez: Bluetooth protocol stack
 
 source      https://mirrors.edge.kernel.org/pub/linux/bluetooth/bluez-5.84.tar.xz
@@ -15,3 +15,6 @@ depend      readline
 configure   ./configure --prefix=/usr --enable-library --disable-systemd --disable-manpages
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/bluetooth.service" "$PKG/usr/lib/systemd/system/bluetooth.service"
+install     install -m 0755 "$SRC/files/openrc-bluetooth" "$PKG/etc/init.d/bluetooth"
