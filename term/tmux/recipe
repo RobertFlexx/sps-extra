@@ -1,0 +1,15 @@
+name        tmux
+version     3.7
+release     1
+description tmux: terminal multiplexer
+
+source      https://github.com/tmux/tmux/releases/download/${version}/tmux-${version}.tar.gz
+hash        sha256:2344f191501b8a73eb71dd6c5fd5dcf8c765f5066f34ab46f04b3013dc7bc1a5
+
+depend      filesystem
+depend      ncurses
+depend      libevent
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
