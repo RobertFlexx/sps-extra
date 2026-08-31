@@ -1,6 +1,6 @@
 name        polkit
 version     126
-release     1
+release     2
 description polkit: authorization manager
 
 source      https://github.com/polkit-org/polkit/archive/refs/tags/126.tar.gz
@@ -9,7 +9,8 @@ hash        sha256:2814a7281989f6baa9e57bd33bbc5e148827e2721ccef22aaf28ab2b37606
 depend      filesystem
 depend      glib
 depend      dbus
-depend      elogind
+optional    systemd
+optional    elogind
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=false -Dexamples=false -Dman=false -Dtests=false -Dauthfw=shadow
 build       meson compile -C build
