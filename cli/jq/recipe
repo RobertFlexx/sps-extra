@@ -1,0 +1,13 @@
+name        jq
+version     1.8.2
+release     1
+description jq: command line JSON processor
+
+source      https://github.com/jqlang/jq/releases/download/jq-${version}/jq-${version}.tar.gz
+hash        sha256:71b8d6e8f5fe81f6c6d0d110e3892251f6ce76ed095abd315e26e6e1193af3af
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --disable-maintainer-mode
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
