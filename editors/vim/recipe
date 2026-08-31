@@ -1,0 +1,14 @@
+name        vim
+version     9.2.1025
+release     1
+description vim: the ubiquitous text editor
+
+source      https://github.com/vim/vim/archive/refs/tags/v${version}.tar.gz
+hash        sha256:cb0dbf701f8550bb54940304fa4d8b875e078db84967e5b36a0eb7ebe8a6d0cc
+
+depend      filesystem
+depend      ncurses
+
+configure   cd src && ./configure --prefix=/usr --with-features=normal
+build       cd src && make -j"$MAKEJOBS"
+install     cd src && make install DESTDIR="$PKG"
