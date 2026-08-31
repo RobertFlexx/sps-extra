@@ -1,10 +1,16 @@
 # SPS extra package collection
 
-This repository contains the official SPS source definitions outside the
-minimal base system. It is the place for graphics, Wayland and X11, desktop
-software, audio and multimedia, editors, additional development tools,
-language runtimes, shells, networking applications, fonts, and general
-utilities.
+This repository is the official extra recipe tree for **SPS Linux**
+(informally Splux): graphics, Wayland and X11, desktop software, audio,
+editors, extra development tools, language runtimes, shells, networking,
+fonts, and general utilities. Recipes only; no source tarballs or binary
+packages.
+
+SPS the package system is not tied to Splux. An LFS or custom root can index
+this tree with `src` and install packages with `sget`. `setup` profiles such
+as `plasma-desktop`, `init-systemd`, and `init-openrc` are SPS Linux
+installer conveniences. Your LFS book may choose a different init, display
+stack, or disk layout; nothing here forces you to run `setup`.
 
 Package categories are organizational and are created only when they contain a
 package:
@@ -35,9 +41,11 @@ Git checkouts default to `/usr/src/sps/core` and `/usr/src/sps/extra`. They are
 ordinary repositories and may be inspected or pinned with Git. A local tree at
 priority 200 can override either official collection.
 
-The installer umbrellas `plasma-desktop` and `plasma-full` select a Plasma 6
+Installer profiles `plasma-desktop` and `plasma-full` select a Plasma 6
 session, optional KDE applications, NVIDIA open kernel modules, Flatpak, and
-language/devel sets. Qt 6, KDE Frameworks, and Plasma leaves use verified
+language/devel sets. Init is a choice: `init-systemd` (the setup default) or
+`init-openrc`. Those packages `conflict`, so `sget` will not install systemd
+next to OpenRC or eudev. Qt 6, KDE Frameworks, and Plasma leaves use verified
 SHA-256 hashes so `src update` can index the graph. Compile those stacks in
 dependency layers: pkgconf, Python, ninja/meson/cmake, libraries, Qt,
 Frameworks, then Plasma.

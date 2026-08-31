@@ -1,0 +1,11 @@
+name        amd-ucode
+version     20250808
+release     1
+arch        any
+description amd-ucode: AMD CPU microcode (from linux-firmware)
+
+depend      filesystem
+depend      linux-firmware
+
+install     mkdir -p "$PKG/usr/share/doc/amd-ucode"
+install     printf '%s\n' "AMD CPU microcode blobs ship in linux-firmware under amd-ucode/. Early-load them from the initramfs the same way as Intel ucode." >"$PKG/usr/share/doc/amd-ucode/README"

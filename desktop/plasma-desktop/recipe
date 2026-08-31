@@ -1,6 +1,6 @@
 name        plasma-desktop
 version     6.7.4
-release     1
+release     2
 arch        any
 description plasma-desktop: KDE Plasma desktop session
 
@@ -61,7 +61,7 @@ depend      wireplumber
 depend      mesa
 depend      xdg-desktop-portal
 depend      power-profiles-daemon
-depend      elogind
+optional    elogind
 depend      polkit
 depend      dejavu-fonts
 

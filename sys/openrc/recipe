@@ -1,0 +1,20 @@
+name        openrc
+version     0.62.6
+release     1
+description openrc: dependency-based init scripts
+
+source      https://github.com/OpenRC/openrc/archive/refs/tags/0.62.6.tar.gz
+hash        sha256:d5c15b37533e2b5d247d9fbab8b41f312614784b9ea11239ddcfe8e4528e7722
+
+depend      filesystem
+depend      busybox
+conflict    systemd
+builddep    meson
+builddep    ninja
+builddep    pkgconf
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dos=Linux
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/etc/sps"
+install     printf '%s\n' openrc >"$PKG/etc/sps/init"

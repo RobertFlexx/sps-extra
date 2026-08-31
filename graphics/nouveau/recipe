@@ -1,0 +1,14 @@
+name        nouveau
+version     1.0
+release     1
+arch        any
+description nouveau: Mesa Gallium driver for NVIDIA GPUs
+
+depend      filesystem
+depend      mesa
+depend      libdrm
+depend      linux-firmware
+
+install     mkdir -p "$PKG/etc/modprobe.d" "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "blacklist nvidia" "blacklist nvidia_drm" "blacklist nvidia_modeset" "blacklist nvidia_uvm" "options nouveau modeset=1" >"$PKG/etc/modprobe.d/sps-nouveau.conf"
+install     printf '%s\n' nouveau >"$PKG/usr/share/sps/sets/nouveau"

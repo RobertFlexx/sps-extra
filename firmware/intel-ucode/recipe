@@ -1,0 +1,13 @@
+name        intel-ucode
+version     20260812
+release     1
+description intel-ucode: Intel CPU microcode
+
+source      https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/archive/refs/tags/microcode-20260812.tar.gz
+hash        sha256:7614616d7b2988c278060486f47de716ef44c19317928cb45ac9e288fafd5bd1
+
+depend      filesystem
+
+install     mkdir -p "$PKG/lib/firmware/intel-ucode" "$PKG/usr/share/doc/intel-ucode"
+install     if [ -d intel-ucode ]; then cp -a intel-ucode/. "$PKG/lib/firmware/intel-ucode/"; fi
+install     printf '%s\n' "Early-load this from the initramfs (microcode.cpio) or via the kernel firmware loader." >"$PKG/usr/share/doc/intel-ucode/README"

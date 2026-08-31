@@ -1,0 +1,30 @@
+name        systemd
+version     257.9
+release     1
+description systemd: init, udev, logind, and service manager
+
+source      https://github.com/systemd/systemd/archive/refs/tags/v257.9.tar.gz
+hash        sha256:b27dcc100a738b4b5b81f7c5174c1239a6495f5bdf3d3caa94a17b8373e6a1ca
+
+depend      filesystem
+depend      util-linux
+depend      kmod
+depend      dbus
+depend      libcap
+depend      linux-pam
+depend      openssl
+conflict    openrc
+conflict    eudev
+conflict    elogind
+builddep    meson
+builddep    ninja
+builddep    pkgconf
+builddep    gperf
+builddep    python
+builddep    linux-api-headers
+
+configure   meson setup build --prefix=/usr --buildtype=release -Dmode=release -Ddefault-dnssec=no -Dfirstboot=false -Dinstall-tests=false -Dldconfig=false -Dhomed=false -Duserdb=false -Dman=false -Dpam=true -Daudit=false -Dlibcryptsetup=false -Dbootloader=false -Dukify=false -Dpolkit=false -Dlibfido2=false -Dseccomp=false -Dselinux=false -Dmicrohttpd=false -Dlibcurl=false -Dxenctrl=false
+build       meson compile -C build
+install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/etc/sps"
+install     printf '%s\n' systemd >"$PKG/etc/sps/init"
