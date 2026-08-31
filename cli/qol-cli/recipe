@@ -1,6 +1,6 @@
 name        qol-cli
 version     1.0
-release     1
+release     2
 arch        any
 description qol-cli: quality-of-life command line tools
 
@@ -28,6 +28,11 @@ depend      tree
 depend      starship
 depend      sd
 depend      yq
+depend      github-cli
+depend      xh
+depend      direnv
+depend      just
+depend      procs
 
 install     mkdir -p "$PKG/usr/share/sps/sets"
 install     printf '%s\n' "qol-cli" >"$PKG/usr/share/sps/sets/qol-cli"

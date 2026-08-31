@@ -1,0 +1,15 @@
+name        procs
+version     0.14.12
+release     1
+description procs: modern ps
+
+source      https://github.com/dalance/procs/archive/refs/tags/v0.14.12.tar.gz
+hash        sha256:f2fab583fe98a9ae9505c5eecf4f3d9d4ad9bcb5d478a8222d52c87aa1ac602e
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/procs" "$PKG/usr/bin/procs"
+install     chmod 755 "$PKG/usr/bin/procs"

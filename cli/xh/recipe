@@ -1,0 +1,15 @@
+name        xh
+version     0.26.2
+release     1
+description xh: friendly HTTP client
+
+source      https://github.com/ducaale/xh/archive/refs/tags/v0.26.2.tar.gz
+hash        sha256:61a88a5b3beac225b75a11d6ed32659af78db7ff29c825def0ab7f4a2906cbd7
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/xh" "$PKG/usr/bin/xh"
+install     chmod 755 "$PKG/usr/bin/xh"

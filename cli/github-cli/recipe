@@ -1,0 +1,15 @@
+name        github-cli
+version     2.98.0
+release     1
+description github-cli: GitHub command line
+
+source      https://github.com/cli/cli/archive/refs/tags/v2.98.0.tar.gz
+hash        sha256:abada9e8b550547ac93f99250f3ad4d90ad623fa245cb54cb058f78030a6a5f6
+
+depend      filesystem
+builddep    go
+
+build       GOPROXY=https://proxy.golang.org,direct CGO_ENABLED=0 go build -trimpath -ldflags "-s -w -X github.com/cli/cli/v2/internal/build.Version=${version}" -o gh ./cmd/gh
+install     mkdir -p "$PKG/usr/bin"
+install     cp gh "$PKG/usr/bin/gh"
+install     chmod 755 "$PKG/usr/bin/gh"

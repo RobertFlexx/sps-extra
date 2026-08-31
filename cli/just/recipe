@@ -1,0 +1,15 @@
+name        just
+version     1.58.0
+release     1
+description just: command runner
+
+source      https://github.com/casey/just/archive/refs/tags/1.58.0.tar.gz
+hash        sha256:c8a36e6e9397f2fdfcb0cc246fcdb790b52a784f3c8cabc0d8baeb031852a148
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/just" "$PKG/usr/bin/just"
+install     chmod 755 "$PKG/usr/bin/just"
