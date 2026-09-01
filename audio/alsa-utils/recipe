@@ -1,6 +1,6 @@
 name        alsa-utils
 version     1.2.16
-release     1
+release     2
 description alsa-utils: ALSA utilities
 
 source      https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.16.tar.bz2
@@ -10,6 +10,6 @@ depend      filesystem
 depend      alsa-lib
 depend      ncurses
 
-configure   ./configure --prefix=/usr
+configure   ./configure --prefix=/usr --libdir=/usr/lib64
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
