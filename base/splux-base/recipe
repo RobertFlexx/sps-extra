@@ -1,11 +1,10 @@
 name        splux-base
 version     1.0
-release     1
+release     3
 arch        any
 description Splux identity, os-release, and Fastfetch branding
 
 depend      filesystem
-depend      fastfetch
 
 install     mkdir -p "$PKG/etc" "$PKG/etc/fastfetch" \
             "$PKG/usr/share/fastfetch/logos" \
