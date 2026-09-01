@@ -1,0 +1,6 @@
+[General]
+Name=Splux Linux
+LogoPath=/usr/share/pixmaps/splux.png
+Website=https://splux.robertflexx.dev
+Version=1.0
+UseOSReleaseVersion=true

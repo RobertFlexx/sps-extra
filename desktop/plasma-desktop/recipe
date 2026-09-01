@@ -1,6 +1,6 @@
 name        plasma-desktop
 version     6.7.4
-release     2
+release     3
 arch        any
 description plasma-desktop: KDE Plasma desktop session
 
@@ -64,6 +64,7 @@ depend      power-profiles-daemon
 optional    elogind
 depend      polkit
 depend      dejavu-fonts
+depend      splux-base
 
 install     mkdir -p "$PKG/usr/share/sps/sets"
 install     printf '%s\n' "plasma-desktop" >"$PKG/usr/share/sps/sets/plasma-desktop"
