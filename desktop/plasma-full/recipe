@@ -1,11 +1,12 @@
 name        plasma-full
 version     6.7.4
-release     1
+release     2
 arch        any
 description plasma-full: complete Plasma desktop and KDE applications
 
 depend      filesystem
 depend      plasma-desktop
+depend      splux-base
 depend      kde-apps
 depend      discover
 depend      kdeplasma-addons

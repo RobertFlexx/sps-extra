@@ -1,11 +1,12 @@
 name        kde-apps
 version     26.08.0
-release     1
+release     2
 arch        any
 description kde-apps: KDE application suite
 
 depend      filesystem
 depend      plasma-desktop
+depend      splux-base
 depend      dolphin
 depend      konsole
 depend      kate

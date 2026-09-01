@@ -1,6 +1,6 @@
 name        splux-base
 version     1.0
-release     4
+release     5
 arch        any
 description Splux identity, os-release, Fastfetch, and Plasma about-distro branding
 
@@ -10,7 +10,8 @@ install     mkdir -p "$PKG/etc" "$PKG/etc/fastfetch" "$PKG/etc/xdg" \
             "$PKG/usr/share/fastfetch/logos" \
             "$PKG/usr/share/fastfetch/presets" \
             "$PKG/usr/share/pixmaps" \
-            "$PKG/usr/share/icons/hicolor/512x512/apps"
+            "$PKG/usr/share/icons/hicolor/512x512/apps" \
+            "$PKG/usr/share/plasma/plasma-welcome"
 install     cp "$SRC/files/os-release" "$PKG/etc/os-release"
 install     cp "$SRC/files/config.jsonc" "$PKG/etc/fastfetch/config.jsonc"
 install     cp "$SRC/files/splux.txt" "$PKG/usr/share/fastfetch/logos/splux.txt"
@@ -19,6 +20,8 @@ install     cp "$SRC/files/kcm-about-distrorc" "$PKG/etc/xdg/kcm-about-distrorc"
 install     cp "$SRC/files/sps.png" "$PKG/usr/share/pixmaps/splux.png"
 install     cp "$SRC/files/sps.png" "$PKG/usr/share/pixmaps/sps.png"
 install     cp "$SRC/files/sps.png" "$PKG/usr/share/icons/hicolor/512x512/apps/splux.png"
+install     cp "$SRC/files/intro-customization.desktop" \
+            "$PKG/usr/share/plasma/plasma-welcome/intro-customization.desktop"
 install     chmod 0644 "$PKG/etc/os-release" \
             "$PKG/etc/fastfetch/config.jsonc" \
             "$PKG/usr/share/fastfetch/logos/splux.txt" \
@@ -26,4 +29,5 @@ install     chmod 0644 "$PKG/etc/os-release" \
             "$PKG/etc/xdg/kcm-about-distrorc" \
             "$PKG/usr/share/pixmaps/splux.png" \
             "$PKG/usr/share/pixmaps/sps.png" \
-            "$PKG/usr/share/icons/hicolor/512x512/apps/splux.png"
+            "$PKG/usr/share/icons/hicolor/512x512/apps/splux.png" \
+            "$PKG/usr/share/plasma/plasma-welcome/intro-customization.desktop"
