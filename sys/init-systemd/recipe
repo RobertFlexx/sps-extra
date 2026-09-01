@@ -1,12 +1,15 @@
 name        init-systemd
 version     1.0
-release     1
+release     2
 arch        any
 description init-systemd: systemd as PID 1, with udev and logind
-
 depend      filesystem
 depend      systemd
-
+conflict    init-openrc
+conflict    init-s6
+conflict    init-runit
+conflict    init-dinit
+conflict    init-shepherd
 install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps"
 install     printf '%s\n' "init-systemd" >"$PKG/usr/share/sps/sets/init-systemd"
 install     printf '%s\n' systemd >"$PKG/etc/sps/init"

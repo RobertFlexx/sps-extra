@@ -1,0 +1,10 @@
+name        skalibs
+version     2.15.1.0
+release     1
+description skalibs: skarnet.org C support library
+source      https://skarnet.org/software/skalibs/skalibs-2.15.1.0.tar.gz
+hash        sha256:f9c905e74935c6fe911c7e344e3e89d5fbd2014c1a04650b524b15ce9b5635d1
+depend      filesystem
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --dynlibdir=/usr/lib64 --sysdepdir=/usr/lib64/skalibs/sysdeps --enable-shared --disable-allstatic
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

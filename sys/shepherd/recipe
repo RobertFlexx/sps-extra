@@ -1,0 +1,20 @@
+name        shepherd
+version     1.0.8
+release     1
+description shepherd: GNU service manager and PID 1
+source      https://ftp.gnu.org/gnu/shepherd/shepherd-1.0.8.tar.gz
+hash        sha256:3beb005370bf0339c567d068a7ad9fb69f0e8850894db01c34635955f7717ff5
+depend      filesystem
+depend      guile
+depend      guile-fibers
+conflict    systemd
+conflict    openrc
+conflict    s6
+conflict    runit
+conflict    dinit
+builddep    guile
+builddep    guile-fibers
+builddep    pkgconf
+configure   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

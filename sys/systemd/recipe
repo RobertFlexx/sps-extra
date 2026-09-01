@@ -1,6 +1,6 @@
 name        systemd
 version     257.9
-release     1
+release     2
 description systemd: init, udev, logind, and service manager
 
 source      https://github.com/systemd/systemd/archive/refs/tags/v257.9.tar.gz
@@ -16,6 +16,10 @@ depend      openssl
 conflict    openrc
 conflict    eudev
 conflict    elogind
+conflict    s6
+conflict    runit
+conflict    dinit
+conflict    shepherd
 builddep    meson
 builddep    ninja
 builddep    pkgconf

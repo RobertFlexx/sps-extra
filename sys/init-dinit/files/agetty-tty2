@@ -1,0 +1,3 @@
+type = process
+command = /sbin/agetty tty2 linux
+restart = true

@@ -1,6 +1,6 @@
 name        openrc
 version     0.62.6
-release     1
+release     2
 description openrc: dependency-based init scripts
 
 source      https://github.com/OpenRC/openrc/archive/refs/tags/0.62.6.tar.gz
@@ -9,6 +9,10 @@ hash        sha256:d5c15b37533e2b5d247d9fbab8b41f312614784b9ea11239ddcfe8e4528e7
 depend      filesystem
 depend      busybox
 conflict    systemd
+conflict    s6
+conflict    runit
+conflict    dinit
+conflict    shepherd
 builddep    meson
 builddep    ninja
 builddep    pkgconf

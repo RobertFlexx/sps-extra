@@ -1,0 +1,10 @@
+name        gc
+version     8.2.8
+release     1
+description gc: Boehm-Demers-Weiser conservative garbage collector
+source      https://github.com/ivmai/bdwgc/releases/download/v8.2.8/gc-8.2.8.tar.gz
+hash        sha256:7649020621cb26325e1fb5c8742590d92fb48ce5c259b502faf7d9fb5dabb160
+depend      filesystem
+configure   ./configure --prefix=/usr --disable-static --enable-cplusplus
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

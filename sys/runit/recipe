@@ -1,0 +1,17 @@
+name        runit
+version     2.2.0
+release     1
+description runit: process supervision and init
+source      http://smarden.org/runit/runit-2.2.0.tar.gz
+hash        sha256:95ef4d2868b978c7179fe47901e5c578e11cf273d292bd6208bd3a7ccb029290
+depend      filesystem
+conflict    systemd
+conflict    openrc
+conflict    s6
+conflict    dinit
+conflict    shepherd
+configure   printf '%s\n' 'gcc -O2 -Wall' > runit-2.2.0/src/conf-cc
+configure   printf '%s\n' 'gcc -s' > runit-2.2.0/src/conf-ld
+build       cd runit-2.2.0 && package/compile
+install     mkdir -p "$PKG/usr/bin"
+install     install -m755 runit-2.2.0/command/* "$PKG/usr/bin"

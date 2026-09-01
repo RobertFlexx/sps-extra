@@ -1,0 +1,3 @@
+type = internal
+restart = false
+waits-for.d = /etc/dinit.d/boot.d

@@ -1,0 +1,5 @@
+#!/bin/sh
+PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH
+mkdir -p /etc/runit/runsvdir/default
+exec runsvdir -P /etc/runit/runsvdir/default

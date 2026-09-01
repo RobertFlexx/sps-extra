@@ -1,0 +1,19 @@
+name        init-shepherd
+version     1.0
+release     1
+arch        any
+description init-shepherd: GNU Shepherd as PID 1, with eudev and elogind
+depend      filesystem
+depend      shepherd
+depend      eudev
+depend      elogind
+conflict    init-systemd
+conflict    init-openrc
+conflict    init-s6
+conflict    init-runit
+conflict    init-dinit
+install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps" "$PKG/sbin" "$PKG/etc/shepherd" "$PKG/etc/shepherd.d"
+install     printf '%s\n' "init-shepherd" >"$PKG/usr/share/sps/sets/init-shepherd"
+install     printf '%s\n' shepherd >"$PKG/etc/sps/init"
+install     install -m 0644 "$SRC/files/init.scm" "$PKG/etc/shepherd/init.scm"
+install     install -m 0755 "$SRC/files/shepherd-init" "$PKG/sbin/init"

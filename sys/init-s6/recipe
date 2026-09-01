@@ -1,0 +1,24 @@
+name        init-s6
+version     1.0
+release     1
+arch        any
+description init-s6: s6 as PID 1, with eudev and elogind
+depend      filesystem
+depend      s6
+depend      s6-linux-init
+depend      execline
+depend      eudev
+depend      elogind
+conflict    init-systemd
+conflict    init-openrc
+conflict    init-runit
+conflict    init-dinit
+conflict    init-shepherd
+install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps" "$PKG/sbin" "$PKG/etc/s6/sv" "$PKG/etc/s6/enabled"
+install     printf '%s\n' "init-s6" >"$PKG/usr/share/sps/sets/init-s6"
+install     printf '%s\n' s6 >"$PKG/etc/sps/init"
+install     install -m 0755 "$SRC/files/s6-pid1" "$PKG/sbin/init"
+install     cp -a "$SRC/files/sv/." "$PKG/etc/s6/sv/"
+install     ln -sf /etc/s6/sv/agetty-tty1 "$PKG/etc/s6/enabled/agetty-tty1"
+install     ln -sf /etc/s6/sv/agetty-tty2 "$PKG/etc/s6/enabled/agetty-tty2"
+install     ln -sf /etc/s6/sv/agetty-ttyS0 "$PKG/etc/s6/enabled/agetty-ttyS0"

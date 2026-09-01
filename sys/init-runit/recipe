@@ -1,0 +1,25 @@
+name        init-runit
+version     1.0
+release     1
+arch        any
+description init-runit: runit as PID 1, with eudev and elogind
+depend      filesystem
+depend      runit
+depend      eudev
+depend      elogind
+conflict    init-systemd
+conflict    init-openrc
+conflict    init-s6
+conflict    init-dinit
+conflict    init-shepherd
+install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps" "$PKG/sbin" "$PKG/etc/runit" "$PKG/etc/sv" "$PKG/etc/runit/runsvdir/default"
+install     printf '%s\n' "init-runit" >"$PKG/usr/share/sps/sets/init-runit"
+install     printf '%s\n' runit >"$PKG/etc/sps/init"
+install     install -m 0755 "$SRC/files/1" "$PKG/etc/runit/1"
+install     install -m 0755 "$SRC/files/2" "$PKG/etc/runit/2"
+install     install -m 0755 "$SRC/files/3" "$PKG/etc/runit/3"
+install     ln -sf /usr/bin/runit-init "$PKG/sbin/init"
+install     cp -a "$SRC/files/sv/." "$PKG/etc/sv/"
+install     ln -sf /etc/sv/agetty-tty1 "$PKG/etc/runit/runsvdir/default/agetty-tty1"
+install     ln -sf /etc/sv/agetty-tty2 "$PKG/etc/runit/runsvdir/default/agetty-tty2"
+install     ln -sf /etc/sv/agetty-ttyS0 "$PKG/etc/runit/runsvdir/default/agetty-ttyS0"

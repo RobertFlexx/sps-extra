@@ -1,0 +1,18 @@
+name        s6-linux-init
+version     1.2.0.2
+release     1
+description s6-linux-init: tools to build an s6 PID 1
+source      https://skarnet.org/software/s6-linux-init/s6-linux-init-1.2.0.2.tar.gz
+hash        sha256:6fad014da162c0c81924197c57d16e1a75c133b34a20e423431a1b741e907b1d
+depend      filesystem
+depend      s6
+depend      execline
+depend      skalibs
+conflict    systemd
+conflict    openrc
+conflict    runit
+conflict    dinit
+conflict    shepherd
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --dynlibdir=/usr/lib64 --bindir=/usr/bin --libexecdir=/usr/libexec --enable-shared --disable-allstatic --with-sysdeps="${SPS_ROOT:-}/usr/lib64/skalibs/sysdeps"
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

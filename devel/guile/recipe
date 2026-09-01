@@ -1,0 +1,23 @@
+name        guile
+version     3.0.10
+release     1
+description guile: GNU Ubiquitous Intelligent Language for Extensions
+source      https://ftp.gnu.org/gnu/guile/guile-3.0.10.tar.xz
+hash        sha256:bd7168517fd526333446d4f7ab816527925634094fbd37322e17e2b8d8e76388
+depend      filesystem
+depend      gmp
+depend      libffi
+depend      libunistring
+depend      gc
+depend      libtool
+depend      readline
+depend      ncurses
+builddep    pkgconf
+builddep    gmp
+builddep    libffi
+builddep    libunistring
+builddep    gc
+builddep    libtool
+configure   ./configure --prefix=/usr --disable-static --disable-error-on-warning
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

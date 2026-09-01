@@ -1,0 +1,41 @@
+#!/bin/sh
+# Stage 1 for s6: mounts, udev, seed /run/service, then exec s6-svscan as PID 1.
+PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH
+
+mount -t proc proc /proc 2>/dev/null || :
+mount -t sysfs sysfs /sys 2>/dev/null || :
+mount -t devtmpfs devtmpfs /dev 2>/dev/null || :
+mkdir -p /dev/pts /dev/shm /run /run/service
+mount -t devpts devpts /dev/pts 2>/dev/null || :
+mount -t tmpfs shm /dev/shm 2>/dev/null || :
+mount -t tmpfs tmpfs /run 2>/dev/null || :
+mkdir -p /run/service
+
+if [ -r /etc/hostname ]; then
+	hostname "$(cat /etc/hostname)" 2>/dev/null || :
+fi
+
+if [ -x /sbin/udevd ] || [ -x /usr/sbin/udevd ]; then
+	udevd --daemon 2>/dev/null || /usr/sbin/udevd --daemon 2>/dev/null || :
+	udevadm trigger --action=add 2>/dev/null || :
+	udevadm settle --timeout=8 2>/dev/null || :
+fi
+
+seed() {
+	_src=$1
+	_name=${_src##*/}
+	[ -d "$_src" ] || return 0
+	[ -f "$_src/run" ] || return 0
+	rm -rf "/run/service/$_name"
+	cp -a "$_src" "/run/service/$_name"
+}
+
+if [ -d /etc/s6/enabled ]; then
+	for _svc in /etc/s6/enabled/*; do
+		[ -e "$_svc" ] || continue
+		seed "$_svc"
+	done
+fi
+
+exec /usr/bin/s6-svscan /run/service

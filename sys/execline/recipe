@@ -1,0 +1,11 @@
+name        execline
+version     2.9.9.2
+release     1
+description execline: non-interactive scripting language
+source      https://skarnet.org/software/execline/execline-2.9.9.2.tar.gz
+hash        sha256:908ed4db3a6b3a23a205d8fd4cf2a71089156f2aeae0f54656045aafad2dee32
+depend      filesystem
+depend      skalibs
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --dynlibdir=/usr/lib64 --bindir=/usr/bin --libexecdir=/usr/libexec --enable-shared --disable-allstatic --with-sysdeps="${SPS_ROOT:-}/usr/lib64/skalibs/sysdeps"
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
