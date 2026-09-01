@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Welcome to Splux Linux, a source-based distribution using SPS.
-Comment=SPS
-Icon=splux
+Name=Welcome to the SPS Linux operating system running KDE Plasma
+Comment=SPS Linux
+Icon=file:/usr/share/pixmaps/sps.png
 URL=https://splux.robertflexx.dev

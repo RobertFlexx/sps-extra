@@ -1,6 +1,6 @@
 name        splux-base
 version     1.0
-release     5
+release     6
 arch        any
 description Splux identity, os-release, Fastfetch, and Plasma about-distro branding
 

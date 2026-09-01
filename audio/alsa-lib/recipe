@@ -1,6 +1,6 @@
 name        alsa-lib
 version     1.2.16.1
-release     2
+release     3
 description alsa-lib: Advanced Linux Sound Architecture library
 
 source      https://www.alsa-project.org/files/pub/lib/alsa-lib-1.2.16.1.tar.bz2
@@ -11,3 +11,5 @@ depend      filesystem
 configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     if [ -e "$PKG/usr/lib64/libasound.so.2" ] && [ ! -e "$PKG/usr/lib64/libasound.so" ]; then ln -sf libasound.so.2 "$PKG/usr/lib64/libasound.so"; fi
+install     if [ -e "$PKG/usr/lib/libasound.so.2" ] && [ ! -e "$PKG/usr/lib/libasound.so" ]; then ln -sf libasound.so.2 "$PKG/usr/lib/libasound.so"; fi
