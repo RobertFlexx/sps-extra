@@ -1,0 +1,4 @@
+type = script
+command = /bin/sh -c "udevadm trigger --action=add; udevadm settle --timeout=8"
+depends-on = udev
+restart = false

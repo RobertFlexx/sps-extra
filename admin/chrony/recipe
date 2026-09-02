@@ -1,6 +1,6 @@
 name        chrony
 version     4.6.1
-release     1
+release     2
 description chrony: NTP client and server
 
 source      https://chrony-project.org/releases/chrony-4.6.1.tar.gz
@@ -13,3 +13,11 @@ depend      nettle
 configure   ./configure --prefix=/usr --sysconfdir=/etc --chronyd-user=chrony
 build       make -j"$MAKEJOBS"
 install     make DESTDIR="$PKG" install
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/chronyd" "$PKG/etc/s6/sv/chronyd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/chronyd.service" "$PKG/usr/lib/systemd/system/chronyd.service"
+install     install -m 0755 "$SRC/files/openrc-chronyd" "$PKG/etc/init.d/chronyd"
+install     install -m 0755 "$SRC/files/runit-chronyd" "$PKG/etc/sv/chronyd/run"
+install     install -m 0755 "$SRC/files/s6-chronyd" "$PKG/etc/s6/sv/chronyd/run"
+install     install -m 0644 "$SRC/files/dinit-chronyd" "$PKG/etc/dinit.d/chronyd"
+install     install -m 0644 "$SRC/files/shepherd-chronyd.scm" "$PKG/etc/shepherd.d/chronyd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-chronyd" "$PKG/etc/rc.d/init.d/chronyd"

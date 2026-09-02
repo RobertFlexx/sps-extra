@@ -1,0 +1,27 @@
+#!/bin/sh
+# SysV runlevel dispatcher. Called from inittab as: rc S  or  rc N
+PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH
+
+runlevel=$1
+[ -n "$runlevel" ] || exit 1
+
+run_prefix()
+{
+	_dir=$1
+	_prefix=$2
+	_arg=$3
+	for _s in "$_dir"/"$_prefix"[0-9][0-9]*; do
+		[ -e "$_s" ] || continue
+		[ -x "$_s" ] || continue
+		"$_s" "$_arg" || :
+	done
+}
+
+if [ "$runlevel" = S ] || [ "$runlevel" = s ]; then
+	run_prefix /etc/rc.d/rcS.d S start
+	exit 0
+fi
+
+run_prefix /etc/rc.d/rc${runlevel}.d K stop
+run_prefix /etc/rc.d/rc${runlevel}.d S start

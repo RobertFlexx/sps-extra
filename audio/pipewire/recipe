@@ -1,6 +1,6 @@
 name        pipewire
 version     1.4.7
-release     1
+release     2
 description pipewire: multimedia server
 
 source      https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/1.4.7/pipewire-1.4.7.tar.gz
@@ -14,3 +14,11 @@ depend      alsa-lib
 configure   meson setup build --prefix=/usr --buildtype=release -Dsession-managers=[] -Dtests=disabled -Dexamples=disabled
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/pipewire" "$PKG/etc/s6/sv/pipewire" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/pipewire.service" "$PKG/usr/lib/systemd/system/pipewire.service"
+install     install -m 0755 "$SRC/files/openrc-pipewire" "$PKG/etc/init.d/pipewire"
+install     install -m 0755 "$SRC/files/runit-pipewire" "$PKG/etc/sv/pipewire/run"
+install     install -m 0755 "$SRC/files/s6-pipewire" "$PKG/etc/s6/sv/pipewire/run"
+install     install -m 0644 "$SRC/files/dinit-pipewire" "$PKG/etc/dinit.d/pipewire"
+install     install -m 0644 "$SRC/files/shepherd-pipewire.scm" "$PKG/etc/shepherd.d/pipewire.scm"
+install     install -m 0755 "$SRC/files/sysvinit-pipewire" "$PKG/etc/rc.d/init.d/pipewire"

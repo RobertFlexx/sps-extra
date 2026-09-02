@@ -1,6 +1,6 @@
 name        lxc
 version     6.0.4
-release     2
+release     3
 description lxc: Linux containers
 
 source      https://linuxcontainers.org/downloads/lxc/lxc-6.0.4.tar.gz
@@ -16,6 +16,11 @@ builddep    ninja
 configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dman=false -Dtests=false -Dapparmor=false -Dselinux=false
 build       meson compile -C build -j "$MAKEJOBS"
 install     DESTDIR="$PKG" meson install -C build
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/lxc-net" "$PKG/etc/s6/sv/lxc-net" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/lxc-net.service" "$PKG/usr/lib/systemd/system/lxc-net.service"
 install     install -m 0755 "$SRC/files/openrc-lxc-net" "$PKG/etc/init.d/lxc-net"
+install     install -m 0755 "$SRC/files/runit-lxc-net" "$PKG/etc/sv/lxc-net/run"
+install     install -m 0755 "$SRC/files/s6-lxc-net" "$PKG/etc/s6/sv/lxc-net/run"
+install     install -m 0644 "$SRC/files/dinit-lxc-net" "$PKG/etc/dinit.d/lxc-net"
+install     install -m 0644 "$SRC/files/shepherd-lxc-net.scm" "$PKG/etc/shepherd.d/lxc-net.scm"
+install     install -m 0755 "$SRC/files/sysvinit-lxc-net" "$PKG/etc/rc.d/init.d/lxc-net"

@@ -1,6 +1,6 @@
 name        at
 version     3.2.5
-release     1
+release     2
 description at: schedule commands for later
 
 source      http://deb.debian.org/debian/pool/main/a/at/at_3.2.5.orig.tar.gz
@@ -12,3 +12,11 @@ depend      flex
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/atd" "$PKG/etc/s6/sv/atd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/atd.service" "$PKG/usr/lib/systemd/system/atd.service"
+install     install -m 0755 "$SRC/files/openrc-atd" "$PKG/etc/init.d/atd"
+install     install -m 0755 "$SRC/files/runit-atd" "$PKG/etc/sv/atd/run"
+install     install -m 0755 "$SRC/files/s6-atd" "$PKG/etc/s6/sv/atd/run"
+install     install -m 0644 "$SRC/files/dinit-atd" "$PKG/etc/dinit.d/atd"
+install     install -m 0644 "$SRC/files/shepherd-atd.scm" "$PKG/etc/shepherd.d/atd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-atd" "$PKG/etc/rc.d/init.d/atd"

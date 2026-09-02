@@ -1,6 +1,6 @@
 name        avahi
 version     0.8
-release     2
+release     3
 description avahi: mDNS/DNS-SD stack
 
 source      https://github.com/lathiat/avahi/releases/download/v0.8/avahi-0.8.tar.gz
@@ -16,6 +16,11 @@ depend      glib
 configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --disable-qt3 --disable-qt4 --disable-qt5 --disable-gtk --disable-gtk3 --disable-mono --disable-monodoc --disable-python --disable-pygobject --with-distro=none --disable-libevent
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/avahi-daemon" "$PKG/etc/s6/sv/avahi-daemon" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/avahi-daemon.service" "$PKG/usr/lib/systemd/system/avahi-daemon.service"
 install     install -m 0755 "$SRC/files/openrc-avahi-daemon" "$PKG/etc/init.d/avahi-daemon"
+install     install -m 0755 "$SRC/files/runit-avahi-daemon" "$PKG/etc/sv/avahi-daemon/run"
+install     install -m 0755 "$SRC/files/s6-avahi-daemon" "$PKG/etc/s6/sv/avahi-daemon/run"
+install     install -m 0644 "$SRC/files/dinit-avahi-daemon" "$PKG/etc/dinit.d/avahi-daemon"
+install     install -m 0644 "$SRC/files/shepherd-avahi-daemon.scm" "$PKG/etc/shepherd.d/avahi-daemon.scm"
+install     install -m 0755 "$SRC/files/sysvinit-avahi-daemon" "$PKG/etc/rc.d/init.d/avahi-daemon"

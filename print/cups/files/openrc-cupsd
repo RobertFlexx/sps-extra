@@ -6,6 +6,6 @@ command_background="yes"
 pidfile="/run/cupsd.pid"
 
 depend() {
-	use dbus
-	after dbus
+    need dbus
+    after dbus
 }

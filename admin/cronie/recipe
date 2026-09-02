@@ -1,6 +1,6 @@
 name        cronie
 version     1.7.2
-release     1
+release     2
 description cronie: cron daemon
 
 source      https://github.com/cronie-crond/cronie/releases/download/cronie-1.7.2/cronie-1.7.2.tar.gz
@@ -11,3 +11,11 @@ depend      filesystem
 configure   ./configure --prefix=/usr --without-selinux --disable-anacron
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/crond" "$PKG/etc/s6/sv/crond" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/crond.service" "$PKG/usr/lib/systemd/system/crond.service"
+install     install -m 0755 "$SRC/files/openrc-crond" "$PKG/etc/init.d/crond"
+install     install -m 0755 "$SRC/files/runit-crond" "$PKG/etc/sv/crond/run"
+install     install -m 0755 "$SRC/files/s6-crond" "$PKG/etc/s6/sv/crond/run"
+install     install -m 0644 "$SRC/files/dinit-crond" "$PKG/etc/dinit.d/crond"
+install     install -m 0644 "$SRC/files/shepherd-crond.scm" "$PKG/etc/shepherd.d/crond.scm"
+install     install -m 0755 "$SRC/files/sysvinit-crond" "$PKG/etc/rc.d/init.d/crond"

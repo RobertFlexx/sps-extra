@@ -1,0 +1,3 @@
+type = script
+command = /usr/libexec/lxc/lxc-net start
+restart = false

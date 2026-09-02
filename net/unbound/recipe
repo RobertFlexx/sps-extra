@@ -1,6 +1,6 @@
 name        unbound
 version     1.23.1
-release     2
+release     3
 description unbound: validating recursive DNS resolver
 
 source      https://nlnetlabs.nl/downloads/unbound/unbound-1.23.1.tar.gz
@@ -15,6 +15,11 @@ depend      libcap
 configure   ./configure --prefix=/usr --with-libevent --with-pidfile=/run/unbound.pid --sysconfdir=/etc
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/unbound" "$PKG/etc/s6/sv/unbound" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/unbound.service" "$PKG/usr/lib/systemd/system/unbound.service"
 install     install -m 0755 "$SRC/files/openrc-unbound" "$PKG/etc/init.d/unbound"
+install     install -m 0755 "$SRC/files/runit-unbound" "$PKG/etc/sv/unbound/run"
+install     install -m 0755 "$SRC/files/s6-unbound" "$PKG/etc/s6/sv/unbound/run"
+install     install -m 0644 "$SRC/files/dinit-unbound" "$PKG/etc/dinit.d/unbound"
+install     install -m 0644 "$SRC/files/shepherd-unbound.scm" "$PKG/etc/shepherd.d/unbound.scm"
+install     install -m 0755 "$SRC/files/sysvinit-unbound" "$PKG/etc/rc.d/init.d/unbound"

@@ -1,0 +1,32 @@
+#!/bin/sh
+# Start eudev and settle the device tree.
+PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH
+
+udevd_bin=
+for _p in /usr/sbin/udevd /sbin/udevd; do
+	if [ -x "$_p" ]; then
+		udevd_bin=$_p
+		break
+	fi
+done
+
+case $1 in
+	start)
+		[ -n "$udevd_bin" ] || exit 0
+		if pidof udevd >/dev/null 2>&1; then
+			:
+		else
+			"$udevd_bin" --daemon 2>/dev/null || "$udevd_bin" &
+		fi
+		udevadm trigger --action=add 2>/dev/null || :
+		udevadm settle --timeout=8 2>/dev/null || :
+		;;
+	stop)
+		udevadm control --exit >/dev/null 2>&1 || :
+		;;
+	*)
+		printf '%s\n' "Usage: $0 {start|stop}" >&2
+		exit 1
+		;;
+esac

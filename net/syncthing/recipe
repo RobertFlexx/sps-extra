@@ -1,6 +1,6 @@
 name        syncthing
 version     1.29.7
-release     1
+release     2
 description syncthing: continuous file synchronization
 
 source      https://github.com/syncthing/syncthing/releases/download/v1.29.7/syncthing-linux-amd64-v1.29.7.tar.gz
@@ -11,3 +11,11 @@ depend      filesystem
 install     mkdir -p "$PKG/usr/bin"
 install     find . -type f -name syncthing -exec cp {} "$PKG/usr/bin/syncthing" \;
 install     chmod 755 "$PKG/usr/bin/syncthing"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/syncthing" "$PKG/etc/s6/sv/syncthing" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/syncthing.service" "$PKG/usr/lib/systemd/system/syncthing.service"
+install     install -m 0755 "$SRC/files/openrc-syncthing" "$PKG/etc/init.d/syncthing"
+install     install -m 0755 "$SRC/files/runit-syncthing" "$PKG/etc/sv/syncthing/run"
+install     install -m 0755 "$SRC/files/s6-syncthing" "$PKG/etc/s6/sv/syncthing/run"
+install     install -m 0644 "$SRC/files/dinit-syncthing" "$PKG/etc/dinit.d/syncthing"
+install     install -m 0644 "$SRC/files/shepherd-syncthing.scm" "$PKG/etc/shepherd.d/syncthing.scm"
+install     install -m 0755 "$SRC/files/sysvinit-syncthing" "$PKG/etc/rc.d/init.d/syncthing"

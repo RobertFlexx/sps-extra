@@ -1,6 +1,6 @@
 name        seatd
 version     0.9.1
-release     2
+release     3
 description seatd: seat management daemon
 
 source      https://git.sr.ht/~kennylevinsen/seatd/archive/0.9.1.tar.gz
@@ -11,6 +11,11 @@ depend      filesystem
 configure   meson setup build --prefix=/usr --buildtype=release
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/seatd" "$PKG/etc/s6/sv/seatd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/seatd.service" "$PKG/usr/lib/systemd/system/seatd.service"
 install     install -m 0755 "$SRC/files/openrc-seatd" "$PKG/etc/init.d/seatd"
+install     install -m 0755 "$SRC/files/runit-seatd" "$PKG/etc/sv/seatd/run"
+install     install -m 0755 "$SRC/files/s6-seatd" "$PKG/etc/s6/sv/seatd/run"
+install     install -m 0644 "$SRC/files/dinit-seatd" "$PKG/etc/dinit.d/seatd"
+install     install -m 0644 "$SRC/files/shepherd-seatd.scm" "$PKG/etc/shepherd.d/seatd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-seatd" "$PKG/etc/rc.d/init.d/seatd"

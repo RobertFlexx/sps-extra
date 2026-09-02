@@ -1,6 +1,6 @@
 name        mariadb
 version     11.8.3
-release     2
+release     3
 description mariadb: relational database
 
 source      https://archive.mariadb.org/mariadb-11.8.3/source/mariadb-11.8.3.tar.gz
@@ -20,6 +20,11 @@ builddep    ninja
 configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DWITH_UNIT_TESTS=OFF -DCONNECT_WITH_MONGO=OFF -DPLUGIN_AUTH_PAM=NO -DWITHOUT_SERVER=OFF -DINSTALL_LAYOUT=RPM -DINSTALL_LIBDIR=lib64
 build       cmake --build build --parallel "$MAKEJOBS"
 install     DESTDIR="$PKG" cmake --install build
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/mariadbd" "$PKG/etc/s6/sv/mariadbd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/mariadb.service" "$PKG/usr/lib/systemd/system/mariadb.service"
 install     install -m 0755 "$SRC/files/openrc-mariadbd" "$PKG/etc/init.d/mariadbd"
+install     install -m 0755 "$SRC/files/runit-mariadbd" "$PKG/etc/sv/mariadbd/run"
+install     install -m 0755 "$SRC/files/s6-mariadbd" "$PKG/etc/s6/sv/mariadbd/run"
+install     install -m 0644 "$SRC/files/dinit-mariadbd" "$PKG/etc/dinit.d/mariadbd"
+install     install -m 0644 "$SRC/files/shepherd-mariadbd.scm" "$PKG/etc/shepherd.d/mariadbd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-mariadbd" "$PKG/etc/rc.d/init.d/mariadbd"

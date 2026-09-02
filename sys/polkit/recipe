@@ -1,6 +1,6 @@
 name        polkit
 version     126
-release     2
+release     3
 description polkit: authorization manager
 
 source      https://github.com/polkit-org/polkit/archive/refs/tags/126.tar.gz
@@ -15,3 +15,11 @@ optional    elogind
 configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=false -Dexamples=false -Dman=false -Dtests=false -Dauthfw=shadow
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/polkitd" "$PKG/etc/s6/sv/polkitd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/polkit.service" "$PKG/usr/lib/systemd/system/polkit.service"
+install     install -m 0755 "$SRC/files/openrc-polkitd" "$PKG/etc/init.d/polkitd"
+install     install -m 0755 "$SRC/files/runit-polkitd" "$PKG/etc/sv/polkitd/run"
+install     install -m 0755 "$SRC/files/s6-polkitd" "$PKG/etc/s6/sv/polkitd/run"
+install     install -m 0644 "$SRC/files/dinit-polkitd" "$PKG/etc/dinit.d/polkitd"
+install     install -m 0644 "$SRC/files/shepherd-polkitd.scm" "$PKG/etc/shepherd.d/polkitd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-polkitd" "$PKG/etc/rc.d/init.d/polkitd"

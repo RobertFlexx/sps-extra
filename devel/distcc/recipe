@@ -1,6 +1,6 @@
 name        distcc
 version     3.4
-release     2
+release     3
 description distcc: distributed C/C++ compilation
 
 source      https://github.com/distcc/distcc/releases/download/v3.4/distcc-3.4.tar.gz
@@ -12,6 +12,11 @@ depend      popt
 configure   ./configure --prefix=/usr --without-avahi --disable-Werror
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/distccd" "$PKG/etc/s6/sv/distccd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/distccd.service" "$PKG/usr/lib/systemd/system/distccd.service"
 install     install -m 0755 "$SRC/files/openrc-distccd" "$PKG/etc/init.d/distccd"
+install     install -m 0755 "$SRC/files/runit-distccd" "$PKG/etc/sv/distccd/run"
+install     install -m 0755 "$SRC/files/s6-distccd" "$PKG/etc/s6/sv/distccd/run"
+install     install -m 0644 "$SRC/files/dinit-distccd" "$PKG/etc/dinit.d/distccd"
+install     install -m 0644 "$SRC/files/shepherd-distccd.scm" "$PKG/etc/shepherd.d/distccd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-distccd" "$PKG/etc/rc.d/init.d/distccd"

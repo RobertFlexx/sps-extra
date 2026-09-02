@@ -1,6 +1,6 @@
 name        bluez
 version     5.84
-release     2
+release     3
 description bluez: Bluetooth protocol stack
 
 source      https://mirrors.edge.kernel.org/pub/linux/bluetooth/bluez-5.84.tar.xz
@@ -15,6 +15,11 @@ depend      readline
 configure   ./configure --prefix=/usr --enable-library --disable-systemd --disable-manpages
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/bluetooth" "$PKG/etc/s6/sv/bluetooth" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/bluetooth.service" "$PKG/usr/lib/systemd/system/bluetooth.service"
 install     install -m 0755 "$SRC/files/openrc-bluetooth" "$PKG/etc/init.d/bluetooth"
+install     install -m 0755 "$SRC/files/runit-bluetooth" "$PKG/etc/sv/bluetooth/run"
+install     install -m 0755 "$SRC/files/s6-bluetooth" "$PKG/etc/s6/sv/bluetooth/run"
+install     install -m 0644 "$SRC/files/dinit-bluetooth" "$PKG/etc/dinit.d/bluetooth"
+install     install -m 0644 "$SRC/files/shepherd-bluetooth.scm" "$PKG/etc/shepherd.d/bluetooth.scm"
+install     install -m 0755 "$SRC/files/sysvinit-bluetooth" "$PKG/etc/rc.d/init.d/bluetooth"

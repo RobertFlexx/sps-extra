@@ -1,6 +1,6 @@
 name        runit
 version     2.2.0
-release     1
+release     2
 description runit: process supervision and init
 source      http://smarden.org/runit/runit-2.2.0.tar.gz
 hash        sha256:95ef4d2868b978c7179fe47901e5c578e11cf273d292bd6208bd3a7ccb029290
@@ -10,6 +10,7 @@ conflict    openrc
 conflict    s6
 conflict    dinit
 conflict    shepherd
+conflict    sysvinit
 configure   printf '%s\n' 'gcc -O2 -Wall' > runit-2.2.0/src/conf-cc
 configure   printf '%s\n' 'gcc -s' > runit-2.2.0/src/conf-ld
 build       cd runit-2.2.0 && package/compile

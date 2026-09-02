@@ -1,6 +1,6 @@
 name        fail2ban
 version     1.1.0
-release     2
+release     3
 arch        any
 description fail2ban: ban hosts that cause multiple auth errors
 
@@ -11,6 +11,11 @@ depend      filesystem
 depend      python
 
 install     python3 setup.py install --prefix=/usr --root="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/fail2ban" "$PKG/etc/s6/sv/fail2ban" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/fail2ban.service" "$PKG/usr/lib/systemd/system/fail2ban.service"
 install     install -m 0755 "$SRC/files/openrc-fail2ban" "$PKG/etc/init.d/fail2ban"
+install     install -m 0755 "$SRC/files/runit-fail2ban" "$PKG/etc/sv/fail2ban/run"
+install     install -m 0755 "$SRC/files/s6-fail2ban" "$PKG/etc/s6/sv/fail2ban/run"
+install     install -m 0644 "$SRC/files/dinit-fail2ban" "$PKG/etc/dinit.d/fail2ban"
+install     install -m 0644 "$SRC/files/shepherd-fail2ban.scm" "$PKG/etc/shepherd.d/fail2ban.scm"
+install     install -m 0755 "$SRC/files/sysvinit-fail2ban" "$PKG/etc/rc.d/init.d/fail2ban"

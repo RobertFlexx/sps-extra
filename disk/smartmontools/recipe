@@ -1,6 +1,6 @@
 name        smartmontools
 version     7.5
-release     1
+release     2
 description smartmontools: S.M.A.R.T. disk monitoring
 
 source      https://github.com/smartmontools/smartmontools/releases/download/RELEASE_7_5/smartmontools-7.5.tar.gz
@@ -11,3 +11,11 @@ depend      filesystem
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/smartd" "$PKG/etc/s6/sv/smartd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/smartd.service" "$PKG/usr/lib/systemd/system/smartd.service"
+install     install -m 0755 "$SRC/files/openrc-smartd" "$PKG/etc/init.d/smartd"
+install     install -m 0755 "$SRC/files/runit-smartd" "$PKG/etc/sv/smartd/run"
+install     install -m 0755 "$SRC/files/s6-smartd" "$PKG/etc/s6/sv/smartd/run"
+install     install -m 0644 "$SRC/files/dinit-smartd" "$PKG/etc/dinit.d/smartd"
+install     install -m 0644 "$SRC/files/shepherd-smartd.scm" "$PKG/etc/shepherd.d/smartd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-smartd" "$PKG/etc/rc.d/init.d/smartd"

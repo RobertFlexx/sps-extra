@@ -1,0 +1,23 @@
+#!/bin/sh
+# Mount kernel filesystems needed before anything else.
+PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH
+
+case $1 in
+	start)
+		mount -t proc proc /proc 2>/dev/null || :
+		mount -t sysfs sysfs /sys 2>/dev/null || :
+		mount -t devtmpfs devtmpfs /dev 2>/dev/null || :
+		mkdir -p /dev/pts /dev/shm /run
+		mount -t devpts devpts /dev/pts 2>/dev/null || :
+		mount -t tmpfs shm /dev/shm 2>/dev/null || :
+		mount -t tmpfs tmpfs /run 2>/dev/null || :
+		mkdir -p /run/lock /run/user
+		;;
+	stop)
+		;;
+	*)
+		printf '%s\n' "Usage: $0 {start|stop}" >&2
+		exit 1
+		;;
+esac

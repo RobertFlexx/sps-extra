@@ -1,6 +1,6 @@
 name        dropbear
 version     2025.88
-release     2
+release     3
 description dropbear: small SSH server and client
 
 source      https://matt.ucc.asn.au/dropbear/releases/dropbear-2025.88.tar.bz2
@@ -12,6 +12,11 @@ depend      zlib
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/dropbear" "$PKG/etc/s6/sv/dropbear" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/dropbear.service" "$PKG/usr/lib/systemd/system/dropbear.service"
 install     install -m 0755 "$SRC/files/openrc-dropbear" "$PKG/etc/init.d/dropbear"
+install     install -m 0755 "$SRC/files/runit-dropbear" "$PKG/etc/sv/dropbear/run"
+install     install -m 0755 "$SRC/files/s6-dropbear" "$PKG/etc/s6/sv/dropbear/run"
+install     install -m 0644 "$SRC/files/dinit-dropbear" "$PKG/etc/dinit.d/dropbear"
+install     install -m 0644 "$SRC/files/shepherd-dropbear.scm" "$PKG/etc/shepherd.d/dropbear.scm"
+install     install -m 0755 "$SRC/files/sysvinit-dropbear" "$PKG/etc/rc.d/init.d/dropbear"

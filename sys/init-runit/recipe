@@ -1,6 +1,6 @@
 name        init-runit
 version     1.0
-release     1
+release     2
 arch        any
 description init-runit: runit as PID 1, with eudev and elogind
 depend      filesystem
@@ -12,6 +12,7 @@ conflict    init-openrc
 conflict    init-s6
 conflict    init-dinit
 conflict    init-shepherd
+conflict    init-sysvinit
 install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps" "$PKG/sbin" "$PKG/etc/runit" "$PKG/etc/sv" "$PKG/etc/runit/runsvdir/default"
 install     printf '%s\n' "init-runit" >"$PKG/usr/share/sps/sets/init-runit"
 install     printf '%s\n' runit >"$PKG/etc/sps/init"

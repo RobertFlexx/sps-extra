@@ -1,6 +1,6 @@
 [Unit]
-Description=Internet Wireless Daemon
-After=dbus.service
+Description=iNet wireless daemon
+After=network.target dbus.service
 
 [Service]
 ExecStart=/usr/libexec/iwd

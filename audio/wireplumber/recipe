@@ -1,6 +1,6 @@
 name        wireplumber
 version     0.5.10
-release     1
+release     2
 description wireplumber: PipeWire session manager
 
 source      https://gitlab.freedesktop.org/pipewire/wireplumber/-/archive/0.5.10/wireplumber-0.5.10.tar.gz
@@ -14,3 +14,11 @@ depend      lua
 configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=disabled -Ddoc=disabled -Dtests=false
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/wireplumber" "$PKG/etc/s6/sv/wireplumber" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/wireplumber.service" "$PKG/usr/lib/systemd/system/wireplumber.service"
+install     install -m 0755 "$SRC/files/openrc-wireplumber" "$PKG/etc/init.d/wireplumber"
+install     install -m 0755 "$SRC/files/runit-wireplumber" "$PKG/etc/sv/wireplumber/run"
+install     install -m 0755 "$SRC/files/s6-wireplumber" "$PKG/etc/s6/sv/wireplumber/run"
+install     install -m 0644 "$SRC/files/dinit-wireplumber" "$PKG/etc/dinit.d/wireplumber"
+install     install -m 0644 "$SRC/files/shepherd-wireplumber.scm" "$PKG/etc/shepherd.d/wireplumber.scm"
+install     install -m 0755 "$SRC/files/sysvinit-wireplumber" "$PKG/etc/rc.d/init.d/wireplumber"

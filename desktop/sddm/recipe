@@ -1,6 +1,6 @@
 name        sddm
 version     0.21.0
-release     2
+release     3
 description sddm: display manager
 
 source      https://github.com/sddm/sddm/archive/refs/tags/v0.21.0.tar.gz
@@ -15,6 +15,11 @@ optional    systemd
 configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DENABLE_JOURNALD=OFF -DNO_SYSTEMD=ON
 build       cmake --build build --parallel "$MAKEJOBS"
 install     DESTDIR="$PKG" cmake --install build
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/sddm" "$PKG/etc/s6/sv/sddm" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/sddm.service" "$PKG/usr/lib/systemd/system/sddm.service"
 install     install -m 0755 "$SRC/files/openrc-sddm" "$PKG/etc/init.d/sddm"
+install     install -m 0755 "$SRC/files/runit-sddm" "$PKG/etc/sv/sddm/run"
+install     install -m 0755 "$SRC/files/s6-sddm" "$PKG/etc/s6/sv/sddm/run"
+install     install -m 0644 "$SRC/files/dinit-sddm" "$PKG/etc/dinit.d/sddm"
+install     install -m 0644 "$SRC/files/shepherd-sddm.scm" "$PKG/etc/shepherd.d/sddm.scm"
+install     install -m 0755 "$SRC/files/sysvinit-sddm" "$PKG/etc/rc.d/init.d/sddm"

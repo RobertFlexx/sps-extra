@@ -1,6 +1,6 @@
 name        elogind
 version     255.17
-release     2
+release     3
 description elogind: systemd-logind without systemd
 
 source      https://github.com/elogind/elogind/archive/refs/tags/v255.17.tar.gz
@@ -15,3 +15,11 @@ conflict    systemd
 configure   meson setup build --prefix=/usr --buildtype=release -Dhalt-path=/usr/bin/halt -Dreboot-path=/usr/bin/reboot -Dcgroup-controller=elogind
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/elogind" "$PKG/etc/s6/sv/elogind" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/elogind.service" "$PKG/usr/lib/systemd/system/elogind.service"
+install     install -m 0755 "$SRC/files/openrc-elogind" "$PKG/etc/init.d/elogind"
+install     install -m 0755 "$SRC/files/runit-elogind" "$PKG/etc/sv/elogind/run"
+install     install -m 0755 "$SRC/files/s6-elogind" "$PKG/etc/s6/sv/elogind/run"
+install     install -m 0644 "$SRC/files/dinit-elogind" "$PKG/etc/dinit.d/elogind"
+install     install -m 0644 "$SRC/files/shepherd-elogind.scm" "$PKG/etc/shepherd.d/elogind.scm"
+install     install -m 0755 "$SRC/files/sysvinit-elogind" "$PKG/etc/rc.d/init.d/elogind"

@@ -1,6 +1,6 @@
 name        redis
 version     7.4.5
-release     1
+release     2
 description redis: in-memory data store
 
 source      https://github.com/redis/redis/archive/7.4.5.tar.gz
@@ -11,3 +11,11 @@ depend      openssl
 
 build       make -j"$MAKEJOBS" PREFIX=/usr BUILD_TLS=yes
 install     make PREFIX=/usr DESTDIR="$PKG" install
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/redis" "$PKG/etc/s6/sv/redis" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/redis.service" "$PKG/usr/lib/systemd/system/redis.service"
+install     install -m 0755 "$SRC/files/openrc-redis" "$PKG/etc/init.d/redis"
+install     install -m 0755 "$SRC/files/runit-redis" "$PKG/etc/sv/redis/run"
+install     install -m 0755 "$SRC/files/s6-redis" "$PKG/etc/s6/sv/redis/run"
+install     install -m 0644 "$SRC/files/dinit-redis" "$PKG/etc/dinit.d/redis"
+install     install -m 0644 "$SRC/files/shepherd-redis.scm" "$PKG/etc/shepherd.d/redis.scm"
+install     install -m 0755 "$SRC/files/sysvinit-redis" "$PKG/etc/rc.d/init.d/redis"

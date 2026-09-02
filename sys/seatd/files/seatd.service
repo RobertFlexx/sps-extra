@@ -1,6 +1,6 @@
 [Unit]
-Description=Seat management daemon
-Before=graphical.target
+Description=seat management daemon
+After=network.target
 
 [Service]
 ExecStart=/usr/bin/seatd -g video

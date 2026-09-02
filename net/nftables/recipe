@@ -1,6 +1,6 @@
 name        nftables
 version     1.1.3
-release     1
+release     2
 description nftables: packet filtering
 
 source      https://www.netfilter.org/projects/nftables/files/nftables-1.1.3.tar.xz
@@ -15,3 +15,11 @@ depend      jansson
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/nftables" "$PKG/etc/s6/sv/nftables" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/nftables.service" "$PKG/usr/lib/systemd/system/nftables.service"
+install     install -m 0755 "$SRC/files/openrc-nftables" "$PKG/etc/init.d/nftables"
+install     install -m 0755 "$SRC/files/runit-nftables" "$PKG/etc/sv/nftables/run"
+install     install -m 0755 "$SRC/files/s6-nftables" "$PKG/etc/s6/sv/nftables/run"
+install     install -m 0644 "$SRC/files/dinit-nftables" "$PKG/etc/dinit.d/nftables"
+install     install -m 0644 "$SRC/files/shepherd-nftables.scm" "$PKG/etc/shepherd.d/nftables.scm"
+install     install -m 0755 "$SRC/files/sysvinit-nftables" "$PKG/etc/rc.d/init.d/nftables"

@@ -1,6 +1,6 @@
 name        init-dinit
 version     1.0
-release     1
+release     2
 arch        any
 description init-dinit: dinit as PID 1, with eudev and elogind
 depend      filesystem
@@ -12,6 +12,7 @@ conflict    init-openrc
 conflict    init-s6
 conflict    init-runit
 conflict    init-shepherd
+conflict    init-sysvinit
 install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps" "$PKG/sbin" "$PKG/etc/dinit.d/boot.d"
 install     printf '%s\n' "init-dinit" >"$PKG/usr/share/sps/sets/init-dinit"
 install     printf '%s\n' dinit >"$PKG/etc/sps/init"
@@ -19,7 +20,11 @@ install     install -m 0644 "$SRC/files/boot" "$PKG/etc/dinit.d/boot"
 install     install -m 0644 "$SRC/files/agetty-tty1" "$PKG/etc/dinit.d/agetty-tty1"
 install     install -m 0644 "$SRC/files/agetty-tty2" "$PKG/etc/dinit.d/agetty-tty2"
 install     install -m 0644 "$SRC/files/agetty-ttyS0" "$PKG/etc/dinit.d/agetty-ttyS0"
+install     install -m 0644 "$SRC/files/udev" "$PKG/etc/dinit.d/udev"
+install     install -m 0644 "$SRC/files/udev-trigger" "$PKG/etc/dinit.d/udev-trigger"
 install     ln -sf ../agetty-tty1 "$PKG/etc/dinit.d/boot.d/agetty-tty1"
 install     ln -sf ../agetty-tty2 "$PKG/etc/dinit.d/boot.d/agetty-tty2"
 install     ln -sf ../agetty-ttyS0 "$PKG/etc/dinit.d/boot.d/agetty-ttyS0"
+install     ln -sf ../udev "$PKG/etc/dinit.d/boot.d/udev"
+install     ln -sf ../udev-trigger "$PKG/etc/dinit.d/boot.d/udev-trigger"
 install     ln -sf /usr/sbin/dinit "$PKG/sbin/init"

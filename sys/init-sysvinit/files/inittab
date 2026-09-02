@@ -1,0 +1,16 @@
+# Splux SysV inittab. Default runlevel 3 (multi-user with gettys).
+id:3:initdefault:
+si::sysinit:/etc/rc.d/init.d/rc S
+l0:0:wait:/etc/rc.d/init.d/rc 0
+l1:1:wait:/etc/rc.d/init.d/rc 1
+l2:2:wait:/etc/rc.d/init.d/rc 2
+l3:3:wait:/etc/rc.d/init.d/rc 3
+l4:4:wait:/etc/rc.d/init.d/rc 4
+l5:5:wait:/etc/rc.d/init.d/rc 5
+l6:6:wait:/etc/rc.d/init.d/rc 6
+ca::ctrlaltdel:/sbin/shutdown -t3 -r now
+su:S016:once:/sbin/sulogin
+1:2345:respawn:/sbin/agetty --noclear tty1 linux
+2:2345:respawn:/sbin/agetty tty2 linux
+3:2345:respawn:/sbin/agetty tty3 linux
+S0:2345:respawn:/sbin/agetty -L 115200 ttyS0 vt100

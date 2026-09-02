@@ -1,0 +1,39 @@
+name        init-sysvinit
+version     1.0
+release     1
+arch        any
+description init-sysvinit: SysV init plus eudev and elogind
+depend      filesystem
+depend      sysvinit
+depend      eudev
+depend      elogind
+depend      busybox
+depend      util-linux
+conflict    init-systemd
+conflict    init-openrc
+conflict    init-s6
+conflict    init-runit
+conflict    init-dinit
+conflict    init-shepherd
+install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps" \
+              "$PKG/etc/rc.d/init.d" "$PKG/etc/rc.d/rcS.d" \
+              "$PKG/etc/rc.d/rc0.d" "$PKG/etc/rc.d/rc1.d" \
+              "$PKG/etc/rc.d/rc2.d" "$PKG/etc/rc.d/rc3.d" \
+              "$PKG/etc/rc.d/rc4.d" "$PKG/etc/rc.d/rc5.d" \
+              "$PKG/etc/rc.d/rc6.d"
+install     printf '%s\n' "init-sysvinit" >"$PKG/usr/share/sps/sets/init-sysvinit"
+install     printf '%s\n' sysvinit >"$PKG/etc/sps/init"
+install     install -m 0644 "$SRC/files/inittab" "$PKG/etc/inittab"
+install     install -m 0755 "$SRC/files/rc" "$PKG/etc/rc.d/init.d/rc"
+install     install -m 0755 "$SRC/files/functions" "$PKG/etc/rc.d/init.d/functions"
+install     install -m 0755 "$SRC/files/mountvirtfs" "$PKG/etc/rc.d/init.d/mountvirtfs"
+install     install -m 0755 "$SRC/files/udev" "$PKG/etc/rc.d/init.d/udev"
+install     install -m 0755 "$SRC/files/hostname" "$PKG/etc/rc.d/init.d/hostname"
+install     install -m 0755 "$SRC/files/mountfs" "$PKG/etc/rc.d/init.d/mountfs"
+install     install -m 0755 "$SRC/files/halt" "$PKG/etc/rc.d/init.d/halt"
+install     ln -sf ../init.d/mountvirtfs "$PKG/etc/rc.d/rcS.d/S00mountvirtfs"
+install     ln -sf ../init.d/udev "$PKG/etc/rc.d/rcS.d/S10udev"
+install     ln -sf ../init.d/hostname "$PKG/etc/rc.d/rcS.d/S20hostname"
+install     ln -sf ../init.d/mountfs "$PKG/etc/rc.d/rcS.d/S30mountfs"
+install     ln -sf ../init.d/halt "$PKG/etc/rc.d/rc0.d/S99halt"
+install     ln -sf ../init.d/halt "$PKG/etc/rc.d/rc6.d/S99halt"

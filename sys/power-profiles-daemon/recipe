@@ -1,6 +1,6 @@
 name        power-profiles-daemon
 version     0.23
-release     3
+release     4
 description power-profiles-daemon: power profiles
 
 source      https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/archive/0.23/power-profiles-daemon-0.23.tar.gz
@@ -20,3 +20,11 @@ build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
 install     mkdir -p "$PKG/etc/init.d"
 install     install -m 0755 "$SRC/files/openrc-power-profiles-daemon" "$PKG/etc/init.d/power-profiles-daemon"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/power-profiles-daemon" "$PKG/etc/s6/sv/power-profiles-daemon" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/power-profiles-daemon.service" "$PKG/usr/lib/systemd/system/power-profiles-daemon.service"
+install     install -m 0755 "$SRC/files/openrc-power-profiles-daemon" "$PKG/etc/init.d/power-profiles-daemon"
+install     install -m 0755 "$SRC/files/runit-power-profiles-daemon" "$PKG/etc/sv/power-profiles-daemon/run"
+install     install -m 0755 "$SRC/files/s6-power-profiles-daemon" "$PKG/etc/s6/sv/power-profiles-daemon/run"
+install     install -m 0644 "$SRC/files/dinit-power-profiles-daemon" "$PKG/etc/dinit.d/power-profiles-daemon"
+install     install -m 0644 "$SRC/files/shepherd-power-profiles-daemon.scm" "$PKG/etc/shepherd.d/power-profiles-daemon.scm"
+install     install -m 0755 "$SRC/files/sysvinit-power-profiles-daemon" "$PKG/etc/rc.d/init.d/power-profiles-daemon"

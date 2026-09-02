@@ -1,6 +1,6 @@
 name        openrc
 version     0.62.6
-release     2
+release     3
 description openrc: dependency-based init scripts
 
 source      https://github.com/OpenRC/openrc/archive/refs/tags/0.62.6.tar.gz
@@ -13,6 +13,7 @@ conflict    s6
 conflict    runit
 conflict    dinit
 conflict    shepherd
+conflict    sysvinit
 builddep    meson
 builddep    ninja
 builddep    pkgconf

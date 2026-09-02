@@ -1,6 +1,6 @@
 name        tinyproxy
 version     1.11.2
-release     2
+release     3
 description tinyproxy: lightweight HTTP proxy
 
 source      https://github.com/tinyproxy/tinyproxy/releases/download/1.11.2/tinyproxy-1.11.2.tar.gz
@@ -11,6 +11,11 @@ depend      filesystem
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/tinyproxy" "$PKG/etc/s6/sv/tinyproxy" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/tinyproxy.service" "$PKG/usr/lib/systemd/system/tinyproxy.service"
 install     install -m 0755 "$SRC/files/openrc-tinyproxy" "$PKG/etc/init.d/tinyproxy"
+install     install -m 0755 "$SRC/files/runit-tinyproxy" "$PKG/etc/sv/tinyproxy/run"
+install     install -m 0755 "$SRC/files/s6-tinyproxy" "$PKG/etc/s6/sv/tinyproxy/run"
+install     install -m 0644 "$SRC/files/dinit-tinyproxy" "$PKG/etc/dinit.d/tinyproxy"
+install     install -m 0644 "$SRC/files/shepherd-tinyproxy.scm" "$PKG/etc/shepherd.d/tinyproxy.scm"
+install     install -m 0755 "$SRC/files/sysvinit-tinyproxy" "$PKG/etc/rc.d/init.d/tinyproxy"

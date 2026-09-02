@@ -1,6 +1,6 @@
 name        wpa_supplicant
 version     2.11
-release     1
+release     2
 description wpa_supplicant: Wi-Fi client
 
 source      https://w1.fi/releases/wpa_supplicant-2.11.tar.gz
@@ -12,3 +12,11 @@ depend      libnl
 
 build       make -C wpa_supplicant -j"$MAKEJOBS"
 install     make -C wpa_supplicant DESTDIR="$PKG" BINDIR=/usr/sbin install
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/wpa_supplicant" "$PKG/etc/s6/sv/wpa_supplicant" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/wpa_supplicant.service" "$PKG/usr/lib/systemd/system/wpa_supplicant.service"
+install     install -m 0755 "$SRC/files/openrc-wpa_supplicant" "$PKG/etc/init.d/wpa_supplicant"
+install     install -m 0755 "$SRC/files/runit-wpa_supplicant" "$PKG/etc/sv/wpa_supplicant/run"
+install     install -m 0755 "$SRC/files/s6-wpa_supplicant" "$PKG/etc/s6/sv/wpa_supplicant/run"
+install     install -m 0644 "$SRC/files/dinit-wpa_supplicant" "$PKG/etc/dinit.d/wpa_supplicant"
+install     install -m 0644 "$SRC/files/shepherd-wpa_supplicant.scm" "$PKG/etc/shepherd.d/wpa_supplicant.scm"
+install     install -m 0755 "$SRC/files/sysvinit-wpa_supplicant" "$PKG/etc/rc.d/init.d/wpa_supplicant"

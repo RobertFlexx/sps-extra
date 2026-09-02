@@ -1,6 +1,6 @@
 name        tlp
 version     1.8.0
-release     1
+release     2
 description tlp: laptop power management
 
 source      https://github.com/linrunner/TLP/archive/1.8.0.tar.gz
@@ -9,3 +9,11 @@ hash        sha256:65515f7652064a1be2940c031e045b762924bb1dbd94f5e58e3b765113cf5
 depend      filesystem
 
 install     make DESTDIR="$PKG" TLP_SYSD=/usr/lib/systemd/system TLP_ULIB=/usr/lib/udev install-tlp install-man
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/tlp" "$PKG/etc/s6/sv/tlp" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/tlp.service" "$PKG/usr/lib/systemd/system/tlp.service"
+install     install -m 0755 "$SRC/files/openrc-tlp" "$PKG/etc/init.d/tlp"
+install     install -m 0755 "$SRC/files/runit-tlp" "$PKG/etc/sv/tlp/run"
+install     install -m 0755 "$SRC/files/s6-tlp" "$PKG/etc/s6/sv/tlp/run"
+install     install -m 0644 "$SRC/files/dinit-tlp" "$PKG/etc/dinit.d/tlp"
+install     install -m 0644 "$SRC/files/shepherd-tlp.scm" "$PKG/etc/shepherd.d/tlp.scm"
+install     install -m 0755 "$SRC/files/sysvinit-tlp" "$PKG/etc/rc.d/init.d/tlp"

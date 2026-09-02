@@ -1,6 +1,6 @@
 name        usbmuxd
 version     1.1.1
-release     2
+release     3
 description usbmuxd: iOS USB multiplexing daemon
 
 source      https://github.com/libimobiledevice/usbmuxd/releases/download/1.1.1/usbmuxd-1.1.1.tar.bz2
@@ -14,6 +14,11 @@ depend      libplist
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/usbmuxd" "$PKG/etc/s6/sv/usbmuxd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/usbmuxd.service" "$PKG/usr/lib/systemd/system/usbmuxd.service"
 install     install -m 0755 "$SRC/files/openrc-usbmuxd" "$PKG/etc/init.d/usbmuxd"
+install     install -m 0755 "$SRC/files/runit-usbmuxd" "$PKG/etc/sv/usbmuxd/run"
+install     install -m 0755 "$SRC/files/s6-usbmuxd" "$PKG/etc/s6/sv/usbmuxd/run"
+install     install -m 0644 "$SRC/files/dinit-usbmuxd" "$PKG/etc/dinit.d/usbmuxd"
+install     install -m 0644 "$SRC/files/shepherd-usbmuxd.scm" "$PKG/etc/shepherd.d/usbmuxd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-usbmuxd" "$PKG/etc/rc.d/init.d/usbmuxd"

@@ -1,6 +1,6 @@
 name        nfs-utils
 version     2.8.3
-release     2
+release     3
 description nfs-utils: NFS client and server
 
 source      https://www.kernel.org/pub/linux/utils/nfs-utils/2.8.3/nfs-utils-2.8.3.tar.xz
@@ -17,6 +17,11 @@ depend      keyutils
 configure   ./configure --prefix=/usr --disable-gss --disable-nfsv4 --with-statduser=nobody --disable-nfsdcltrack
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/nfs-server" "$PKG/etc/s6/sv/nfs-server" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/nfs-server.service" "$PKG/usr/lib/systemd/system/nfs-server.service"
 install     install -m 0755 "$SRC/files/openrc-nfs-server" "$PKG/etc/init.d/nfs-server"
+install     install -m 0755 "$SRC/files/runit-nfs-server" "$PKG/etc/sv/nfs-server/run"
+install     install -m 0755 "$SRC/files/s6-nfs-server" "$PKG/etc/s6/sv/nfs-server/run"
+install     install -m 0644 "$SRC/files/dinit-nfs-server" "$PKG/etc/dinit.d/nfs-server"
+install     install -m 0644 "$SRC/files/shepherd-nfs-server.scm" "$PKG/etc/shepherd.d/nfs-server.scm"
+install     install -m 0755 "$SRC/files/sysvinit-nfs-server" "$PKG/etc/rc.d/init.d/nfs-server"

@@ -1,12 +1,10 @@
 [Unit]
 Description=Simple Desktop Display Manager
-Documentation=man:sddm(1)
-After=local-fs.target systemd-user-sessions.service
-After=dbus.service
+After=network.target dbus.service
 
 [Service]
 ExecStart=/usr/bin/sddm
-Restart=always
+Restart=on-failure
 
 [Install]
 WantedBy=graphical.target

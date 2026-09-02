@@ -1,6 +1,6 @@
 name        init-openrc
 version     1.0
-release     2
+release     3
 arch        any
 description init-openrc: OpenRC plus eudev and elogind
 depend      filesystem
@@ -12,6 +12,7 @@ conflict    init-s6
 conflict    init-runit
 conflict    init-dinit
 conflict    init-shepherd
+conflict    init-sysvinit
 install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps"
 install     printf '%s\n' "init-openrc" >"$PKG/usr/share/sps/sets/init-openrc"
 install     printf '%s\n' openrc >"$PKG/etc/sps/init"

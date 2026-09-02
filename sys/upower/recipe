@@ -1,6 +1,6 @@
 name        upower
 version     1.90.9
-release     1
+release     2
 description upower: power management
 
 source      https://gitlab.freedesktop.org/upower/upower/-/archive/v1.90.9/upower-v1.90.9.tar.gz
@@ -13,3 +13,11 @@ depend      libgudev
 configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=disabled -Dman=false -Didevice=disabled
 build       meson compile -C build
 install     DESTDIR="$PKG" meson install -C build --no-rebuild
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/upowerd" "$PKG/etc/s6/sv/upowerd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/upower.service" "$PKG/usr/lib/systemd/system/upower.service"
+install     install -m 0755 "$SRC/files/openrc-upowerd" "$PKG/etc/init.d/upowerd"
+install     install -m 0755 "$SRC/files/runit-upowerd" "$PKG/etc/sv/upowerd/run"
+install     install -m 0755 "$SRC/files/s6-upowerd" "$PKG/etc/s6/sv/upowerd/run"
+install     install -m 0644 "$SRC/files/dinit-upowerd" "$PKG/etc/dinit.d/upowerd"
+install     install -m 0644 "$SRC/files/shepherd-upowerd.scm" "$PKG/etc/shepherd.d/upowerd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-upowerd" "$PKG/etc/rc.d/init.d/upowerd"

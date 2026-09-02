@@ -1,6 +1,6 @@
 name        init-s6
 version     1.0
-release     1
+release     2
 arch        any
 description init-s6: s6 as PID 1, with eudev and elogind
 depend      filesystem
@@ -14,6 +14,7 @@ conflict    init-openrc
 conflict    init-runit
 conflict    init-dinit
 conflict    init-shepherd
+conflict    init-sysvinit
 install     mkdir -p "$PKG/usr/share/sps/sets" "$PKG/etc/sps" "$PKG/sbin" "$PKG/etc/s6/sv" "$PKG/etc/s6/enabled"
 install     printf '%s\n' "init-s6" >"$PKG/usr/share/sps/sets/init-s6"
 install     printf '%s\n' s6 >"$PKG/etc/sps/init"

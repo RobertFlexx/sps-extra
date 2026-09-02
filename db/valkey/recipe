@@ -1,6 +1,6 @@
 name        valkey
 version     8.1.4
-release     2
+release     3
 description valkey: Redis-compatible data store
 
 source      https://github.com/valkey-io/valkey/archive/8.1.4.tar.gz
@@ -11,6 +11,11 @@ depend      openssl
 
 build       make -j"$MAKEJOBS" PREFIX=/usr BUILD_TLS=yes
 install     make PREFIX=/usr DESTDIR="$PKG" install
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/valkey" "$PKG/etc/s6/sv/valkey" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/valkey.service" "$PKG/usr/lib/systemd/system/valkey.service"
 install     install -m 0755 "$SRC/files/openrc-valkey" "$PKG/etc/init.d/valkey"
+install     install -m 0755 "$SRC/files/runit-valkey" "$PKG/etc/sv/valkey/run"
+install     install -m 0755 "$SRC/files/s6-valkey" "$PKG/etc/s6/sv/valkey/run"
+install     install -m 0644 "$SRC/files/dinit-valkey" "$PKG/etc/dinit.d/valkey"
+install     install -m 0644 "$SRC/files/shepherd-valkey.scm" "$PKG/etc/shepherd.d/valkey.scm"
+install     install -m 0755 "$SRC/files/sysvinit-valkey" "$PKG/etc/rc.d/init.d/valkey"

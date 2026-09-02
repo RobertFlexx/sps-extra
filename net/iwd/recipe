@@ -1,6 +1,6 @@
 name        iwd
 version     3.9
-release     2
+release     3
 description iwd: iNet wireless daemon
 
 source      https://cdn.kernel.org/pub/linux/network/wireless/iwd-3.9.tar.xz
@@ -13,6 +13,11 @@ depend      dbus
 configure   ./configure --prefix=/usr --disable-systemd-service
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/iwd" "$PKG/etc/s6/sv/iwd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/iwd.service" "$PKG/usr/lib/systemd/system/iwd.service"
 install     install -m 0755 "$SRC/files/openrc-iwd" "$PKG/etc/init.d/iwd"
+install     install -m 0755 "$SRC/files/runit-iwd" "$PKG/etc/sv/iwd/run"
+install     install -m 0755 "$SRC/files/s6-iwd" "$PKG/etc/s6/sv/iwd/run"
+install     install -m 0644 "$SRC/files/dinit-iwd" "$PKG/etc/dinit.d/iwd"
+install     install -m 0644 "$SRC/files/shepherd-iwd.scm" "$PKG/etc/shepherd.d/iwd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-iwd" "$PKG/etc/rc.d/init.d/iwd"

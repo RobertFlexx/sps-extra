@@ -1,8 +1,6 @@
 [Unit]
-Description=Network Manager
-Wants=network.target
-After=dbus.service
-Before=network.target
+Description=NetworkManager
+After=network.target dbus.service
 
 [Service]
 ExecStart=/usr/sbin/NetworkManager --no-daemon

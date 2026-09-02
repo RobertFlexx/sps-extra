@@ -1,6 +1,6 @@
 name        shepherd
 version     1.0.8
-release     1
+release     2
 description shepherd: GNU service manager and PID 1
 source      https://ftp.gnu.org/gnu/shepherd/shepherd-1.0.8.tar.gz
 hash        sha256:3beb005370bf0339c567d068a7ad9fb69f0e8850894db01c34635955f7717ff5
@@ -12,6 +12,7 @@ conflict    openrc
 conflict    s6
 conflict    runit
 conflict    dinit
+conflict    sysvinit
 builddep    guile
 builddep    guile-fibers
 builddep    pkgconf

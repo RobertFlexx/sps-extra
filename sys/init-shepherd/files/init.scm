@@ -45,9 +45,16 @@
            #:stop (make-kill-destructor)
            #:respawn? #t))
 
-(register-services (list agetty-tty1 agetty-tty2 agetty-ttyS0))
+(define udevd
+  (service '(udevd)
+           #:documentation "eudev device manager"
+           #:start (make-forkexec-constructor '("/usr/sbin/udevd"))
+           #:stop (make-kill-destructor)
+           #:respawn? #t))
+
+(register-services (list udevd agetty-tty1 agetty-tty2 agetty-ttyS0))
 (load-service-dir "/etc/shepherd.d")
-(start-in-the-background '(agetty-tty1 agetty-tty2 agetty-ttyS0))
+(start-in-the-background '(udevd agetty-tty1 agetty-tty2 agetty-ttyS0))
 
 (let ((dir "/etc/shepherd.d"))
   (when (directory? dir)

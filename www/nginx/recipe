@@ -1,6 +1,6 @@
 name        nginx
 version     1.28.0
-release     1
+release     2
 description nginx: HTTP and reverse proxy server
 
 source      https://nginx.org/download/nginx-1.28.0.tar.gz
@@ -14,3 +14,11 @@ depend      pcre2
 configure   ./configure --prefix=/usr --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --pid-path=/run/nginx.pid --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-http_ssl_module --with-http_v2_module --with-http_gzip_static_module --with-pcre --with-threads
 build       make -j"$MAKEJOBS"
 install     make DESTDIR="$PKG" install
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/nginx" "$PKG/etc/s6/sv/nginx" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/nginx.service" "$PKG/usr/lib/systemd/system/nginx.service"
+install     install -m 0755 "$SRC/files/openrc-nginx" "$PKG/etc/init.d/nginx"
+install     install -m 0755 "$SRC/files/runit-nginx" "$PKG/etc/sv/nginx/run"
+install     install -m 0755 "$SRC/files/s6-nginx" "$PKG/etc/s6/sv/nginx/run"
+install     install -m 0644 "$SRC/files/dinit-nginx" "$PKG/etc/dinit.d/nginx"
+install     install -m 0644 "$SRC/files/shepherd-nginx.scm" "$PKG/etc/shepherd.d/nginx.scm"
+install     install -m 0755 "$SRC/files/sysvinit-nginx" "$PKG/etc/rc.d/init.d/nginx"

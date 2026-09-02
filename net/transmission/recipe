@@ -1,6 +1,6 @@
 name        transmission
 version     4.0.6
-release     1
+release     2
 description transmission: BitTorrent client
 
 source      https://github.com/transmission/transmission/releases/download/4.0.6/transmission-4.0.6.tar.xz
@@ -16,3 +16,11 @@ builddep    ninja
 configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_GTK=OFF -DENABLE_QT=OFF -DENABLE_MAC=OFF -DENABLE_WEB=OFF -DENABLE_UTILS=ON -DENABLE_CLI=ON -DENABLE_TESTS=OFF -DINSTALL_DOC=ON
 build       cmake --build build --parallel "$MAKEJOBS"
 install     DESTDIR="$PKG" cmake --install build
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/transmission-daemon" "$PKG/etc/s6/sv/transmission-daemon" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/transmission-daemon.service" "$PKG/usr/lib/systemd/system/transmission-daemon.service"
+install     install -m 0755 "$SRC/files/openrc-transmission-daemon" "$PKG/etc/init.d/transmission-daemon"
+install     install -m 0755 "$SRC/files/runit-transmission-daemon" "$PKG/etc/sv/transmission-daemon/run"
+install     install -m 0755 "$SRC/files/s6-transmission-daemon" "$PKG/etc/s6/sv/transmission-daemon/run"
+install     install -m 0644 "$SRC/files/dinit-transmission-daemon" "$PKG/etc/dinit.d/transmission-daemon"
+install     install -m 0644 "$SRC/files/shepherd-transmission-daemon.scm" "$PKG/etc/shepherd.d/transmission-daemon.scm"
+install     install -m 0755 "$SRC/files/sysvinit-transmission-daemon" "$PKG/etc/rc.d/init.d/transmission-daemon"

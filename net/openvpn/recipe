@@ -1,6 +1,6 @@
 name        openvpn
 version     2.6.14
-release     2
+release     3
 description openvpn: SSL/TLS VPN
 
 source      https://swupdate.openvpn.org/community/releases/openvpn-2.6.14.tar.gz
@@ -16,6 +16,11 @@ depend      libcap-ng
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/openvpn" "$PKG/etc/s6/sv/openvpn" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/openvpn.service" "$PKG/usr/lib/systemd/system/openvpn.service"
 install     install -m 0755 "$SRC/files/openrc-openvpn" "$PKG/etc/init.d/openvpn"
+install     install -m 0755 "$SRC/files/runit-openvpn" "$PKG/etc/sv/openvpn/run"
+install     install -m 0755 "$SRC/files/s6-openvpn" "$PKG/etc/s6/sv/openvpn/run"
+install     install -m 0644 "$SRC/files/dinit-openvpn" "$PKG/etc/dinit.d/openvpn"
+install     install -m 0644 "$SRC/files/shepherd-openvpn.scm" "$PKG/etc/shepherd.d/openvpn.scm"
+install     install -m 0755 "$SRC/files/sysvinit-openvpn" "$PKG/etc/rc.d/init.d/openvpn"

@@ -1,0 +1,17 @@
+#!/bin/sh
+PATH=/usr/bin:/usr/sbin:/bin:/sbin
+export PATH
+
+case $1 in
+	start)
+		if [ -r /etc/hostname ]; then
+			hostname "$(cat /etc/hostname)" 2>/dev/null || :
+		fi
+		;;
+	stop)
+		;;
+	*)
+		printf '%s\n' "Usage: $0 {start|stop}" >&2
+		exit 1
+		;;
+esac

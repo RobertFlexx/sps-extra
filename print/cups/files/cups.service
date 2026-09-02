@@ -1,6 +1,6 @@
 [Unit]
-Description=CUPS Scheduler
-After=dbus.service
+Description=CUPS printing service
+After=network.target dbus.service
 
 [Service]
 ExecStart=/usr/sbin/cupsd -f

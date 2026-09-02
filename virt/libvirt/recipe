@@ -1,6 +1,6 @@
 name        libvirt
 version     11.6.0
-release     2
+release     3
 description libvirt: virtualization API
 
 source      https://download.libvirt.org/libvirt-11.6.0.tar.xz
@@ -25,6 +25,11 @@ builddep    ninja
 configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddocs=disabled -Dtests=disabled -Dstorage_lvm=enabled -Dlibssh=disabled -Dopenwsman=disabled
 build       meson compile -C build -j "$MAKEJOBS"
 install     DESTDIR="$PKG" meson install -C build
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/libvirtd" "$PKG/etc/s6/sv/libvirtd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/libvirtd.service" "$PKG/usr/lib/systemd/system/libvirtd.service"
 install     install -m 0755 "$SRC/files/openrc-libvirtd" "$PKG/etc/init.d/libvirtd"
+install     install -m 0755 "$SRC/files/runit-libvirtd" "$PKG/etc/sv/libvirtd/run"
+install     install -m 0755 "$SRC/files/s6-libvirtd" "$PKG/etc/s6/sv/libvirtd/run"
+install     install -m 0644 "$SRC/files/dinit-libvirtd" "$PKG/etc/dinit.d/libvirtd"
+install     install -m 0644 "$SRC/files/shepherd-libvirtd.scm" "$PKG/etc/shepherd.d/libvirtd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-libvirtd" "$PKG/etc/rc.d/init.d/libvirtd"

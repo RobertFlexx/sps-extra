@@ -1,6 +1,6 @@
 name        tor
 version     0.4.8.17
-release     2
+release     3
 description tor: anonymity network
 
 source      https://dist.torproject.org/tor-0.4.8.17.tar.gz
@@ -17,6 +17,11 @@ depend      libcap
 configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/tor" "$PKG/etc/s6/sv/tor" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/tor.service" "$PKG/usr/lib/systemd/system/tor.service"
 install     install -m 0755 "$SRC/files/openrc-tor" "$PKG/etc/init.d/tor"
+install     install -m 0755 "$SRC/files/runit-tor" "$PKG/etc/sv/tor/run"
+install     install -m 0755 "$SRC/files/s6-tor" "$PKG/etc/s6/sv/tor/run"
+install     install -m 0644 "$SRC/files/dinit-tor" "$PKG/etc/dinit.d/tor"
+install     install -m 0644 "$SRC/files/shepherd-tor.scm" "$PKG/etc/shepherd.d/tor.scm"
+install     install -m 0755 "$SRC/files/sysvinit-tor" "$PKG/etc/rc.d/init.d/tor"

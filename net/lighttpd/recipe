@@ -1,6 +1,6 @@
 name        lighttpd
 version     1.4.81
-release     2
+release     3
 description lighttpd: lightweight web server
 
 source      https://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.81.tar.xz
@@ -18,6 +18,11 @@ builddep    ninja
 configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dwith_brotli=enabled -Dwith_openssl=enabled -Dwith_zlib=enabled
 build       meson compile -C build -j "$MAKEJOBS"
 install     DESTDIR="$PKG" meson install -C build
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/lighttpd" "$PKG/etc/s6/sv/lighttpd" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/lighttpd.service" "$PKG/usr/lib/systemd/system/lighttpd.service"
 install     install -m 0755 "$SRC/files/openrc-lighttpd" "$PKG/etc/init.d/lighttpd"
+install     install -m 0755 "$SRC/files/runit-lighttpd" "$PKG/etc/sv/lighttpd/run"
+install     install -m 0755 "$SRC/files/s6-lighttpd" "$PKG/etc/s6/sv/lighttpd/run"
+install     install -m 0644 "$SRC/files/dinit-lighttpd" "$PKG/etc/dinit.d/lighttpd"
+install     install -m 0644 "$SRC/files/shepherd-lighttpd.scm" "$PKG/etc/shepherd.d/lighttpd.scm"
+install     install -m 0755 "$SRC/files/sysvinit-lighttpd" "$PKG/etc/rc.d/init.d/lighttpd"

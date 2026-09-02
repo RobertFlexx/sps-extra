@@ -1,0 +1,94 @@
+#!/bin/sh
+# Portable start/stop helpers for Splux SysV scripts.
+# Prefer busybox start-stop-daemon when it exists.
+
+start_daemon()
+{
+	_pidfile=
+	_user=
+	while [ $# -gt 0 ]; do
+		case $1 in
+			-p) _pidfile=$2; shift 2 ;;
+			-c) _user=$2; shift 2 ;;
+			--) shift; break ;;
+			-*) shift ;;
+			*) break ;;
+		esac
+	done
+	_bin=$1
+	shift
+	if [ -n "$_pidfile" ] && [ -f "$_pidfile" ]; then
+		_pid=$(cat "$_pidfile" 2>/dev/null) || _pid=
+		if [ -n "$_pid" ] && kill -0 "$_pid" 2>/dev/null; then
+			return 0
+		fi
+	fi
+	if command -v start-stop-daemon >/dev/null 2>&1; then
+		if [ -n "$_pidfile" ]; then
+			start-stop-daemon -S -b -m -p "$_pidfile" \
+				${_user:+-c "$_user"} -x "$_bin" -- "$@"
+		else
+			start-stop-daemon -S -b ${_user:+-c "$_user"} -x "$_bin" -- "$@"
+		fi
+		return $?
+	fi
+	if [ -n "$_user" ] && command -v su >/dev/null 2>&1; then
+		su -s /bin/sh "$_user" -c "exec \"$_bin\" $*" >/dev/null 2>&1 &
+	else
+		"$_bin" "$@" >/dev/null 2>&1 &
+	fi
+	_pid=$!
+	if [ -n "$_pidfile" ]; then
+		printf '%s\n' "$_pid" >"$_pidfile"
+	fi
+	return 0
+}
+
+killproc()
+{
+	_pidfile=
+	while [ $# -gt 0 ]; do
+		case $1 in
+			-p) _pidfile=$2; shift 2 ;;
+			-*) shift ;;
+			*) break ;;
+		esac
+	done
+	_bin=$1
+	if [ -n "$_pidfile" ] && [ -f "$_pidfile" ]; then
+		if command -v start-stop-daemon >/dev/null 2>&1; then
+			start-stop-daemon -K -p "$_pidfile" >/dev/null 2>&1 || :
+		else
+			_pid=$(cat "$_pidfile" 2>/dev/null) || _pid=
+			[ -n "$_pid" ] && kill "$_pid" 2>/dev/null || :
+		fi
+		rm -f "$_pidfile"
+		return 0
+	fi
+	if command -v killall >/dev/null 2>&1; then
+		killall "$_bin" >/dev/null 2>&1 || :
+	fi
+	return 0
+}
+
+pidofproc()
+{
+	_pidfile=
+	while [ $# -gt 0 ]; do
+		case $1 in
+			-p) _pidfile=$2; shift 2 ;;
+			-*) shift ;;
+			*) break ;;
+		esac
+	done
+	if [ -n "$_pidfile" ] && [ -f "$_pidfile" ]; then
+		_pid=$(cat "$_pidfile" 2>/dev/null) || _pid=
+		if [ -n "$_pid" ] && kill -0 "$_pid" 2>/dev/null; then
+			printf '%s\n' "$_pid"
+			return 0
+		fi
+		return 3
+	fi
+	command -v pidof >/dev/null 2>&1 || return 3
+	pidof "$1" >/dev/null 2>&1
+}

@@ -1,6 +1,6 @@
 name        haveged
 version     1.9.19
-release     1
+release     2
 description haveged: entropy daemon
 
 source      https://github.com/jirka-h/haveged/archive/v1.9.19.tar.gz
@@ -11,3 +11,11 @@ depend      filesystem
 configure   ./configure --prefix=/usr
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/haveged" "$PKG/etc/s6/sv/haveged" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
+install     install -m 0644 "$SRC/files/haveged.service" "$PKG/usr/lib/systemd/system/haveged.service"
+install     install -m 0755 "$SRC/files/openrc-haveged" "$PKG/etc/init.d/haveged"
+install     install -m 0755 "$SRC/files/runit-haveged" "$PKG/etc/sv/haveged/run"
+install     install -m 0755 "$SRC/files/s6-haveged" "$PKG/etc/s6/sv/haveged/run"
+install     install -m 0644 "$SRC/files/dinit-haveged" "$PKG/etc/dinit.d/haveged"
+install     install -m 0644 "$SRC/files/shepherd-haveged.scm" "$PKG/etc/shepherd.d/haveged.scm"
+install     install -m 0755 "$SRC/files/sysvinit-haveged" "$PKG/etc/rc.d/init.d/haveged"

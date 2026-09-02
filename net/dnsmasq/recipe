@@ -1,6 +1,6 @@
 name        dnsmasq
 version     2.91
-release     2
+release     3
 description dnsmasq: DNS and DHCP server
 
 source      https://thekelleys.org.uk/dnsmasq/dnsmasq-2.91.tar.xz
@@ -10,6 +10,11 @@ depend      filesystem
 
 build       make -j"$MAKEJOBS" PREFIX=/usr CFLAGS="-O2 -DHAVE_DNSSEC"
 install     make PREFIX=/usr DESTDIR="$PKG" install
-install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d" "$PKG/etc/sv/dnsmasq" "$PKG/etc/s6/sv/dnsmasq" "$PKG/etc/dinit.d" "$PKG/etc/shepherd.d" "$PKG/etc/rc.d/init.d"
 install     install -m 0644 "$SRC/files/dnsmasq.service" "$PKG/usr/lib/systemd/system/dnsmasq.service"
 install     install -m 0755 "$SRC/files/openrc-dnsmasq" "$PKG/etc/init.d/dnsmasq"
+install     install -m 0755 "$SRC/files/runit-dnsmasq" "$PKG/etc/sv/dnsmasq/run"
+install     install -m 0755 "$SRC/files/s6-dnsmasq" "$PKG/etc/s6/sv/dnsmasq/run"
+install     install -m 0644 "$SRC/files/dinit-dnsmasq" "$PKG/etc/dinit.d/dnsmasq"
+install     install -m 0644 "$SRC/files/shepherd-dnsmasq.scm" "$PKG/etc/shepherd.d/dnsmasq.scm"
+install     install -m 0755 "$SRC/files/sysvinit-dnsmasq" "$PKG/etc/rc.d/init.d/dnsmasq"
