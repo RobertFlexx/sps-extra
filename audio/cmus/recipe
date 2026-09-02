@@ -1,0 +1,19 @@
+name        cmus
+version     2.12.0
+release     1
+description cmus: console music player
+
+source      https://github.com/cmus/cmus/archive/v2.12.0.tar.gz
+hash        sha256:44b96cd5f84b0d84c33097c48454232d5e6a19cd33b9b6503ba9c13b6686bfc7
+
+depend      filesystem
+depend      ncurses
+depend      alsa-lib
+depend      ffmpeg
+depend      libvorbis
+depend      flac
+depend      opus
+
+configure   ./configure prefix=/usr CONFIG_OSS=n CONFIG_AO=n
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

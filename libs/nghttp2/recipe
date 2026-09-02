@@ -1,0 +1,13 @@
+name        nghttp2
+version     1.66.0
+release     1
+description nghttp2: HTTP/2 library
+
+source      https://github.com/nghttp2/nghttp2/releases/download/v1.66.0/nghttp2-1.66.0.tar.xz
+hash        sha256:00ba1bdf0ba2c74b2a4fe6c8b1069dc9d82f82608af24442d430df97c6f9e631
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-lib-only
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

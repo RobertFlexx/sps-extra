@@ -1,0 +1,13 @@
+name        yt-dlp
+version     2025.08.22
+release     1
+description yt-dlp: download videos from websites
+
+source      https://github.com/yt-dlp/yt-dlp/releases/download/2025.08.22/yt-dlp
+hash        sha256:0001ca96fce60cf9871538298094c7cdc4a6f6162f2f696cec5a10f74f191ec3
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$SRC/"yt-dlp "$PKG/usr/bin/yt-dlp"
+install     chmod 755 "$PKG/usr/bin/yt-dlp"

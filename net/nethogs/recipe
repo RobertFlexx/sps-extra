@@ -1,0 +1,14 @@
+name        nethogs
+version     0.8.8
+release     1
+description nethogs: per-process network bandwidth
+
+source      https://github.com/raboof/nethogs/archive/v0.8.8.tar.gz
+hash        sha256:111ade20cc545e8dfd7ce4e293bd6b31cd1678a989b6a730bd2fa2acc6254818
+
+depend      filesystem
+depend      ncurses
+depend      libpcap
+
+build       make -j"$MAKEJOBS"
+install     make PREFIX=/usr DESTDIR="$PKG" install

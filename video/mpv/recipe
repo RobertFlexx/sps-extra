@@ -1,0 +1,27 @@
+name        mpv
+version     0.40.0
+release     1
+description mpv: media player
+
+source      https://github.com/mpv-player/mpv/archive/v0.40.0.tar.gz
+hash        sha256:10a0f4654f62140a6dd4d380dcf0bbdbdcf6e697556863dc499c296182f081a3
+
+depend      filesystem
+depend      ffmpeg
+depend      libass
+depend      lua
+depend      alsa-lib
+depend      libjpeg-turbo
+depend      libx11
+depend      libxext
+depend      libxrandr
+depend      libxinerama
+depend      wayland
+depend      libxkbcommon
+depend      mesa
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dlibplacebo=disabled -Dlua=lua -Djavascript=disabled -Dlibarchive=disabled -Dcdda=disabled -Ddvdnav=disabled -Dvulkan=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

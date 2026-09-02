@@ -1,0 +1,16 @@
+name        nlohmann-json
+version     3.12.0
+release     1
+arch        any
+description nlohmann-json: JSON for Modern C++
+
+source      https://github.com/nlohmann/json/archive/v3.12.0.tar.gz
+hash        sha256:4b92eb0c06d10683f7447ce9406cb97cd4b453be18d7279320f7b2f025c10187
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DJSON_BuildTests=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

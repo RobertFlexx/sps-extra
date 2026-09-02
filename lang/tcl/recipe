@@ -1,0 +1,13 @@
+name        tcl
+version     9.0.2
+release     1
+description tcl: Tool Command Language
+
+source      https://prdownloads.sourceforge.net/tcl/tcl9.0.2-src.tar.gz
+hash        sha256:e074c6a8d9ba2cddf914ba97b6677a552d7a52a3ca102924389a05ccb249b520
+
+depend      filesystem
+
+configure   cd unix && ./configure --prefix=/usr --libdir=/usr/lib64 --enable-shared --enable-threads --mandir=/usr/share/man
+build       cd unix && make -j"$MAKEJOBS"
+install     cd unix && make install DESTDIR="$PKG" install-libraries

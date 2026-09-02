@@ -1,0 +1,14 @@
+name        xdg-utils
+version     1.2.1
+release     1
+arch        any
+description xdg-utils: desktop integration scripts
+
+source      https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/v1.2.1/xdg-utils-v1.2.1.tar.gz
+hash        sha256:f6b648c064464c2636884c05746e80428110a576f8daacf46ef2e554dcfdae75
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

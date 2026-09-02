@@ -1,0 +1,13 @@
+name        indent
+version     2.2.13
+release     1
+description indent: C source formatter
+
+source      https://ftp.gnu.org/gnu/indent/indent-2.2.13.tar.xz
+hash        sha256:1b81ba4e9a006ca8e6eb5cbbe4cf4f75dfc1fc9301b459aa0d40393e85590a0b
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

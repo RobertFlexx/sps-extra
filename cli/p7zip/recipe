@@ -1,0 +1,12 @@
+name        p7zip
+version     17.06
+release     1
+description p7zip: 7-Zip port
+
+source      https://github.com/p7zip-project/p7zip/archive/v17.06.tar.gz
+hash        sha256:c35640020e8f044b425d9c18e1808ff9206dc7caf77c9720f57eb0849d714cd1
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" 7z 7za 7zr
+install     make DEST_HOME="$PKG/usr" install

@@ -1,0 +1,12 @@
+name        luajit
+version     2.1.20250529
+release     1
+description luajit: Just-In-Time compiler for Lua
+
+source      https://github.com/openresty/luajit2/archive/refs/tags/v2.1-20250529.tar.gz
+hash        sha256:a3f6f5ead9fc69603e51c66877614e6b5e93332d552f35d08f932447357ed593
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

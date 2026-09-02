@@ -1,0 +1,13 @@
+name        tedit
+version     2.3.0
+release     1
+description tedit: terminal text editor
+
+source      https://github.com/RobertFlexx/tedit/archive/refs/tags/v2.3.0.tar.gz
+hash        sha256:42d8fea6fcfc6b3d0e83f52e9e0c8a3274e2031bc7e072c364583141f3582a1f
+
+depend      filesystem
+depend      lua
+
+build       make -j"$MAKEJOBS" PREFIX=/usr MODE=release LUA_CFLAGS="-I/usr/include" LUA_LIBS="-llua -ldl -lm"
+install     make PREFIX=/usr DESTDIR="$PKG" MODE=release LUA_CFLAGS="-I/usr/include" LUA_LIBS="-llua -ldl -lm" install

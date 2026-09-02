@@ -1,0 +1,12 @@
+name        moreutils
+version     0.70
+release     1
+description moreutils: additional Unix utilities
+
+source      https://deb.debian.org/debian/pool/main/m/moreutils/moreutils_0.70.orig.tar.xz
+hash        sha256:a844c5e3360a73d12c0a5624750ecc1969d64afea2e84925328f137576e2eb55
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS"
+install     make PREFIX=/usr DESTDIR="$PKG" install

@@ -1,0 +1,13 @@
+name        haveged
+version     1.9.19
+release     1
+description haveged: entropy daemon
+
+source      https://github.com/jirka-h/haveged/archive/v1.9.19.tar.gz
+hash        sha256:acbb05776668657012273be9bb3310e3140b79959aa4538e4cca8d30d40c0b8f
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

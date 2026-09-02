@@ -1,0 +1,18 @@
+name        libplacebo
+version     7.349.0
+release     1
+description libplacebo: GPU-accelerated video processing
+
+source      https://code.videolan.org/videolan/libplacebo/-/archive/v7.349.0/libplacebo-v7.349.0.tar.gz
+hash        sha256:79120e685a1836344b51b13b6a5661622486a84e4d4a35f6c8d01679a20fbc86
+
+depend      filesystem
+depend      vulkan-loader
+depend      lcms2
+depend      libunwind
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dtests=false -Dvk-proc-addr=enabled -Dglslang=disabled -Dshaderc=disabled -Dvulkan=enabled -Dopengl=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

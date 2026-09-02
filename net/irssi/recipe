@@ -1,0 +1,16 @@
+name        irssi
+version     1.4.5
+release     1
+description irssi: terminal IRC client
+
+source      https://github.com/irssi/irssi/releases/download/1.4.5/irssi-1.4.5.tar.xz
+hash        sha256:72a951cb0ad622785a8962801f005a3a412736c7e7e3ce152f176287c52fe062
+
+depend      filesystem
+depend      glib
+depend      ncurses
+depend      openssl
+
+configure   ./configure --prefix=/usr --with-proxy --with-socks=no
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

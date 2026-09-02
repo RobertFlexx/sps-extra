@@ -1,0 +1,15 @@
+name        glfw
+version     3.4
+release     1
+description glfw: OpenGL window and input library
+
+source      https://github.com/glfw/glfw/archive/3.4.tar.gz
+hash        sha256:c038d34200234d071fae9345bc455e4a8f2f544ab60150765d7704e08f3dac01
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

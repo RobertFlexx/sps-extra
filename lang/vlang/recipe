@@ -1,0 +1,16 @@
+name        vlang
+version     0.5.2
+release     1
+description vlang: V programming language
+
+source      https://github.com/vlang/v/releases/download/0.5.2/v_linux.zip
+hash        sha256:86caf9e70c3342d48ef19eb4f6c47b709f18c90ae86255520d5c29df6b482e23
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/lib/v" "$PKG/usr/bin"
+install     unzip -o -d "$WORK/vlang" "$SRC/"*.zip
+install     if [ -d "$WORK/vlang/v" ]; then cp -a "$WORK/vlang/v/." "$PKG/usr/lib/v/"; else cp -a "$WORK/vlang/." "$PKG/usr/lib/v/"; fi
+install     ln -s ../lib/v/v "$PKG/usr/bin/v"
+install     chmod 755 "$PKG/usr/lib/v/v" 2>/dev/null || true

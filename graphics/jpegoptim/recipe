@@ -1,0 +1,14 @@
+name        jpegoptim
+version     1.5.5
+release     1
+description jpegoptim: JPEG optimizer
+
+source      https://github.com/tjko/jpegoptim/archive/v1.5.5.tar.gz
+hash        sha256:90a309d1c092de358bb411d702281ac3039b489d03adb0bc3c4ef04cf0067d38
+
+depend      filesystem
+depend      libjpeg-turbo
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

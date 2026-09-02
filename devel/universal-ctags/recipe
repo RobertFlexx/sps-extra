@@ -1,0 +1,17 @@
+name        universal-ctags
+version     6.2.0
+release     1
+description universal-ctags: source code indexer
+
+source      https://github.com/universal-ctags/ctags/archive/refs/tags/v6.2.0.tar.gz
+hash        sha256:313c864bb19c7da79aea77b94db1bb44d14c1f88b992285d7ea8968b3cbc125f
+
+depend      filesystem
+builddep    autoconf
+builddep    automake
+builddep    pkgconf
+
+prepare     autoreconf -fi
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

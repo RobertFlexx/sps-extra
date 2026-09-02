@@ -1,0 +1,11 @@
+name        sbcl
+version     2.5.7
+release     1
+description sbcl: Steel Bank Common Lisp
+
+source      https://sourceforge.net/projects/sbcl/files/sbcl/2.5.7/sbcl-2.5.7-x86-64-linux-binary.tar.bz2/download
+hash        sha256:310fda57f7ff57ae4ca743ef3d49dfda6930eb8cf2be0102b1085687f8142498
+
+depend      filesystem
+
+install     INSTALL_ROOT="$PKG/usr" sh install.sh

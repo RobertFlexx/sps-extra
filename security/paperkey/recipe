@@ -1,0 +1,13 @@
+name        paperkey
+version     1.6
+release     1
+description paperkey: export OpenPGP keys for print
+
+source      http://www.jabberwocky.com/software/paperkey/paperkey-1.6.tar.gz
+hash        sha256:a245fd13271a8d2afa03dde979af3a29eb3d4ebb1fbcad4a9b52cf67a27d05f7
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

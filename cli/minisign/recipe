@@ -1,0 +1,16 @@
+name        minisign
+version     0.12
+release     1
+description minisign: dead simple signing tool
+
+source      https://github.com/jedisct1/minisign/archive/0.12.tar.gz
+hash        sha256:796dce1376f9bcb1a19ece729c075c47054364355fe0c0c1ebe5104d508c7db0
+
+depend      filesystem
+depend      libsodium
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

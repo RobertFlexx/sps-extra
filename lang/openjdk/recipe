@@ -1,0 +1,13 @@
+name        openjdk
+version     21.0.12.1_1
+release     1
+description openjdk: Eclipse Temurin JDK 21
+
+source      https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz
+hash        sha256:ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/lib/jvm" "$PKG/usr/bin"
+install     cp -a . "$PKG/usr/lib/jvm/java-21-temurin"
+install     for b in java javac jar jshell javadoc javap jlink jmod keytool jstat jcmd; do if [ -x "$PKG/usr/lib/jvm/java-21-temurin/bin/$b" ]; then ln -s ../lib/jvm/java-21-temurin/bin/$b "$PKG/usr/bin/$b"; fi; done

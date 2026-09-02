@@ -1,0 +1,15 @@
+name        lcms2
+version     2.17
+release     1
+description lcms2: Little CMS color management
+
+source      https://github.com/mm2/Little-CMS/releases/download/lcms2.17/lcms2-2.17.tar.gz
+hash        sha256:d11af569e42a1baa1650d20ad61d12e41af4fead4aa7964a01f93b08b53ab074
+
+depend      filesystem
+depend      libjpeg-turbo
+depend      libtiff
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

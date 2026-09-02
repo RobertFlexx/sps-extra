@@ -1,0 +1,13 @@
+name        dmd
+version     2.111.0
+release     1
+description dmd: D compiler (official linux distribution)
+
+source      https://downloads.dlang.org/releases/2.x/2.111.0/dmd.2.111.0.linux.tar.xz
+hash        sha256:63bd32222b51a406e365904aea6761cd4de3cb1de02f003a370b5961196caa77
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/lib/dmd" "$PKG/usr/bin"
+install     cp -a . "$PKG/usr/lib/dmd/"
+install     if [ -x linux/bin64/dmd ]; then ln -s ../lib/dmd/linux/bin64/dmd "$PKG/usr/bin/dmd"; ln -s ../lib/dmd/linux/bin64/dub "$PKG/usr/bin/dub"; elif [ -x bin/dmd ]; then ln -s ../lib/dmd/bin/dmd "$PKG/usr/bin/dmd"; else printf "%s\n" "dmd: compiler binary missing" >&2; exit 1; fi

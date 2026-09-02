@@ -1,0 +1,17 @@
+name        rxvt-unicode
+version     9.31
+release     1
+description rxvt-unicode: unicode rxvt clone
+
+source      http://dist.schmorp.de/rxvt-unicode/rxvt-unicode-9.31.tar.bz2
+hash        sha256:aaa13fcbc149fe0f3f391f933279580f74a96fd312d6ed06b8ff03c2d46672e8
+
+depend      filesystem
+depend      libx11
+depend      libxft
+depend      fontconfig
+depend      freetype
+
+configure   ./configure --prefix=/usr --enable-256-color --enable-font-styles --enable-xim --enable-unicode3 --disable-perl
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

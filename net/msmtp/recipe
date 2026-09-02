@@ -1,0 +1,15 @@
+name        msmtp
+version     1.8.28
+release     1
+description msmtp: SMTP client
+
+source      https://marlam.de/msmtp/releases/msmtp-1.8.28.tar.xz
+hash        sha256:3a57f155f54e4860f7dd42138d9bea1af615b99dfab5ab4cd728fc8c09a647a4
+
+depend      filesystem
+depend      gnutls
+depend      libidn2
+
+configure   ./configure --prefix=/usr --with-tls=gnutls
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

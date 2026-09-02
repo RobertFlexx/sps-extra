@@ -1,0 +1,13 @@
+name        sg3_utils
+version     1.48
+release     1
+description sg3_utils: SCSI generic utilities
+
+source      https://sg.danny.cz/sg/p/sg3_utils-1.48.tar.xz
+hash        sha256:d6b9a41690d540e58d1e99c26ac8db37336c849ef6a03f96ea48ca2fe334dbfa
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

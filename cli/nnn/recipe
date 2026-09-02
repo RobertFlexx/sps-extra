@@ -1,0 +1,14 @@
+name        nnn
+version     5.1
+release     1
+description nnn: terminal file manager
+
+source      https://github.com/jarun/nnn/archive/v5.1.tar.gz
+hash        sha256:9faaff1e3f5a2fd3ed570a83f6fb3baf0bfc6ebd6a9abac16203d057ac3fffe3
+
+depend      filesystem
+depend      ncurses
+depend      readline
+
+build       make -j"$MAKEJOBS" O_NERD=1
+install     make PREFIX=/usr DESTDIR="$PKG" install

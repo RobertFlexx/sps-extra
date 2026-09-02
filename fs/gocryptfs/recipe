@@ -1,0 +1,15 @@
+name        gocryptfs
+version     2.5.4
+release     1
+description gocryptfs: encrypted overlay filesystem
+
+source      https://github.com/rfjakob/gocryptfs/releases/download/v2.5.4/gocryptfs_v2.5.4_linux-static_amd64.tar.gz
+hash        sha256:9f6da0f2a74de32caaf8788fc86ab0cbf7162dfbe3ac19970546a248e4c9fc4b
+
+depend      filesystem
+depend      fuse3
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp gocryptfs "$PKG/usr/bin/gocryptfs"
+install     chmod 755 "$PKG/usr/bin/gocryptfs"
+install     if [ -f gocryptfs-xray ]; then cp gocryptfs-xray "$PKG/usr/bin/gocryptfs-xray"; chmod 755 "$PKG/usr/bin/gocryptfs-xray"; fi

@@ -1,0 +1,13 @@
+name        hugo
+version     0.148.2
+release     1
+description hugo: static site generator
+
+source      https://github.com/gohugoio/hugo/releases/download/v0.148.2/hugo_0.148.2_linux-amd64.tar.gz
+hash        sha256:b2fbef73c965ff439ccca0bdf15d7ca64f59363d62916326e24d5552e6968aa3
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp hugo "$PKG/usr/bin/hugo"
+install     chmod 755 "$PKG/usr/bin/hugo"

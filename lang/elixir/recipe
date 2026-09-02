@@ -1,0 +1,13 @@
+name        elixir
+version     1.18.4
+release     1
+description elixir: Elixir programming language
+
+source      https://github.com/elixir-lang/elixir/archive/v1.18.4.tar.gz
+hash        sha256:8e136c0a92160cdad8daa74560e0e9c6810486bd232fbce1709d40fcc426b5e0
+
+depend      filesystem
+depend      erlang
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

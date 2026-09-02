@@ -1,0 +1,18 @@
+name        ghostscript
+version     10.04.0
+release     1
+description ghostscript: PostScript and PDF interpreter
+
+source      https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10040/ghostscript-10.04.0.tar.gz
+hash        sha256:c764dfbb7b13fc71a7a05c634e014f9bb1fb83b899fe39efc0b6c3522a9998b1
+
+depend      filesystem
+depend      freetype
+depend      libjpeg-turbo
+depend      libpng
+depend      zlib
+depend      lcms2
+
+configure   ./configure --prefix=/usr --disable-compile-inits --with-system-libtiff --without-tesseract --without-gpdl --without-x
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

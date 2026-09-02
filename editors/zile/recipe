@@ -1,0 +1,15 @@
+name        zile
+version     2.6.2
+release     1
+description zile: Emacs-like editor
+
+source      https://ftp.gnu.org/gnu/zile/zile-2.6.2.tar.gz
+hash        sha256:77eb7daff3c98bdc88daa1ac040dccca72b81dc32fc3166e079dd7a63e42c741
+
+depend      filesystem
+depend      ncurses
+depend      gc
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

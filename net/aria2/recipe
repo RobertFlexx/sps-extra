@@ -1,0 +1,18 @@
+name        aria2
+version     1.37.0
+release     1
+description aria2: download utility
+
+source      https://github.com/aria2/aria2/releases/download/release-1.37.0/aria2-1.37.0.tar.gz
+hash        sha256:8e7021c6d5e8f8240c9cc19482e0c8589540836747744724d86bf8af5a21f0e8
+
+depend      filesystem
+depend      openssl
+depend      zlib
+depend      libxml2
+depend      sqlite
+depend      c-ares
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --with-openssl --without-gnutls --with-libcares --with-libz --with-sqlite3
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

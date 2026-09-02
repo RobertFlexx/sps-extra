@@ -1,0 +1,15 @@
+name        gnucobol
+version     3.2
+release     1
+description gnucobol: COBOL compiler
+
+source      https://ftp.gnu.org/gnu/gnucobol/gnucobol-3.2.tar.xz
+hash        sha256:3bb48af46ced4779facf41fdc2ee60e4ccb86eaa99d010b36685315df39c2ee2
+
+depend      filesystem
+depend      gmp
+depend      ncurses
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --with-db=no
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

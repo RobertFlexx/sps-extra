@@ -1,0 +1,13 @@
+name        enca
+version     1.19
+release     1
+description enca: detect and convert encoding
+
+source      https://github.com/nijel/enca/archive/1.19.tar.gz
+hash        sha256:c4fd9a3d7c086803138842b18eed6072ec8810859b0e1ef091f1e1138d283f25
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,13 @@
+name        cronie
+version     1.7.2
+release     1
+description cronie: cron daemon
+
+source      https://github.com/cronie-crond/cronie/releases/download/cronie-1.7.2/cronie-1.7.2.tar.gz
+hash        sha256:f1da374a15ba7605cf378347f96bc8b678d3d7c0765269c8242cfe5b0789c571
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --without-selinux --disable-anacron
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

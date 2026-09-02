@@ -1,0 +1,13 @@
+name        gumbo-parser
+version     0.12.3
+release     1
+description gumbo-parser: HTML5 parser
+
+source      https://codeberg.org/gumbo-parser/gumbo-parser/archive/0.12.3.tar.gz
+hash        sha256:6e80bd67de25ceaa2646dbc6889a58c7f5eb7c99c9548feef61b6995934d1dff
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

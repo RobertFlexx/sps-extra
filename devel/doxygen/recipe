@@ -1,0 +1,18 @@
+name        doxygen
+version     1.14.0
+release     1
+description doxygen: documentation generator
+
+source      https://github.com/doxygen/doxygen/releases/download/Release_1_14_0/doxygen-1.14.0.src.tar.gz
+hash        sha256:d4536d11ab13037327d8d026b75f5a86b7ccb2093e2f546235faf61fd86e6b5d
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+builddep    flex
+builddep    bison
+builddep    python
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -Dbuild_doc=OFF -Dbuild_search=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -7,7 +7,8 @@ source      https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.67.1.
 hash        sha256:52489550d1fdeac8bde8b3442064e3bc78d28fda752a171dc46a6cd97454f237
 
 depend      filesystem
-# Branding (os-release, logos). cmake is a builddep and pulls openssl.
+# Branding (os-release, logos). cmake/ninja/patch are build-only; sget
+# uses the live copies when they are already on PATH.
 depend      splux-base
 builddep    cmake
 builddep    ninja

@@ -1,0 +1,15 @@
+name        astyle
+version     3.6.7
+release     1
+description astyle: source code formatter
+
+source      https://gitlab.com/saalen/astyle/-/archive/3.6.7/astyle-3.6.7.tar.gz
+hash        sha256:53adec32cf7335aa71d6c343a896aafeb356a3af4d37fad7973bee55a2f71457
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

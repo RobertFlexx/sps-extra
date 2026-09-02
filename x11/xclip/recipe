@@ -1,0 +1,18 @@
+name        xclip
+version     0.13
+release     1
+description xclip: clipboard for X11
+
+source      https://github.com/astrand/xclip/archive/0.13.tar.gz
+hash        sha256:ca5b8804e3c910a66423a882d79bf3c9450b875ac8528791fb60ec9de667f758
+
+depend      filesystem
+depend      libxmu
+depend      libx11
+builddep    autoconf
+builddep    automake
+
+prepare     ./bootstrap
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

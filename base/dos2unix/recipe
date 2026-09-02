@@ -1,0 +1,12 @@
+name        dos2unix
+version     7.5.2
+release     1
+description dos2unix: convert text file line endings
+
+source      https://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.5.2.tar.gz
+hash        sha256:b900ed9a92ef9b2548a6ac708ec81f724c59f2c089ed90f8e39a4e1287b28c1f
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" prefix=/usr
+install     make prefix=/usr DESTDIR="$PKG" install

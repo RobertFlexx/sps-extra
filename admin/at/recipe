@@ -1,0 +1,14 @@
+name        at
+version     3.2.5
+release     1
+description at: schedule commands for later
+
+source      http://deb.debian.org/debian/pool/main/a/at/at_3.2.5.orig.tar.gz
+hash        sha256:bb066b389d7c9bb9d84a35738032b85c30cba7d949f758192adc72c9477fd3b8
+
+depend      filesystem
+depend      flex
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

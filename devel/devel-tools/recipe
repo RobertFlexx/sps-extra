@@ -1,6 +1,6 @@
 name        devel-tools
 version     1.0
-release     1
+release     2
 arch        any
 description devel-tools: cmake, meson, ninja, autotools, gdb, and ccache
 
@@ -16,6 +16,13 @@ depend      gdb
 depend      ccache
 depend      strace
 depend      lsof
+depend      binutils
+depend      nasm
+depend      patchelf
+depend      universal-ctags
+depend      mold
+depend      shellcheck
+depend      shfmt
 
 install     mkdir -p "$PKG/usr/share/sps/sets"
 install     printf '%s\n' "devel-tools" >"$PKG/usr/share/sps/sets/devel-tools"

@@ -1,0 +1,13 @@
+name        rookcc
+version     4.1.0
+release     1
+description rookcc: standalone C compiler (rcc)
+
+source      https://github.com/RobertFlexx/rookcc/archive/33a51dd5a7527c7c8315e40bc185ec19a69310b2.tar.gz
+hash        sha256:548cd262458afda787c57a5be7197cc39aff111a0711f5f07b0963a10046c258
+
+depend      filesystem
+builddep    fpc
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" INSTALL_ROOKCC=1 install

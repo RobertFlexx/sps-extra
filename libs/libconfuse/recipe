@@ -1,0 +1,13 @@
+name        libconfuse
+version     3.3
+release     1
+description libconfuse: configuration file parser
+
+source      https://github.com/libconfuse/libconfuse/releases/download/v3.3/confuse-3.3.tar.xz
+hash        sha256:1dd50a0320e135a55025b23fcdbb3f0a81913b6d0b0a9df8cc2fdf3b3dc67010
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

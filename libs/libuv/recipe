@@ -1,0 +1,18 @@
+name        libuv
+version     1.51.0
+release     1
+description libuv: asynchronous I/O library
+
+source      https://github.com/libuv/libuv/archive/v1.51.0.tar.gz
+hash        sha256:27e55cf7083913bfb6826ca78cde9de7647cded648d35f24163f2d31bb9f51cd
+
+depend      filesystem
+builddep    autoconf
+builddep    automake
+builddep    libtool
+builddep    pkgconf
+
+prepare     ./autogen.sh
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

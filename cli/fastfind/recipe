@@ -1,0 +1,18 @@
+name        fastfind
+version     2.3.0
+release     1
+description fastfind: fast fuzzy file search
+
+source      https://github.com/RobertFlexx/fastfind/archive/refs/tags/v2.3.0.tar.gz
+hash        sha256:155fb57c988dbdba09b4059ddf96f5c338df70c05582c993fe15087ec017e4d2
+
+depend      filesystem
+builddep    nim
+
+build       nim c --mm:orc --threads:on -d:release --opt:speed -o:fastfind src/ff.nim
+install     mkdir -p "$PKG/usr/bin" "$PKG/usr/share/man/man1"
+install     cp fastfind "$PKG/usr/bin/fastfind"
+install     chmod 755 "$PKG/usr/bin/fastfind"
+install     ln -s fastfind "$PKG/usr/bin/ff"
+install     if [ -f mandoc/ff.1 ]; then cp mandoc/ff.1 "$PKG/usr/share/man/man1/ff.1"; fi
+install     if [ -f mandoc/fastfind.1 ]; then cp mandoc/fastfind.1 "$PKG/usr/share/man/man1/fastfind.1"; fi

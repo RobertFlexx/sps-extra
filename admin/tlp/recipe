@@ -1,0 +1,11 @@
+name        tlp
+version     1.8.0
+release     1
+description tlp: laptop power management
+
+source      https://github.com/linrunner/TLP/archive/1.8.0.tar.gz
+hash        sha256:65515f7652064a1be2940c031e045b762924bb1dbd94f5e58e3b765113cf5210
+
+depend      filesystem
+
+install     make DESTDIR="$PKG" TLP_SYSD=/usr/lib/systemd/system TLP_ULIB=/usr/lib/udev install-tlp install-man

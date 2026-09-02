@@ -1,0 +1,17 @@
+name        nload
+version     0.7.4
+release     1
+description nload: network traffic monitor
+
+source      https://github.com/rolandriegel/nload/archive/v0.7.4.tar.gz
+hash        sha256:a73b3a75356776860fc4c40daebce04c5022f73d39704a12fb0aeb88a751216a
+
+depend      filesystem
+depend      ncurses
+builddep    autoconf
+builddep    automake
+
+prepare     autoreconf -fi
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

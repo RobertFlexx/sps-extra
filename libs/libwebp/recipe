@@ -1,0 +1,15 @@
+name        libwebp
+version     1.5.0
+release     1
+description libwebp: WebP image library
+
+source      https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.5.0.tar.gz
+hash        sha256:7d6fab70cf844bf6769077bd5d7a74893f8ffd4dfb42861745750c63c2a5c92c
+
+depend      filesystem
+depend      libpng
+depend      libjpeg-turbo
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-libwebpmux --enable-libwebpdemux --enable-libwebpdecoder
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

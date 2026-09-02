@@ -1,0 +1,13 @@
+name        zeromq
+version     4.3.5
+release     1
+description zeromq: ZeroMQ messaging library
+
+source      https://github.com/zeromq/libzmq/releases/download/v4.3.5/zeromq-4.3.5.tar.gz
+hash        sha256:6653ef5910f17954861fe72332e68b03ca6e4d9c7160eb3a8de5a5a913bfab43
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

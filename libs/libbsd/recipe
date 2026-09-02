@@ -1,0 +1,14 @@
+name        libbsd
+version     0.12.2
+release     1
+description libbsd: BSD compatibility library
+
+source      https://libbsd.freedesktop.org/releases/libbsd-0.12.2.tar.xz
+hash        sha256:b88cc9163d0c652aaf39a99991d974ddba1c3a9711db8f1b5838af2a14731014
+
+depend      filesystem
+depend      libmd
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

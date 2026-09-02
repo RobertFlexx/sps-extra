@@ -1,0 +1,13 @@
+name        libunibreak
+version     6.1
+release     1
+description libunibreak: unicode line breaking
+
+source      https://github.com/adah1972/libunibreak/releases/download/libunibreak_6_1/libunibreak-6.1.tar.gz
+hash        sha256:cc4de0099cf7ff05005ceabff4afed4c582a736abc38033e70fdac86335ce93f
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

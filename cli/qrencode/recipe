@@ -1,0 +1,19 @@
+name        qrencode
+version     4.1.1
+release     1
+description qrencode: QR code generator
+
+source      https://github.com/fukuchi/libqrencode/archive/refs/tags/v4.1.1.tar.gz
+hash        sha256:5385bc1b8c2f20f3b91d258bf8ccc8cf62023935df2d2676b5b67049f31a049c
+
+depend      filesystem
+depend      libpng
+builddep    autoconf
+builddep    automake
+builddep    libtool
+builddep    pkgconf
+
+prepare     ./autogen.sh
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

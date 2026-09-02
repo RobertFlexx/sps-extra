@@ -1,0 +1,16 @@
+name        bear
+version     3.1.6
+release     1
+description bear: generate compile_commands.json
+
+source      https://github.com/rizsotto/Bear/archive/refs/tags/3.1.6.tar.gz
+hash        sha256:99cd891eec6e89b734d7cafe0e623dd8c2f27d8cbf3ee9bc4807e69e5c8fb55c
+
+depend      filesystem
+depend      fmt
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_UNIT_TESTS=OFF -DENABLE_FUNC_TESTS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

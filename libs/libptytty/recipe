@@ -1,0 +1,15 @@
+name        libptytty
+version     2.0
+release     1
+description libptytty: pty/tty helper library
+
+source      http://dist.schmorp.de/libptytty/libptytty-2.0.tar.gz
+hash        sha256:8033ed3aadf28759660d4f11f2d7b030acf2a6890cb0f7926fb0cfa6739d31f7
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

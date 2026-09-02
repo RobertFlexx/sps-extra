@@ -1,0 +1,19 @@
+name        imlib2
+version     1.12.3
+release     1
+description imlib2: image loading library
+
+source      https://sourceforge.net/projects/enlightenment/files/imlib2-src/1.12.3/imlib2-1.12.3.tar.xz
+hash        sha256:96244656576a3e0a6f58b78e514ddc919622ac6806711bc231837eee62c1de34
+
+depend      filesystem
+depend      freetype
+depend      libjpeg-turbo
+depend      libpng
+depend      libtiff
+depend      giflib
+depend      zlib
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

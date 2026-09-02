@@ -1,0 +1,14 @@
+name        global
+version     6.6.14
+release     1
+description global: source code tagging system
+
+source      https://ftp.gnu.org/gnu/global/global-6.6.14.tar.gz
+hash        sha256:f6e7fd0b68aed292e85bb686616baf6551d5c9424adcddca11d808ba318cb320
+
+depend      filesystem
+depend      ncurses
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

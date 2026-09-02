@@ -1,0 +1,13 @@
+name        valgrind
+version     3.25.1
+release     1
+description valgrind: instrumentation framework
+
+source      https://sourceware.org/pub/valgrind/valgrind-3.25.1.tar.bz2
+hash        sha256:61deb8d0727b45c268efdc1b3b6c9e679cd97cbf5ee4b28d1dead7c8b7a271af
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

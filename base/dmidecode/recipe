@@ -1,0 +1,12 @@
+name        dmidecode
+version     3.6
+release     1
+description dmidecode: dump SMBIOS/DMI tables
+
+source      https://download.savannah.gnu.org/releases/dmidecode/dmidecode-3.6.tar.xz
+hash        sha256:e40c65f3ec3dafe31ad8349a4ef1a97122d38f65004ed66575e1a8d575dd8bae
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" prefix=/usr
+install     make prefix=/usr DESTDIR="$PKG" install

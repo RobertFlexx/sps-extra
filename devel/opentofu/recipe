@@ -1,0 +1,13 @@
+name        opentofu
+version     1.9.1
+release     1
+description opentofu: infrastructure as code
+
+source      https://github.com/opentofu/opentofu/releases/download/v1.9.1/tofu_1.9.1_linux_amd64.tar.gz
+hash        sha256:ebb3eb2d12833422543c3f04a7ec21d9fd260e893ad221c63dbcf0a319ff563a
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp tofu "$PKG/usr/bin/tofu"
+install     chmod 755 "$PKG/usr/bin/tofu"

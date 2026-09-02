@@ -1,0 +1,15 @@
+name        tcpdump
+version     4.99.5
+release     1
+description tcpdump: packet analyzer
+
+source      https://www.tcpdump.org/release/tcpdump-4.99.5.tar.xz
+hash        sha256:d76395ab82d659d526291b013eee200201380930793531515abfc6e77b4f2ee5
+
+depend      filesystem
+depend      libpcap
+depend      openssl
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

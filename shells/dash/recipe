@@ -1,0 +1,13 @@
+name        dash
+version     0.5.12
+release     1
+description dash: Debian Almquist shell
+
+source      http://gondor.apana.org.au/~herbert/dash/files/dash-0.5.12.tar.gz
+hash        sha256:6a474ac46e8b0b32916c4c60df694c82058d3297d8b385b74508030ca4a8f28a
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

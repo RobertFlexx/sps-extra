@@ -1,0 +1,15 @@
+name        lsd
+version     1.1.5
+release     1
+description lsd: next-generation ls
+
+source      https://github.com/lsd-rs/lsd/archive/v1.1.5.tar.gz
+hash        sha256:120935c7e98f9b64488fde39987154a6a5b2236cb65ae847917012adf5e122d1
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/lsd" "$PKG/usr/bin/lsd"
+install     chmod 755 "$PKG/usr/bin/lsd"

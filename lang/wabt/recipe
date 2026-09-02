@@ -1,0 +1,13 @@
+name        wabt
+version     1.0.37
+release     1
+description wabt: WebAssembly binary toolkit
+
+source      https://github.com/WebAssembly/wabt/releases/download/1.0.37/wabt-1.0.37-ubuntu-20.04.tar.gz
+hash        sha256:cfc675dc9b663d9adc8c75d982c1ba29f661448a2e026a67e71fe3f76a3e09f3
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -d bin ]; then cp bin/* "$PKG/usr/bin/"; else find . -maxdepth 2 -type f -executable ! -name "*.so*" -exec cp {} "$PKG/usr/bin/" \; ; fi
+install     chmod 755 "$PKG/usr/bin/"*

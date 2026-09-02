@@ -1,0 +1,13 @@
+name        julia
+version     1.11.6
+release     1
+description julia: Julia language (official linux-x86_64 distribution)
+
+source      https://julialang-s3.julialang.org/bin/linux/x64/1.11/julia-1.11.6-linux-x86_64.tar.gz
+hash        sha256:e99e52e2029d845097c68f2372d836186f0eb3fb897a9dde0bdf9ee9250d03d5
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/lib/julia" "$PKG/usr/bin"
+install     cp -a . "$PKG/usr/lib/julia/"
+install     ln -s ../lib/julia/bin/julia "$PKG/usr/bin/julia"

@@ -1,0 +1,13 @@
+name        hunspell
+version     1.7.2
+release     1
+description hunspell: spell checker
+
+source      https://github.com/hunspell/hunspell/releases/download/v1.7.2/hunspell-1.7.2.tar.gz
+hash        sha256:11ddfa39afe28c28539fe65fc4f1592d410c1e9b6dd7d8a91ca25d85e9ec65b8
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --with-ui --with-readline
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

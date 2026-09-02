@@ -1,0 +1,13 @@
+name        sdl2
+version     2.32.10
+release     1
+description sdl2: Simple DirectMedia Layer 2
+
+source      https://github.com/libsdl-org/SDL/releases/download/release-2.32.10/SDL2-2.32.10.tar.gz
+hash        sha256:5f5993c530f084535c65a6879e9b26ad441169b3e25d789d83287040a9ca5165
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

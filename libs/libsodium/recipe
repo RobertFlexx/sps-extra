@@ -1,0 +1,13 @@
+name        libsodium
+version     1.0.20
+release     1
+description libsodium: encryption library
+
+source      https://download.libsodium.org/libsodium/releases/libsodium-1.0.20.tar.gz
+hash        sha256:ebb65ef6ca439333c2bb41a0c1990587288da07f6c7fd07cb3a18cc18d30ce19
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

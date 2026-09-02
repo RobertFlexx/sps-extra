@@ -1,0 +1,13 @@
+name        libvpx
+version     1.15.2
+release     1
+description libvpx: VP8/VP9 codec
+
+source      https://github.com/webmproject/libvpx/archive/v1.15.2.tar.gz
+hash        sha256:26fcd3db88045dee380e581862a6ef106f49b74b6396ee95c2993a260b4636aa
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --enable-shared --disable-static --disable-examples --disable-unit-tests --enable-vp9-highbitdepth
+build       make -j"$MAKEJOBS"
+install     make DIST_DIR="$PKG/usr" install

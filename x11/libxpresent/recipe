@@ -1,0 +1,18 @@
+name        libxpresent
+version     1.0.1
+release     1
+description libxpresent: X Present extension
+
+source      https://www.x.org/releases/individual/lib/libXpresent-1.0.1.tar.xz
+hash        sha256:b964df9e5a066daa5e08d2dc82692c57ca27d00b8cc257e8e960c9f1cf26231b
+
+depend      filesystem
+depend      libx11
+depend      libxext
+depend      libxfixes
+depend      libxrandr
+depend      xorgproto
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

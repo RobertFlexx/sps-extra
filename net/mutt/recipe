@@ -1,0 +1,17 @@
+name        mutt
+version     2.2.15
+release     1
+description mutt: terminal mail client
+
+source      http://ftp.mutt.org/pub/mutt/mutt-2.2.15.tar.gz
+hash        sha256:a51686104e4203f4c2a3b176527be3b95d08e808e94fd2dcadb7c30566bf894d
+
+depend      filesystem
+depend      ncurses
+depend      openssl
+depend      gpgme
+depend      libidn2
+
+configure   ./configure --prefix=/usr --enable-imap --enable-smtp --enable-pop --with-ssl --enable-gpgme --enable-hcache=no
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

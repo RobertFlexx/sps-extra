@@ -1,0 +1,16 @@
+name        p11-kit
+version     0.25.5
+release     1
+description p11-kit: PKCS#11 module management
+
+source      https://github.com/p11-glue/p11-kit/releases/download/0.25.5/p11-kit-0.25.5.tar.xz
+hash        sha256:04d0a86450cdb1be018f26af6699857171a188ac6d5b8c90786a60854e1198e5
+
+depend      filesystem
+depend      libtasn1
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dman=false -Dgtk_doc=false -Dsystemd=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

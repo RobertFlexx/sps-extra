@@ -1,0 +1,16 @@
+name        nginx
+version     1.28.0
+release     1
+description nginx: HTTP and reverse proxy server
+
+source      https://nginx.org/download/nginx-1.28.0.tar.gz
+hash        sha256:c6b5c6b086c0df9d3ca3ff5e084c1d0ef909e6038279c71c1c3e985f576ff76a
+
+depend      filesystem
+depend      openssl
+depend      zlib
+depend      pcre2
+
+configure   ./configure --prefix=/usr --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --pid-path=/run/nginx.pid --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-http_ssl_module --with-http_v2_module --with-http_gzip_static_module --with-pcre --with-threads
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

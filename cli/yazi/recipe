@@ -1,0 +1,17 @@
+name        yazi
+version     25.5.31
+release     1
+description yazi: terminal file manager
+
+source      https://github.com/sxyazi/yazi/releases/download/v25.5.31/yazi-x86_64-unknown-linux-musl.zip
+hash        sha256:a2fdc9c35719fa72d94820893eb2fedd93fd1c418c2cf568702643526c358f7a
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/bin"
+install     unzip -o -d "$WORK/yazi" "$SRC/"*.zip
+install     find "$WORK/yazi" -type f -name yazi -exec cp {} "$PKG/usr/bin/yazi" \;
+install     find "$WORK/yazi" -type f -name ya -exec cp {} "$PKG/usr/bin/ya" \; || true
+install     chmod 755 "$PKG/usr/bin/yazi"
+install     if [ -f "$PKG/usr/bin/ya" ]; then chmod 755 "$PKG/usr/bin/ya"; fi

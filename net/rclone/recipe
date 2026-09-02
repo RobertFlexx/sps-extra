@@ -1,0 +1,15 @@
+name        rclone
+version     1.71.0
+release     1
+description rclone: rsync for cloud storage
+
+source      https://github.com/rclone/rclone/releases/download/v1.71.0/rclone-v1.71.0-linux-amd64.zip
+hash        sha256:3ddbcfd535ef2e6eb00cd006831766537f1fef1c8baeed1ee4632e7bcc699e93
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/bin" "$PKG/usr/share/man/man1"
+install     unzip -o -d "$WORK/rclone" "$SRC/"*.zip
+install     find "$WORK/rclone" -type f -name rclone -exec cp {} "$PKG/usr/bin/rclone" \;
+install     chmod 755 "$PKG/usr/bin/rclone"

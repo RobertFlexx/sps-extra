@@ -1,0 +1,14 @@
+name        nettle
+version     3.10.1
+release     1
+description nettle: low-level cryptographic library
+
+source      https://ftp.gnu.org/gnu/nettle/nettle-3.10.1.tar.gz
+hash        sha256:b0fcdd7fc0cdea6e80dcf1dd85ba794af0d5b4a57e26397eee3bc193272d9132
+
+depend      filesystem
+depend      gmp
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --enable-shared --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

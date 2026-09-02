@@ -1,0 +1,13 @@
+name        splux-apps
+version     1.0
+release     1
+arch        any
+description splux-apps: tedit, fastfind, and rookcc
+
+depend      filesystem
+depend      tedit
+depend      fastfind
+depend      rookcc
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "splux-apps" >"$PKG/usr/share/sps/sets/splux-apps"

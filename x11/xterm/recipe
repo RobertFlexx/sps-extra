@@ -1,0 +1,22 @@
+name        xterm
+version     401
+release     1
+description xterm: terminal emulator for X
+
+source      https://invisible-mirror.net/archives/xterm/xterm-401.tgz
+hash        sha256:3da2b5e64cb49b03aa13057d85e62e1f2e64f7c744719c00d338d11cd3e6ca1a
+
+depend      filesystem
+depend      ncurses
+depend      libx11
+depend      libxaw
+depend      libxt
+depend      libxmu
+depend      libxinerama
+depend      libxft
+depend      freetype
+depend      fontconfig
+
+configure   ./configure --prefix=/usr --enable-256-color --enable-wide-chars --with-x --enable-luit=no
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

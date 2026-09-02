@@ -1,0 +1,15 @@
+name        optipng
+version     0.7.8
+release     1
+description optipng: PNG optimizer
+
+source      https://sourceforge.net/projects/optipng/files/OptiPNG/optipng-0.7.8/optipng-0.7.8.tar.gz
+hash        sha256:25a3bd68481f21502ccaa0f4c13f84dcf6b20338e4c4e8c51f2cefbd8513398c
+
+depend      filesystem
+depend      libpng
+depend      zlib
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

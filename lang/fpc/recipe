@@ -1,0 +1,16 @@
+name        fpc
+version     3.2.2
+release     1
+description fpc: Free Pascal compiler
+
+source      https://downloads.sourceforge.net/project/freepascal/Linux/3.2.2/fpc-3.2.2.x86_64-linux.tar
+hash        sha256:5adac308a5534b6a76446d8311fc340747cbb7edeaacfe6b651493ff3fe31e83
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr"
+install     tar -xf binary.x86_64-linux.tar
+install     for f in *.tar.gz; do case "$f" in demo.tar.gz|doc-pdf.tar.gz) continue ;; esac; tar -xzf "$f" -C "$PKG/usr"; done
+install     if [ -x "$PKG/usr/lib/fpc/3.2.2/ppcx64" ]; then ln -sf ../lib/fpc/3.2.2/ppcx64 "$PKG/usr/bin/ppcx64"; fi
+install     if [ ! -x "$PKG/usr/bin/fpc" ]; then printf "%s\n" "fpc: staged compiler missing" >&2; exit 1; fi
+install     if [ -x "$PKG/usr/lib/fpc/3.2.2/samplecfg" ]; then mkdir -p "$PKG/etc"; "$PKG/usr/lib/fpc/3.2.2/samplecfg" /usr/lib/fpc/3.2.2 "$PKG/etc"; fi

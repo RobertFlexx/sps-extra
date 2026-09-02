@@ -1,0 +1,20 @@
+name        pypy
+version     7.3.19
+release     1
+description pypy: alternative Python runtime
+
+source      https://downloads.python.org/pypy/pypy3.11-v7.3.19-linux64.tar.bz2
+hash        sha256:9177d9e0bb91b05f921c642cb0ff71a0f3653b5d29a42d40d6a078c15b75720f
+
+depend      filesystem
+depend      bzip2
+depend      zlib
+depend      openssl
+depend      ncurses
+depend      expat
+depend      sqlite
+
+install     mkdir -p "$PKG/usr/lib/pypy" "$PKG/usr/bin"
+install     cp -a . "$PKG/usr/lib/pypy/"
+install     ln -s ../lib/pypy/bin/pypy3 "$PKG/usr/bin/pypy3"
+install     ln -s pypy3 "$PKG/usr/bin/pypy"

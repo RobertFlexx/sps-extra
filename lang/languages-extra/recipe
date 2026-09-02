@@ -1,0 +1,33 @@
+name        languages-extra
+version     1.0
+release     1
+arch        any
+description languages-extra: extra compilers and language runtimes
+
+depend      filesystem
+depend      languages
+depend      fpc
+depend      zig
+depend      tcc
+depend      luajit
+depend      tcl
+depend      php
+depend      erlang
+depend      elixir
+depend      ocaml
+depend      janet
+depend      chicken
+depend      sbcl
+depend      gleam
+depend      dmd
+depend      openjdk
+depend      julia
+depend      deno
+depend      vlang
+depend      wasmtime
+depend      wabt
+depend      vala
+depend      gnucobol
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "languages-extra" >"$PKG/usr/share/sps/sets/languages-extra"

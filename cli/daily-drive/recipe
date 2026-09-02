@@ -1,0 +1,39 @@
+name        daily-drive
+version     1.0
+release     1
+arch        any
+description daily-drive: desktop and laptop packages for everyday use
+
+depend      filesystem
+depend      qol-cli
+depend      xdg-utils
+depend      xdg-user-dirs
+depend      mpv
+depend      yt-dlp
+depend      imagemagick
+depend      feh
+depend      mupdf
+depend      hunspell
+depend      pandoc
+depend      syncthing
+depend      sshfs
+depend      pass
+depend      tig
+depend      git-lfs
+depend      brightnessctl
+depend      playerctl
+depend      wl-clipboard
+depend      grim
+depend      slurp
+depend      xclip
+depend      dunst
+depend      dos2unix
+depend      chrony
+depend      dmidecode
+depend      iotop
+depend      sysstat
+depend      zellij
+depend      yazi
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf '%s\n' "daily-drive" >"$PKG/usr/share/sps/sets/daily-drive"

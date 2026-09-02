@@ -1,0 +1,13 @@
+name        oniguruma
+version     6.9.10
+release     1
+description oniguruma: regular expression library
+
+source      https://github.com/kkos/oniguruma/releases/download/v6.9.10/onig-6.9.10.tar.gz
+hash        sha256:2a5cfc5ae259e4e97f86b68dfffc152cdaffe94e2060b770cb827238d769fc05
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

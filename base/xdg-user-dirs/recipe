@@ -1,0 +1,13 @@
+name        xdg-user-dirs
+version     0.18
+release     1
+description xdg-user-dirs: manage XDG user directories
+
+source      https://user-dirs.freedesktop.org/releases/xdg-user-dirs-0.18.tar.gz
+hash        sha256:ec6f06d7495cdba37a732039f9b5e1578bcb296576fde0da40edb2f52220df3c
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

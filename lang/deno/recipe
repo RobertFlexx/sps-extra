@@ -1,0 +1,15 @@
+name        deno
+version     2.5.1
+release     1
+description deno: Deno JavaScript and TypeScript runtime
+
+source      https://github.com/denoland/deno/releases/download/v2.5.1/deno-x86_64-unknown-linux-gnu.zip
+hash        sha256:bceddde4ff520f21c3767d893fe3d2d83df788346d3ad6f03d8abcd0392eb3ab
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/bin"
+install     unzip -o -d "$WORK/deno-bin" "$SRC/"*.zip
+install     find "$WORK/deno-bin" -type f -name deno -exec cp {} "$PKG/usr/bin/deno" \;
+install     chmod 755 "$PKG/usr/bin/deno"

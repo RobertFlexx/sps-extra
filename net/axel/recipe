@@ -1,0 +1,14 @@
+name        axel
+version     2.17.14
+release     1
+description axel: lightweight download accelerator
+
+source      https://github.com/axel-download-accelerator/axel/releases/download/v2.17.14/axel-2.17.14.tar.xz
+hash        sha256:938ee7c8c478bf6fcc82359bbf9576f298033e8b13908e53e3ea9c45c1443693
+
+depend      filesystem
+depend      openssl
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

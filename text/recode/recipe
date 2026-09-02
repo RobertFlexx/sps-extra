@@ -1,0 +1,13 @@
+name        recode
+version     3.7.14
+release     1
+description recode: charset converter
+
+source      https://github.com/rrthomas/recode/releases/download/v3.7.14/recode-3.7.14.tar.gz
+hash        sha256:786aafd544851a2b13b0a377eac1500f820ce62615ccc2e630b501e7743b9f33
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

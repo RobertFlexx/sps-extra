@@ -1,0 +1,17 @@
+name        pngquant
+version     3.0.3
+release     1
+description pngquant: lossy PNG compressor
+
+source      https://github.com/kornelski/pngquant/archive/3.0.3.tar.gz
+hash        sha256:ddd8889a9c269ba454d0c5e4f7167948d55d77c4570b23f671809fd3a68b6822
+
+depend      filesystem
+depend      libpng
+depend      lcms2
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/pngquant" "$PKG/usr/bin/pngquant"
+install     chmod 755 "$PKG/usr/bin/pngquant"

@@ -1,0 +1,14 @@
+name        logrotate
+version     3.22.0
+release     1
+description logrotate: rotate log files
+
+source      https://github.com/logrotate/logrotate/releases/download/3.22.0/logrotate-3.22.0.tar.xz
+hash        sha256:42b4080ee99c9fb6a7d12d8e787637d057a635194e25971997eebbe8d5e57618
+
+depend      filesystem
+depend      popt
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,18 @@
+name        nsxiv
+version     33
+release     1
+description nsxiv: simple X image viewer
+
+source      https://github.com/nsxiv/nsxiv/archive/v33.tar.gz
+hash        sha256:961af5d43cb6abf8e76230100fe63d75b834b1fa8dcf6534780661e4be68b41a
+
+depend      filesystem
+depend      imlib2
+depend      libx11
+depend      libxft
+depend      fontconfig
+depend      giflib
+depend      libexif
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

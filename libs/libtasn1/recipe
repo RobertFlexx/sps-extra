@@ -1,0 +1,13 @@
+name        libtasn1
+version     4.20.0
+release     1
+description libtasn1: ASN.1 library
+
+source      https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.20.0.tar.gz
+hash        sha256:92e0e3bd4c02d4aeee76036b2ddd83f0c732ba4cda5cb71d583272b23587a76c
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

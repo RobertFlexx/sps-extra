@@ -1,0 +1,13 @@
+name        k9s
+version     0.50.9
+release     1
+description k9s: Kubernetes cluster TUI
+
+source      https://github.com/derailed/k9s/releases/download/v0.50.9/k9s_Linux_amd64.tar.gz
+hash        sha256:5e625efa26c3e14256cf29d242179b32129183b549937ec62d0ad9be1bfe2ca4
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp k9s "$PKG/usr/bin/k9s"
+install     chmod 755 "$PKG/usr/bin/k9s"

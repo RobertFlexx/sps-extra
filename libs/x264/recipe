@@ -1,0 +1,13 @@
+name        x264
+version     0.164.3108
+release     1
+description x264: H.264 encoder
+
+source      https://code.videolan.org/videolan/x264/-/archive/stable/x264-stable.tar.bz2
+hash        sha256:740126cb48549ca4e2f09b4ae13beed592d5b54744044e38f28662fd96d0ba56
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --enable-shared --enable-pic --disable-cli
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

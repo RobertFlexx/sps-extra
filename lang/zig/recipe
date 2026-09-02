@@ -1,0 +1,13 @@
+name        zig
+version     0.16.0
+release     1
+description zig: Zig compiler and toolchain
+
+source      https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz
+hash        sha256:70e49664a74374b48b51e6f3fdfbf437f6395d42509050588bd49abe52ba3d00
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/lib/zig" "$PKG/usr/bin"
+install     cp -a . "$PKG/usr/lib/zig/"
+install     ln -s ../lib/zig/zig "$PKG/usr/bin/zig"

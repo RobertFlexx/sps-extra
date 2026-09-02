@@ -1,0 +1,13 @@
+name        typst
+version     0.13.1
+release     1
+description typst: markup-based typesetter
+
+source      https://github.com/typst/typst/releases/download/v0.13.1/typst-x86_64-unknown-linux-musl.tar.xz
+hash        sha256:7d214bfeffc2e585dc422d1a09d2b144969421281e8c7f5d784b65fc69b5673f
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     find . -type f -name typst -exec cp {} "$PKG/usr/bin/typst" \;
+install     chmod 755 "$PKG/usr/bin/typst"

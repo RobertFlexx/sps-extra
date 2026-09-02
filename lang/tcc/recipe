@@ -1,0 +1,13 @@
+name        tcc
+version     0.9.27
+release     1
+description tcc: Tiny C Compiler
+
+source      https://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2
+hash        sha256:de23af78fca90ce32dff2dd45b3432b2334740bb9bb7b05bf60fdbfc396ceb9c
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

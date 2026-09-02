@@ -1,0 +1,18 @@
+name        feh
+version     3.10.3
+release     1
+description feh: fast image viewer
+
+source      https://feh.finalrewind.org/feh-3.10.3.tar.bz2
+hash        sha256:5426e2799770217af1e01c2e8c182d9ca8687d84613321d8ab4a66fe4041e9c8
+
+depend      filesystem
+depend      imlib2
+depend      libpng
+depend      libx11
+depend      libxinerama
+depend      libxt
+depend      curl
+
+build       make -j"$MAKEJOBS" PREFIX=/usr curl=1 xinerama=1
+install     make PREFIX=/usr DESTDIR="$PKG" install

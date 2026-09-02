@@ -1,0 +1,15 @@
+name        hexyl
+version     0.16.0
+release     1
+description hexyl: hex viewer
+
+source      https://github.com/sharkdp/hexyl/archive/v0.16.0.tar.gz
+hash        sha256:52853b4edede889b40fd6ff132e1354d957d1f26ee0c26ebdea380f8ce82cb0b
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/hexyl" "$PKG/usr/bin/hexyl"
+install     chmod 755 "$PKG/usr/bin/hexyl"

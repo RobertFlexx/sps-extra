@@ -1,0 +1,12 @@
+name        hiredis
+version     1.2.0
+release     1
+description hiredis: Redis C client
+
+source      https://github.com/redis/hiredis/archive/v1.2.0.tar.gz
+hash        sha256:82ad632d31ee05da13b537c124f819eb88e18851d9cb0c30ae0552084811588c
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

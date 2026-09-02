@@ -1,0 +1,16 @@
+name        libid3tag
+version     0.16.3
+release     1
+description libid3tag: ID3 tag library
+
+source      https://codeberg.org/tenacityteam/libid3tag/archive/0.16.3.tar.gz
+hash        sha256:0561009778513a95d91dac33cee8418d6622f710450a7cb56a74636d53b588cb
+
+depend      filesystem
+depend      zlib
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,15 @@
+name        age
+version     1.2.1
+release     1
+description age: simple file encryption
+
+source      https://github.com/FiloSottile/age/archive/v1.2.1.tar.gz
+hash        sha256:93bd89a16c74949ee7c69ef580d8e4cf5ce03e7d9c461b68cf1ace3e4017eef5
+
+depend      filesystem
+builddep    go
+
+build       GOPROXY=https://proxy.golang.org,direct CGO_ENABLED=0 make
+install     mkdir -p "$PKG/usr/bin"
+install     cp out/age out/age-keygen "$PKG/usr/bin/"
+install     chmod 755 "$PKG/usr/bin/age" "$PKG/usr/bin/age-keygen"

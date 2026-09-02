@@ -1,0 +1,13 @@
+name        sysstat
+version     12.7.8
+release     1
+description sysstat: sar, iostat, mpstat, and pidstat
+
+source      https://github.com/sysstat/sysstat/archive/v12.7.8.tar.gz
+hash        sha256:f06ed10ba8ed035078d2a0b9f0669c3641ccb362fc626df1f2f0dfd3be7995d8
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --disable-nls
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

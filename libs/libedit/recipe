@@ -1,0 +1,14 @@
+name        libedit
+version     20250104-3.1
+release     1
+description libedit: NetBSD editline library
+
+source      https://thrysoee.dk/editline/libedit-20250104-3.1.tar.gz
+hash        sha256:23792701694550a53720630cd1cd6167101b5773adddcb4104f7345b73a568ac
+
+depend      filesystem
+depend      ncurses
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

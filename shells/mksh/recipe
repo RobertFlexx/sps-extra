@@ -1,0 +1,16 @@
+name        mksh
+version     R59c
+release     1
+description mksh: MirBSD Korn Shell
+
+source      http://www.mirbsd.org/MirOS/dist/mir/mksh/mksh-R59c.tgz
+hash        sha256:77ae1665a337f1c48c61d6b961db3e52119b38e58884d1c89684af31f87bc506
+
+depend      filesystem
+
+build       sh Build.sh -r
+install     mkdir -p "$PKG/usr/bin" "$PKG/usr/share/man/man1"
+install     cp mksh "$PKG/usr/bin/mksh"
+install     chmod 755 "$PKG/usr/bin/mksh"
+install     if [ -f lksh ]; then cp lksh "$PKG/usr/bin/lksh"; chmod 755 "$PKG/usr/bin/lksh"; fi
+install     if [ -f mksh.1 ]; then cp mksh.1 "$PKG/usr/share/man/man1/mksh.1"; fi

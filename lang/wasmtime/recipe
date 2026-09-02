@@ -1,0 +1,13 @@
+name        wasmtime
+version     48.0.1
+release     1
+description wasmtime: WebAssembly runtime
+
+source      https://github.com/bytecodealliance/wasmtime/releases/download/v48.0.1/wasmtime-v48.0.1-x86_64-linux.tar.xz
+hash        sha256:4c2e31b68ad99e0a519f225a261fda099eb15f056d4a24fdb3c2a46517bde1df
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f wasmtime ]; then cp wasmtime "$PKG/usr/bin/wasmtime"; else cp bin/wasmtime "$PKG/usr/bin/wasmtime"; fi
+install     chmod 755 "$PKG/usr/bin/wasmtime"

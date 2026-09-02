@@ -1,0 +1,13 @@
+name        redis
+version     7.4.5
+release     1
+description redis: in-memory data store
+
+source      https://github.com/redis/redis/archive/7.4.5.tar.gz
+hash        sha256:86d5d833855dfa57c6f42ff6b9b7983f08d47fb014a9489c3182462d5546fbfa
+
+depend      filesystem
+depend      openssl
+
+build       make -j"$MAKEJOBS" PREFIX=/usr BUILD_TLS=yes
+install     make PREFIX=/usr DESTDIR="$PKG" install

@@ -1,0 +1,15 @@
+name        socat
+version     1.8.0.3
+release     1
+description socat: multipurpose relay
+
+source      http://www.dest-unreach.org/socat/download/socat-1.8.0.3.tar.gz
+hash        sha256:a9f9eb6cfb9aa6b1b4b8fe260edbac3f2c743f294db1e362b932eb3feca37ba4
+
+depend      filesystem
+depend      openssl
+depend      readline
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

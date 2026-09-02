@@ -1,0 +1,12 @@
+name        janet
+version     1.39.1
+release     1
+description janet: Janet programming language
+
+source      https://github.com/janet-lang/janet/archive/v1.39.1.tar.gz
+hash        sha256:a43489328b88846e5cddbdad9274f25ee9854e337e52490a74bb7955de03c650
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

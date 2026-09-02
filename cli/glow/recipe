@@ -1,0 +1,15 @@
+name        glow
+version     2.1.1
+release     1
+description glow: markdown reader for the terminal
+
+source      https://github.com/charmbracelet/glow/archive/v2.1.1.tar.gz
+hash        sha256:f13e1d6be1ab4baf725a7fedc4cd240fc7e5c7276af2d92f199e590e1ef33967
+
+depend      filesystem
+builddep    go
+
+build       GOPROXY=https://proxy.golang.org,direct CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o glow .
+install     mkdir -p "$PKG/usr/bin"
+install     cp glow "$PKG/usr/bin/glow"
+install     chmod 755 "$PKG/usr/bin/glow"

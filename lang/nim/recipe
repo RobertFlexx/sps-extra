@@ -1,0 +1,16 @@
+name        nim
+version     2.2.10
+release     1
+description nim: Nim compiler and standard library
+
+source      https://github.com/nim-lang/nightlies/releases/download/2026-04-24-version-2-2-bfeb3146d1638b39f69007a4ae5a23e23ae4e5ef/nim-2.2.10-linux_x64.tar.xz
+hash        sha256:0a3a38752e97e9d44aa479b3a7b37336dfe0176daf22ee5b5218ad0991ecd211
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/lib/nim" "$PKG/usr/bin"
+install     cp -a . "$PKG/usr/lib/nim/"
+install     ln -s ../lib/nim/bin/nim "$PKG/usr/bin/nim"
+install     ln -s ../lib/nim/bin/nimble "$PKG/usr/bin/nimble"
+install     ln -s ../lib/nim/bin/nimgrep "$PKG/usr/bin/nimgrep"
+install     ln -s ../lib/nim/bin/nimsuggest "$PKG/usr/bin/nimsuggest"

@@ -1,0 +1,13 @@
+name        cabextract
+version     1.11
+release     1
+description cabextract: extract Microsoft cabinet files
+
+source      https://www.cabextract.org.uk/cabextract-1.11.tar.gz
+hash        sha256:b5546db1155e4c718ff3d4b278573604f30dd64c3c5bfd4657cd089b823a3ac6
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,13 @@
+name        sops
+version     3.10.2
+release     1
+description sops: secrets manager
+
+source      https://github.com/getsops/sops/releases/download/v3.10.2/sops-v3.10.2.linux.amd64
+hash        sha256:79b0f844237bd4b0446e4dc884dbc1765fc7dedc3968f743d5949c6f2e701739
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$SRC/"sops-v3.10.2.linux.amd64 "$PKG/usr/bin/sops"
+install     chmod 755 "$PKG/usr/bin/sops"

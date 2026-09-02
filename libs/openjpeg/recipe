@@ -1,0 +1,18 @@
+name        openjpeg
+version     2.5.3
+release     1
+description openjpeg: JPEG 2000 codec
+
+source      https://github.com/uclouvain/openjpeg/archive/v2.5.3.tar.gz
+hash        sha256:368fe0468228e767433c9ebdea82ad9d801a3ad1e4234421f352c8b06e7aa707
+
+depend      filesystem
+depend      libpng
+depend      libtiff
+depend      lcms2
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_STATIC_LIBS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

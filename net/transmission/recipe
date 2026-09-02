@@ -1,0 +1,18 @@
+name        transmission
+version     4.0.6
+release     1
+description transmission: BitTorrent client
+
+source      https://github.com/transmission/transmission/releases/download/4.0.6/transmission-4.0.6.tar.xz
+hash        sha256:2a38fe6d8a23991680b691c277a335f8875bdeca2b97c6b26b598bc9c7b0c45f
+
+depend      filesystem
+depend      openssl
+depend      curl
+depend      zlib
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_GTK=OFF -DENABLE_QT=OFF -DENABLE_MAC=OFF -DENABLE_WEB=OFF -DENABLE_UTILS=ON -DENABLE_CLI=ON -DENABLE_TESTS=OFF -DINSTALL_DOC=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

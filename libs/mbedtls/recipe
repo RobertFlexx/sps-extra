@@ -1,0 +1,15 @@
+name        mbedtls
+version     3.6.4
+release     1
+description mbedtls: TLS and SSL library
+
+source      https://github.com/Mbed-TLS/mbedtls/archive/v3.6.4.tar.gz
+hash        sha256:a1e01f6094bb744ead8caaa92d7c7102b7137a813f509b49afaebc0b8e51899c
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_TESTING=OFF -DUSE_SHARED_MBEDTLS_LIBRARY=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

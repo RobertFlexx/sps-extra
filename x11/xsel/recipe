@@ -1,0 +1,14 @@
+name        xsel
+version     1.2.1
+release     1
+description xsel: clipboard for X11
+
+source      https://github.com/kfish/xsel/archive/1.2.1.tar.gz
+hash        sha256:18487761f5ca626a036d65ef2db8ad9923bf61685e06e7533676c56d7d60eb14
+
+depend      filesystem
+depend      libx11
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

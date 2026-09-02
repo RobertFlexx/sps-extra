@@ -1,0 +1,14 @@
+name        aspell
+version     0.60.8.1
+release     1
+description aspell: spell checker
+
+source      https://ftp.gnu.org/gnu/aspell/aspell-0.60.8.1.tar.gz
+hash        sha256:d6da12b34d42d457fa604e435ad484a74b2effcd120ff40acd6bb3fb2887d21b
+
+depend      filesystem
+depend      ncurses
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

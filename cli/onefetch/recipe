@@ -1,0 +1,15 @@
+name        onefetch
+version     2.25.0
+release     1
+description onefetch: git repository summary
+
+source      https://github.com/o2sh/onefetch/archive/2.25.0.tar.gz
+hash        sha256:c9ade471eff5f57e5a6506a08293d8e7ebc54c27e99e33c965313a7108562f35
+
+depend      filesystem
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/onefetch" "$PKG/usr/bin/onefetch"
+install     chmod 755 "$PKG/usr/bin/onefetch"

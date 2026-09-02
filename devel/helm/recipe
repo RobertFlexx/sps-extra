@@ -1,0 +1,13 @@
+name        helm
+version     3.18.4
+release     1
+description helm: Kubernetes package manager
+
+source      https://get.helm.sh/helm-v3.18.4-linux-amd64.tar.gz
+hash        sha256:f8180838c23d7c7d797b208861fecb591d9ce1690d8704ed1e4cb8e2add966c1
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     find . -type f -name helm -exec cp {} "$PKG/usr/bin/helm" \;
+install     chmod 755 "$PKG/usr/bin/helm"

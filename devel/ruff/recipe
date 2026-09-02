@@ -1,0 +1,13 @@
+name        ruff
+version     0.12.8
+release     1
+description ruff: Python linter and formatter
+
+source      https://github.com/astral-sh/ruff/releases/download/0.12.8/ruff-x86_64-unknown-linux-musl.tar.gz
+hash        sha256:0062142b6277177f196a9dd7cf1bcf10f536f8a33c458d258525504f94760227
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     find . -type f -name ruff -exec cp {} "$PKG/usr/bin/ruff" \;
+install     chmod 755 "$PKG/usr/bin/ruff"

@@ -1,0 +1,16 @@
+name        playerctl
+version     2.4.1
+release     1
+description playerctl: control media players via MPRIS
+
+source      https://github.com/altdesktop/playerctl/archive/v2.4.1.tar.gz
+hash        sha256:75957ad5071956f563542c7557af16a57e40b4a7f66bc9b6373d022ec5eef548
+
+depend      filesystem
+depend      glib
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dgtk-doc=false -Dintrospection=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

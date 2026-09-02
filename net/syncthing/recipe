@@ -1,0 +1,13 @@
+name        syncthing
+version     1.29.7
+release     1
+description syncthing: continuous file synchronization
+
+source      https://github.com/syncthing/syncthing/releases/download/v1.29.7/syncthing-linux-amd64-v1.29.7.tar.gz
+hash        sha256:f0fa3ab78e3d1254c72a64b65c32cd558e4fbae77aec7fa160f347a704ac2e52
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     find . -type f -name syncthing -exec cp {} "$PKG/usr/bin/syncthing" \;
+install     chmod 755 "$PKG/usr/bin/syncthing"

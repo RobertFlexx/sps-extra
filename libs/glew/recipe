@@ -1,0 +1,12 @@
+name        glew
+version     2.2.0
+release     1
+description glew: OpenGL extension wrangler
+
+source      https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.tgz
+hash        sha256:d4fc82893cfb00109578d0a1a2337fb8ca335b3ceccf97b97e5cc7f08e4353e1
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS"
+install     make GLEW_DEST="$PKG/usr" LIBDIR="$PKG/usr/lib64" install

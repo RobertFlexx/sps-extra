@@ -1,0 +1,13 @@
+name        wdiff
+version     1.2.2
+release     1
+description wdiff: word-oriented diff
+
+source      https://ftp.gnu.org/gnu/wdiff/wdiff-1.2.2.tar.gz
+hash        sha256:34ff698c870c87e6e47a838eeaaae729fa73349139fc8db12211d2a22b78af6b
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

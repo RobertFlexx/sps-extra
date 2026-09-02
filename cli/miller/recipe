@@ -1,0 +1,13 @@
+name        miller
+version     6.13.0
+release     1
+description miller: name-indexed data processor
+
+source      https://github.com/johnkerl/miller/releases/download/v6.13.0/miller-6.13.0-linux-amd64.tar.gz
+hash        sha256:6aa8f46c6f4d11cd241a3f3fad20273fadcbe1ea6ab122f4f542200e7c3b4f23
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f mlr ]; then cp mlr "$PKG/usr/bin/mlr"; elif [ -f miller ]; then cp miller "$PKG/usr/bin/mlr"; else find . -name mlr -o -name miller | head -1 | xargs -I{} cp {} "$PKG/usr/bin/mlr"; fi
+install     chmod 755 "$PKG/usr/bin/mlr"

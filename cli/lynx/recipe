@@ -1,0 +1,16 @@
+name        lynx
+version     2.9.2
+release     1
+description lynx: text web browser
+
+source      https://invisible-mirror.net/archives/lynx/tarballs/lynx2.9.2.tar.bz2
+hash        sha256:7374b89936d991669e101f4e97f2c9592036e1e8cdaa7bafc259a77ab6fb07ce
+
+depend      filesystem
+depend      ncurses
+depend      openssl
+depend      zlib
+
+configure   ./configure --prefix=/usr --with-ssl --enable-ipv6
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

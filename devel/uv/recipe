@@ -1,0 +1,15 @@
+name        uv
+version     0.8.4
+release     1
+description uv: Python package and project manager
+
+source      https://github.com/astral-sh/uv/releases/download/0.8.4/uv-x86_64-unknown-linux-musl.tar.gz
+hash        sha256:4e16694fcc20a94136af70fb1449e8817150896af0339b6b28dfb6d006cd8116
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     find . -type f -name uv -exec cp {} "$PKG/usr/bin/uv" \;
+install     find . -type f -name uvx -exec cp {} "$PKG/usr/bin/uvx" \; || true
+install     chmod 755 "$PKG/usr/bin/uv"
+install     if [ -f "$PKG/usr/bin/uvx" ]; then chmod 755 "$PKG/usr/bin/uvx"; fi

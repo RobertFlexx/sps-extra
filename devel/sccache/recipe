@@ -1,0 +1,16 @@
+name        sccache
+version     0.10.0
+release     1
+description sccache: shared compilation cache
+
+source      https://github.com/mozilla/sccache/archive/refs/tags/v0.10.0.tar.gz
+hash        sha256:2c9f82c43ce6a1b1d9b34f029ce6862bedc2f01deff45cde5dffc079deeba801
+
+depend      filesystem
+depend      openssl
+builddep    rust
+
+build       CARGO_TARGET_DIR="$WORK/target" cargo build --release --locked
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$WORK/target/release/sccache" "$PKG/usr/bin/sccache"
+install     chmod 755 "$PKG/usr/bin/sccache"

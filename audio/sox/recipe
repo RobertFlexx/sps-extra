@@ -1,0 +1,20 @@
+name        sox
+version     14.4.2
+release     1
+description sox: sound processing
+
+source      https://sourceforge.net/projects/sox/files/sox/14.4.2/sox-14.4.2.tar.bz2
+hash        sha256:81a6956d4330e75b5827316e44ae381e6f1e8928003c6aa45896da9041ea149c
+
+depend      filesystem
+depend      libsndfile
+depend      libogg
+depend      libvorbis
+depend      flac
+depend      lame
+depend      opus
+depend      alsa-lib
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

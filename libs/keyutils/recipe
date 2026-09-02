@@ -1,0 +1,12 @@
+name        keyutils
+version     1.6.3
+release     1
+description keyutils: Linux key management utilities
+
+source      https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/snapshot/keyutils-1.6.3.tar.gz
+hash        sha256:a61d5706136ae4c05bd48f86186bcfdbd88dd8bd5107e3e195c924cfc1b39bb4
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" NO_GLIBC_KEYERR=1
+install     make DESTDIR="$PKG" PREFIX=/usr LIBDIR=/usr/lib64 SBINDIR=/usr/bin install

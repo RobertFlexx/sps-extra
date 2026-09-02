@@ -1,0 +1,15 @@
+name        pandoc
+version     3.6.4
+release     1
+description pandoc: document converter
+
+source      https://github.com/jgm/pandoc/releases/download/3.6.4/pandoc-3.6.4-linux-amd64.tar.gz
+hash        sha256:5def6e1ff535e397becce292ee97767a947306150b9fb1488003b67ac3417c5e
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin" "$PKG/usr/share/man/man1"
+install     find . -type f -name pandoc -executable -exec cp {} "$PKG/usr/bin/pandoc" \;
+install     chmod 755 "$PKG/usr/bin/pandoc"
+install     if [ -f bin/pandoc ]; then cp bin/pandoc "$PKG/usr/bin/pandoc"; chmod 755 "$PKG/usr/bin/pandoc"; fi
+install     find . -name pandoc.1 -exec cp {} "$PKG/usr/share/man/man1/pandoc.1" \; || true

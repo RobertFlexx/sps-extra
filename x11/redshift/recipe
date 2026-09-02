@@ -1,0 +1,16 @@
+name        redshift
+version     1.12
+release     1
+description redshift: adjust screen color temperature
+
+source      https://github.com/jonls/redshift/releases/download/v1.12/redshift-1.12.tar.xz
+hash        sha256:d2f8c5300e3ce2a84fe6584d2f1483aa9eadc668ab1951b2c2b8a03ece3a22ba
+
+depend      filesystem
+depend      libx11
+depend      libxxf86vm
+depend      libxcb
+
+configure   ./configure --prefix=/usr --disable-gui --disable-ubuntu --disable-drm --disable-geoclue2 --disable-gui
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

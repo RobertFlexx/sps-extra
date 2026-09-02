@@ -1,0 +1,15 @@
+name        ghc
+version     9.10.2
+release     1
+description ghc: Glasgow Haskell Compiler
+
+source      https://downloads.haskell.org/~ghc/9.10.2/ghc-9.10.2-x86_64-deb12-linux.tar.xz
+hash        sha256:71d025743f2eb4d3af95d4dd94a22c093c2814d78ab95dd0e12bb6751b1c7d4e
+
+depend      filesystem
+depend      ncurses
+depend      gmp
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

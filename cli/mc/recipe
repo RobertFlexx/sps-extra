@@ -1,0 +1,15 @@
+name        mc
+version     4.8.33
+release     1
+description mc: Midnight Commander
+
+source      http://ftp.midnight-commander.org/mc-4.8.33.tar.xz
+hash        sha256:cae149d42f844e5185d8c81d7db3913a8fa214c65f852200a9d896b468af164c
+
+depend      filesystem
+depend      glib
+depend      ncurses
+
+configure   ./configure --prefix=/usr --with-screen=ncurses --disable-vfs-sftp
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

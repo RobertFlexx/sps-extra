@@ -1,0 +1,15 @@
+name        gum
+version     0.16.2
+release     1
+description gum: charm terminal prompts
+
+source      https://github.com/charmbracelet/gum/archive/v0.16.2.tar.gz
+hash        sha256:a8f53901447b13613e3445538e2c4d42fd7afb9dad9535debff1b64656b66867
+
+depend      filesystem
+builddep    go
+
+build       GOPROXY=https://proxy.golang.org,direct CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o gum .
+install     mkdir -p "$PKG/usr/bin"
+install     cp gum "$PKG/usr/bin/gum"
+install     chmod 755 "$PKG/usr/bin/gum"

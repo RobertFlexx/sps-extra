@@ -1,0 +1,13 @@
+name        libexif
+version     0.6.25
+release     1
+description libexif: EXIF metadata library
+
+source      https://github.com/libexif/libexif/releases/download/v0.6.25/libexif-0.6.25.tar.bz2
+hash        sha256:7c9eba99aed3e6594d8c3e85861f1c6aaf450c218621528bc989d3b3e7a26307
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

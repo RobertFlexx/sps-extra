@@ -1,0 +1,14 @@
+name        ncdu
+version     1.22
+release     1
+description ncdu: disk usage analyzer
+
+source      https://dev.yorhel.nl/download/ncdu-1.22.tar.gz
+hash        sha256:0ad6c096dc04d5120581104760c01b8f4e97d4191d6c9ef79654fa3c691a176b
+
+depend      filesystem
+depend      ncurses
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

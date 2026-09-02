@@ -1,0 +1,15 @@
+name        chafa
+version     1.14.5
+release     1
+description chafa: image to terminal graphics
+
+source      https://hpjansson.org/chafa/releases/chafa-1.14.5.tar.xz
+hash        sha256:7b5b384d5fb76a641d00af0626ed2115fb255ea371d9bef11f8500286a7b09e5
+
+depend      filesystem
+depend      glib
+depend      freetype
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

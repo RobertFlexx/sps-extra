@@ -1,0 +1,13 @@
+name        iotop
+version     1.30
+release     1
+description iotop: display I/O usage by process
+
+source      https://github.com/Tomas-M/iotop/archive/v1.30.tar.gz
+hash        sha256:862e3d3d0263e4171aa9c5aaed2dd7d76ca746afa58ecbb6eca002717e9fa240
+
+depend      filesystem
+depend      ncurses
+
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" PREFIX=/usr install

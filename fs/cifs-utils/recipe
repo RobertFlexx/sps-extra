@@ -1,0 +1,16 @@
+name        cifs-utils
+version     7.1
+release     1
+description cifs-utils: mount and manage CIFS/SMB shares
+
+source      https://download.samba.org/pub/linux-cifs/cifs-utils/cifs-utils-7.1.tar.bz2
+hash        sha256:a21123f76a4a6a36c9653189ba4918ebdf3cfcd3f9092730a47ff3450b5b5b2a
+
+depend      filesystem
+depend      libcap
+depend      keyutils
+depend      talloc
+
+configure   ./configure --prefix=/usr --disable-pam --disable-systemd
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

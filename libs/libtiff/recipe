@@ -1,0 +1,16 @@
+name        libtiff
+version     4.7.0
+release     1
+description libtiff: TIFF image library
+
+source      https://download.osgeo.org/libtiff/tiff-4.7.0.tar.gz
+hash        sha256:67160e3457365ab96c5b3286a0903aa6e78bdc44c4bc737d2e486bcecb6ba976
+
+depend      filesystem
+depend      zlib
+depend      xz
+depend      libjpeg-turbo
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,23 @@
+name        imagemagick
+version     7.1.1-47
+release     1
+description imagemagick: image conversion and editing
+
+source      https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.1-47.tar.gz
+hash        sha256:818e21a248986f15a6ba0221ab3ccbaed3d3abee4a6feb4609c6f2432a30d7ed
+
+depend      filesystem
+depend      libpng
+depend      libjpeg-turbo
+depend      libtiff
+depend      libwebp
+depend      lcms2
+depend      freetype
+depend      zlib
+depend      bzip2
+depend      xz
+depend      zstd
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --with-modules --disable-static --without-perl
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

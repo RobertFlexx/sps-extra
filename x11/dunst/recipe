@@ -1,0 +1,22 @@
+name        dunst
+version     1.12.2
+release     1
+description dunst: notification daemon
+
+source      https://github.com/dunst-project/dunst/archive/v1.12.2.tar.gz
+hash        sha256:8f7664bd4e6083e9604e282145fe5b8dee7655fa0b099a5b682a2549e1f33d32
+
+depend      filesystem
+depend      glib
+depend      cairo
+depend      pango
+depend      gdk-pixbuf
+depend      libx11
+depend      libxinerama
+depend      libxrandr
+depend      libxscrnsaver
+depend      wayland
+depend      dbus
+
+build       make -j"$MAKEJOBS" PREFIX=/usr SYSCONFDIR=/etc
+install     make PREFIX=/usr SYSCONFDIR=/etc DESTDIR="$PKG" install

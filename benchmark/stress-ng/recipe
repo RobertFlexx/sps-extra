@@ -1,0 +1,12 @@
+name        stress-ng
+version     0.18.11
+release     1
+description stress-ng: stress-test a computer system
+
+source      https://github.com/ColinIanKing/stress-ng/archive/V0.18.11.tar.gz
+hash        sha256:f4388c4d4d53172431cd77e029139ddd0dacb249ef59053dbc1f0c42188e3e35
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" PREFIX=/usr install

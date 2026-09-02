@@ -1,0 +1,15 @@
+name        isync
+version     1.5.1
+release     1
+description isync: IMAP mailbox sync (mbsync)
+
+source      https://sourceforge.net/projects/isync/files/isync/1.5.1/isync-1.5.1.tar.gz
+hash        sha256:28cc90288036aa5b6f5307bfc7178a397799003b96f7fd6e4bd2478265bb22fa
+
+depend      filesystem
+depend      openssl
+depend      zlib
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

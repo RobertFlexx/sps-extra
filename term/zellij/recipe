@@ -1,0 +1,13 @@
+name        zellij
+version     0.42.2
+release     1
+description zellij: terminal workspace
+
+source      https://github.com/zellij-org/zellij/releases/download/v0.42.2/zellij-x86_64-unknown-linux-musl.tar.gz
+hash        sha256:c2d4833512539455bfdddab5c297d43f7cc3b77d8b7e92ad03e2529111c7c652
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp zellij "$PKG/usr/bin/zellij"
+install     chmod 755 "$PKG/usr/bin/zellij"

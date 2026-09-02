@@ -1,0 +1,14 @@
+name        cscope
+version     15.9
+release     1
+description cscope: C source browser
+
+source      https://sourceforge.net/projects/cscope/files/cscope/v15.9/cscope-15.9.tar.gz
+hash        sha256:c5505ae075a871a9cd8d9801859b0ff1c09782075df281c72c23e72115d9f159
+
+depend      filesystem
+depend      ncurses
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

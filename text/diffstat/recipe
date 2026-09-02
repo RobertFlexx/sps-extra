@@ -1,0 +1,13 @@
+name        diffstat
+version     1.68
+release     1
+description diffstat: histogram of diff changes
+
+source      https://invisible-mirror.net/archives/diffstat/diffstat-1.68.tgz
+hash        sha256:89f9294a8ac74fcef6f1b9ac408f43ebedf8d208e3efe0b99b4acc16dc6582c7
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
