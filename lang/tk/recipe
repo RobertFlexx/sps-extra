@@ -1,0 +1,17 @@
+name        tk
+version     9.0.2
+release     1
+description tk: Tk GUI toolkit for Tcl
+
+source      https://prdownloads.sourceforge.net/tcl/tk9.0.2-src.tar.gz
+hash        sha256:76fb852b2f167592fe8b41aa6549ce4e486dbf3b259a269646600e3894517c76
+
+depend      filesystem
+depend      tcl
+depend      libx11
+depend      libxft
+depend      libxext
+
+configure   cd unix && ./configure --prefix=/usr --libdir=/usr/lib64 --mandir=/usr/share/man --enable-shared --enable-threads --with-tcl=/usr/lib64
+build       cd unix && make -j"$MAKEJOBS"
+install     cd unix && make install DESTDIR="$PKG"

@@ -1,0 +1,19 @@
+name        gnuplot
+version     6.0.3
+release     1
+description gnuplot: portable plotting
+
+source      https://sourceforge.net/projects/gnuplot/files/gnuplot/6.0.3/gnuplot-6.0.3.tar.gz
+hash        sha256:ec52e3af8c4083d4538152b3f13db47f6d29929a3f6ecec5365c834e77f251ab
+
+depend      filesystem
+depend      cairo
+depend      pango
+depend      libpng
+depend      readline
+depend      lua
+depend      gd
+
+configure   ./configure --prefix=/usr --with-readline=gnu --without-qt --without-x
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

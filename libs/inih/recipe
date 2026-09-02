@@ -1,0 +1,15 @@
+name        inih
+version     60
+release     1
+description inih: simple INI parser
+
+source      https://github.com/benhoyt/inih/archive/r60.tar.gz
+hash        sha256:706aa05c888b53bd170e5d8aa8f8a9d9ccf5449dfed262d5103d1f292af26774
+
+depend      filesystem
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Ddefault_library=shared -Ddistro_install=true
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

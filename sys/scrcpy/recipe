@@ -1,0 +1,19 @@
+name        scrcpy
+version     3.3.1
+release     1
+description scrcpy: display and control Android devices
+
+source      https://github.com/Genymobile/scrcpy/archive/v3.3.1.tar.gz
+hash        sha256:9999d2ff3605e1c5d1efb0b737ed6e240a93a928091ab356ba07199c92f52ace
+
+depend      filesystem
+depend      ffmpeg
+depend      sdl2
+depend      libusb
+depend      android-tools
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dportable=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

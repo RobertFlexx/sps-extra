@@ -1,0 +1,13 @@
+name        liburing
+version     2.11
+release     1
+description liburing: io_uring library
+
+source      https://github.com/axboe/liburing/archive/liburing-2.11.tar.gz
+hash        sha256:462c35ef21d67e50490f8684c76641ee2c7796e83d43de796852ef4e40662e33
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

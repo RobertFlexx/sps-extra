@@ -1,0 +1,15 @@
+name        highway
+version     1.2.0
+release     1
+description highway: SIMD library
+
+source      https://github.com/google/highway/archive/1.2.0.tar.gz
+hash        sha256:7e0be78b8318e8bdbf6fa545d2ecb4c90f947df03f7aadc42c1967f019e63343
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_TESTING=OFF -DHWY_ENABLE_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

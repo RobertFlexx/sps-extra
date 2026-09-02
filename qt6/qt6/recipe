@@ -1,6 +1,6 @@
 name        qt6
 version     6.11.2
-release     1
+release     2
 arch        any
 description qt6: Qt 6 toolkit
 
@@ -33,5 +33,7 @@ depend      qt6-qthttpserver
 depend      qt6-qtgraphs
 depend      qt6-qtscxml
 depend      qt6-qtremoteobjects
+depend      qt6-qtwebengine
+depend      qt6-qtwebview
 install     mkdir -p "$PKG/usr/share/sps/sets"
 install     printf '%s\n' "qt6" >"$PKG/usr/share/sps/sets/qt6"

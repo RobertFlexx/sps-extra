@@ -1,0 +1,15 @@
+name        yajl
+version     2.1.0
+release     1
+description yajl: Yet Another JSON Library
+
+source      https://github.com/lloyd/yajl/archive/2.1.0.tar.gz
+hash        sha256:2d1bc48c597932a433938fe78a3d0f264f90a85f5fa8c4b2713a35d68809da33
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

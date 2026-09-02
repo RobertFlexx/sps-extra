@@ -1,0 +1,13 @@
+name        firejail
+version     0.9.76
+release     1
+description firejail: SUID sandbox
+
+source      https://github.com/netblue30/firejail/releases/download/0.9.76/firejail-0.9.76.tar.xz
+hash        sha256:6bfaa57e10897f65cc1183b330974d555669d888d6897c7a8739bb1d334d9e4a
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

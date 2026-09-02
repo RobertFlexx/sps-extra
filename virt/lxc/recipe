@@ -1,0 +1,21 @@
+name        lxc
+version     6.0.4
+release     2
+description lxc: Linux containers
+
+source      https://linuxcontainers.org/downloads/lxc/lxc-6.0.4.tar.gz
+hash        sha256:872d26ce8512b9f993d194816e336bf9f3ad8326f22dc24ef0f01f85599fa8b9
+
+depend      filesystem
+depend      libcap
+depend      openssl
+depend      dbus
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dman=false -Dtests=false -Dapparmor=false -Dselinux=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/lxc-net.service" "$PKG/usr/lib/systemd/system/lxc-net.service"
+install     install -m 0755 "$SRC/files/openrc-lxc-net" "$PKG/etc/init.d/lxc-net"

@@ -1,0 +1,32 @@
+name        vlc
+version     3.0.21
+release     1
+description vlc: media player
+
+source      https://download.videolan.org/pub/videolan/vlc/3.0.21/vlc-3.0.21.tar.xz
+hash        sha256:24dbbe1d7dfaeea0994d5def0bbde200177347136dbfe573f5b6a4cee25afbb0
+
+depend      filesystem
+depend      ffmpeg
+depend      alsa-lib
+depend      libass
+depend      freetype
+depend      libvorbis
+depend      libogg
+depend      opus
+depend      libvpx
+depend      x264
+depend      x265
+depend      libdvdread
+depend      libdvdnav
+depend      libbluray
+depend      lua
+depend      ncurses
+depend      gnutls
+depend      libarchive
+depend      libplacebo
+depend      dav1d
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --disable-qt --disable-skins2 --disable-chromecast --enable-alsa --disable-opencv --disable-gles2
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

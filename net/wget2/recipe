@@ -1,0 +1,21 @@
+name        wget2
+version     2.2.0
+release     1
+description wget2: next-generation wget
+
+source      https://ftp.gnu.org/gnu/wget/wget2-2.2.0.tar.gz
+hash        sha256:2b3b9c85b7fb26d33ca5f41f1f8daca71838d869a19b406063aa5c655294d357
+
+depend      filesystem
+depend      gnutls
+depend      libidn2
+depend      pcre2
+depend      zlib
+depend      brotli
+depend      zstd
+depend      nghttp2
+depend      libpsl
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

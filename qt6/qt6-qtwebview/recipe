@@ -1,0 +1,19 @@
+name        qt6-qtwebview
+version     6.11.2
+release     1
+description qt6-qtwebview: Qt 6 WebView on top of Qt WebEngine
+
+source      https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtwebview-everywhere-src-6.11.2.tar.xz
+hash        sha256:7e21e109ee89dadeef2d3edd786bcb9d64a5562ea546f89dcc79b3f52f881f4c
+
+depend      filesystem
+depend      qt6-qtbase
+depend      qt6-qtdeclarative
+depend      qt6-qtwebengine
+depend      pkgconf
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DQT_BUILD_TESTS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

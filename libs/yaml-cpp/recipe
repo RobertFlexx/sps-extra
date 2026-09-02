@@ -1,0 +1,15 @@
+name        yaml-cpp
+version     0.8.0
+release     1
+description yaml-cpp: YAML parser for C++
+
+source      https://github.com/jbeder/yaml-cpp/archive/0.8.0.tar.gz
+hash        sha256:fbe74bbdcee21d656715688706da3c8becfd946d92cd44705cc6098bb23b3a16
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DYAML_BUILD_SHARED_LIBS=ON -DYAML_CPP_BUILD_TESTS=OFF -DYAML_CPP_BUILD_TOOLS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

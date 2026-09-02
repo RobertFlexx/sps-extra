@@ -1,0 +1,13 @@
+name        stfl
+version     0.24
+release     1
+description stfl: structured terminal forms library
+
+source      http://www.clifford.at/stfl/stfl-0.24.tar.gz
+hash        sha256:f97f1431f0dc2313b104c3777624205c2d48baa3aa8cd36f850634e7ff577709
+
+depend      filesystem
+depend      ncurses
+
+build       make -j"$MAKEJOBS"
+install     make prefix=/usr DESTDIR="$PKG" install

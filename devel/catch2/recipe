@@ -1,0 +1,15 @@
+name        catch2
+version     3.8.1
+release     1
+description catch2: C++ test framework
+
+source      https://github.com/catchorg/Catch2/archive/v3.8.1.tar.gz
+hash        sha256:18b3f70ac80fccc340d8c6ff0f339b2ae64944782f8d2fca2bd705cf47cadb79
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DCATCH_INSTALL_DOCS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

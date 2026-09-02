@@ -1,0 +1,22 @@
+name        icewm
+version     3.8.1
+release     1
+description icewm: Ice Window Manager
+
+source      https://github.com/ice-wm/icewm/releases/download/3.8.1/icewm-3.8.1.tar.lz
+hash        sha256:3c525512b1e4f4cf7999a4687f1b82311d7448d8c174780b5efd3b8aafbfb4a2
+
+depend      filesystem
+depend      libx11
+depend      libxext
+depend      libxft
+depend      libxrandr
+depend      imlib2
+depend      fontconfig
+depend      alsa-lib
+builddep    lzip
+
+prepare     lzip -cd "$SRC/"icewm-3.8.1.tar.lz | tar -x --strip-components=1
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

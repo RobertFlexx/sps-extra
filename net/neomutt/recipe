@@ -1,0 +1,19 @@
+name        neomutt
+version     20250905
+release     1
+description neomutt: terminal mail client
+
+source      https://github.com/neomutt/neomutt/archive/20250905.tar.gz
+hash        sha256:f409fa3803bfc540869b78719400bceda216842e4da024f83ca3060241d9c516
+
+depend      filesystem
+depend      ncurses
+depend      openssl
+depend      gpgme
+depend      libidn2
+depend      sqlite
+depend      zlib
+
+configure   ./configure --prefix=/usr --ssl --gpgme --sqlite --disable-doc
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

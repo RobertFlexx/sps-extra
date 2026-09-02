@@ -1,0 +1,24 @@
+name        gegl
+version     0.4.62
+release     1
+description gegl: Generic Graphics Library
+
+source      https://download.gimp.org/gegl/0.4/gegl-0.4.62.tar.xz
+hash        sha256:5887576371ebf1d9e90797d10e4b9a7f1658228d4827583e79e1db3d94505c6c
+
+depend      filesystem
+depend      babl
+depend      glib
+depend      json-glib
+depend      libpng
+depend      libjpeg-turbo
+depend      libtiff
+depend      lcms2
+depend      cairo
+depend      pango
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Ddocs=false -Dintrospection=false -Dlua=disabled -Dlibspiro=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

@@ -1,0 +1,15 @@
+name        jetbrains-mono
+version     2.304
+release     1
+arch        any
+description jetbrains-mono: JetBrains Mono typeface
+
+source      https://github.com/JetBrains/JetBrainsMono/releases/download/v2.304/JetBrainsMono-2.304.zip
+hash        sha256:6f6376c6ed2960ea8a963cd7387ec9d76e3f629125bc33d1fdcd7eb7012f7bbf
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/share/fonts/TTF"
+install     unzip -o -d "$WORK/jb" "$SRC/"*.zip
+install     find "$WORK/jb" -name "*.ttf" -exec cp {} "$PKG/usr/share/fonts/TTF/" \;

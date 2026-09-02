@@ -1,0 +1,15 @@
+name        ifuse
+version     1.1.4
+release     1
+description ifuse: mount iOS devices
+
+source      https://github.com/libimobiledevice/ifuse/releases/download/1.1.4/ifuse-1.1.4.tar.bz2
+hash        sha256:3550702ef94b2f5f16c7db91c6b3282b2aed1340665834a03e47458e09d98d87
+
+depend      filesystem
+depend      libimobiledevice
+depend      fuse3
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

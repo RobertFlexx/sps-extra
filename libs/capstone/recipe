@@ -1,0 +1,15 @@
+name        capstone
+version     5.0.6
+release     1
+description capstone: disassembly framework
+
+source      https://github.com/capstone-engine/capstone/archive/5.0.6.tar.gz
+hash        sha256:240ebc834c51aae41ca9215d3190cc372fd132b9c5c8aa2d5f19ca0c325e28f9
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DCAPSTONE_BUILD_TESTS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

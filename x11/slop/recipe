@@ -1,0 +1,20 @@
+name        slop
+version     7.6
+release     1
+description slop: select operation / screen region
+
+source      https://github.com/naelstrof/slop/archive/v7.6.tar.gz
+hash        sha256:ec45f9a69d7a24df621f5c634d202451ddca987d550cf588c5c427b99106fb6b
+
+depend      filesystem
+depend      libx11
+depend      libxext
+depend      libxrender
+depend      glew
+depend      glm
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

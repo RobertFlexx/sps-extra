@@ -1,0 +1,20 @@
+name        unbound
+version     1.23.1
+release     2
+description unbound: validating recursive DNS resolver
+
+source      https://nlnetlabs.nl/downloads/unbound/unbound-1.23.1.tar.gz
+hash        sha256:6a6b117c799d8de3868643397e0fd71591f6d42f4473f598bdb22609ff362590
+
+depend      filesystem
+depend      openssl
+depend      expat
+depend      libevent
+depend      libcap
+
+configure   ./configure --prefix=/usr --with-libevent --with-pidfile=/run/unbound.pid --sysconfdir=/etc
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/unbound.service" "$PKG/usr/lib/systemd/system/unbound.service"
+install     install -m 0755 "$SRC/files/openrc-unbound" "$PKG/etc/init.d/unbound"

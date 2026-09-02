@@ -1,0 +1,19 @@
+name        yara
+version     4.5.4
+release     1
+description yara: malware identification
+
+source      https://github.com/VirusTotal/yara/archive/v4.5.4.tar.gz
+hash        sha256:586c9c21878f8b4d1b9423b89ac937f21f8057b03e3e9706f310549d453966fa
+
+depend      filesystem
+depend      openssl
+builddep    autoconf
+builddep    automake
+builddep    libtool
+builddep    pkgconf
+
+prepare     ./bootstrap.sh
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

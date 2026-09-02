@@ -1,0 +1,15 @@
+name        svt-av1
+version     3.1.0
+release     1
+description svt-av1: Scalable AV1 encoder
+
+source      https://gitlab.com/AOMediaCodec/SVT-AV1/-/archive/v3.1.0/SVT-AV1-v3.1.0.tar.gz
+hash        sha256:3999586c261dc3d8690fd1489fc74da4e0fdff9159c8ce2b76ddfac001ad96d3
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_TESTING=OFF -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,22 @@
+name        llvm
+version     20.1.8
+release     1
+description llvm: LLVM compiler infrastructure with clang and lld
+
+source      https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.8/llvm-project-20.1.8.src.tar.xz
+hash        sha256:6898f963c8e938981e6c4a302e83ec5beb4630147c7311183cf61069af16333d
+
+depend      filesystem
+depend      zlib
+depend      zstd
+depend      ncurses
+depend      libffi
+depend      libxml2
+depend      python
+builddep    cmake
+builddep    ninja
+builddep    python
+
+configure   cmake -S llvm -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DLLVM_ENABLE_PROJECTS=clang;lld -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_EH=ON -DLLVM_INCLUDE_TESTS=OFF -DLLVM_INCLUDE_BENCHMARKS=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DCLANG_INCLUDE_TESTS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,20 @@
+name        herbstluftwm
+version     0.9.5
+release     1
+description herbstluftwm: manual tiling window manager
+
+source      https://herbstluftwm.org/tarballs/herbstluftwm-0.9.5.tar.gz
+hash        sha256:b2d4600909e5bece5ad63818dfb30bb19fd2ac9f52847b1a7a74ad4040718105
+
+depend      filesystem
+depend      libx11
+depend      libxinerama
+depend      libxrandr
+depend      libxft
+depend      freetype
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

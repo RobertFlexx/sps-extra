@@ -1,0 +1,14 @@
+name        ipset
+version     7.24
+release     1
+description ipset: IP set administration
+
+source      https://ipset.netfilter.org/ipset-7.24.tar.bz2
+hash        sha256:fbe3424dff222c1cb5e5c34d38b64524b2217ce80226c14fdcbb13b29ea36112
+
+depend      filesystem
+depend      libmnl
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

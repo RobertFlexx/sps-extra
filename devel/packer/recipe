@@ -1,0 +1,15 @@
+name        packer
+version     1.14.2
+release     1
+description packer: machine image builder
+
+source      https://releases.hashicorp.com/packer/1.14.2/packer_1.14.2_linux_amd64.zip
+hash        sha256:cfefdea4ac580eba7b254ef34d25b756d4961741004e3e701a1476594d13e64a
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/bin"
+install     unzip -o -d "$WORK/bin-unpack" "$SRC/"*.zip
+install     find "$WORK/bin-unpack" -type f -name packer -exec cp {} "$PKG/usr/bin/packer" \;
+install     chmod 755 "$PKG/usr/bin/packer"

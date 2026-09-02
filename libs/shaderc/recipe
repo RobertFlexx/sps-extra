@@ -1,0 +1,18 @@
+name        shaderc
+version     2025.3
+release     1
+description shaderc: GLSL/HLSL to SPIR-V compiler
+
+source      https://github.com/google/shaderc/archive/v2025.3.tar.gz
+hash        sha256:a8e4a25e5c2686fd36981e527ed05e451fcfc226bddf350f4e76181371190937
+
+depend      filesystem
+depend      glslang
+depend      spirv-tools
+depend      spirv-headers
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DSHADERC_SKIP_TESTS=ON -DSHADERC_SKIP_EXAMPLES=ON -DSHADERC_ENABLE_SHARED_CRT=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

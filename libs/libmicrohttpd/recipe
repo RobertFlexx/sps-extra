@@ -1,0 +1,14 @@
+name        libmicrohttpd
+version     1.0.2
+release     1
+description libmicrohttpd: embeddable HTTP server library
+
+source      https://ftp.gnu.org/gnu/libmicrohttpd/libmicrohttpd-1.0.2.tar.gz
+hash        sha256:df324fcd0834175dab07483133902d9774a605bfa298025f69883288fd20a8c7
+
+depend      filesystem
+depend      gnutls
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-https
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

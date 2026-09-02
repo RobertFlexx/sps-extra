@@ -1,0 +1,16 @@
+name        spirv-tools
+version     1.4.309.0
+release     1
+description spirv-tools: SPIR-V optimizer and assembler
+
+source      https://github.com/KhronosGroup/SPIRV-Tools/archive/vulkan-sdk-1.4.309.0.tar.gz
+hash        sha256:6b8577054c575573ead3ad71cb6a2c0b3397b64c746cc3c99e48cc5e324c1b55
+
+depend      filesystem
+depend      spirv-headers
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DSPIRV_SKIP_TESTS=ON -DSPIRV-Headers_SOURCE_DIR=/usr
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

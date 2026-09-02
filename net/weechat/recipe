@@ -1,0 +1,22 @@
+name        weechat
+version     4.6.3
+release     1
+description weechat: extensible chat client
+
+source      https://weechat.org/files/src/weechat-4.6.3.tar.xz
+hash        sha256:5c0b5efa969b873c4be582019b18523ee403e7430b8223825bcdb44a89f5815d
+
+depend      filesystem
+depend      ncurses
+depend      gnutls
+depend      curl
+depend      zlib
+depend      zstd
+depend      libgcrypt
+depend      aspell
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_PHP=OFF -DENABLE_JAVASCRIPT=OFF -DENABLE_TESTS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

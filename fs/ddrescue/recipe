@@ -1,0 +1,15 @@
+name        ddrescue
+version     1.29.1
+release     1
+description ddrescue: GNU data recovery tool
+
+source      https://ftp.gnu.org/gnu/ddrescue/ddrescue-1.29.1.tar.lz
+hash        sha256:ddd7d45df026807835a2ec6ab9c365df2ef19e8de1a50ffe6886cd391e04dd75
+
+depend      filesystem
+builddep    lzip
+
+prepare     lzip -cd "$SRC/"ddrescue-1.29.1.tar.lz | tar -x --strip-components=1
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

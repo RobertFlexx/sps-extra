@@ -1,0 +1,13 @@
+name        cowsay
+version     3.8.4
+release     1
+arch        any
+description cowsay: configurable speaking cow
+
+source      https://github.com/cowsay-org/cowsay/archive/v3.8.4.tar.gz
+hash        sha256:c15bc10712835d3a9bcda780dc9453362567bf48d1185905dc7ef2334d79aadd
+
+depend      filesystem
+depend      perl
+
+install     make prefix=/usr DESTDIR="$PKG" install

@@ -1,0 +1,16 @@
+name        fail2ban
+version     1.1.0
+release     2
+arch        any
+description fail2ban: ban hosts that cause multiple auth errors
+
+source      https://github.com/fail2ban/fail2ban/archive/1.1.0.tar.gz
+hash        sha256:474fcc25afdaf929c74329d1e4d24420caabeea1ef2e041a267ce19269570bae
+
+depend      filesystem
+depend      python
+
+install     python3 setup.py install --prefix=/usr --root="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/fail2ban.service" "$PKG/usr/lib/systemd/system/fail2ban.service"
+install     install -m 0755 "$SRC/files/openrc-fail2ban" "$PKG/etc/init.d/fail2ban"

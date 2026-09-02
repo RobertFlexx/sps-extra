@@ -1,0 +1,20 @@
+name        spice
+version     0.15.2
+release     1
+description spice: remote display protocol server
+
+source      https://www.spice-space.org/download/releases/spice-server/spice-0.15.2.tar.bz2
+hash        sha256:6d9eb6117f03917471c4bc10004abecff48a79fb85eb85a1c45f023377015b81
+
+depend      filesystem
+depend      spice-protocol
+depend      pixman
+depend      openssl
+depend      opus
+depend      alsa-lib
+depend      glib
+depend      libjpeg-turbo
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --disable-gstreamer --enable-opus
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

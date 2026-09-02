@@ -1,0 +1,16 @@
+name        valkey
+version     8.1.4
+release     2
+description valkey: Redis-compatible data store
+
+source      https://github.com/valkey-io/valkey/archive/8.1.4.tar.gz
+hash        sha256:32350b017fee5e1a85f7e2d8580d581a0825ceae5cb3395075012c0970694dee
+
+depend      filesystem
+depend      openssl
+
+build       make -j"$MAKEJOBS" PREFIX=/usr BUILD_TLS=yes
+install     make PREFIX=/usr DESTDIR="$PKG" install
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/valkey.service" "$PKG/usr/lib/systemd/system/valkey.service"
+install     install -m 0755 "$SRC/files/openrc-valkey" "$PKG/etc/init.d/valkey"

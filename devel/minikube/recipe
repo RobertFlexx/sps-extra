@@ -1,0 +1,13 @@
+name        minikube
+version     1.36.0
+release     1
+description minikube: local Kubernetes
+
+source      https://github.com/kubernetes/minikube/releases/download/v1.36.0/minikube-linux-amd64
+hash        sha256:cddeab5ab86ab98e4900afac9d62384dae0941498dfbe712ae0c8868250bc3d7
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$SRC/"minikube-linux-amd64 "$PKG/usr/bin/minikube"
+install     chmod 755 "$PKG/usr/bin/minikube"

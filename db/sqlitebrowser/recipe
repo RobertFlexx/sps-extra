@@ -1,0 +1,17 @@
+name        sqlitebrowser
+version     3.13.1
+release     1
+description sqlitebrowser: visual SQLite editor
+
+source      https://github.com/sqlitebrowser/sqlitebrowser/archive/v3.13.1.tar.gz
+hash        sha256:1044ba67d649cabc459eb887c016f70d6a404ad651390ab33bf7859dc7f1b67b
+
+depend      filesystem
+depend      qt6-qtbase
+depend      sqlite
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DQT_MAJOR=6 -Dsqlcipher=0 -DENABLE_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

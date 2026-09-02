@@ -1,0 +1,15 @@
+name        jsoncpp
+version     1.9.6
+release     1
+description jsoncpp: JSON C++ library
+
+source      https://github.com/open-source-parsers/jsoncpp/archive/1.9.6.tar.gz
+hash        sha256:f93b6dd7ce796b13d02c108bc9f79812245a82e577581c4c9aabe57075c90ea2
+
+depend      filesystem
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dtests=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

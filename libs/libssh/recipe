@@ -1,0 +1,17 @@
+name        libssh
+version     0.11.2
+release     1
+description libssh: SSH library
+
+source      https://www.libssh.org/files/0.11/libssh-0.11.2.tar.xz
+hash        sha256:69529fc18f5b601f0baf0e5a4501a2bc26df5e2f116f5f8f07f19fafaa6d04e7
+
+depend      filesystem
+depend      openssl
+depend      zlib
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DWITH_GSSAPI=OFF -DUNIT_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

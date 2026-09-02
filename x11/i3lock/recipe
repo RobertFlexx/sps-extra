@@ -1,0 +1,20 @@
+name        i3lock
+version     2.15
+release     1
+description i3lock: screen locker for X
+
+source      https://i3wm.org/i3lock/i3lock-2.15.tar.xz
+hash        sha256:5711ae5255e82b1dc8d8b4c035c520230921aba7ceee23d66f79765b21a84baa
+
+depend      filesystem
+depend      libxcb
+depend      xcb-util
+depend      xcb-util-image
+depend      libxkbcommon
+depend      libev
+depend      cairo
+depend      linux-pam
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

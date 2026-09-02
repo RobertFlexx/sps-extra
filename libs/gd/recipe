@@ -1,0 +1,19 @@
+name        gd
+version     2.3.3
+release     1
+description gd: image creation library
+
+source      https://github.com/libgd/libgd/releases/download/gd-2.3.3/libgd-2.3.3.tar.xz
+hash        sha256:3fe822ece20796060af63b7c60acb151e5844204d289da0ce08f8fdf131e5a61
+
+depend      filesystem
+depend      libpng
+depend      libjpeg-turbo
+depend      freetype
+depend      libtiff
+depend      libwebp
+depend      zlib
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

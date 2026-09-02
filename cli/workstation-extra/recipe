@@ -1,0 +1,26 @@
+name        workstation-extra
+version     1.0
+release     1
+arch        any
+description workstation-extra: larger optional workstation set
+
+depend      filesystem
+depend      daily-drive
+depend      qt6-qtwebengine
+depend      falkon
+depend      keepassxc
+depend      qbittorrent
+depend      gimp
+depend      inkscape
+depend      vlc
+depend      sway
+depend      i3
+depend      qemu
+depend      postgresql
+depend      weechat
+depend      newsboat
+depend      zathura
+depend      geany
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf "%s\n" "workstation-extra" > "$PKG/usr/share/sps/sets/workstation-extra"

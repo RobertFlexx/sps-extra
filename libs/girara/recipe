@@ -1,0 +1,17 @@
+name        girara
+version     0.4.5
+release     1
+description girara: UI library for zathura
+
+source      https://github.com/pwmt/girara/archive/0.4.5.tar.gz
+hash        sha256:9abb84fdb3f8f51e8aef8d53488fd0631357f0713ad5aa4a5c755c23f54b23df
+
+depend      filesystem
+depend      gtk3
+depend      json-glib
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Ddocs=disabled -Dtests=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

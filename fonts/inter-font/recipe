@@ -1,0 +1,15 @@
+name        inter-font
+version     4.1
+release     1
+arch        any
+description inter-font: Inter typeface
+
+source      https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip
+hash        sha256:9883fdd4a49d4fb66bd8177ba6625ef9a64aa45899767dde3d36aa425756b11e
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/share/fonts/TTF"
+install     unzip -o -d "$WORK/inter" "$SRC/"*.zip
+install     find "$WORK/inter" -name "*.ttf" -exec cp {} "$PKG/usr/share/fonts/TTF/" \;

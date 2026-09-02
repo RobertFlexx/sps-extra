@@ -1,0 +1,17 @@
+name        gst-plugins-ugly
+version     1.26.5
+release     1
+description gst-plugins-ugly: GStreamer plugins (ugly set)
+
+source      https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-1.26.5.tar.xz
+hash        sha256:3dfc43435be97e110816bac6d602b0f206a038546279683d9d25372ff127db52
+
+depend      filesystem
+depend      gstreamer
+depend      gst-plugins-base
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dtests=disabled -Ddoc=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

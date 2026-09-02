@@ -1,0 +1,19 @@
+name        sdl2-mixer
+version     2.8.1
+release     1
+description sdl2-mixer: SDL2 audio mixing
+
+source      https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.1/SDL2_mixer-2.8.1.tar.gz
+hash        sha256:cb760211b056bfe44f4a1e180cc7cb201137e4d1572f2002cc1be728efd22660
+
+depend      filesystem
+depend      sdl2
+depend      libvorbis
+depend      flac
+depend      mpg123
+depend      opus
+depend      libmodplug
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

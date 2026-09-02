@@ -1,0 +1,20 @@
+name        libjxl
+version     0.11.1
+release     1
+description libjxl: JPEG XL reference implementation
+
+source      https://github.com/libjxl/libjxl/archive/v0.11.1.tar.gz
+hash        sha256:1492dfef8dd6c3036446ac3b340005d92ab92f7d48ee3271b5dac1d36945d3d9
+
+depend      filesystem
+depend      brotli
+depend      highway
+depend      lcms2
+depend      libpng
+depend      libjpeg-turbo
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DJPEGXL_ENABLE_BENCHMARK=OFF -DJPEGXL_ENABLE_DOXYGEN=OFF -DJPEGXL_ENABLE_MANPAGES=OFF -DJPEGXL_ENABLE_EXAMPLES=OFF -DJPEGXL_BUNDLE_LIBPNG=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

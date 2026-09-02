@@ -1,0 +1,16 @@
+name        bspwm
+version     0.9.11
+release     1
+description bspwm: binary space partitioning WM
+
+source      https://github.com/baskerville/bspwm/archive/0.9.11.tar.gz
+hash        sha256:1de33634842d92421a92caabebb051c7a9281d0ec2f8f375871a043f0ea520ce
+
+depend      filesystem
+depend      libxcb
+depend      xcb-util
+depend      xcb-util-wm
+depend      xcb-util-keysyms
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

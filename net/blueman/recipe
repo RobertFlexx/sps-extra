@@ -1,0 +1,17 @@
+name        blueman
+version     2.4.4
+release     1
+description blueman: GTK Bluetooth manager
+
+source      https://github.com/blueman-project/blueman/releases/download/2.4.4/blueman-2.4.4.tar.xz
+hash        sha256:d34f9154c8c6887d15679d129744922ac72f6a71cb2bccfb6662f8ca446e85f0
+
+depend      filesystem
+depend      bluez
+depend      gtk3
+depend      python
+depend      glib
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

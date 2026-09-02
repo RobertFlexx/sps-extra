@@ -1,0 +1,25 @@
+name        mariadb
+version     11.8.3
+release     2
+description mariadb: relational database
+
+source      https://archive.mariadb.org/mariadb-11.8.3/source/mariadb-11.8.3.tar.gz
+hash        sha256:1014a85c768de8f9e9c6d4bf0b42617f3b1588be1ad371f71674ea32b87119c0
+
+depend      filesystem
+depend      openssl
+depend      zlib
+depend      zstd
+depend      ncurses
+depend      libxml2
+depend      pcre2
+depend      jemalloc
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DWITH_UNIT_TESTS=OFF -DCONNECT_WITH_MONGO=OFF -DPLUGIN_AUTH_PAM=NO -DWITHOUT_SERVER=OFF -DINSTALL_LAYOUT=RPM -DINSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/mariadb.service" "$PKG/usr/lib/systemd/system/mariadb.service"
+install     install -m 0755 "$SRC/files/openrc-mariadbd" "$PKG/etc/init.d/mariadbd"

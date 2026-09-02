@@ -1,0 +1,17 @@
+name        dmenu
+version     5.3
+release     1
+description dmenu: dynamic menu
+
+source      https://dl.suckless.org/tools/dmenu-5.3.tar.gz
+hash        sha256:1a8f53e6fd2d749839ec870c5e27b3e14da5c3eeacbfcb945d159e1d5433795f
+
+depend      filesystem
+depend      libx11
+depend      libxinerama
+depend      libxft
+depend      freetype
+depend      fontconfig
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

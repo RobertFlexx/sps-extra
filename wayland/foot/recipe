@@ -1,0 +1,21 @@
+name        foot
+version     1.22.3
+release     1
+description foot: fast Wayland terminal
+
+source      https://codeberg.org/dnkl/foot/releases/download/1.22.3/foot-1.22.3.tar.gz
+hash        sha256:42e1b5dd1bb4737ca63124711d48a805277d0dca2d892ac7d908bc0375c5d080
+
+depend      filesystem
+depend      wayland
+depend      fcft
+depend      pixman
+depend      libxkbcommon
+depend      fontconfig
+depend      utf8proc
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Ddocs=disabled -Dtests=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

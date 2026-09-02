@@ -1,0 +1,31 @@
+name        qemu
+version     10.0.2
+release     2
+description qemu: machine emulator and virtualizer
+
+source      https://download.qemu.org/qemu-10.0.2.tar.xz
+hash        sha256:ef786f2398cb5184600f69aef4d5d691efd44576a3cff4126d38d4c6fec87759
+
+depend      filesystem
+depend      glib
+depend      pixman
+depend      zlib
+depend      zstd
+depend      libslirp
+depend      ncurses
+depend      libcap-ng
+depend      libseccomp
+depend      gnutls
+depend      attr
+depend      libusb
+depend      alsa-lib
+depend      pipewire
+depend      mesa
+depend      virglrenderer
+depend      spice
+depend      liburing
+depend      capstone
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --sysconfdir=/etc --localstatedir=/var --enable-slirp --disable-linux-aio --enable-linux-io_uring --disable-werror --disable-docs --audio-drv-list=alsa,pipewire --enable-virglrenderer --enable-spice
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

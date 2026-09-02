@@ -1,0 +1,14 @@
+name        expect
+version     5.45.4
+release     1
+description expect: programmed dialogue with interactive programs
+
+source      https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz
+hash        sha256:49a7da83b0bdd9f46d04a04deec19c7767bb9a323e40c4781f89caf760b92c34
+
+depend      filesystem
+depend      tcl
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

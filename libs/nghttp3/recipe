@@ -1,0 +1,13 @@
+name        nghttp3
+version     1.11.0
+release     1
+description nghttp3: HTTP/3 library
+
+source      https://github.com/ngtcp2/nghttp3/releases/download/v1.11.0/nghttp3-1.11.0.tar.xz
+hash        sha256:27d084518f06d78279b050cc9cdff2418f80fb753da019427ce853cec920f33f
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-lib-only
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,11 @@
+name        clang
+version     20.1.8
+release     1
+arch        any
+description clang: metapackage pulling llvm (clang and lld live in llvm)
+
+depend      filesystem
+depend      llvm
+
+install     mkdir -p "$PKG/usr/share/sps/sets"
+install     printf "%s\n" "clang" > "$PKG/usr/share/sps/sets/clang"

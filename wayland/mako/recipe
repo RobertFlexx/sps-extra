@@ -1,0 +1,19 @@
+name        mako
+version     1.10.0
+release     1
+description mako: Wayland notification daemon
+
+source      https://github.com/emersion/mako/releases/download/v1.10.0/mako-1.10.0.tar.gz
+hash        sha256:a72543f7b92568a0c3c45a5c0e3487ced65c18003eecd9b7d017a6464e7cef82
+
+depend      filesystem
+depend      wayland
+depend      pango
+depend      cairo
+depend      libnotify
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

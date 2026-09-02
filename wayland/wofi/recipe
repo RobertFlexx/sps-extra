@@ -1,0 +1,17 @@
+name        wofi
+version     1.4.1
+release     1
+description wofi: Wayland launcher
+
+source      https://hg.sr.ht/~scoopta/wofi/archive/v1.4.1.tar.gz
+hash        sha256:e95e35c03551c39178c16ad6213a88e3883a236e942d7f2666c780d934c270bb
+
+depend      filesystem
+depend      gtk3
+depend      wayland
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

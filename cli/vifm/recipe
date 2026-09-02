@@ -1,0 +1,14 @@
+name        vifm
+version     0.14.3
+release     1
+description vifm: vi-like file manager
+
+source      https://github.com/vifm/vifm/releases/download/v0.14.3/vifm-0.14.3.tar.bz2
+hash        sha256:16a9be1108d6a5a09e9f947f7256375e519ba41ebe9473659b20739fdbf3440e
+
+depend      filesystem
+depend      ncurses
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

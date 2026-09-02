@@ -1,0 +1,15 @@
+name        composer
+version     2.8.10
+release     1
+arch        any
+description composer: PHP dependency manager
+
+source      https://github.com/composer/composer/releases/download/2.8.10/composer.phar
+hash        sha256:28dbb6bd8bef31479c7985b774c130a8bda37dbe63c35b56f6cb6bc377427573
+
+depend      filesystem
+depend      php
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$SRC/"composer.phar "$PKG/usr/bin/composer"
+install     chmod 755 "$PKG/usr/bin/composer"

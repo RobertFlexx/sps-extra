@@ -1,0 +1,31 @@
+name        inkscape
+version     1.4.2
+release     1
+description inkscape: vector graphics editor
+
+source      https://media.inkscape.org/dl/resources/file/inkscape-1.4.2.tar.xz
+hash        sha256:2000530c7917e5260c9e8575a7154ff6926643d2006487d714e304a963f0c782
+
+depend      filesystem
+depend      gtk3
+depend      boost
+depend      gc
+depend      gsl
+depend      libxml2
+depend      libxslt
+depend      poppler
+depend      potrace
+depend      lcms2
+depend      double-conversion
+depend      libjpeg-turbo
+depend      libpng
+depend      pango
+depend      cairo
+depend      freetype
+depend      harfbuzz
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DWITH_IMAGE_MAGICK=OFF -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

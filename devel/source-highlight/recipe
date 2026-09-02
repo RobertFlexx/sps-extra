@@ -1,0 +1,14 @@
+name        source-highlight
+version     3.1.9
+release     1
+description source-highlight: GNU syntax highlighter
+
+source      https://ftp.gnu.org/gnu/src-highlite/source-highlight-3.1.9.tar.gz
+hash        sha256:3a7fd28378cb5416f8de2c9e77196ec915145d44e30ff4e0ee8beb3fe6211c91
+
+depend      filesystem
+depend      boost
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

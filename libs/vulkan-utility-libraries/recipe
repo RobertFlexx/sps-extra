@@ -1,0 +1,16 @@
+name        vulkan-utility-libraries
+version     1.4.309.0
+release     1
+description vulkan-utility-libraries: Vulkan utility libraries
+
+source      https://github.com/KhronosGroup/Vulkan-Utility-Libraries/archive/vulkan-sdk-1.4.309.0.tar.gz
+hash        sha256:92e3b842d61965ccab1de04f154eeedef23f895104330e8237055a9ee2feed62
+
+depend      filesystem
+depend      vulkan-headers
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

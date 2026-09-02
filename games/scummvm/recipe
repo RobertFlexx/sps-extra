@@ -1,0 +1,24 @@
+name        scummvm
+version     2.9.1
+release     1
+description scummvm: adventure game engine
+
+source      https://downloads.scummvm.org/frs/scummvm/2.9.1/scummvm-2.9.1.tar.xz
+hash        sha256:6a82f36afa9de758ab1dd377101a26a53f12417cbfd350bb8e5d7fd5b8c257e3
+
+depend      filesystem
+depend      sdl2
+depend      zlib
+depend      libvorbis
+depend      flac
+depend      libpng
+depend      freetype
+depend      curl
+depend      faad2
+depend      fluidsynth
+depend      libjpeg-turbo
+depend      mpg123
+
+configure   ./configure --prefix=/usr --enable-release --disable-debug
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

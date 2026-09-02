@@ -1,0 +1,16 @@
+name        spirv-headers
+version     1.4.309.0
+release     1
+arch        any
+description spirv-headers: SPIR-V header files
+
+source      https://github.com/KhronosGroup/SPIRV-Headers/archive/vulkan-sdk-1.4.309.0.tar.gz
+hash        sha256:a96f8b4f2dfb18f7432e5c523e220ab0075372a9509e0c25fbff21c76af0de7c
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

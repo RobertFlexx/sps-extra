@@ -1,0 +1,14 @@
+name        potrace
+version     1.16
+release     1
+description potrace: bitmap tracer
+
+source      https://potrace.sourceforge.net/download/1.16/potrace-1.16.tar.gz
+hash        sha256:be8248a17dedd6ccbaab2fcc45835bb0502d062e40fbded3bc56028ce5eb7acc
+
+depend      filesystem
+depend      zlib
+
+configure   ./configure --prefix=/usr --with-libpotrace
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,19 @@
+name        f2fs-tools
+version     1.16.0
+release     1
+description f2fs-tools: Flash-Friendly File System tools
+
+source      https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-tools.git/snapshot/f2fs-tools-1.16.0.tar.gz
+hash        sha256:208c7a07e95383fbd7b466b5681590789dcb41f41bf197369c41a95383b57c5e
+
+depend      filesystem
+depend      util-linux
+builddep    autoconf
+builddep    automake
+builddep    libtool
+builddep    pkgconf
+
+prepare     ./autogen.sh
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

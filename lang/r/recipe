@@ -1,0 +1,22 @@
+name        r
+version     4.5.1
+release     1
+description r: GNU R statistical computing
+
+source      https://cran.r-project.org/src/base/R-4/R-4.5.1.tar.gz
+hash        sha256:b42a7921400386645b10105b91c68728787db5c4c83c9f6c30acdce632e1bb70
+
+depend      filesystem
+depend      bzip2
+depend      xz
+depend      zlib
+depend      pcre2
+depend      curl
+depend      libpng
+depend      cairo
+depend      pango
+depend      readline
+
+configure   ./configure --prefix=/usr --enable-R-shlib --with-cairo --with-readline --without-icu --without-recommended-packages
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

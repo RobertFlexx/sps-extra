@@ -1,0 +1,23 @@
+name        qbittorrent
+version     5.1.2
+release     1
+description qbittorrent: BitTorrent client
+
+source      https://sourceforge.net/projects/qbittorrent/files/qbittorrent/qbittorrent-5.1.2/qbittorrent-5.1.2.tar.xz
+hash        sha256:d5806092c71959a5dbdf55c645ea45ed48a70369ab6c226039b83f1ade6979f2
+
+depend      filesystem
+depend      qt6-qtbase
+depend      qt6-qtsvg
+depend      qt6-qttools
+depend      qt6-qtwebengine
+depend      libtorrent-rasterbar
+depend      boost
+depend      openssl
+depend      zlib
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DQT6=ON -DTESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

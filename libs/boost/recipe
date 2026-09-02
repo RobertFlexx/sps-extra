@@ -1,0 +1,19 @@
+name        boost
+version     1.89.0
+release     1
+description boost: C++ libraries
+
+source      https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.bz2
+hash        sha256:85a33fa22621b4f314f8e85e1a5e2a9363d22e4f4992925d4bb3bc631b5a0c7a
+
+depend      filesystem
+depend      zlib
+depend      bzip2
+depend      xz
+depend      zstd
+depend      icu
+depend      python
+
+configure   ./bootstrap.sh --prefix=/usr --with-python=python3 --libdir=/usr/lib64
+build       ./b2 -j"$MAKEJOBS" threading=multi variant=release link=shared runtime-link=shared
+install     ./b2 install --prefix="$PKG/usr" --libdir="$PKG/usr/lib64" threading=multi variant=release link=shared

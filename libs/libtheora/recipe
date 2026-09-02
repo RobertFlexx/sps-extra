@@ -1,0 +1,15 @@
+name        libtheora
+version     1.2.0
+release     1
+description libtheora: Theora video codec
+
+source      https://downloads.xiph.org/releases/theora/libtheora-1.2.0.tar.gz
+hash        sha256:279327339903b544c28a92aeada7d0dcfd0397b59c2f368cc698ac56f515906e
+
+depend      filesystem
+depend      libogg
+depend      libvorbis
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --disable-examples
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

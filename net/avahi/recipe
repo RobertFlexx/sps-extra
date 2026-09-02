@@ -1,0 +1,21 @@
+name        avahi
+version     0.8
+release     2
+description avahi: mDNS/DNS-SD stack
+
+source      https://github.com/lathiat/avahi/releases/download/v0.8/avahi-0.8.tar.gz
+hash        sha256:060309d7a333d38d951bc27598c677af1796934dbd98e1024e7ad8de798fedda
+
+depend      filesystem
+depend      dbus
+depend      expat
+depend      libdaemon
+depend      gdbm
+depend      glib
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --disable-qt3 --disable-qt4 --disable-qt5 --disable-gtk --disable-gtk3 --disable-mono --disable-monodoc --disable-python --disable-pygobject --with-distro=none --disable-libevent
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/avahi-daemon.service" "$PKG/usr/lib/systemd/system/avahi-daemon.service"
+install     install -m 0755 "$SRC/files/openrc-avahi-daemon" "$PKG/etc/init.d/avahi-daemon"

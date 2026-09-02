@@ -1,0 +1,17 @@
+name        libxdg-basedir
+version     1.2.3
+release     1
+description libxdg-basedir: XDG Base Directory implementation
+
+source      https://github.com/devnev/libxdg-basedir/archive/libxdg-basedir-1.2.3.tar.gz
+hash        sha256:ff30c60161f7043df4dcc6e7cdea8e064e382aa06c73dcc3d1885c7d2c77451d
+
+depend      filesystem
+builddep    autoconf
+builddep    automake
+builddep    libtool
+
+prepare     ./autogen.sh
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

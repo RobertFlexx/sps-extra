@@ -1,0 +1,17 @@
+name        taglib
+version     2.1.1
+release     1
+description taglib: audio metadata library
+
+source      https://github.com/taglib/taglib/releases/download/v2.1.1/taglib-2.1.1.tar.gz
+hash        sha256:3716d31f7c83cbf17b67c8cf44dd82b2a2f17e6780472287a16823e70305ddba
+
+depend      filesystem
+depend      zlib
+depend      utfcpp
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,16 @@
+name        babl
+version     0.1.114
+release     1
+description babl: pixel format conversion
+
+source      https://download.gimp.org/babl/0.1/babl-0.1.114.tar.xz
+hash        sha256:bcbb7786c1e447703db3bc7fa34d62d0d2d117b22f04d8834c7b2d5ded456487
+
+depend      filesystem
+depend      lcms2
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dwith-docs=false -Denable-gir=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

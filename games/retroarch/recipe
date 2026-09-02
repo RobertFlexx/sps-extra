@@ -1,0 +1,21 @@
+name        retroarch
+version     1.21.0
+release     1
+description retroarch: frontend for libretro cores
+
+source      https://github.com/libretro/RetroArch/archive/v1.21.0.tar.gz
+hash        sha256:9da17918c10d91d4ebfde9ff402dba0b1ad6660fdbce7656d32f0c0182b3a538
+
+depend      filesystem
+depend      mesa
+depend      alsa-lib
+depend      ffmpeg
+depend      freetype
+depend      zlib
+depend      wayland
+depend      libxkbcommon
+depend      sdl2
+
+configure   ./configure --prefix=/usr --disable-discord --disable-qt --enable-alsa --enable-opengl --enable-egl --enable-wayland
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

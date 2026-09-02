@@ -1,0 +1,22 @@
+name        nfs-utils
+version     2.8.3
+release     2
+description nfs-utils: NFS client and server
+
+source      https://www.kernel.org/pub/linux/utils/nfs-utils/2.8.3/nfs-utils-2.8.3.tar.xz
+hash        sha256:11e7c5847a8423a72931c865bd9296e7fd56ff270a795a849183900961711725
+
+depend      filesystem
+depend      libtirpc
+depend      rpcsvc-proto
+depend      libevent
+depend      sqlite
+depend      lvm2
+depend      keyutils
+
+configure   ./configure --prefix=/usr --disable-gss --disable-nfsv4 --with-statduser=nobody --disable-nfsdcltrack
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/nfs-server.service" "$PKG/usr/lib/systemd/system/nfs-server.service"
+install     install -m 0755 "$SRC/files/openrc-nfs-server" "$PKG/etc/init.d/nfs-server"

@@ -1,0 +1,15 @@
+name        aom
+version     3.12.1
+release     1
+description aom: AV1 codec library
+
+source      https://storage.googleapis.com/aom-releases/libaom-3.12.1.tar.gz
+hash        sha256:9e9775180dec7dfd61a79e00bda3809d43891aee6b2e331ff7f26986207ea22e
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_DOCS=OFF -DENABLE_TESTS=OFF -DENABLE_NASM=ON -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,30 @@
+name        darktable
+version     5.2.1
+release     1
+description darktable: photography workflow
+
+source      https://github.com/darktable-org/darktable/releases/download/release-5.2.1/darktable-5.2.1.tar.xz
+hash        sha256:02f1aa9ae93949e7bc54c34eeb5ff92c2b87f95d2547865df55c60467564ee11
+
+depend      filesystem
+depend      gtk3
+depend      glib
+depend      lcms2
+depend      exiv2
+depend      libjpeg-turbo
+depend      libpng
+depend      libtiff
+depend      pugixml
+depend      sqlite
+depend      curl
+depend      json-glib
+depend      zlib
+depend      pugixml
+depend      libxml2
+depend      iso-codes
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_TESTING=OFF -DUSE_COLORD=OFF -DUSE_GMIC=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

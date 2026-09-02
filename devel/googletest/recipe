@@ -1,0 +1,15 @@
+name        googletest
+version     1.17.0
+release     1
+description googletest: Google Test and Google Mock
+
+source      https://github.com/google/googletest/archive/v1.17.0.tar.gz
+hash        sha256:65fab701d9829d38cb77c14acdc431d2108bfdbf8979e40eb8ae567edf10b27c
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_GMOCK=ON -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,19 @@
+name        zathura
+version     0.5.11
+release     1
+description zathura: document viewer
+
+source      https://github.com/pwmt/zathura/archive/0.5.11.tar.gz
+hash        sha256:32540747a6fe3c4189ec9d5de46a455862c88e11e969adb5bc0ce8f9b25b52d4
+
+depend      filesystem
+depend      gtk3
+depend      girara
+depend      json-glib
+depend      sqlite
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dtests=disabled -Dmanpages=disabled -Dsynctex=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

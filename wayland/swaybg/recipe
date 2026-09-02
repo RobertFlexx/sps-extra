@@ -1,0 +1,18 @@
+name        swaybg
+version     1.2.1
+release     1
+description swaybg: wallpaper tool for Wayland
+
+source      https://github.com/swaywm/swaybg/releases/download/v1.2.1/swaybg-1.2.1.tar.gz
+hash        sha256:6af1fdf0e57b1cc5345febed786b761fea0e170943a82639f94cfaed7df84f8f
+
+depend      filesystem
+depend      wayland
+depend      cairo
+depend      gdk-pixbuf
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dman-pages=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

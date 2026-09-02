@@ -1,0 +1,15 @@
+name        lynis
+version     3.1.4
+release     1
+arch        any
+description lynis: security auditing tool
+
+source      https://github.com/CISOfy/lynis/archive/3.1.4.tar.gz
+hash        sha256:db00e26cfb1e04ca70af48d106c3e2968eb468adbef17a2ab18b0028a3d1e3b7
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin" "$PKG/usr/share/lynis" "$PKG/etc/lynis"
+install     cp -a . "$PKG/usr/share/lynis/"
+install     printf "%s\n" "#!/bin/sh" "exec /usr/share/lynis/lynis \"\$@\"" > "$PKG/usr/bin/lynis"
+install     chmod 755 "$PKG/usr/bin/lynis"

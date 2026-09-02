@@ -1,0 +1,20 @@
+name        swaylock
+version     1.8.2
+release     1
+description swaylock: screen locker for Wayland
+
+source      https://github.com/swaywm/swaylock/releases/download/v1.8.2/swaylock-1.8.2.tar.gz
+hash        sha256:cf236356351af22679fdfbe107187a149aca154915737fdbc3ca5669ef35dca3
+
+depend      filesystem
+depend      wayland
+depend      cairo
+depend      libxkbcommon
+depend      gdk-pixbuf
+depend      linux-pam
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dpam=enabled -Dgdk-pixbuf=enabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

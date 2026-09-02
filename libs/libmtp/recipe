@@ -1,0 +1,14 @@
+name        libmtp
+version     1.1.22
+release     1
+description libmtp: Media Transfer Protocol library
+
+source      https://sourceforge.net/projects/libmtp/files/libmtp/1.1.22/libmtp-1.1.22.tar.gz
+hash        sha256:c3fcf411aea9cb9643590cbc9df99fa5fe30adcac695024442973d76fa5f87bc
+
+depend      filesystem
+depend      libusb
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

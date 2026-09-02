@@ -1,0 +1,17 @@
+name        dropbear
+version     2025.88
+release     2
+description dropbear: small SSH server and client
+
+source      https://matt.ucc.asn.au/dropbear/releases/dropbear-2025.88.tar.bz2
+hash        sha256:783f50ea27b17c16da89578fafdb6decfa44bb8f6590e5698a4e4d3672dc53d4
+
+depend      filesystem
+depend      zlib
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/dropbear.service" "$PKG/usr/lib/systemd/system/dropbear.service"
+install     install -m 0755 "$SRC/files/openrc-dropbear" "$PKG/etc/init.d/dropbear"

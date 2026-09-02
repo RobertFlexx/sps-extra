@@ -1,0 +1,24 @@
+name        picom
+version     12.5
+release     1
+description picom: X11 compositor
+
+source      https://github.com/yshui/picom/archive/v12.5.tar.gz
+hash        sha256:627fa5d7c590df3ba8d2c41eb35d3859f7826bd28fa49e92a0e04fb60ed77904
+
+depend      filesystem
+depend      libx11
+depend      libxext
+depend      libev
+depend      pixman
+depend      libglvnd
+depend      pcre2
+depend      xcb-util-renderutil
+depend      xcb-util-image
+depend      libxdg-basedir
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dwith_docs=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

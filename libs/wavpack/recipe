@@ -1,0 +1,13 @@
+name        wavpack
+version     5.8.1
+release     1
+description wavpack: hybrid lossless audio
+
+source      https://github.com/dbry/WavPack/releases/download/5.8.1/wavpack-5.8.1.tar.xz
+hash        sha256:7322775498602c8850afcfc1ae38f99df4cbcd51386e873d6b0f8047e55c0c26
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

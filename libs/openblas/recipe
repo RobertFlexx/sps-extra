@@ -1,0 +1,12 @@
+name        openblas
+version     0.3.30
+release     1
+description openblas: optimized BLAS
+
+source      https://github.com/OpenMathLib/OpenBLAS/archive/v0.3.30.tar.gz
+hash        sha256:27342cff518646afb4c2b976d809102e368957974c250a25ccc965e53063c95d
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr USE_OPENMP=1
+install     make PREFIX=/usr DESTDIR="$PKG" USE_OPENMP=1 install

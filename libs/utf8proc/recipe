@@ -1,0 +1,15 @@
+name        utf8proc
+version     2.10.0
+release     1
+description utf8proc: Unicode processing
+
+source      https://github.com/JuliaStrings/utf8proc/archive/v2.10.0.tar.gz
+hash        sha256:6f4f1b639daa6dca9f80bc5db1233e9cbaa31a67790887106160b33ef743f136
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_SHARED_LIBS=ON -DUTF8PROC_ENABLE_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

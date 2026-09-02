@@ -1,0 +1,16 @@
+name        glslang
+version     15.3.0
+release     1
+description glslang: GLSL/HLSL reference compiler
+
+source      https://github.com/KhronosGroup/glslang/archive/15.3.0.tar.gz
+hash        sha256:c6c21fe1873c37e639a6a9ac72d857ab63a5be6893a589f34e09a6c757174201
+
+depend      filesystem
+depend      spirv-tools
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_GLSLANG_BINARIES=ON -DBUILD_TESTING=OFF -DALLOW_EXTERNAL_SPIRV_TOOLS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,13 @@
+name        gdbm
+version     1.25
+release     1
+description gdbm: GNU dbm
+
+source      https://ftp.gnu.org/gnu/gdbm/gdbm-1.25.tar.gz
+hash        sha256:d02db3c5926ed877f8817b81cd1f92f53ef74ca8c6db543fbba0271b34f393ec
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-libgdbm-compat
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

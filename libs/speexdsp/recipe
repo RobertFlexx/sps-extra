@@ -1,0 +1,13 @@
+name        speexdsp
+version     1.2.1
+release     1
+description speexdsp: Speex DSP library
+
+source      https://downloads.xiph.org/releases/speex/speexdsp-1.2.1.tar.gz
+hash        sha256:8c777343e4a6399569c72abc38a95b24db56882c83dbdb6c6424a5f4aeb54d3d
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

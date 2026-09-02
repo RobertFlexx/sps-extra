@@ -1,0 +1,16 @@
+name        libportal
+version     0.9.1
+release     1
+description libportal: xdg-desktop-portal library
+
+source      https://github.com/flatpak/libportal/releases/download/0.9.1/libportal-0.9.1.tar.xz
+hash        sha256:de801ee349ed3c255a9af3c01b1a401fab5b3fc1c35eb2fd7dfb35d4b8194d7f
+
+depend      filesystem
+depend      glib
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dintrospection=false -Dvapi=false -Ddocs=false -Dtests=false -Dportal-tests=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

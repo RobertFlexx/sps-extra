@@ -1,0 +1,18 @@
+name        openconnect
+version     9.12
+release     1
+description openconnect: Cisco AnyConnect / GlobalProtect client
+
+source      https://www.infradead.org/openconnect/download/openconnect-9.12.tar.gz
+hash        sha256:a2bedce3aa4dfe75e36e407e48e8e8bc91d46def5335ac9564fbf91bd4b2413e
+
+depend      filesystem
+depend      gnutls
+depend      libxml2
+depend      zlib
+depend      lz4
+depend      p11-kit
+
+configure   ./configure --prefix=/usr --without-openssl --with-gnutls --without-vpnc-script
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

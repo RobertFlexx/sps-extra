@@ -1,0 +1,12 @@
+name        scdoc
+version     1.11.3
+release     1
+description scdoc: man-page generator
+
+source      https://git.sr.ht/~sircmpwn/scdoc/archive/1.11.3.tar.gz
+hash        sha256:4c5c6136540384e5455b250f768e7ca11b03fdba1a8efc2341ee0f1111e57612
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

@@ -1,0 +1,19 @@
+name        i3status
+version     2.15
+release     1
+description i3status: status bar for i3
+
+source      https://i3wm.org/i3status/i3status-2.15.tar.xz
+hash        sha256:6c67f52cae4f139df764ad1cc736562be0f97750791bc212b53f34c06eaf2205
+
+depend      filesystem
+depend      yajl
+depend      alsa-lib
+depend      libconfuse
+depend      yajl
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

@@ -1,0 +1,15 @@
+name        geos
+version     3.13.1
+release     1
+description geos: Geometry Engine Open Source
+
+source      https://download.osgeo.org/geos/geos-3.13.1.tar.bz2
+hash        sha256:df2c50503295f325e7c8d7b783aca8ba4773919cde984193850cf9e361dfd28c
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

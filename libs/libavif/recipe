@@ -1,0 +1,19 @@
+name        libavif
+version     1.3.0
+release     1
+description libavif: AVIF image library
+
+source      https://github.com/AOMediaCodec/libavif/archive/v1.3.0.tar.gz
+hash        sha256:0a545e953cc049bf5bcf4ee467306a2f113a75110edf59e61248873101cd26c1
+
+depend      filesystem
+depend      aom
+depend      dav1d
+depend      libjpeg-turbo
+depend      libpng
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DAVIF_CODEC_AOM=SYSTEM -DAVIF_CODEC_DAV1D=SYSTEM -DAVIF_BUILD_APPS=ON -DAVIF_LIBYUV=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

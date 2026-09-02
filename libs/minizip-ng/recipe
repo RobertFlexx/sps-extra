@@ -1,0 +1,20 @@
+name        minizip-ng
+version     4.0.10
+release     1
+description minizip-ng: zip archive library
+
+source      https://github.com/zlib-ng/minizip-ng/archive/4.0.10.tar.gz
+hash        sha256:c362e35ee973fa7be58cc5e38a4a6c23cc8f7e652555daf4f115a9eb2d3a6be7
+
+depend      filesystem
+depend      zlib
+depend      bzip2
+depend      xz
+depend      zstd
+depend      openssl
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DMZ_COMPAT=ON -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

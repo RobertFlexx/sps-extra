@@ -1,0 +1,16 @@
+name        swayidle
+version     1.8.0
+release     1
+description swayidle: idle management daemon
+
+source      https://github.com/swaywm/swayidle/releases/download/1.8.0/swayidle-1.8.0.tar.gz
+hash        sha256:16b3e76a117f2f0ff2ee5fbebf38849595cdd705db1cd5f6aceaed00d71b3aa1
+
+depend      filesystem
+depend      wayland
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dman-pages=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

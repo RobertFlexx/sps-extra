@@ -1,0 +1,19 @@
+name        haproxy
+version     3.2.4
+release     2
+description haproxy: TCP/HTTP load balancer
+
+source      https://www.haproxy.org/download/3.2/src/haproxy-3.2.4.tar.gz
+hash        sha256:5d4b2ee6fe56b8098ebb9c91a899d728f87d64cd7be8804d2ddcc5f937498c1d
+
+depend      filesystem
+depend      openssl
+depend      zlib
+depend      lua
+depend      pcre2
+
+build       make -j"$MAKEJOBS" TARGET=linux-glibc USE_OPENSSL=1 USE_ZLIB=1 USE_LUA=1 USE_PCRE2=1 PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" TARGET=linux-glibc install
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/haproxy.service" "$PKG/usr/lib/systemd/system/haproxy.service"
+install     install -m 0755 "$SRC/files/openrc-haproxy" "$PKG/etc/init.d/haproxy"

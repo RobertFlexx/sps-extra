@@ -1,0 +1,20 @@
+name        freeglut
+version     3.6.0
+release     1
+description freeglut: OpenGL utility toolkit
+
+source      https://github.com/FreeGLUTProject/freeglut/releases/download/v3.6.0/freeglut-3.6.0.tar.gz
+hash        sha256:9c3d4d6516fbfa0280edc93c77698fb7303e443c1aaaf37d269e3288a6c3ea52
+
+depend      filesystem
+depend      libx11
+depend      libxi
+depend      libxrandr
+depend      libxxf86vm
+depend      mesa
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DFREEGLUT_BUILD_DEMOS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

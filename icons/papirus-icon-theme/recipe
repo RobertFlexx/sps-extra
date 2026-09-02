@@ -1,0 +1,12 @@
+name        papirus-icon-theme
+version     20250501
+release     1
+arch        any
+description papirus-icon-theme: Papirus icon theme
+
+source      https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/archive/20250501.tar.gz
+hash        sha256:3831a487f813479ad3224fdbfb0c7023f23056899bc78c93737f341aa655558e
+
+depend      filesystem
+
+install     make DESTDIR="$PKG" PREFIX=/usr install

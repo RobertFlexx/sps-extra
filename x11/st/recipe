@@ -1,0 +1,17 @@
+name        st
+version     0.9.2
+release     1
+description st: simple terminal
+
+source      https://dl.suckless.org/st/st-0.9.2.tar.gz
+hash        sha256:6b215d4f472b21d6232f30f221117a777e24bcfee68955ddefb7426467f9494b
+
+depend      filesystem
+depend      libx11
+depend      libxft
+depend      fontconfig
+depend      freetype
+depend      ncurses
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

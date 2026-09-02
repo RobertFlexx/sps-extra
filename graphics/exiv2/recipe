@@ -1,0 +1,19 @@
+name        exiv2
+version     0.28.5
+release     1
+description exiv2: image metadata library
+
+source      https://github.com/Exiv2/exiv2/archive/v0.28.5.tar.gz
+hash        sha256:e1671f744e379a87ba0c984617406fdf8c0ad0c594e5122f525b2fb7c28d394d
+
+depend      filesystem
+depend      expat
+depend      zlib
+depend      brotli
+depend      inih
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DEXIV2_BUILD_SAMPLES=OFF -DEXIV2_ENABLE_VIDEO=ON -DEXIV2_ENABLE_WEBREADY=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

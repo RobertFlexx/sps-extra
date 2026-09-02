@@ -1,0 +1,13 @@
+name        watchexec
+version     2.3.2
+release     1
+description watchexec: execute commands when files change
+
+source      https://github.com/watchexec/watchexec/releases/download/v2.3.2/watchexec-2.3.2-x86_64-unknown-linux-musl.tar.xz
+hash        sha256:2e72e56f722212558ce53d71c13d069f469c8113396da09d8ebf122ce6a655a5
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f watchexec ]; then cp watchexec "$PKG/usr/bin/watchexec"; else find . -type f -name watchexec ! -path "./.*" -exec cp {} "$PKG/usr/bin/watchexec" \; ; fi
+install     chmod 755 "$PKG/usr/bin/watchexec"

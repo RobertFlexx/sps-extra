@@ -1,0 +1,13 @@
+name        libdaemon
+version     0.14
+release     1
+description libdaemon: UNIX daemonizing library
+
+source      http://0pointer.de/lennart/projects/libdaemon/libdaemon-0.14.tar.gz
+hash        sha256:fd23eb5f6f986dcc7e708307355ba3289abe03cc381fc47a80bca4a50aa6b834
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

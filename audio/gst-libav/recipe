@@ -1,0 +1,18 @@
+name        gst-libav
+version     1.26.5
+release     1
+description gst-libav: GStreamer FFmpeg plugin
+
+source      https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-1.26.5.tar.xz
+hash        sha256:d6de05884ef42376dd8cde89940f7b50ced96f4f6f52888e764cd8233e74f052
+
+depend      filesystem
+depend      gstreamer
+depend      gst-plugins-base
+depend      ffmpeg
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dtests=disabled -Ddoc=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

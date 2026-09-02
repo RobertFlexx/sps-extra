@@ -1,0 +1,28 @@
+name        wlroots
+version     0.19.0
+release     1
+description wlroots: Wayland compositor library
+
+source      https://gitlab.freedesktop.org/wlroots/wlroots/-/releases/0.19.0/downloads/wlroots-0.19.0.tar.gz
+hash        sha256:aefb0fe2633b0aad1d66123b2f41afab004fb625e2a7790492cdd39a805cac91
+
+depend      filesystem
+depend      wayland
+depend      wayland-protocols
+depend      libdrm
+depend      libinput
+depend      libxkbcommon
+depend      pixman
+depend      mesa
+depend      seatd
+depend      hwdata
+depend      libdisplay-info
+depend      libliftoff
+depend      vulkan-headers
+depend      vulkan-loader
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dexamples=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

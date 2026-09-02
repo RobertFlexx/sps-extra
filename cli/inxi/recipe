@@ -1,0 +1,16 @@
+name        inxi
+version     3.3.38-1
+release     1
+arch        any
+description inxi: system information script
+
+source      https://codeberg.org/smxi/inxi/archive/3.3.38-1.tar.gz
+hash        sha256:d739417047c9889bda34da5e0b70874f1c2c9d5766946f80c333f2b399ff2b3a
+
+depend      filesystem
+depend      perl
+
+install     mkdir -p "$PKG/usr/bin" "$PKG/usr/share/man/man1"
+install     cp inxi "$PKG/usr/bin/inxi"
+install     chmod 755 "$PKG/usr/bin/inxi"
+install     if [ -f inxi.1 ]; then cp inxi.1 "$PKG/usr/share/man/man1/inxi.1"; fi

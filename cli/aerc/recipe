@@ -1,0 +1,14 @@
+name        aerc
+version     0.21.0
+release     1
+description aerc: terminal email client
+
+source      https://git.sr.ht/~rjarry/aerc/archive/0.21.0.tar.gz
+hash        sha256:3f1469bbaea982fc58352f2682932ecc2fb50c705994d96b2343e771747745a7
+
+depend      filesystem
+builddep    go
+builddep    scdoc
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

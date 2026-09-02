@@ -1,0 +1,17 @@
+name        encfs
+version     1.9.5
+release     1
+description encfs: encrypted filesystem in user-space
+
+source      https://github.com/vgough/encfs/releases/download/v1.9.5/encfs-1.9.5.tar.gz
+hash        sha256:4709f05395ccbad6c0a5b40a4619d60aafe3473b1a79bafb3aa700b1f756fd63
+
+depend      filesystem
+depend      fuse3
+depend      openssl
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_UNIT_TESTS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

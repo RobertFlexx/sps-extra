@@ -1,0 +1,13 @@
+name        s3cmd
+version     2.4.0
+release     1
+arch        any
+description s3cmd: Amazon S3 command line
+
+source      https://github.com/s3tools/s3cmd/releases/download/v2.4.0/s3cmd-2.4.0.tar.gz
+hash        sha256:6b567521be1c151323f2059c8feec85ded96b6f184ff80535837fea33798b40b
+
+depend      filesystem
+depend      python
+
+install     python3 setup.py install --prefix=/usr --root="$PKG"

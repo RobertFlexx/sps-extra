@@ -1,0 +1,13 @@
+name        croc
+version     10.2.4
+release     1
+description croc: send files from one computer to another
+
+source      https://github.com/schollz/croc/releases/download/v10.2.4/croc_v10.2.4_Linux-64bit.tar.gz
+hash        sha256:dbb8d59c22c88e094c354827db1480e3b06fd2a103087939f29c3a446f8e7aee
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f croc ]; then cp croc "$PKG/usr/bin/croc"; else find . -type f -name croc ! -path "./.*" -exec cp {} "$PKG/usr/bin/croc" \; ; fi
+install     chmod 755 "$PKG/usr/bin/croc"

@@ -1,0 +1,12 @@
+name        bats-core
+version     1.12.0
+release     1
+arch        any
+description bats-core: Bash Automated Testing System
+
+source      https://github.com/bats-core/bats-core/archive/v1.12.0.tar.gz
+hash        sha256:e36b020436228262731e3319ed013d84fcd7c4bd97a1b34dee33d170e9ae6bab
+
+depend      filesystem
+
+install     ./install.sh "$PKG/usr"

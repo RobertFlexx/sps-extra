@@ -1,0 +1,13 @@
+name        hadolint
+version     2.12.0
+release     1
+description hadolint: Dockerfile linter
+
+source      https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64
+hash        sha256:56de6d5e5ec427e17b74fa48d51271c7fc0d61244bf5c90e828aab8362d55010
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$SRC/"hadolint-Linux-x86_64 "$PKG/usr/bin/hadolint"
+install     chmod 755 "$PKG/usr/bin/hadolint"

@@ -1,0 +1,15 @@
+name        tpm2-tools
+version     5.7
+release     1
+description tpm2-tools: TPM2 utilities
+
+source      https://github.com/tpm2-software/tpm2-tools/releases/download/5.7/tpm2-tools-5.7.tar.gz
+hash        sha256:3810d36b5079256f4f2f7ce552e22213d43b1031c131538df8a2dbc3c570983a
+
+depend      filesystem
+depend      tpm2-tss
+depend      openssl
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

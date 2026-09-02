@@ -1,0 +1,15 @@
+name        fira-code
+version     6.2
+release     1
+arch        any
+description fira-code: Fira Code typeface
+
+source      https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip
+hash        sha256:0949915ba8eb24d89fd93d10a7ff623f42830d7c5ffc3ecbf960e4ecad3e3e79
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/share/fonts/TTF"
+install     unzip -o -d "$WORK/fc" "$SRC/"*.zip
+install     find "$WORK/fc" -name "*.ttf" -exec cp {} "$PKG/usr/share/fonts/TTF/" \;

@@ -1,0 +1,13 @@
+name        atuin
+version     18.8.0
+release     1
+description atuin: magically better shell history
+
+source      https://github.com/atuinsh/atuin/releases/download/v18.8.0/atuin-x86_64-unknown-linux-gnu.tar.gz
+hash        sha256:5da991d001632ec140d9bc7b094ddcd7a227c59acc5c498bd9ef4141417ae8ea
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f atuin ]; then cp atuin "$PKG/usr/bin/atuin"; else find . -type f -name atuin ! -path "./.*" -exec cp {} "$PKG/usr/bin/atuin" \; ; fi
+install     chmod 755 "$PKG/usr/bin/atuin"

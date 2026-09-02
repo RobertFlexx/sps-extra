@@ -1,0 +1,15 @@
+name        dnsmasq
+version     2.91
+release     2
+description dnsmasq: DNS and DHCP server
+
+source      https://thekelleys.org.uk/dnsmasq/dnsmasq-2.91.tar.xz
+hash        sha256:f622682848b33677adb2b6ad08264618a2ae0a01da486a93fd8cd91186b3d153
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr CFLAGS="-O2 -DHAVE_DNSSEC"
+install     make PREFIX=/usr DESTDIR="$PKG" install
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/dnsmasq.service" "$PKG/usr/lib/systemd/system/dnsmasq.service"
+install     install -m 0755 "$SRC/files/openrc-dnsmasq" "$PKG/etc/init.d/dnsmasq"

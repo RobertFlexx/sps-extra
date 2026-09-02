@@ -1,0 +1,18 @@
+name        testdisk
+version     7.2
+release     1
+description testdisk: partition and file recovery (includes PhotoRec)
+
+source      https://www.cgsecurity.org/testdisk-7.2.tar.bz2
+hash        sha256:f8343be20cb4001c5d91a2e3bcd918398f00ae6d8310894a5a9f2feb813c283f
+
+depend      filesystem
+depend      ncurses
+depend      libjpeg-turbo
+depend      zlib
+depend      e2fsprogs
+depend      ntfs-3g
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

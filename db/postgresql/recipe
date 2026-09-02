@@ -1,0 +1,23 @@
+name        postgresql
+version     17.6
+release     2
+description postgresql: object-relational database
+
+source      https://ftp.postgresql.org/pub/source/v17.6/postgresql-17.6.tar.bz2
+hash        sha256:e0630a3600aea27511715563259ec2111cd5f4353a4b040e0be827f94cd7a8b0
+
+depend      filesystem
+depend      openssl
+depend      zlib
+depend      readline
+depend      icu
+depend      libxml2
+depend      lz4
+depend      zstd
+
+configure   ./configure --prefix=/usr --with-openssl --with-libxml --with-icu --with-lz4 --with-zstd --with-uuid=e2fs
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/postgresql.service" "$PKG/usr/lib/systemd/system/postgresql.service"
+install     install -m 0755 "$SRC/files/openrc-postgresql" "$PKG/etc/init.d/postgresql"

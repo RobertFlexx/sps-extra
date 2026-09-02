@@ -1,0 +1,18 @@
+name        fluidsynth
+version     2.4.7
+release     1
+description fluidsynth: SoundFont synthesizer
+
+source      https://github.com/FluidSynth/fluidsynth/archive/v2.4.7.tar.gz
+hash        sha256:7fb0e328c66a24161049e2b9e27c3b6e51a6904b31b1a647f73cc1f322523e88
+
+depend      filesystem
+depend      glib
+depend      alsa-lib
+depend      libsndfile
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -Denable-pulseaudio=OFF -Denable-jack=OFF -Denable-dbus=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

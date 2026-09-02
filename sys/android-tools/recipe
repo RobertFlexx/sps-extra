@@ -1,0 +1,21 @@
+name        android-tools
+version     35.0.2
+release     1
+description android-tools: adb and fastboot
+
+source      https://github.com/nmeum/android-tools/releases/download/35.0.2/android-tools-35.0.2.tar.xz
+hash        sha256:d2c3222280315f36d8bfa5c02d7632b47e365bfe2e77e99a3564fb6576f04097
+
+depend      filesystem
+depend      protobuf
+depend      libusb
+depend      brotli
+depend      zstd
+depend      lz4
+depend      pcre2
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

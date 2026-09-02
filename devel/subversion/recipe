@@ -1,0 +1,19 @@
+name        subversion
+version     1.14.5
+release     1
+description subversion: centralized version control
+
+source      https://dlcdn.apache.org/subversion/subversion-1.14.5.tar.bz2
+hash        sha256:e78a29e7766b8b7b354497d08f71a55641abc53675ce1875584781aae35644a1
+
+depend      filesystem
+depend      apr
+depend      sqlite
+depend      zlib
+depend      utf8proc
+depend      lz4
+depend      serf
+
+configure   ./configure --prefix=/usr --with-lz4=internal --with-utf8proc=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

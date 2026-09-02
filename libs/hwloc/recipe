@@ -1,0 +1,15 @@
+name        hwloc
+version     2.12.1
+release     1
+description hwloc: Portable Hardware Locality
+
+source      https://download.open-mpi.org/release/hwloc/v2.12/hwloc-2.12.1.tar.bz2
+hash        sha256:38a90328bb86259f9bb2fe1dc57fd841e111d1e6358012bef23dfd95d21dc66b
+
+depend      filesystem
+depend      libxml2
+depend      pciutils
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --disable-cairo --disable-opencl --disable-cuda
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

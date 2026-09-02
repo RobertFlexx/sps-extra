@@ -1,0 +1,21 @@
+name        labwc
+version     0.9.1
+release     1
+description labwc: stacking Wayland compositor
+
+source      https://github.com/labwc/labwc/archive/0.9.1.tar.gz
+hash        sha256:bf7a245d5fc5665329b3f5c9cb589eb33e658b8eb638cf4f4c9ad68f4b5979f0
+
+depend      filesystem
+depend      wlroots
+depend      libxml2
+depend      cairo
+depend      pango
+depend      glib
+depend      libpng
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dman-pages=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

@@ -1,0 +1,19 @@
+name        conntrack-tools
+version     1.4.8
+release     2
+description conntrack-tools: connection tracking userspace
+
+source      https://www.netfilter.org/projects/conntrack-tools/files/conntrack-tools-1.4.8.tar.xz
+hash        sha256:067677f4c5f6564819e78ed3a9d4a8980935ea9273f3abb22a420ea30ab5ded6
+
+depend      filesystem
+depend      libmnl
+depend      libnetfilter_conntrack
+depend      libnfnetlink
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/conntrackd.service" "$PKG/usr/lib/systemd/system/conntrackd.service"
+install     install -m 0755 "$SRC/files/openrc-conntrackd" "$PKG/etc/init.d/conntrackd"

@@ -1,0 +1,16 @@
+name        re2
+version     2024-07-02
+release     1
+description re2: regular expression library
+
+source      https://github.com/google/re2/archive/2024-07-02.tar.gz
+hash        sha256:eb2df807c781601c14a260a507a5bb4509be1ee626024cb45acbd57cb9d4032b
+
+depend      filesystem
+depend      abseil-cpp
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DRE2_BUILD_TESTING=OFF -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,14 @@
+name        nethack
+version     3.6.7
+release     1
+description nethack: dungeon crawl
+
+source      https://www.nethack.org/download/3.6.7/nethack-367-src.tgz
+hash        sha256:98cf67df6debf9668a61745aa84c09bcab362e5d33f5b944ec5155d44d2aacb2
+
+depend      filesystem
+depend      ncurses
+
+prepare     sh sys/unix/setup.sh
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

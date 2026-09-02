@@ -1,0 +1,16 @@
+name        utfcpp
+version     4.0.6
+release     1
+arch        any
+description utfcpp: UTF-8 C++ library
+
+source      https://github.com/nemtrif/utfcpp/archive/v4.0.6.tar.gz
+hash        sha256:6920a6a5d6a04b9a89b2a89af7132f8acefd46e0c2a7b190350539e9213816c0
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DUTF8_TESTS=OFF -DUTF8_SAMPLES=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

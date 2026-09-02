@@ -1,0 +1,26 @@
+name        waybar
+version     0.14.0
+release     1
+description waybar: Wayland status bar
+
+source      https://github.com/Alexays/Waybar/archive/0.14.0.tar.gz
+hash        sha256:7f3859779bb3a5028a7215b2000c2e476c03453a52289164ba60a4bf1bb3772f
+
+depend      filesystem
+depend      gtk3
+depend      wayland
+depend      fmt
+depend      spdlog
+depend      json-c
+depend      libinput
+depend      libnl
+depend      pipewire
+depend      eudev
+depend      pango
+depend      cairo
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dtests=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

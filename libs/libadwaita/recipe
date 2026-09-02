@@ -1,0 +1,17 @@
+name        libadwaita
+version     1.7.6
+release     1
+description libadwaita: GNOME building blocks on GTK4
+
+source      https://download.gnome.org/sources/libadwaita/1.7/libadwaita-1.7.6.tar.xz
+hash        sha256:5eacc5550f0bdbba6a1568aebf25a3d88f5ee07d6b558becc6fd9487579c9a29
+
+depend      filesystem
+depend      gtk4
+depend      glib
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dintrospection=disabled -Dtests=false -Dvapi=false -Dexamples=false -Ddocumentation=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

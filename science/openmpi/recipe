@@ -1,0 +1,15 @@
+name        openmpi
+version     5.0.8
+release     1
+description openmpi: Open MPI
+
+source      https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.8.tar.bz2
+hash        sha256:53131e1a57e7270f645707f8b0b65ba56048f5b5ac3f68faabed3eb0d710e449
+
+depend      filesystem
+depend      zlib
+depend      hwloc
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-mpi-fortran=no
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

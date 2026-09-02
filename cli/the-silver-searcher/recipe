@@ -1,0 +1,20 @@
+name        the-silver-searcher
+version     2.2.0
+release     1
+description the-silver-searcher: code-searching tool (ag)
+
+source      https://github.com/ggreer/the_silver_searcher/archive/2.2.0.tar.gz
+hash        sha256:6a0a19ca5e73b2bef9481c29a508d2413ca1a0a9a5a6b1bd9bbd695a7626cbf9
+
+depend      filesystem
+depend      pcre
+depend      xz
+depend      zlib
+builddep    autoconf
+builddep    automake
+builddep    pkgconf
+
+prepare     autoreconf -fi
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

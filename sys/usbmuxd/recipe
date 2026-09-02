@@ -1,0 +1,19 @@
+name        usbmuxd
+version     1.1.1
+release     2
+description usbmuxd: iOS USB multiplexing daemon
+
+source      https://github.com/libimobiledevice/usbmuxd/releases/download/1.1.1/usbmuxd-1.1.1.tar.bz2
+hash        sha256:c0ec9700172bf635ccb5bed98daae607d2925c2bc3597f25706ecd9dfbfd2d9e
+
+depend      filesystem
+depend      libimobiledevice
+depend      libusb
+depend      libplist
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/usbmuxd.service" "$PKG/usr/lib/systemd/system/usbmuxd.service"
+install     install -m 0755 "$SRC/files/openrc-usbmuxd" "$PKG/etc/init.d/usbmuxd"

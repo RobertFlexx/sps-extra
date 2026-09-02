@@ -1,0 +1,13 @@
+name        hack-fonts
+version     3.003
+release     1
+arch        any
+description hack-fonts: Hack typeface
+
+source      https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.tar.xz
+hash        sha256:d9ed5d0a07525c7e7bd587b4364e4bc41021dd668658d09864453d9bb374a78d
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/share/fonts/TTF"
+install     find . -name "*.ttf" -exec cp {} "$PKG/usr/share/fonts/TTF/" \;

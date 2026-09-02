@@ -1,0 +1,13 @@
+name        unrtf
+version     0.21.10
+release     1
+description unrtf: convert RTF to other formats
+
+source      https://ftp.gnu.org/gnu/unrtf/unrtf-0.21.10.tar.gz
+hash        sha256:b49f20211fa69fff97d42d6e782a62d7e2da670b064951f14bbff968c93734ae
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,14 @@
+name        sxhkd
+version     0.6.3
+release     1
+description sxhkd: simple X hotkey daemon
+
+source      https://github.com/baskerville/sxhkd/archive/0.6.3.tar.gz
+hash        sha256:9d7a64d73f7114a24ff93a35a2662afd9807e0df9ffbfabd24230b4872503fcb
+
+depend      filesystem
+depend      libxcb
+depend      xcb-util-keysyms
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

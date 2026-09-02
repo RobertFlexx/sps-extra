@@ -1,0 +1,15 @@
+name        libusbmuxd
+version     2.1.1
+release     1
+description libusbmuxd: USB multiplexor client
+
+source      https://github.com/libimobiledevice/libusbmuxd/releases/download/2.1.1/libusbmuxd-2.1.1.tar.bz2
+hash        sha256:5546f1aba1c3d1812c2b47d976312d00547d1044b84b6a461323c621f396efce
+
+depend      filesystem
+depend      libplist
+depend      libimobiledevice-glue
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

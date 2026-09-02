@@ -1,0 +1,17 @@
+name        luarocks
+version     3.12.2
+release     1
+description luarocks: Lua package manager
+
+source      https://luarocks.org/releases/luarocks-3.12.2.tar.gz
+hash        sha256:b0e0c85205841ddd7be485f53d6125766d18a81d226588d2366931e9a1484492
+
+depend      filesystem
+depend      lua
+depend      curl
+depend      openssl
+depend      unzip
+
+configure   ./configure --prefix=/usr --with-lua=/usr --sysconfdir=/etc/luarocks
+build       make -j"$MAKEJOBS"
+install     make DESTDIR="$PKG" install

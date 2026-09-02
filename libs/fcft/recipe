@@ -1,0 +1,20 @@
+name        fcft
+version     3.3.2
+release     1
+description fcft: simple font loading library
+
+source      https://codeberg.org/dnkl/fcft/releases/download/3.3.2/fcft-3.3.2.tar.gz
+hash        sha256:8dffe750027618e01dd4e6bc9aa9c889033c7abe4a661e9294192b58b4556264
+
+depend      filesystem
+depend      fontconfig
+depend      freetype
+depend      harfbuzz
+depend      pixman
+depend      utf8proc
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Ddocs=disabled -Dtests=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

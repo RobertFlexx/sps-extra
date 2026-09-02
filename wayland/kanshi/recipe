@@ -1,0 +1,16 @@
+name        kanshi
+version     1.7.0
+release     1
+description kanshi: dynamic display configuration
+
+source      https://git.sr.ht/~emersion/kanshi/refs/download/v1.7.0/kanshi-1.7.0.tar.gz
+hash        sha256:76ef49d35c1c8764c2956e05e9d37c4bf5236eb204f5d3a780dca41e24c3f382
+
+depend      filesystem
+depend      wayland
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

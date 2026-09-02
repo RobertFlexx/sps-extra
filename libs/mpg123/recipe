@@ -1,0 +1,13 @@
+name        mpg123
+version     1.33.2
+release     1
+description mpg123: MPEG audio decoder
+
+source      https://sourceforge.net/projects/mpg123/files/mpg123/1.33.2/mpg123-1.33.2.tar.bz2
+hash        sha256:2c54fabbfa696dce8f9b137c8ef7a429a061f8fe633cd7d0a511809855f2c219
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

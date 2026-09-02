@@ -1,0 +1,30 @@
+name        libvirt
+version     11.6.0
+release     2
+description libvirt: virtualization API
+
+source      https://download.libvirt.org/libvirt-11.6.0.tar.xz
+hash        sha256:cc0e8c226559b479833c8bc9c77a8ec301482ab0305fcd98d27f11cc6877fd23
+
+depend      filesystem
+depend      glib
+depend      gnutls
+depend      libxml2
+depend      yajl
+depend      pciutils
+depend      lvm2
+depend      libnl
+depend      libtirpc
+depend      qemu
+depend      libcap-ng
+depend      attr
+depend      util-linux
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddocs=disabled -Dtests=disabled -Dstorage_lvm=enabled -Dlibssh=disabled -Dopenwsman=disabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/libvirtd.service" "$PKG/usr/lib/systemd/system/libvirtd.service"
+install     install -m 0755 "$SRC/files/openrc-libvirtd" "$PKG/etc/init.d/libvirtd"

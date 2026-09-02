@@ -1,0 +1,17 @@
+name        rubberband
+version     4.0.0
+release     1
+description rubberband: audio time-stretching
+
+source      https://breakfastquay.com/files/releases/rubberband-4.0.0.tar.bz2
+hash        sha256:af050313ee63bc18b35b2e064e5dce05b276aaf6d1aa2b8a82ced1fe2f8028e9
+
+depend      filesystem
+depend      libsamplerate
+depend      fftw
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dfft=fftw -Dresampler=libsamplerate
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

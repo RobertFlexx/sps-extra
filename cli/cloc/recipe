@@ -1,0 +1,15 @@
+name        cloc
+version     2.06
+release     1
+arch        any
+description cloc: count lines of code
+
+source      https://github.com/AlDanial/cloc/releases/download/v2.06/cloc-2.06.tar.gz
+hash        sha256:27b6b007a5d482e5f50b23984cbe10f6a9f26e1052e9c7e010edfdcf879dc554
+
+depend      filesystem
+depend      perl
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f cloc ]; then cp cloc "$PKG/usr/bin/cloc"; else find . -name cloc -type f | head -1 | xargs -I{} cp {} "$PKG/usr/bin/cloc"; fi
+install     chmod 755 "$PKG/usr/bin/cloc"

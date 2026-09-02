@@ -1,0 +1,17 @@
+name        distcc
+version     3.4
+release     2
+description distcc: distributed C/C++ compilation
+
+source      https://github.com/distcc/distcc/releases/download/v3.4/distcc-3.4.tar.gz
+hash        sha256:2b99edda9dad9dbf283933a02eace6de7423fe5650daa4a728c950e5cd37bd7d
+
+depend      filesystem
+depend      popt
+
+configure   ./configure --prefix=/usr --without-avahi --disable-Werror
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/distccd.service" "$PKG/usr/lib/systemd/system/distccd.service"
+install     install -m 0755 "$SRC/files/openrc-distccd" "$PKG/etc/init.d/distccd"

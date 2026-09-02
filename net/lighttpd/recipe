@@ -1,0 +1,23 @@
+name        lighttpd
+version     1.4.81
+release     2
+description lighttpd: lightweight web server
+
+source      https://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.81.tar.xz
+hash        sha256:d7d42c3fd2fd94b63c915aa7d18f4da3cac5937ddba33e909f81cf50842a5840
+
+depend      filesystem
+depend      pcre2
+depend      brotli
+depend      openssl
+depend      zlib
+depend      zstd
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dwith_brotli=enabled -Dwith_openssl=enabled -Dwith_zlib=enabled
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/lighttpd.service" "$PKG/usr/lib/systemd/system/lighttpd.service"
+install     install -m 0755 "$SRC/files/openrc-lighttpd" "$PKG/etc/init.d/lighttpd"

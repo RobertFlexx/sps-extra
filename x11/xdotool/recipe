@@ -1,0 +1,16 @@
+name        xdotool
+version     3.20211022.1
+release     1
+description xdotool: fake keyboard and mouse input
+
+source      https://github.com/jordansissel/xdotool/releases/download/v3.20211022.1/xdotool-3.20211022.1.tar.gz
+hash        sha256:96f0facfde6d78eacad35b91b0f46fecd0b35e474c03e00e30da3fdd345f9ada
+
+depend      filesystem
+depend      libx11
+depend      libxtst
+depend      libxinerama
+depend      libxkbcommon
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

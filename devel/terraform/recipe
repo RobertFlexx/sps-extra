@@ -1,0 +1,15 @@
+name        terraform
+version     1.13.1
+release     1
+description terraform: infrastructure as code (HashiCorp)
+
+source      https://releases.hashicorp.com/terraform/1.13.1/terraform_1.13.1_linux_amd64.zip
+hash        sha256:4449e2ddc0dee283f0909dd603eaf98edeebaa950f4635cea94f2caf0ffacc5a
+
+depend      filesystem
+builddep    unzip
+
+install     mkdir -p "$PKG/usr/bin"
+install     unzip -o -d "$WORK/bin-unpack" "$SRC/"*.zip
+install     find "$WORK/bin-unpack" -type f -name terraform -exec cp {} "$PKG/usr/bin/terraform" \;
+install     chmod 755 "$PKG/usr/bin/terraform"

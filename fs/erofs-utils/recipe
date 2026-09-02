@@ -1,0 +1,22 @@
+name        erofs-utils
+version     1.8.6
+release     1
+description erofs-utils: EROFS filesystem tools
+
+source      https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/snapshot/erofs-utils-1.8.6.tar.gz
+hash        sha256:5b221dc3fd6d151425b30534ede46fb7a90dc233a8659cba0372796b0a066547
+
+depend      filesystem
+depend      lz4
+depend      xz
+depend      zlib
+depend      zstd
+builddep    autoconf
+builddep    automake
+builddep    libtool
+builddep    pkgconf
+
+prepare     ./autogen.sh
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-lz4 --enable-lzma
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

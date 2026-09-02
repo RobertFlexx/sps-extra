@@ -1,0 +1,13 @@
+name        mtools
+version     4.0.49
+release     1
+description mtools: FAT filesystem tools
+
+source      https://ftp.gnu.org/gnu/mtools/mtools-4.0.49.tar.bz2
+hash        sha256:6fe5193583d6e7c59da75e63d7234f76c0b07caf33b103894f46f66a871ffc9f
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

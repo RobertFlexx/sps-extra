@@ -1,0 +1,20 @@
+name        ugrep
+version     7.5.0
+release     1
+description ugrep: ultra-fast grep
+
+source      https://github.com/Genivia/ugrep/archive/v7.5.0.tar.gz
+hash        sha256:08ed29981e4e9ed07077139519a17273658d6097f90642a14d9dfdf07fb74ee9
+
+depend      filesystem
+depend      pcre2
+depend      zlib
+depend      bzip2
+depend      xz
+depend      lz4
+depend      zstd
+depend      brotli
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

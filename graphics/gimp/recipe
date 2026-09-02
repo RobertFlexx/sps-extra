@@ -1,0 +1,34 @@
+name        gimp
+version     3.0.4
+release     1
+description gimp: GNU Image Manipulation Program
+
+source      https://download.gimp.org/gimp/v3.0/gimp-3.0.4.tar.xz
+hash        sha256:8caa2ec275bf09326575654ac276afc083f8491e7cca45d19cf29e696aecab25
+
+depend      filesystem
+depend      babl
+depend      gegl
+depend      gtk3
+depend      cairo
+depend      pango
+depend      gdk-pixbuf
+depend      lcms2
+depend      libpng
+depend      libjpeg-turbo
+depend      libtiff
+depend      glib
+depend      poppler
+depend      libexif
+depend      appstream
+depend      libxml2
+depend      bzip2
+depend      xz
+depend      zlib
+depend      harfbuzz
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dgi-docgen=disabled -Dheadless-tests=disabled -Dlua=false -Dcan-crosscompile=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

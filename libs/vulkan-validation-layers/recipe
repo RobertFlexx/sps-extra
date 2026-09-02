@@ -1,0 +1,19 @@
+name        vulkan-validation-layers
+version     1.4.309.0
+release     1
+description vulkan-validation-layers: Vulkan validation
+
+source      https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/vulkan-sdk-1.4.309.0.tar.gz
+hash        sha256:56eb7b70c0ebf3e6b7def7723617a71bd01ca1497ab8dec542e1e4eadf6e07d7
+
+depend      filesystem
+depend      vulkan-headers
+depend      vulkan-utility-libraries
+depend      spirv-headers
+depend      spirv-tools
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_WERROR=OFF -DUSE_ROBIN_HOOD_HASHING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

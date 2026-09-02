@@ -1,0 +1,13 @@
+name        kind
+version     0.29.0
+release     1
+description kind: Kubernetes in Docker
+
+source      https://github.com/kubernetes-sigs/kind/releases/download/v0.29.0/kind-linux-amd64
+hash        sha256:c72eda46430f065fb45c5f70e7c957cc9209402ef309294821978677c8fb3284
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     cp "$SRC/"kind-linux-amd64 "$PKG/usr/bin/kind"
+install     chmod 755 "$PKG/usr/bin/kind"

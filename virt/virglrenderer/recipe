@@ -1,0 +1,18 @@
+name        virglrenderer
+version     1.1.1
+release     1
+description virglrenderer: virtio-gpu virtual OpenGL
+
+source      https://gitlab.freedesktop.org/virgl/virglrenderer/-/archive/1.1.1/virglrenderer-1.1.1.tar.gz
+hash        sha256:1fc34ffbf2a4f5cf161228f13242e28283bd818901d7daf0027e6ae5fcaeaf9b
+
+depend      filesystem
+depend      mesa
+depend      libepoxy
+depend      libdrm
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dtests=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

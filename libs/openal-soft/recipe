@@ -1,0 +1,15 @@
+name        openal-soft
+version     1.24.3
+release     1
+description openal-soft: 3D audio library
+
+source      https://github.com/kcat/openal-soft/archive/1.24.3.tar.gz
+hash        sha256:7e1fecdeb45e7f78722b776c5cf30bd33934b961d7fd2a11e0494e064cc631ce
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DALSOFT_EXAMPLES=OFF -DALSOFT_UTILS=ON -DALSOFT_INSTALL_EXAMPLES=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

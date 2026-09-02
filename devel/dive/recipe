@@ -1,0 +1,13 @@
+name        dive
+version     0.13.1
+release     1
+description dive: explore container image layers
+
+source      https://github.com/wagoodman/dive/releases/download/v0.13.1/dive_0.13.1_linux_amd64.tar.gz
+hash        sha256:0970549eb4a306f8825a84145a2534153badb4d7dcf3febd1967c706367c3d0e
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f dive ]; then cp dive "$PKG/usr/bin/dive"; else find . -type f -name dive ! -path "./.*" -exec cp {} "$PKG/usr/bin/dive" \; ; fi
+install     chmod 755 "$PKG/usr/bin/dive"

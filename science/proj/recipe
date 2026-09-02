@@ -1,0 +1,18 @@
+name        proj
+version     9.6.2
+release     1
+description proj: cartographic projections library
+
+source      https://download.osgeo.org/proj/proj-9.6.2.tar.gz
+hash        sha256:53d0cafaee3bb2390264a38668ed31d90787de05e71378ad7a8f35bb34c575d1
+
+depend      filesystem
+depend      sqlite
+depend      libtiff
+depend      curl
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

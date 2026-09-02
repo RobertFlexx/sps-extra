@@ -1,0 +1,13 @@
+name        pcre
+version     8.45
+release     1
+description pcre: Perl Compatible Regular Expressions (legacy)
+
+source      https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.bz2
+hash        sha256:4dae6fdcd2bb0bb6c37b5f97c33c2be954da743985369cddac3546e3218bffb8
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static --enable-utf --enable-unicode-properties --enable-pcre16 --enable-pcre32 --enable-jit
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

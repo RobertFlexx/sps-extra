@@ -1,0 +1,13 @@
+name        mercurial
+version     7.1
+release     1
+description mercurial: distributed version control
+
+source      https://www.mercurial-scm.org/release/mercurial-7.1.tar.gz
+hash        sha256:e8d920c83c38c475d8e973be60760a49dc35c3795d64bd6876e56adba622e5cb
+
+depend      filesystem
+depend      python
+
+build       make -j"$MAKEJOBS" all
+install     make PREFIX=/usr DESTDIR="$PKG" install

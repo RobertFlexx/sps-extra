@@ -1,0 +1,16 @@
+name        dwm
+version     6.5
+release     1
+description dwm: dynamic window manager
+
+source      https://dl.suckless.org/dwm/dwm-6.5.tar.gz
+hash        sha256:21d79ebfa9f2fb93141836c2666cb81f4784c69d64e7f1b2352f9b970ba09729
+
+depend      filesystem
+depend      libx11
+depend      libxinerama
+depend      libxft
+depend      freetype
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

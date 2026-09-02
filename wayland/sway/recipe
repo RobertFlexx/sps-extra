@@ -1,0 +1,24 @@
+name        sway
+version     1.11
+release     1
+description sway: i3-compatible Wayland compositor
+
+source      https://github.com/swaywm/sway/releases/download/1.11/sway-1.11.tar.gz
+hash        sha256:0e37a55b7c3379230e97e1ad982542b75016a0c7d6676198604e557f9b373dae
+
+depend      filesystem
+depend      wlroots
+depend      wayland
+depend      libxkbcommon
+depend      cairo
+depend      pango
+depend      gdk-pixbuf
+depend      json-c
+depend      pcre2
+depend      libevdev
+builddep    meson
+builddep    ninja
+
+configure   meson setup build --prefix=/usr --libdir=lib64 --buildtype=release -Dwerror=false
+build       meson compile -C build -j "$MAKEJOBS"
+install     DESTDIR="$PKG" meson install -C build

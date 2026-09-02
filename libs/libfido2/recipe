@@ -1,0 +1,19 @@
+name        libfido2
+version     1.16.0
+release     1
+description libfido2: FIDO2/WebAuthn library
+
+source      https://developers.yubico.com/libfido2/Releases/libfido2-1.16.0.tar.gz
+hash        sha256:8c2b6fb279b5b42e9ac92ade71832e485852647b53607c43baaafbbcecea04e4
+
+depend      filesystem
+depend      libcbor
+depend      openssl
+depend      zlib
+depend      eudev
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

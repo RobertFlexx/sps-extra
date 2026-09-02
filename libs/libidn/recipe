@@ -1,0 +1,13 @@
+name        libidn
+version     1.43
+release     1
+description libidn: GNU IDN library (legacy)
+
+source      https://ftp.gnu.org/gnu/libidn/libidn-1.43.tar.gz
+hash        sha256:bdc662c12d041b2539d0e638f3a6e741130cdb33a644ef3496963a443482d164
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

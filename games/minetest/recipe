@@ -1,0 +1,29 @@
+name        minetest
+version     5.11.0
+release     1
+description minetest: voxel sandbox (Luanti)
+
+source      https://github.com/luanti-org/luanti/archive/5.11.0.tar.gz
+hash        sha256:70e531d0776988ce6e579ea5490fdf6be3e349a4ade5281f5111aa4fdd8ee510
+
+depend      filesystem
+depend      sqlite
+depend      curl
+depend      zlib
+depend      zstd
+depend      gmp
+depend      jsoncpp
+depend      openal-soft
+depend      libvorbis
+depend      libogg
+depend      freetype
+depend      mesa
+depend      sqlite
+depend      luajit
+depend      sdl2
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_CLIENT=ON -DBUILD_SERVER=ON -DENABLE_GETTEXT=OFF -DRUN_IN_PLACE=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

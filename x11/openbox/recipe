@@ -1,0 +1,18 @@
+name        openbox
+version     3.6.1
+release     1
+description openbox: stacking window manager
+
+source      http://openbox.org/dist/openbox/openbox-3.6.1.tar.gz
+hash        sha256:8b4ac0760018c77c0044fab06a4f0c510ba87eae934d9983b10878483bde7ef7
+
+depend      filesystem
+depend      libx11
+depend      pango
+depend      imlib2
+depend      libxml2
+depend      startup-notification
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

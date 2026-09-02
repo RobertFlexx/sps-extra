@@ -1,0 +1,15 @@
+name        physfs
+version     3.2.0
+release     1
+description physfs: PhysicsFS archive abstraction
+
+source      https://github.com/icculus/physfs/archive/release-3.2.0.tar.gz
+hash        sha256:1991500eaeb8d5325e3a8361847ff3bf8e03ec89252b7915e1f25b3f8ab5d560
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DPHYSFS_BUILD_TEST=OFF -DPHYSFS_BUILD_SHARED=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,21 @@
+name        openvpn
+version     2.6.14
+release     2
+description openvpn: SSL/TLS VPN
+
+source      https://swupdate.openvpn.org/community/releases/openvpn-2.6.14.tar.gz
+hash        sha256:9eb6a6618352f9e7b771a9d38ae1631b5edfeed6d40233e243e602ddf2195e7a
+
+depend      filesystem
+depend      openssl
+depend      lzo
+depend      lz4
+depend      linux-pam
+depend      libcap-ng
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/openvpn.service" "$PKG/usr/lib/systemd/system/openvpn.service"
+install     install -m 0755 "$SRC/files/openrc-openvpn" "$PKG/etc/init.d/openvpn"

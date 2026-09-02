@@ -1,0 +1,23 @@
+name        maim
+version     5.8.0
+release     1
+description maim: make image (screenshots)
+
+source      https://github.com/naelstrof/maim/archive/v5.8.0.tar.gz
+hash        sha256:ecafe01dcbe4246071c58ff36acdcd93d290ed501f67933334b646436650450e
+
+depend      filesystem
+depend      slop
+depend      libpng
+depend      libjpeg-turbo
+depend      libwebp
+depend      libx11
+depend      libxrandr
+depend      libxfixes
+depend      libxcomposite
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

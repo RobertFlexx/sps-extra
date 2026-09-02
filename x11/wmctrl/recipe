@@ -1,0 +1,15 @@
+name        wmctrl
+version     1.07
+release     1
+description wmctrl: control EWMH window managers
+
+source      https://sites.google.com/site/tstyblo/wmctrl/wmctrl-1.07.tar.gz
+hash        sha256:71fc65c256c23950058b6ce57b5b4c44a58f9e982e08ad11bf0b21a28774632a
+
+depend      filesystem
+depend      libx11
+depend      glib
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

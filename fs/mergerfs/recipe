@@ -1,0 +1,13 @@
+name        mergerfs
+version     2.40.2
+release     1
+description mergerfs: FUSE union filesystem
+
+source      https://github.com/trapexit/mergerfs/releases/download/2.40.2/mergerfs-2.40.2.tar.gz
+hash        sha256:595a7a108f5a20e0cd20b6d08a360b283940d81b1a66b118d27dfa93540878b0
+
+depend      filesystem
+depend      fuse3
+
+build       make -j"$MAKEJOBS" PREFIX=/usr
+install     make PREFIX=/usr DESTDIR="$PKG" install

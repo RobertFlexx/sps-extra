@@ -1,0 +1,25 @@
+name        supertux
+version     0.6.3
+release     1
+description supertux: jump-and-run game
+
+source      https://github.com/SuperTux/supertux/releases/download/v0.6.3/SuperTux-v0.6.3-Source.tar.gz
+hash        sha256:f7940e6009c40226eb34ebab8ffb0e3a894892d891a07b35d0e5762dd41c79f6
+
+depend      filesystem
+depend      sdl2
+depend      sdl2-image
+depend      openal-soft
+depend      libvorbis
+depend      libogg
+depend      physfs
+depend      curl
+depend      freetype
+depend      glew
+depend      glm
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_BOOST=OFF -DBUILD_DOCUMENTATION=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

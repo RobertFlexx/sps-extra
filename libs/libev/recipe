@@ -1,0 +1,13 @@
+name        libev
+version     4.33
+release     1
+description libev: event loop library
+
+source      http://dist.schmorp.de/libev/Attic/libev-4.33.tar.gz
+hash        sha256:507eb7b8d1015fbec5b935f34ebed15bf346bed04a11ab82b8eee848c4205aea
+
+depend      filesystem
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

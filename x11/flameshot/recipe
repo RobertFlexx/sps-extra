@@ -1,0 +1,17 @@
+name        flameshot
+version     12.1.0
+release     1
+description flameshot: screenshot software
+
+source      https://github.com/flameshot-org/flameshot/archive/v12.1.0.tar.gz
+hash        sha256:c82c05d554e7a6d810aca8417ca12b21e4f74864455ab4ac94602668f85ac22a
+
+depend      filesystem
+depend      qt6-qtbase
+depend      qt6-qtsvg
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

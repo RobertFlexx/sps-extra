@@ -1,0 +1,12 @@
+name        lmdb
+version     0.9.33
+release     1
+description lmdb: Lightning Memory-Mapped Database
+
+source      https://github.com/LMDB/lmdb/archive/LMDB_0.9.33.tar.gz
+hash        sha256:9c352fa9bdad53d920128ac6a62296f2850c7e29862a610d3a72f5f49a1cd7ea
+
+depend      filesystem
+
+build       make -C libraries/liblmdb -j"$MAKEJOBS" prefix=/usr
+install     make -C libraries/liblmdb prefix=/usr DESTDIR="$PKG" install

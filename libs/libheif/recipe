@@ -1,0 +1,20 @@
+name        libheif
+version     1.20.2
+release     1
+description libheif: HEIF and AVIF decoder
+
+source      https://github.com/strukturag/libheif/releases/download/v1.20.2/libheif-1.20.2.tar.gz
+hash        sha256:68ac9084243004e0ef3633f184eeae85d615fe7e4444373a0a21cebccae9d12a
+
+depend      filesystem
+depend      libjpeg-turbo
+depend      libpng
+depend      aom
+depend      dav1d
+depend      x265
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DWITH_EXAMPLES=OFF -DBUILD_TESTING=OFF
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

@@ -1,0 +1,14 @@
+name        geany
+version     2.1
+release     1
+description geany: fast lightweight IDE
+
+source      https://download.geany.org/geany-2.1.tar.bz2
+hash        sha256:6b96a8844463300c10b9692a0a5edad8236eec9e84342f575f83d4fc89331228
+
+depend      filesystem
+depend      gtk3
+
+configure   ./configure --prefix=/usr --disable-html-docs --disable-pdf-docs
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

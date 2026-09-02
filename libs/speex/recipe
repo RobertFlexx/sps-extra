@@ -1,0 +1,14 @@
+name        speex
+version     1.2.1
+release     1
+description speex: Speex audio codec
+
+source      https://downloads.xiph.org/releases/speex/speex-1.2.1.tar.gz
+hash        sha256:4b44d4f2b38a370a2d98a78329fefc56a0cf93d1c1be70029217baae6628feea
+
+depend      filesystem
+depend      speexdsp
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,6 +1,6 @@
 name        falkon
 version     26.08.0
-release     1
+release     2
 description falkon: KDE component
 
 source      https://download.kde.org/stable/release-service/26.08.0/src/falkon-26.08.0.tar.xz
@@ -8,6 +8,7 @@ hash        sha256:0a2d159b4f512c88557ab8556f550c7b5492437154e6729bfee12907d178f
 
 depend      filesystem
 depend      qt6
+depend      qt6-qtwebengine
 depend      kf6
 depend      plasma-desktop
 builddep    cmake

@@ -1,0 +1,22 @@
+name        tor
+version     0.4.8.17
+release     2
+description tor: anonymity network
+
+source      https://dist.torproject.org/tor-0.4.8.17.tar.gz
+hash        sha256:79b4725e1d4b887b9e68fd09b0d2243777d5ce3cd471e538583bcf6f9d8cdb56
+
+depend      filesystem
+depend      openssl
+depend      libevent
+depend      zlib
+depend      xz
+depend      zstd
+depend      libcap
+
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --disable-static
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/tor.service" "$PKG/usr/lib/systemd/system/tor.service"
+install     install -m 0755 "$SRC/files/openrc-tor" "$PKG/etc/init.d/tor"

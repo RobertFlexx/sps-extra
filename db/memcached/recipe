@@ -1,0 +1,17 @@
+name        memcached
+version     1.6.38
+release     2
+description memcached: in-memory object cache
+
+source      https://www.memcached.org/files/memcached-1.6.38.tar.gz
+hash        sha256:334d792294e37738796b5b03375c47bb6db283b1152e2ea4ccb720152dd17c66
+
+depend      filesystem
+depend      libevent
+
+configure   ./configure --prefix=/usr
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"
+install     mkdir -p "$PKG/usr/lib/systemd/system" "$PKG/etc/init.d"
+install     install -m 0644 "$SRC/files/memcached.service" "$PKG/usr/lib/systemd/system/memcached.service"
+install     install -m 0755 "$SRC/files/openrc-memcached" "$PKG/etc/init.d/memcached"

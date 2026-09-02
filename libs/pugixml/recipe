@@ -1,0 +1,15 @@
+name        pugixml
+version     1.15
+release     1
+description pugixml: light XML library
+
+source      https://github.com/zeux/pugixml/releases/download/v1.15/pugixml-1.15.tar.gz
+hash        sha256:655ade57fa703fb421c2eb9a0113b5064bddb145d415dd1f88c79353d90d511a
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

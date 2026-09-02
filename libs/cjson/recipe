@@ -1,0 +1,15 @@
+name        cjson
+version     1.7.18
+release     1
+description cjson: ultralightweight JSON parser
+
+source      https://github.com/DaveGamble/cJSON/archive/v1.7.18.tar.gz
+hash        sha256:3aa806844a03442c00769b83e99970be70fbef03735ff898f4811dd03b9f5ee5
+
+depend      filesystem
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_CJSON_TEST=OFF -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

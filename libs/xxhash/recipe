@@ -1,0 +1,12 @@
+name        xxhash
+version     0.8.3
+release     1
+description xxhash: extremely fast hash
+
+source      https://github.com/Cyan4973/xxHash/archive/v0.8.3.tar.gz
+hash        sha256:aae608dfe8213dfd05d909a57718ef82f30722c392344583d3f39050c7f29a80
+
+depend      filesystem
+
+build       make -j"$MAKEJOBS" PREFIX=/usr LIBDIR=/usr/lib64
+install     make PREFIX=/usr LIBDIR=/usr/lib64 DESTDIR="$PKG" install

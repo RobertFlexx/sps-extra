@@ -1,0 +1,13 @@
+name        kustomize
+version     5.7.1
+release     1
+description kustomize: Kubernetes configuration customization
+
+source      https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.7.1/kustomize_v5.7.1_linux_amd64.tar.gz
+hash        sha256:ea375e7372f9aa029129d4b2d16c66b7750b7f1213c4f66f910d981c895818d8
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f kustomize ]; then cp kustomize "$PKG/usr/bin/kustomize"; else find . -type f -name kustomize ! -path "./.*" -exec cp {} "$PKG/usr/bin/kustomize" \; ; fi
+install     chmod 755 "$PKG/usr/bin/kustomize"

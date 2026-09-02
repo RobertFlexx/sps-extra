@@ -1,0 +1,14 @@
+name        libbpf
+version     1.6.2
+release     1
+description libbpf: eBPF helper library
+
+source      https://github.com/libbpf/libbpf/archive/v1.6.2.tar.gz
+hash        sha256:16f31349c70764cba8e0fad3725cc9f52f6cf952554326aa0229daaa21ef4fbd
+
+depend      filesystem
+depend      elfutils
+depend      zlib
+
+build       make -C src -j"$MAKEJOBS" PREFIX=/usr LIBDIR=/usr/lib64
+install     make -C src PREFIX=/usr LIBDIR=/usr/lib64 DESTDIR="$PKG" install

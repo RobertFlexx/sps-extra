@@ -1,0 +1,18 @@
+name        netcdf
+version     4.9.3
+release     1
+description netcdf: network Common Data Form
+
+source      https://github.com/Unidata/netcdf-c/archive/v4.9.3.tar.gz
+hash        sha256:990f46d49525d6ab5dc4249f8684c6deeaf54de6fec63a187e9fb382cc0ffdff
+
+depend      filesystem
+depend      hdf5
+depend      curl
+depend      zlib
+builddep    cmake
+builddep    ninja
+
+configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib64 -DENABLE_TESTS=OFF -DBUILD_SHARED_LIBS=ON
+build       cmake --build build --parallel "$MAKEJOBS"
+install     DESTDIR="$PKG" cmake --install build

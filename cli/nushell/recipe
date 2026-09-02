@@ -1,0 +1,13 @@
+name        nushell
+version     0.106.1
+release     1
+description nushell: a new type of shell
+
+source      https://github.com/nushell/nushell/releases/download/0.106.1/nu-0.106.1-x86_64-unknown-linux-gnu.tar.gz
+hash        sha256:4f0688c71a36ba48a253e10876b5b101c3343f4a4deb19c446906b4572c340c9
+
+depend      filesystem
+
+install     mkdir -p "$PKG/usr/bin"
+install     if [ -f nu ]; then cp nu "$PKG/usr/bin/nu"; else find . -type f -name nu ! -path "./.*" -exec cp {} "$PKG/usr/bin/nu" \; ; fi
+install     chmod 755 "$PKG/usr/bin/nu"
