@@ -11,6 +11,8 @@ depend      glib
 depend      dbus
 depend      libndp
 depend      jansson
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dsystemd=false -Dsession_tracking=elogind -Dtests=no
 build       meson compile -C build

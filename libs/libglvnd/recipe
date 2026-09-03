@@ -7,6 +7,8 @@ source      https://gitlab.freedesktop.org/glvnd/libglvnd/-/archive/v1.7.0/libgl
 hash        sha256:2b6e15b06aafb4c0b6e2348124808cbd9b291c647299eaaba2e3202f51ff2f3d
 
 depend      filesystem
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release
 build       meson compile -C build

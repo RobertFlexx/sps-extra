@@ -8,6 +8,8 @@ hash        sha256:3970542143b7c11e6a09a4d2b50f30a133473c41f15ed0bdcc3b7a1c450d9
 
 depend      filesystem
 depend      glib
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release
 build       meson compile -C build

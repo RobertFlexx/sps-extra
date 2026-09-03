@@ -11,6 +11,8 @@ depend      glib
 depend      dbus
 optional    systemd
 optional    elogind
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=false -Dexamples=false -Dman=false -Dtests=false -Dauthfw=shadow
 build       meson compile -C build

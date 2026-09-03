@@ -1,6 +1,6 @@
 name        php
 version     8.4.12
-release     1
+release     2
 description php: PHP interpreter
 
 source      https://www.php.net/distributions/php-8.4.12.tar.xz
@@ -14,7 +14,9 @@ depend      libxml2
 depend      libffi
 depend      ncurses
 depend      readline
+depend      bzip2
+depend      xz
 
-configure   ./configure --prefix=/usr --sysconfdir=/etc --with-openssl --with-zlib --with-sqlite3 --enable-mbstring --with-readline --disable-cgi --enable-cli --without-pear --disable-phpdbg
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --sysconfdir=/etc --with-openssl --with-zlib --with-bz2 --with-sqlite3 --enable-mbstring --with-readline --disable-cgi --enable-cli --without-pear --disable-phpdbg
 build       make -j"$MAKEJOBS"
 install     make install INSTALL_ROOT="$PKG"

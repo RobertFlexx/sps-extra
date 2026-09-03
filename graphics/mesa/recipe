@@ -18,6 +18,8 @@ depend      libxml2
 depend      vulkan-headers
 depend      vulkan-loader
 depend      x11
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dllvm=disabled -Dgallium-drivers=auto -Dvulkan-drivers=auto -Dglvnd=enabled -Dgbm=enabled -Degl=enabled -Dgles2=enabled
 build       meson compile -C build

@@ -1,6 +1,6 @@
 name        ruby
 version     3.4.7
-release     1
+release     2
 description ruby: Ruby interpreter
 
 source      https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.7.tar.gz
@@ -13,6 +13,6 @@ depend      libffi
 depend      libyaml
 depend      readline
 
-configure   ./configure --prefix=/usr --enable-shared --disable-install-doc
+configure   ./configure --prefix=/usr --libdir=/usr/lib64 --enable-shared --disable-install-doc
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"

@@ -7,6 +7,8 @@ source      https://github.com/libfuse/libfuse/releases/download/fuse-3.17.4/fus
 hash        sha256:df9e40ae927b73dc702d0bce7925c0c618af47ad0b13204fbf2be66e54d8528b
 
 depend      filesystem
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Duseroot=false -Dutils=true
 build       meson compile -C build

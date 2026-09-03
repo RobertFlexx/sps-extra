@@ -10,6 +10,8 @@ depend      filesystem
 depend      libffi
 depend      expat
 depend      libxml2
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false -Ddocumentation=false
 build       meson compile -C build

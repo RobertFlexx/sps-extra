@@ -9,6 +9,8 @@ hash        sha256:33d666f169efdf3f3bedd531bdbd272edc8f471caf6ca6cf6752efbbab575
 depend      filesystem
 depend      glib
 depend      pipewire
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dtests=disabled -Ddocumentation=disabled
 build       meson compile -C build

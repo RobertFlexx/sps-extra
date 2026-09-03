@@ -11,6 +11,8 @@ depend      dbus
 depend      libcap
 depend      linux-pam
 conflict    systemd
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dhalt-path=/usr/bin/halt -Dreboot-path=/usr/bin/reboot -Dcgroup-controller=elogind
 build       meson compile -C build

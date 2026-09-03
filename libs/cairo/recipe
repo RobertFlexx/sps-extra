@@ -12,6 +12,8 @@ depend      freetype
 depend      fontconfig
 depend      libpng
 depend      zlib
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dtests=disabled
 build       meson compile -C build

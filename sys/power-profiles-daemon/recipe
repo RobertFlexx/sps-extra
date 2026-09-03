@@ -14,6 +14,8 @@ depend      upower
 depend      dbus
 optional    systemd
 optional    openrc
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false -Dpylint=disabled -Dmanpage=disabled -Dsystemdsystemunitdir=/usr/lib/systemd/system
 build       meson compile -C build

@@ -9,6 +9,8 @@ hash        sha256:a13f8c9a7d93df3c85c66afd135f0296701d8d32f911991b7aa4273fdd6a4
 depend      filesystem
 depend      libevdev
 depend      mtdev
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release
 build       meson compile -C build

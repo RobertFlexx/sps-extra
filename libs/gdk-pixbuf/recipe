@@ -10,6 +10,8 @@ depend      filesystem
 depend      glib
 depend      libpng
 depend      libjpeg-turbo
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dman=false -Dgtk_doc=false -Dintrospection=disabled -Dtests=false
 build       meson compile -C build

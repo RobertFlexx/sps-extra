@@ -23,6 +23,8 @@ depend      zstd
 depend      curl
 depend      gdk-pixbuf
 builddep    python-pyparsing
+builddep    meson
+builddep    ninja
 optional    polkit
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false -Ddocbook_docs=disabled -Dgtkdoc=disabled -Dsystem_helper=disabled -Dselinux_module=disabled -Dsystem_bubblewrap=/usr/bin/bwrap -Dsystem_dbus_proxy=/usr/bin/xdg-dbus-proxy

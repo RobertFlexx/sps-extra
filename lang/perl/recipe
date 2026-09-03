@@ -1,6 +1,6 @@
 name        perl
 version     5.42.0
-release     1
+release     2
 description perl: Practical Extraction and Report Language
 
 source      https://www.cpan.org/src/5.0/perl-5.42.0.tar.gz
@@ -8,7 +8,8 @@ hash        sha256:e093ef184d7f9a1b9797e2465296f55510adb6dab8842b0c3ed5332966309
 
 depend      filesystem
 depend      zlib
+depend      bzip2
 
-configure   ./Configure -des -Dprefix=/usr -Dvendorprefix=/usr -Dusethreads -Duseshrplib -Dlocincpth="/usr/include" -Dloclibpth="/usr/lib /lib"
+configure   ./Configure -des -Dprefix=/usr -Dvendorprefix=/usr -Dusethreads -Duseshrplib -Dlocincpth="/usr/include" -Dloclibpth="/usr/lib64 /usr/lib /lib64 /lib"
 build       make -j"$MAKEJOBS"
 install     make install DESTDIR="$PKG"

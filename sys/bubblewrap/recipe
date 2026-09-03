@@ -8,6 +8,8 @@ hash        sha256:9760d007363e3abba7c747489910f9f82d9fca53ba3bd3282e396fa3c97a3
 
 depend      filesystem
 depend      libcap
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release
 build       meson compile -C build

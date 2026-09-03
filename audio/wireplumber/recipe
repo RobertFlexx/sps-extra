@@ -10,6 +10,8 @@ depend      filesystem
 depend      pipewire
 depend      glib
 depend      lua
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=disabled -Ddoc=disabled -Dtests=false
 build       meson compile -C build

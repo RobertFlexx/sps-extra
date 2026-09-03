@@ -9,6 +9,8 @@ hash        sha256:0eb86a851e865e934a7c2091a73d7695225e78f0e00a7bb96d5f877d76c65
 depend      filesystem
 depend      ncurses
 depend      pcre2
+builddep    cmake
+builddep    rust
 
 configure   unset CARGO_TARGET_DIR; cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
 build       unset CARGO_TARGET_DIR; cmake --build build --parallel "$MAKEJOBS"

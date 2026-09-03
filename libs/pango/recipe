@@ -12,6 +12,8 @@ depend      harfbuzz
 depend      fontconfig
 depend      fribidi
 depend      glib
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dintrospection=disabled -Dsysprof=disabled
 build       meson compile -C build

@@ -9,6 +9,8 @@ hash        sha256:460dad72a6c84b2a7d80745bee43d96ba117f4e3dfc4d7c45f83f66469ea2
 arch        any
 depend      filesystem
 depend      wayland
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dtests=false
 build       meson compile -C build

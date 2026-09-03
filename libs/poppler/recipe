@@ -14,6 +14,8 @@ depend      nss
 depend      libjpeg-turbo
 depend      libpng
 depend      zlib
+builddep    cmake
+builddep    ninja
 
 configure   cmake -S . -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
 build       cmake --build build --parallel "$MAKEJOBS"

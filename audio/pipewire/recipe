@@ -10,6 +10,8 @@ depend      filesystem
 depend      dbus
 depend      glib
 depend      alsa-lib
+builddep    meson
+builddep    ninja
 
 configure   meson setup build --prefix=/usr --buildtype=release -Dsession-managers=[] -Dtests=disabled -Dexamples=disabled
 build       meson compile -C build
