@@ -1,0 +1,37 @@
+diff -Naur ff-a/src/logo/ascii/s/splux.txt ff-b/src/logo/ascii/s/splux.txt
+--- ff-a/src/logo/ascii/s/splux.txt	1969-12-31 16:00:00.000000000 -0800
++++ ff-b/src/logo/ascii/s/splux.txt	2026-09-02 17:31:22.346919444 -0700
+@@ -0,0 +1,10 @@
++$1 .p@o_.q =oooppo.    .p@o_.q
++$1*@'  `*@  `$$@*``R@* *@'  `*@
++$1$$@.    '   $$@   `@@ $$@.    '
++$1`R@@*.     $$@   ,@r `R@@*.
++$1  `*4@@g,  $$@'*T*'    `*4@@g,
++$1,     `@$$  $$@       ,     `@$$
++$1$$*.   .@F  $$@       $$*.   .@F
++$1f*=@@@F' _*FF*_     f*=@@@F' 
++$2_____________________________
++$2^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+diff -Naur ff-a/src/logo/ascii/s.inc ff-b/src/logo/ascii/s.inc
+--- ff-a/src/logo/ascii/s.inc	2026-09-02 17:31:22.088373025 -0700
++++ ff-b/src/logo/ascii/s.inc	2026-09-02 17:31:22.224487402 -0700
+@@ -394,6 +394,19 @@
+         },
+     },
+     #endif
++    #ifdef FASTFETCH_DATATEXT_LOGO_SPLUX
++    // Splux
++    {
++        .names = { "splux", "Splux", "Splux Linux" },
++        .lines = FASTFETCH_DATATEXT_LOGO_SPLUX,
++        .colors = {
++            FF_COLOR_MODE_BOLD FF_COLOR_FG_RGB "255;255;0",
++            FF_COLOR_MODE_BOLD FF_COLOR_FG_RGB "255;255;255",
++        },
++        .colorKeys = FF_COLOR_MODE_BOLD FF_COLOR_FG_RGB "255;255;255",
++        .colorTitle = FF_COLOR_MODE_BOLD FF_COLOR_FG_RGB "255;255;255",
++    },
++    #endif
+     #ifdef FASTFETCH_DATATEXT_LOGO_STAR
+     // Star
+     {

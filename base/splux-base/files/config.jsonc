@@ -4,28 +4,24 @@
         "type": "file",
         "source": "splux.txt",
         "color": {
-            "1": "light_black",
-            "2": "light_yellow"
+            "1": "1;38;2;255;255;0",
+            "2": "1;38;2;255;255;255"
         },
         "padding": {
-            "top": 7,
+            "top": 1,
             "right": 4
         }
     },
     "display": {
         "color": {
-            "keys": "light_black"
+            "keys": "1;38;2;255;255;255",
+            "title": "1;38;2;255;255;255",
+            "output": "1;38;2;255;255;255",
+            "separator": "1;38;2;255;255;255"
         }
     },
     "modules": [
-        {
-            "type": "title",
-            "color": {
-                "user": "light_black",
-                "at": "light_black",
-                "host": "light_yellow"
-            }
-        },
+        "title",
         "separator",
         "os",
         "host",
