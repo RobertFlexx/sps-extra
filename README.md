@@ -26,6 +26,7 @@ Configure the tree after core:
 ```text
 git core https://github.com/RobertFlexx/sps-core.git 100
 git extra https://github.com/RobertFlexx/sps-extra.git 80
+# git community https://github.com/RobertFlexx/sps-community.git 50
 ```
 
 Then run:
@@ -59,3 +60,8 @@ stable sources and verified SHA-256 hashes. Do not commit source downloads,
 binary package archives, or build logs. Large stacks are added in dependency
 layers; an unbuilt leaf recipe does not belong on `main` merely because its
 metadata looks plausible.
+
+Packages that are not ready for extra belong in
+[sps-community](https://github.com/RobertFlexx/sps-community). That collection
+is opt-in: Splux does not enable it from `setup` or `mkiso`. Promote a package
+here only after it has been built and used.
