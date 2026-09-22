@@ -1,6 +1,6 @@
 name        python-pyparsing
 version     3.3.2
-release     1
+release     2
 arch        any
 description python-pyparsing: Python parsing module
 
@@ -10,4 +10,8 @@ hash        sha256:2fc0d57452389101faf2a0148c8803fc6420448df2819dc33a0df83141c1b
 depend      filesystem
 depend      python
 
-install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); mkdir -p "$PKG/usr/lib/python$pyver/site-packages"; cp -a pyparsing "$PKG/usr/lib/python$pyver/site-packages/"
+# SPS builds CPython with --with-platlibdir=lib64, so site-packages is under
+# /usr/lib64. Installing into /usr/lib leaves the module unimportable.
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            mkdir -p "$PKG/usr/lib64/python$pyver/site-packages"; \
+            cp -a pyparsing "$PKG/usr/lib64/python$pyver/site-packages/"

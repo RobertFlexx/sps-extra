@@ -1,10 +1,13 @@
 name        stfl
 version     0.24
-release     1
+release     2
 description stfl: structured terminal forms library
 
-source      http://www.clifford.at/stfl/stfl-0.24.tar.gz
-hash        sha256:f97f1431f0dc2313b104c3777624205c2d48baa3aa8cd36f850634e7ff577709
+# clifford.at no longer serves the tarball; the old URL returns the site's
+# HTML front page. Void's distfiles mirror and the Wayback capture of the
+# original release agree on this digest.
+source      https://sources.voidlinux.org/stfl-${version}/stfl-${version}.tar.gz
+hash        sha256:d4a7aa181a475aaf8a8914a8ccb2a7ff28919d4c8c0f8a061e17a0c36869c090
 
 depend      filesystem
 depend      ncurses

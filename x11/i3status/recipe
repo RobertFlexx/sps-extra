@@ -10,7 +10,6 @@ depend      filesystem
 depend      yajl
 depend      alsa-lib
 depend      libconfuse
-depend      yajl
 builddep    meson
 builddep    ninja
 

@@ -19,7 +19,6 @@ depend      sqlite
 depend      curl
 depend      json-glib
 depend      zlib
-depend      pugixml
 depend      libxml2
 depend      iso-codes
 builddep    cmake
