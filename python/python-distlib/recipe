@@ -1,0 +1,20 @@
+name        python-distlib
+version     0.4.3
+release     1
+arch        any
+description python-distlib: Distribution utilities
+
+source      https://files.pythonhosted.org/packages/c9/02/bd72be9134d25ed783ecbbc38a539ffaefbf90c78418c7fb7229600dbac7/distlib-${version}.tar.gz
+hash        sha256:f152097224a0ae24be5a0f6bae1b9359af82133bce63f98a95f86cae1aede9ed
+
+depend      filesystem
+depend      python
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

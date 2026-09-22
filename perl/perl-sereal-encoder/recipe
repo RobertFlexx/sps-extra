@@ -1,0 +1,15 @@
+name        perl-sereal-encoder
+version     5.010
+release     1
+description perl-sereal-encoder: Fast, compact, powerful binary serialization
+
+source      https://cpan.metacpan.org/authors/id/Y/YV/YVES/Sereal-Encoder-${version}.tar.gz
+hash        sha256:a0f6bcb5889f2e09977ac183ac15ca26371f861fa6323cf14358450eb14c7aa8
+
+depend      filesystem
+depend      perl
+depend      perl-sereal-decoder
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

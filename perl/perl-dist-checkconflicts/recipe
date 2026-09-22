@@ -1,0 +1,15 @@
+name        perl-dist-checkconflicts
+version     0.11
+release     1
+description perl-dist-checkconflicts: declare version conflicts for your dist
+
+source      https://cpan.metacpan.org/authors/id/D/DO/DOY/Dist-CheckConflicts-${version}.tar.gz
+hash        sha256:ea844b9686c94d666d9d444321d764490b2cde2f985c4165b4c2c77665caedc4
+
+depend      filesystem
+depend      perl
+depend      perl-module-runtime
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,20 @@
+name        python-kiwisolver
+version     1.5.1
+release     1
+arch        any
+description python-kiwisolver: A fast implementation of the Cassowary constraint solver
+
+source      https://files.pythonhosted.org/packages/ba/07/bd78e6a8fae171ea041ef5bba3ed21a003522fa088834b069b1909981f30/kiwisolver-${version}.tar.gz
+hash        sha256:f1303ef2eec81262a4b708c3e858afe58d7c75ad91c1c05266eda7673369859a
+
+depend      filesystem
+depend      python
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

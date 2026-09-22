@@ -1,0 +1,20 @@
+name        python-asttokens
+version     3.0.2
+release     1
+arch        any
+description python-asttokens: Annotate AST trees with source code positions
+
+source      https://files.pythonhosted.org/packages/25/1e/faf0f247f6f881b98fc4d6d07e14085cb89d13665084e6d6ac1dc2c03d0b/asttokens-${version}.tar.gz
+hash        sha256:3ecdbd8f2cc195f53ccada3a613538bb5f9ef6f6869129f13e03c30a677b8fe2
+
+depend      filesystem
+depend      python
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

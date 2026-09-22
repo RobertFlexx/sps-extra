@@ -1,0 +1,14 @@
+name        perl-text-template
+version     1.61
+release     1
+description perl-text-template: Expand template text with embedded Perl
+
+source      https://cpan.metacpan.org/authors/id/M/MS/MSCHOUT/Text-Template-${version}.tar.gz
+hash        sha256:a295ea7d1ef241ae2640c1f7864b628f8e6f99ec14fb1da781b2f5f2168dcf09
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,14 @@
+name        perl-math-bigint
+version     2.005003
+release     1
+description perl-math-bigint: Pure Perl module to test Math::BigInt with scalars
+
+source      https://cpan.metacpan.org/authors/id/P/PJ/PJACKLAM/Math-BigInt-${version}.tar.gz
+hash        sha256:c4adc1202349f7fcd14d01e6949fee0ec969049d45c9ca59aa29ec58a65966db
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

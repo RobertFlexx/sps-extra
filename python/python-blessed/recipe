@@ -1,0 +1,22 @@
+name        python-blessed
+version     1.50.0
+release     1
+arch        any
+description python-blessed: Easy, practical library for making terminal apps, by providing an elegant, well-documented interface for Terminals
+
+source      https://files.pythonhosted.org/packages/0c/7d/44d82d953d9bbcac57fe26507ea7ffba65ef1ec8f41f2b58da2fb12ef26c/blessed-${version}.tar.gz
+hash        sha256:046c9b2a5283a9c5bc340ed23b7d1c1f10ef2d7fb30b14bae13ef7ffc1f3ba56
+
+depend      filesystem
+depend      python
+depend      python-wcwidth
+depend      python-jinxed
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

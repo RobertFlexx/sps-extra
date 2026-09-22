@@ -1,0 +1,14 @@
+name        perl-xml-sax-base
+version     1.09
+release     1
+description perl-xml-sax-base: Base class for SAX Drivers and Filters
+
+source      https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-Base-${version}.tar.gz
+hash        sha256:66cb355ba4ef47c10ca738bd35999723644386ac853abbeb5132841f5e8a2ad0
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

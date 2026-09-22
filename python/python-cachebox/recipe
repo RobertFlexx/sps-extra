@@ -1,0 +1,20 @@
+name        python-cachebox
+version     6.2.7
+release     1
+arch        any
+description python-cachebox: The fastest memoizing and caching Python library written in Rust
+
+source      https://files.pythonhosted.org/packages/9c/ea/0bb88902241e4d30aafe10efff06fbc2bcb57280f94ed9d1db8cd89592aa/cachebox-${version}.tar.gz
+hash        sha256:f19d264922e51351e79ae28a2711f958008066687d823f9d295e1f55143b6894
+
+depend      filesystem
+depend      python
+builddep    python-maturin
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

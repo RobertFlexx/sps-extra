@@ -1,0 +1,15 @@
+name        perl-www-robotrules
+version     6.03
+release     1
+description perl-www-robotrules: database of robots.txt-derived permissions
+
+source      https://cpan.metacpan.org/authors/id/O/OA/OALDERS/WWW-RobotRules-${version}.tar.gz
+hash        sha256:8522b532935a11bfa688c2e113bac66729df4851be50c2c26d4b06f45fade472
+
+depend      filesystem
+depend      perl
+depend      perl-uri
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

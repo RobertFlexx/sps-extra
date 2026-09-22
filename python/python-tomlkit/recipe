@@ -1,0 +1,20 @@
+name        python-tomlkit
+version     0.15.1
+release     1
+arch        any
+description python-tomlkit: Style preserving TOML library
+
+source      https://files.pythonhosted.org/packages/94/96/e07752635b98536177fa1f37671c8f3cdde2e724c6bcf6034b2cfb571565/tomlkit-${version}.tar.gz
+hash        sha256:e25bbf38843005246210a12982776f27f99cb9be67160e14434d0c0d21ee1e97
+
+depend      filesystem
+depend      python
+builddep    python-poetry-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

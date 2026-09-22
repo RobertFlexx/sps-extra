@@ -1,0 +1,14 @@
+name        perl-file-which
+version     1.27
+release     1
+description perl-file-which: Perl implementation of the which utility as an API
+
+source      https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-${version}.tar.gz
+hash        sha256:3201f1a60e3f16484082e6045c896842261fc345de9fb2e620fd2a2c7af3a93a
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

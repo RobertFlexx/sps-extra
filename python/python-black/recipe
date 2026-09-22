@@ -1,0 +1,28 @@
+name        python-black
+version     26.5.1
+release     1
+arch        any
+description python-black: The uncompromising code formatter
+
+source      https://files.pythonhosted.org/packages/c0/37/5628dd55bf2b34257fc7603f0fe97c40e3aaf24265f416a9c85c95ca1436/black-${version}.tar.gz
+hash        sha256:dd321f668053961824bcc1be1cc1df748b2d7e4fa28086b08331e577b0100a73
+
+depend      filesystem
+depend      python
+depend      python-click
+depend      python-mypy-extensions
+depend      python-packaging
+depend      python-pathspec
+depend      python-platformdirs
+depend      python-pytokens
+depend      python-tomli
+depend      python-typing-extensions
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

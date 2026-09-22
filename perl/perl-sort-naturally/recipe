@@ -1,0 +1,14 @@
+name        perl-sort-naturally
+version     1.03
+release     1
+description perl-sort-naturally: sort lexically, but sort numeral parts numerically
+
+source      https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Sort-Naturally-${version}.tar.gz
+hash        sha256:eaab1c5c87575a7826089304ab1f8ffa7f18e6cd8b3937623e998e865ec1e746
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

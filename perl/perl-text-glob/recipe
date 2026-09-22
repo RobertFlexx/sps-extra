@@ -1,0 +1,14 @@
+name        perl-text-glob
+version     0.11
+release     1
+description perl-text-glob: match globbing patterns against text
+
+source      https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Text-Glob-${version}.tar.gz
+hash        sha256:069ccd49d3f0a2dedb115f4bdc9fbac07a83592840953d1fcdfc39eb9d305287
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,20 @@
+name        python-webencodings
+version     0.6.1
+release     1
+arch        any
+description python-webencodings: Character encoding aliases for legacy web content
+
+source      https://files.pythonhosted.org/packages/d5/a0/8fd707bcb776a7be556bad06a2ea5fb9bd519df78ef8e26f70ccf0f38bff/webencodings-${version}.tar.gz
+hash        sha256:565f9ad031c702dae404e27a099e3e09186a3ab1b9520f06d215502b651fd910
+
+depend      filesystem
+depend      python
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

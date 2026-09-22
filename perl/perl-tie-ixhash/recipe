@@ -1,0 +1,14 @@
+name        perl-tie-ixhash
+version     1.23
+release     1
+description perl-tie-ixhash: ordered associative arrays for Perl
+
+source      https://cpan.metacpan.org/authors/id/C/CH/CHORNY/Tie-IxHash-${version}.tar.gz
+hash        sha256:fabb0b8c97e67c9b34b6cc18ed66f6c5e01c55b257dcf007555e0b027d4caf56
+
+depend      filesystem
+depend      perl
+
+configure   perl Build.PL installdirs=vendor
+build       ./Build
+install     ./Build install destdir="$PKG"

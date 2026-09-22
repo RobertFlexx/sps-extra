@@ -1,0 +1,14 @@
+name        perl-sub-install
+version     0.929
+release     1
+description perl-sub-install: install subroutines into packages easily
+
+source      https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Sub-Install-${version}.tar.gz
+hash        sha256:80b1e281d8cd3b2b31dac711f5c8a1657a87cd80bbe69af3924bcbeb4e5db077
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

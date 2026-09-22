@@ -1,0 +1,14 @@
+name        perl-test-warnings
+version     0.038
+release     1
+description perl-test-warnings: Test for warnings and the lack of them
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/Test-Warnings-${version}.tar.gz
+hash        sha256:3da27e003a3c3cafed3c09b42be05cf9bdbff0bee5c8590a731b02853880a273
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

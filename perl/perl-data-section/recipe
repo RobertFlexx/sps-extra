@@ -1,0 +1,16 @@
+name        perl-data-section
+version     0.200008
+release     1
+description perl-data-section: read multiple hunks of data out of your DATA section
+
+source      https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Data-Section-${version}.tar.gz
+hash        sha256:83acc7a55d3dd7ed36e9d78d350af3138c69cfa178a44765822712ff433b990e
+
+depend      filesystem
+depend      perl
+depend      perl-sub-exporter
+depend      perl-mro-compat
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

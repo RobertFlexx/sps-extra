@@ -1,0 +1,15 @@
+name        perl-types-serialiser
+version     1.01
+release     1
+description perl-types-serialiser: simple data types for common serialisation formats
+
+source      https://cpan.metacpan.org/authors/id/M/ML/MLEHMANN/Types-Serialiser-${version}.tar.gz
+hash        sha256:f8c7173b0914d0e3d957282077b366f0c8c70256715eaef3298ff32b92388a80
+
+depend      filesystem
+depend      perl
+depend      perl-common-sense
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

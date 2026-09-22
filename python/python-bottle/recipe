@@ -1,0 +1,20 @@
+name        python-bottle
+version     0.13.4
+release     1
+arch        any
+description python-bottle: Fast and simple WSGI-framework for small web-applications
+
+source      https://files.pythonhosted.org/packages/7a/71/cca6167c06d00c81375fd668719df245864076d284f7cb46a694cbeb5454/bottle-${version}.tar.gz
+hash        sha256:787e78327e12b227938de02248333d788cfe45987edca735f8f88e03472c3f47
+
+depend      filesystem
+depend      python
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

@@ -1,0 +1,14 @@
+name        perl-term-ansicolor
+version     5.01
+release     1
+description perl-term-ansicolor: Color output using ANSI escape sequences
+
+source      https://cpan.metacpan.org/authors/id/R/RR/RRA/Term-ANSIColor-${version}.tar.gz
+hash        sha256:6281bd87cced7a885c38aa104498e3cd4b5f4c276087442cf68c67379318f27d
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

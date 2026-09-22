@@ -1,0 +1,23 @@
+name        python-cattrs
+version     26.2.0
+release     1
+arch        any
+description python-cattrs: Composable complex class support for attrs and dataclasses
+
+source      https://files.pythonhosted.org/packages/d6/b2/42f4524e5479b090040b5fd8bb316dd8c65a079bb6492494ce2079dc91be/cattrs-${version}.tar.gz
+hash        sha256:3cf49f69df8326bcf17a3cb3d3d3ec4a856858fe3a7473746c9044c317d3ba55
+
+depend      filesystem
+depend      python
+depend      python-attrs
+depend      python-exceptiongroup
+depend      python-typing-extensions
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

@@ -1,0 +1,18 @@
+name        perl-throwable
+version     1.001
+release     1
+description perl-throwable: a role for classes that can be thrown
+
+source      https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Throwable-${version}.tar.gz
+hash        sha256:d0cb5e9d7d06d70f2cc56eecf857a83a45eaca43850dcdda91d3feb4ddde4c51
+
+depend      filesystem
+depend      perl
+depend      perl-moo
+depend      perl-sub-quote
+depend      perl-devel-stacktrace
+depend      perl-module-runtime
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

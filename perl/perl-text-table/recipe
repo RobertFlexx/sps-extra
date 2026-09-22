@@ -1,0 +1,15 @@
+name        perl-text-table
+version     1.135
+release     1
+description perl-text-table: Organize Data in Tables
+
+source      https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/Text-Table-${version}.tar.gz
+hash        sha256:fca3c16e83127f7c44dde3d3f7e3c73ea50d109a1054445de8082fea794ca5d2
+
+depend      filesystem
+depend      perl
+depend      perl-text-aligner
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,14 @@
+name        perl-data-dumper-concise
+version     2.023
+release     1
+description perl-data-dumper-concise: Less indentation and newlines plus sub deparsing
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/Data-Dumper-Concise-${version}.tar.gz
+hash        sha256:a6c22f113caf31137590def1b7028a7e718eface3228272d0672c25e035d5853
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

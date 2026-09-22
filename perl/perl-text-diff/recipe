@@ -1,0 +1,15 @@
+name        perl-text-diff
+version     1.46
+release     1
+description perl-text-diff: Perform diffs on files and record sets
+
+source      https://cpan.metacpan.org/authors/id/N/NE/NEILB/Text-Diff-${version}.tar.gz
+hash        sha256:3fc983e3140fa2580250bbcf2b52e2acbdbc5abda4374c3be78235905d8ca8eb
+
+depend      filesystem
+depend      perl
+depend      perl-algorithm-diff
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

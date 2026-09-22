@@ -1,0 +1,19 @@
+name        perl-datetime-locale
+version     1.46
+release     1
+description perl-datetime-locale: Localization support for DateTime.pm
+
+source      https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/DateTime-Locale-${version}.tar.gz
+hash        sha256:fda10fd3ee85f9ce73f46e4ccfe764243978c3ac377e3097597058101b935d9f
+
+depend      filesystem
+depend      perl
+depend      perl-specio
+depend      perl-namespace-autoclean
+depend      perl-dist-checkconflicts
+depend      perl-params-validationcompiler
+depend      perl-file-sharedir
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

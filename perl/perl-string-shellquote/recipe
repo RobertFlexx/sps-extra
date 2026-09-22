@@ -1,0 +1,14 @@
+name        perl-string-shellquote
+version     1.04
+release     1
+description perl-string-shellquote: quote strings for passing through the shell
+
+source      https://cpan.metacpan.org/authors/id/R/RO/ROSCH/String-ShellQuote-${version}.tar.gz
+hash        sha256:e606365038ce20d646d255c805effdd32f86475f18d43ca75455b00e4d86dd35
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,14 @@
+name        perl-list-moreutils-xs
+version     0.430
+release     1
+description perl-list-moreutils-xs: Provide the stuff missing in List::Util in XS
+
+source      https://cpan.metacpan.org/authors/id/R/RE/REHSACK/List-MoreUtils-XS-${version}.tar.gz
+hash        sha256:e8ce46d57c179eecd8758293e9400ff300aaf20fefe0a9d15b9fe2302b9cb242
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

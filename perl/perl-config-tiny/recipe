@@ -1,0 +1,14 @@
+name        perl-config-tiny
+version     2.30
+release     1
+description perl-config-tiny: Read/Write .ini style files with as little code as possible
+
+source      https://cpan.metacpan.org/authors/id/R/RS/RSAVAGE/Config-Tiny-${version}.tgz
+hash        sha256:b2f7345619b3b8e636dd39ea010731c9dc2bfb8f022bcbd86ae6ad17866e110d
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

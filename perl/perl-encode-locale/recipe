@@ -1,0 +1,14 @@
+name        perl-encode-locale
+version     1.05
+release     1
+description perl-encode-locale: Determine the locale encoding
+
+source      https://cpan.metacpan.org/authors/id/G/GA/GAAS/Encode-Locale-${version}.tar.gz
+hash        sha256:176fa02771f542a4efb1dbc2a4c928e8f4391bf4078473bd6040d8f11adb0ec1
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

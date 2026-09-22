@@ -1,0 +1,14 @@
+name        perl-role-tiny
+version     2.002005
+release     1
+description perl-role-tiny: Roles: a nouvelle cuisine portion size slice of Moose
+
+source      https://cpan.metacpan.org/authors/id/H/HA/HAARG/Role-Tiny-${version}.tar.gz
+hash        sha256:4618ec524618c104dc28a8cc86af129a00cad282aea7f4c75060ba05d4c8f4d7
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

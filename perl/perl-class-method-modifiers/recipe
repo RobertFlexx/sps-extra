@@ -1,0 +1,14 @@
+name        perl-class-method-modifiers
+version     2.15
+release     1
+description perl-class-method-modifiers: Provides Moose-like method modifiers
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/Class-Method-Modifiers-${version}.tar.gz
+hash        sha256:65cd85bfe475d066e9186f7a8cc636070985b30b0ebb1cde8681cf062c2e15fc
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

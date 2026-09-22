@@ -1,0 +1,15 @@
+name        perl-devel-globaldestruction
+version     0.14
+release     1
+description perl-devel-globaldestruction: Provides function returning the equivalent of ${^GLOBAL_PHASE} eq 'DESTRUCT' for older perls
+
+source      https://cpan.metacpan.org/authors/id/H/HA/HAARG/Devel-GlobalDestruction-${version}.tar.gz
+hash        sha256:34b8a5f29991311468fe6913cadaba75fd5d2b0b3ee3bb41fe5b53efab9154ab
+
+depend      filesystem
+depend      perl
+depend      perl-sub-exporter-progressive
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

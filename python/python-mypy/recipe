@@ -1,0 +1,26 @@
+name        python-mypy
+version     2.3.1
+release     1
+arch        any
+description python-mypy: Optional static typing for Python
+
+source      https://files.pythonhosted.org/packages/82/6a/878cc1097d4035f82bd516658d0c528d2a9955bc7b363afcbd0b07fea11b/mypy-${version}.tar.gz
+hash        sha256:47c1b1207258513a9d93495f69c8be9de73916186f0e52703e8c461b7a623419
+
+depend      filesystem
+depend      python
+depend      python-typing-extensions
+depend      python-mypy-extensions
+depend      python-pathspec
+depend      python-tomli
+depend      python-librt
+depend      python-ast-serialize
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

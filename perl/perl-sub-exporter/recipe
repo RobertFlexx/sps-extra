@@ -1,0 +1,17 @@
+name        perl-sub-exporter
+version     0.992
+release     1
+description perl-sub-exporter: a sophisticated exporter for custom-built routines
+
+source      https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Sub-Exporter-${version}.tar.gz
+hash        sha256:31d1b7016390528f3ed2cda379f4026a4e7fbad2aa40c8c9a1808961bf642c67
+
+depend      filesystem
+depend      perl
+depend      perl-data-optlist
+depend      perl-params-someutil
+depend      perl-sub-install
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

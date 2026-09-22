@@ -1,0 +1,14 @@
+name        perl-clone-pp
+version     1.09
+release     1
+description perl-clone-pp: Recursively copy Perl datatypes
+
+source      https://cpan.metacpan.org/authors/id/N/NE/NEILB/Clone-PP-${version}.tar.gz
+hash        sha256:4bb44697ef82105bd8d6204e550796a1eea89ce7108a98e0b7bf3ae4700d1c34
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

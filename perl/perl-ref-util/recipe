@@ -1,0 +1,14 @@
+name        perl-ref-util
+version     0.204
+release     1
+description perl-ref-util: Utility functions for checking references
+
+source      https://cpan.metacpan.org/authors/id/A/AR/ARC/Ref-Util-${version}.tar.gz
+hash        sha256:415fa73dbacf44f3d5d79c14888cc994562720ab468e6f71f91cd1f769f105e1
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

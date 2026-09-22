@@ -1,0 +1,14 @@
+name        perl-text-aligner
+version     0.16
+release     1
+description perl-text-aligner: module to align text
+
+source      https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/Text-Aligner-${version}.tar.gz
+hash        sha256:5c857dbce586f57fa3d7c4ebd320023ab3b2963b2049428ae01bd3bc4f215725
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

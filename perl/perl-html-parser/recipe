@@ -1,0 +1,17 @@
+name        perl-html-parser
+version     3.86
+release     1
+description perl-html-parser: HTML parser class
+
+source      https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTML-Parser-${version}.tar.gz
+hash        sha256:5305e1d5faa70ee0aa282d85a5c9aa93911e8c7afa590ad1ced5703a544e20f6
+
+depend      filesystem
+depend      perl
+depend      perl-html-tagset
+depend      perl-http-message
+depend      perl-uri
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

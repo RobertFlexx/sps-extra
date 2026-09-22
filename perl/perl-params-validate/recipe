@@ -1,0 +1,15 @@
+name        perl-params-validate
+version     1.31
+release     1
+description perl-params-validate: Validate method/function parameters
+
+source      https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Params-Validate-${version}.tar.gz
+hash        sha256:1bf2518ef2c4869f91590e219f545c8ef12ed53cf313e0eb5704adf7f1b2961e
+
+depend      filesystem
+depend      perl
+depend      perl-module-implementation
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

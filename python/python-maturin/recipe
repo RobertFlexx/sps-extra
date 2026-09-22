@@ -1,0 +1,20 @@
+name        python-maturin
+version     1.15.0
+release     1
+arch        any
+description python-maturin: Build and publish crates with pyo3, cffi and uniffi bindings as well as rust binaries as python packages
+
+source      https://files.pythonhosted.org/packages/b9/c8/22e5e21b2679c9bce6415ca578034ca2cc9316be0642ae21e051a2d5198c/maturin-${version}.tar.gz
+hash        sha256:94b26cc8e8aba61a5f2099715fe640e18c5f678e9a500408b38761263954228a
+
+depend      filesystem
+depend      python
+depend      python-tomli
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

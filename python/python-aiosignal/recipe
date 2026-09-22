@@ -1,0 +1,22 @@
+name        python-aiosignal
+version     1.4.0
+release     1
+arch        any
+description python-aiosignal: aiosignal: a list of registered asynchronous callbacks
+
+source      https://files.pythonhosted.org/packages/61/62/06741b579156360248d1ec624842ad0edf697050bbaf7c3e46394e106ad1/aiosignal-${version}.tar.gz
+hash        sha256:f47eecd9468083c2029cc99945502cb7708b082c232f9aca65da147157b251c7
+
+depend      filesystem
+depend      python
+depend      python-frozenlist
+depend      python-typing-extensions
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

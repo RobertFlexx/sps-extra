@@ -1,0 +1,14 @@
+name        perl-set-scalar
+version     1.29
+release     1
+description perl-set-scalar: basic set operations
+
+source      https://cpan.metacpan.org/authors/id/D/DA/DAVIDO/Set-Scalar-${version}.tar.gz
+hash        sha256:a3dc1526f3dde72d3c64ea00007b86ce608cdcd93567cf6e6e42dc10fdc4511d
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

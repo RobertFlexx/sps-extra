@@ -1,0 +1,22 @@
+name        python-meson-python
+version     0.21.1
+release     1
+arch        any
+description python-meson-python: The Python build backend for Meson projects
+
+source      https://files.pythonhosted.org/packages/ed/f2/ab554fe4f020ec5f0ab4e4af04318e6ab99660f8d8d14e3d064db2b786a6/meson_python-${version}.tar.gz
+hash        sha256:78b3345dcbc0fed7b939e7e37a9faab35bddaae07bf62e7542c8ad479c395af5
+
+depend      filesystem
+depend      python
+depend      python-meson
+depend      python-pyproject-metadata
+depend      python-tomli
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

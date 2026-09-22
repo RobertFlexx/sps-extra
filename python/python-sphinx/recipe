@@ -1,0 +1,36 @@
+name        python-sphinx
+version     9.1.0
+release     1
+arch        any
+description python-sphinx: Python documentation generator
+
+source      https://files.pythonhosted.org/packages/cd/bd/f08eb0f4eed5c83f1ba2a3bd18f7745a2b1525fad70660a1c00224ec468a/sphinx-${version}.tar.gz
+hash        sha256:7741722357dd75f8190766926071fed3bdc211c74dd2d7d4df5404da95930ddb
+
+depend      filesystem
+depend      python
+depend      python-sphinxcontrib-applehelp
+depend      python-sphinxcontrib-devhelp
+depend      python-sphinxcontrib-htmlhelp
+depend      python-sphinxcontrib-jsmath
+depend      python-sphinxcontrib-qthelp
+depend      python-sphinxcontrib-serializinghtml
+depend      python-jinja2
+depend      python-pygments
+depend      python-docutils
+depend      python-snowballstemmer
+depend      python-babel
+depend      python-alabaster
+depend      python-imagesize
+depend      python-requests
+depend      python-roman-numerals
+depend      python-packaging
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

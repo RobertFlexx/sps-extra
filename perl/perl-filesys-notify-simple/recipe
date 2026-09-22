@@ -1,0 +1,14 @@
+name        perl-filesys-notify-simple
+version     0.14
+release     1
+description perl-filesys-notify-simple: Simple and dumb file system watcher
+
+source      https://cpan.metacpan.org/authors/id/M/MI/MIYAGAWA/Filesys-Notify-Simple-${version}.tar.gz
+hash        sha256:1fda712d4ba5e1868159ed35f6f8efbfae9d435d6376f5606d533bcb080555a4
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,15 @@
+name        perl-uri
+version     5.37
+release     1
+description perl-uri: Uniform Resource Identifiers (absolute and relative)
+
+source      https://cpan.metacpan.org/authors/id/O/OA/OALDERS/URI-${version}.tar.gz
+hash        sha256:5a8750ddd8ee743d7cc89bebdd542a9b78a34023164ebe19dea0c248e121c21e
+
+depend      filesystem
+depend      perl
+depend      perl-mime-base32
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

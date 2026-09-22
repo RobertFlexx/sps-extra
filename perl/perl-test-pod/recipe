@@ -1,0 +1,14 @@
+name        perl-test-pod
+version     1.52
+release     1
+description perl-test-pod: check for POD errors in files
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/Test-Pod-${version}.tar.gz
+hash        sha256:60a8dbcc60168bf1daa5cc2350236df9343e9878f4ab9830970a5dde6fe8e5fc
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

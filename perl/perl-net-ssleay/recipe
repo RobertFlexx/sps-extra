@@ -1,0 +1,14 @@
+name        perl-net-ssleay
+version     1.96
+release     1
+description perl-net-ssleay: Perl bindings for OpenSSL and LibreSSL
+
+source      https://cpan.metacpan.org/authors/id/C/CH/CHRISN/Net-SSLeay-${version}.tar.gz
+hash        sha256:ab213691685fb2a576c669cbc8d9266f8165a31563ad15b7c4030b94adfc0753
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

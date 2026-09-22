@@ -1,0 +1,16 @@
+name        perl-list-allutils
+version     0.19
+release     1
+description perl-list-allutils: Combines List::Util, List::SomeUtils and List::UtilsBy in one bite-sized package
+
+source      https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/List-AllUtils-${version}.tar.gz
+hash        sha256:30a8146ab21a7787b8c56d5829cf9a7f2b15276d3b3fca07336ac38d3002ffbc
+
+depend      filesystem
+depend      perl
+depend      perl-list-utilsby
+depend      perl-list-someutils
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

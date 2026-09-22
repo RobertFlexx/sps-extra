@@ -1,0 +1,14 @@
+name        perl-devel-symdump
+version     2.18
+release     1
+description perl-devel-symdump: dump symbol names or the symbol table
+
+source      https://cpan.metacpan.org/authors/id/A/AN/ANDK/Devel-Symdump-${version}.tar.gz
+hash        sha256:826f81a107f5592a2516766ed43beb47e10cc83edc9ea48090b02a36040776c0
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

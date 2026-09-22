@@ -1,0 +1,21 @@
+name        python-pydantic-core
+version     2.49.0
+release     1
+arch        any
+description python-pydantic-core: Core functionality for Pydantic validation and serialization
+
+source      https://files.pythonhosted.org/packages/0b/31/2de1e4f86615a3c1f598934dc9d557d473d87820c33c23582c7aaa6e145a/pydantic_core-${version}.tar.gz
+hash        sha256:67440399d87a2c160ddff9dc013d12812785cfde18b648a295d57043f034a9fb
+
+depend      filesystem
+depend      python
+depend      python-typing-extensions
+builddep    python-maturin
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

@@ -1,0 +1,21 @@
+name        python-jaraco-functools
+version     4.6.0
+release     1
+arch        any
+description python-jaraco-functools: Functools like those found in stdlib
+
+source      https://files.pythonhosted.org/packages/6c/1f/c23395957d41ccf27c4e535c3d334c4051e5395b3752057ba4cbaec35c56/jaraco_functools-${version}.tar.gz
+hash        sha256:880c577ec9720b3a052d5bc611fb9f2269b3d87902ef42440df443b88e443280
+
+depend      filesystem
+depend      python
+depend      python-more-itertools
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

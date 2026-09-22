@@ -1,0 +1,14 @@
+name        perl-digest-hmac
+version     1.05
+release     1
+description perl-digest-hmac: Keyed-Hashing for Message Authentication
+
+source      https://cpan.metacpan.org/authors/id/A/AR/ARODLAND/Digest-HMAC-${version}.tar.gz
+hash        sha256:215cb59cba610745cfb2d4b3f8ef756d590e57e3ad7986a992e87c4969fcdc7a
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

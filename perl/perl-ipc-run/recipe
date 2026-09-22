@@ -1,0 +1,15 @@
+name        perl-ipc-run
+version     20260402.0
+release     1
+description perl-ipc-run: system() and background procs w/ piping, redirs, ptys (Unix, Win32)
+
+source      https://cpan.metacpan.org/authors/id/T/TO/TODDR/IPC-Run-${version}.tar.gz
+hash        sha256:d6a326a8b1ffb19495dea4ff5a09ef138bf3562ab1b069d3fb7efbc77b9f6aca
+
+depend      filesystem
+depend      perl
+depend      perl-io-tty
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

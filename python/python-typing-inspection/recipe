@@ -1,0 +1,21 @@
+name        python-typing-inspection
+version     0.4.4
+release     1
+arch        any
+description python-typing-inspection: Runtime typing introspection tools
+
+source      https://files.pythonhosted.org/packages/a3/26/b09b8010994eccc3c09092e6b34058f36a460eea2d4c3e8b910c695975a0/typing_inspection-${version}.tar.gz
+hash        sha256:547274fa6b0a561ccf549cc9524b999a578e737d015d8709d021f9d0d13bea47
+
+depend      filesystem
+depend      python
+depend      python-typing-extensions
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

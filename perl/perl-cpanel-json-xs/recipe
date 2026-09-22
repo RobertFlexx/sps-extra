@@ -1,0 +1,14 @@
+name        perl-cpanel-json-xs
+version     4.52
+release     1
+description perl-cpanel-json-xs: cPanel fork of JSON::XS, fast and correct serializing
+
+source      https://cpan.metacpan.org/authors/id/R/RU/RURBAN/Cpanel-JSON-XS-${version}.tar.gz
+hash        sha256:38067bdf10c96487f99730f42d03193c3d446726711eca8d1552170439b32714
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

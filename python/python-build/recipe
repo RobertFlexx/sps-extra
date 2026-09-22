@@ -1,0 +1,25 @@
+name        python-build
+version     1.6.1
+release     1
+arch        any
+description python-build: A simple, correct Python build frontend
+
+source      https://files.pythonhosted.org/packages/bd/67/4898a44ea4f3f8e213b0954ec0aa0a16971d62a6212d6ea3931e97115b99/build-${version}.tar.gz
+hash        sha256:51cc11666391ab6f092070437ac747002ff46f3e4113a3622177ee6b488bfc53
+
+depend      filesystem
+depend      python
+depend      python-packaging
+depend      python-pyproject-hooks
+depend      python-colorama
+depend      python-importlib-metadata
+depend      python-tomli
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

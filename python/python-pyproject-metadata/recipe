@@ -1,0 +1,21 @@
+name        python-pyproject-metadata
+version     0.12.1
+release     1
+arch        any
+description python-pyproject-metadata: PEP 621 metadata parsing
+
+source      https://files.pythonhosted.org/packages/4f/76/1cae539918a7b1746d624c2f01560b793c22cd8c081157505bb9bbf0e34d/pyproject_metadata-${version}.tar.gz
+hash        sha256:8809a4df6fe08279b39a8890669506ed3158e0617855ac9aff098fcbe772ae4c
+
+depend      filesystem
+depend      python
+depend      python-packaging
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

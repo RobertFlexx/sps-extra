@@ -1,0 +1,15 @@
+name        perl-io-socket-ssl
+version     2.099
+release     1
+description perl-io-socket-ssl: Nearly transparent SSL encapsulation for IO::Socket::INET
+
+source      https://cpan.metacpan.org/authors/id/S/SU/SULLR/IO-Socket-SSL-${version}.tar.gz
+hash        sha256:a0be800ff4852b1567ee5500e772417ad7a360abff80c01b5b875c15d44be832
+
+depend      filesystem
+depend      perl
+depend      perl-net-ssleay
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

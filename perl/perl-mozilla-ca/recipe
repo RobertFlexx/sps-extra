@@ -1,0 +1,14 @@
+name        perl-mozilla-ca
+version     20260813
+release     1
+description perl-mozilla-ca: Mozilla's CA cert bundle in PEM format
+
+source      https://cpan.metacpan.org/authors/id/L/LW/LWP/Mozilla-CA-${version}.tar.gz
+hash        sha256:81f0bd9665eacbb6feef13b0fa16fbb30162c09292542b1206434e569196dd9b
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,21 @@
+name        python-markdown-it-py
+version     4.2.0
+release     1
+arch        any
+description python-markdown-it-py: Python port of markdown-it. Markdown parsing, done right!
+
+source      https://files.pythonhosted.org/packages/06/ff/7841249c247aa650a76b9ee4bbaeae59370dc8bfd2f6c01f3630c35eb134/markdown_it_py-${version}.tar.gz
+hash        sha256:04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49
+
+depend      filesystem
+depend      python
+depend      python-mdurl
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

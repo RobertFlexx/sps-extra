@@ -1,0 +1,20 @@
+name        python-pdm-backend
+version     2.4.10
+release     1
+arch        any
+description python-pdm-backend: The build backend used by PDM that supports latest packaging standards
+
+source      https://files.pythonhosted.org/packages/4e/d3/e0cd7f4922aca7ea0d9a9c0d5dfe6452e3e966ca0bf4dc962f9aa6bb2a54/pdm_backend-${version}.tar.gz
+hash        sha256:551b049379d4f270cba18f5bf73031cc229a4f883e085265465d326d4a636861
+
+depend      filesystem
+depend      python
+depend      python-importlib-metadata
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

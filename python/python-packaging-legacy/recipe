@@ -1,0 +1,21 @@
+name        python-packaging-legacy
+version     23.0.post0
+release     1
+arch        any
+description python-packaging-legacy: Core utilities for legacy Python packages
+
+source      https://files.pythonhosted.org/packages/f8/31/3a2fe3f5fc01a0671ba20560c556b4239b69bfef842a20bba99e3239fd3e/packaging_legacy-${version}.tar.gz
+hash        sha256:c974a42291a77112313f0198b87ad96e07a3c357295d572560a4b9c368f7d9db
+
+depend      filesystem
+depend      python
+depend      python-packaging
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

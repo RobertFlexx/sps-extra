@@ -1,0 +1,21 @@
+name        python-croniter
+version     6.2.4
+release     1
+arch        any
+description python-croniter: croniter provides iteration for datetime object with cron like format
+
+source      https://files.pythonhosted.org/packages/37/57/2e2a65aee2a70483cb28e2b7e15a072d00a523207593b44400d4717bb100/croniter-${version}.tar.gz
+hash        sha256:fc124f751b1b04805c2a04b061898b436b45ab2320b045e1e052ea895de65189
+
+depend      filesystem
+depend      python
+depend      python-dateutil
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

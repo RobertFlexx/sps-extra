@@ -1,0 +1,17 @@
+name        perl-xml-simple
+version     2.25
+release     1
+description perl-xml-simple: An API for simple XML files
+
+source      https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-Simple-${version}.tar.gz
+hash        sha256:531fddaebea2416743eb5c4fdfab028f502123d9a220405a4100e68fc480dbf8
+
+depend      filesystem
+depend      perl
+depend      perl-xml-namespacesupport
+depend      perl-xml-sax
+depend      perl-xml-sax-expat
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

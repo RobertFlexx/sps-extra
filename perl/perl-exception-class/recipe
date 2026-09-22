@@ -1,0 +1,16 @@
+name        perl-exception-class
+version     1.45
+release     1
+description perl-exception-class: A module that allows you to declare real exception classes in Perl
+
+source      https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Exception-Class-${version}.tar.gz
+hash        sha256:5482a77ef027ca1f9f39e1f48c558356e954936fc8fbbdee6c811c512701b249
+
+depend      filesystem
+depend      perl
+depend      perl-class-data-inheritable
+depend      perl-devel-stacktrace
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

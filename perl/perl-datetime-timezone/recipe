@@ -1,0 +1,20 @@
+name        perl-datetime-timezone
+version     2.70
+release     1
+description perl-datetime-timezone: Time zone object base class and factory
+
+source      https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/DateTime-TimeZone-${version}.tar.gz
+hash        sha256:750868d3820113a0e27e786531a08fa57a34abcd252f3133c0f8b5efc38b485c
+
+depend      filesystem
+depend      perl
+depend      perl-class-singleton
+depend      perl-params-validationcompiler
+depend      perl-module-runtime
+depend      perl-try-tiny
+depend      perl-specio
+depend      perl-namespace-autoclean
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

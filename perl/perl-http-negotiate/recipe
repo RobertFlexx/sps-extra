@@ -1,0 +1,15 @@
+name        perl-http-negotiate
+version     6.01
+release     1
+description perl-http-negotiate: choose a variant to serve
+
+source      https://cpan.metacpan.org/authors/id/G/GA/GAAS/HTTP-Negotiate-${version}.tar.gz
+hash        sha256:1c729c1ea63100e878405cda7d66f9adfd3ed4f1d6cacaca0ee9152df728e016
+
+depend      filesystem
+depend      perl
+depend      perl-http-message
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

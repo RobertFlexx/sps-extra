@@ -1,0 +1,23 @@
+name        python-diagnostic
+version     3.0.0
+release     1
+arch        any
+description python-diagnostic: Present errors that contain causes better understand what happened
+
+source      https://files.pythonhosted.org/packages/5d/e1/397476816642a176500e5a53f3875244a61f2543bb405aa67d5ec06ca8b7/diagnostic-${version}.tar.gz
+hash        sha256:5c80d7f77706dca775cc85d7b0492e4e96385dade2103052cf06cf6ab105b855
+
+depend      filesystem
+depend      python
+depend      python-rich
+depend      python-markdown-it-py
+depend      python-docutils
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

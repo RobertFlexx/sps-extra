@@ -1,0 +1,21 @@
+name        python-ipython-pygments-lexers
+version     1.1.1
+release     1
+arch        any
+description python-ipython-pygments-lexers: Defines a variety of Pygments lexers for highlighting IPython code
+
+source      https://files.pythonhosted.org/packages/ef/4c/5dd1d8af08107f88c7f741ead7a40854b8ac24ddf9ae850afbcf698aa552/ipython_pygments_lexers-${version}.tar.gz
+hash        sha256:09c0138009e56b6854f9535736f4171d855c8c08a563a0dcd8022f78355c7e81
+
+depend      filesystem
+depend      python
+depend      python-pygments
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

@@ -1,0 +1,20 @@
+name        python-discovery
+version     0.0.4
+release     1
+arch        any
+description python-discovery: Python library for getting values from ETCD
+
+source      https://files.pythonhosted.org/packages/57/78/beeda4533326544c2773ec872013349f211cae457db6c90642e44509f8c9/discovery-${version}.tar.gz
+hash        sha256:76504c1d07b687082cb6c64fa78991533508b797c6df203f3aa824c99b06ecec
+
+depend      filesystem
+depend      python
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

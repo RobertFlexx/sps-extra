@@ -1,0 +1,15 @@
+name        perl-type-tiny
+version     2.010001
+release     1
+description perl-type-tiny: tiny, yet Moo(se)-compatible type constraint
+
+source      https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/Type-Tiny-${version}.tar.gz
+hash        sha256:cd583e4983039f35052d490f0c4439124ba667d4f09c4e3aec47de5200f9921a
+
+depend      filesystem
+depend      perl
+depend      perl-exporter-tiny
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

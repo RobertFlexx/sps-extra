@@ -1,0 +1,15 @@
+name        perl-test-simple
+version     1.302225
+release     1
+description perl-test-simple: Basic utilities for writing tests
+
+source      https://cpan.metacpan.org/authors/id/E/EX/EXODIST/Test-Simple-${version}.tar.gz
+hash        sha256:9b5eefd82a9544582d43d2fb4e3d07e3f97d93293568593b41ad5010afccc785
+
+depend      filesystem
+depend      perl
+depend      perl-term-table
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

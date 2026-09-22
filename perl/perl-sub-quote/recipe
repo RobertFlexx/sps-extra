@@ -1,0 +1,14 @@
+name        perl-sub-quote
+version     2.006009
+release     1
+description perl-sub-quote: Efficient generation of subroutines via string eval
+
+source      https://cpan.metacpan.org/authors/id/H/HA/HAARG/Sub-Quote-${version}.tar.gz
+hash        sha256:967282d54d2d51b198c67935594f93e4dea3e54d1e5bced158c94e29be868a4b
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

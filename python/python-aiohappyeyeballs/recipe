@@ -1,0 +1,20 @@
+name        python-aiohappyeyeballs
+version     2.7.1
+release     1
+arch        any
+description python-aiohappyeyeballs: Happy Eyeballs for asyncio
+
+source      https://files.pythonhosted.org/packages/ce/f4/eec0465c2f67b2664688d0240b3212d5196fd89e741df67ddb81f8d35658/aiohappyeyeballs-${version}.tar.gz
+hash        sha256:065665c041c42a5938ed220bdcd7230f22527fbec085e1853d2402c8a3615d9d
+
+depend      filesystem
+depend      python
+builddep    python-poetry-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

@@ -1,0 +1,14 @@
+name        perl-number-format
+version     1.79
+release     1
+description perl-number-format: Perl extension for formatting numbers
+
+source      https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Number-Format-${version}.tar.gz
+hash        sha256:404b231709b28a41024ae76bedd349145da7e535f94c6013b6bb55eea383e1ad
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

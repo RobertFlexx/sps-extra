@@ -1,0 +1,16 @@
+name        perl-namespace-autoclean
+version     0.31
+release     1
+description perl-namespace-autoclean: Keep imports out of your namespace
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/namespace-autoclean-${version}.tar.gz
+hash        sha256:d3b32c82e1d2caa9d58b8c8075965240e6cab66ab9350bd6f6bea4ca07e938d6
+
+depend      filesystem
+depend      perl
+depend      perl-b-hooks-endofscope
+depend      perl-namespace-clean
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

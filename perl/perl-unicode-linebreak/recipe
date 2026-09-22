@@ -1,0 +1,15 @@
+name        perl-unicode-linebreak
+version     2019.001
+release     1
+description perl-unicode-linebreak: UAX #14 Unicode Line Breaking Algorithm
+
+source      https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-${version}.tar.gz
+hash        sha256:486762e4cacddcc77b13989f979a029f84630b8175e7fef17989e157d4b6318a
+
+depend      filesystem
+depend      perl
+depend      perl-mime-charset
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

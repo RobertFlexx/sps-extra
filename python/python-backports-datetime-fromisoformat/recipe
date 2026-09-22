@@ -1,0 +1,20 @@
+name        python-backports-datetime-fromisoformat
+version     2.0.3
+release     1
+arch        any
+description python-backports-datetime-fromisoformat: Backport of Python 3.11's datetime.fromisoformat
+
+source      https://files.pythonhosted.org/packages/71/81/eff3184acb1d9dc3ce95a98b6f3c81a49b4be296e664db8e1c2eeabef3d9/backports_datetime_fromisoformat-${version}.tar.gz
+hash        sha256:b58edc8f517b66b397abc250ecc737969486703a66eb97e01e6d51291b1a139d
+
+depend      filesystem
+depend      python
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

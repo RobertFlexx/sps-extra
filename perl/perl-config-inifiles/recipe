@@ -1,0 +1,15 @@
+name        perl-config-inifiles
+version     3.003000
+release     1
+description perl-config-inifiles: A module for reading .ini-style configuration files
+
+source      https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/Config-IniFiles-${version}.tar.gz
+hash        sha256:4f6f8eb0c4efbc9398a0f1ef0c97fb7704eee4ccd90af1a31dda32854aa81164
+
+depend      filesystem
+depend      perl
+depend      perl-io-stringy
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,14 @@
+name        perl-yaml-tiny
+version     1.76
+release     1
+description perl-yaml-tiny: Read/Write YAML files with as little code as possible
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/YAML-Tiny-${version}.tar.gz
+hash        sha256:a8d584394cf069bf8f17cba3dd5099003b097fce316c31fb094f1b1c171c08a3
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

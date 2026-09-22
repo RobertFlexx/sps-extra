@@ -1,0 +1,14 @@
+name        perl-date-manip
+version     7.00
+release     1
+description perl-date-manip: Date manipulation routines
+
+source      https://cpan.metacpan.org/authors/id/S/SB/SBECK/Date-Manip-${version}.tar.gz
+hash        sha256:37133eeb09d36da6d461546cc216b8f6a2297a43331c680a6848f3fff925975c
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

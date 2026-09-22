@@ -1,0 +1,14 @@
+name        perl-test-needs
+version     0.002010
+release     1
+description perl-test-needs: Skip tests when modules not available
+
+source      https://cpan.metacpan.org/authors/id/H/HA/HAARG/Test-Needs-${version}.tar.gz
+hash        sha256:923ffdc78fcba96609753e4bae26b0ba0186893de4a63cd5236e012c7c90e208
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

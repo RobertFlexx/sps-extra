@@ -1,0 +1,29 @@
+name        python-matplotlib
+version     3.11.2
+release     1
+arch        any
+description python-matplotlib: Python plotting package
+
+source      https://files.pythonhosted.org/packages/e7/c8/9aa712a0afb882649424dd8de8ad9aa6235e796e84c6052e8f6dc1598d0d/matplotlib-${version}.tar.gz
+hash        sha256:cec596316640f2b394b8f0daa0ea61a8eae82d017b620b9f202befb972a59ea4
+
+depend      filesystem
+depend      python
+depend      python-contourpy
+depend      python-cycler
+depend      python-fonttools
+depend      python-kiwisolver
+depend      python-numpy
+depend      python-packaging
+depend      python-pillow
+depend      python-pyparsing
+depend      python-dateutil
+builddep    python-meson-python
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

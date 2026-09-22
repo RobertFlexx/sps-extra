@@ -1,0 +1,27 @@
+name        python-ipython
+version     9.17.1
+release     1
+arch        any
+description python-ipython: IPython: Productive Interactive Computing
+
+source      https://files.pythonhosted.org/packages/b9/32/99451b1283ec5d92ad77073f12e1c667dc10775384d8f15c2914207149dd/ipython-${version}.tar.gz
+hash        sha256:8919be8c27f20a6f4423145028063f6637b42a03ce57665bb12015ee1f073529
+
+depend      filesystem
+depend      python
+depend      python-ipython-pygments-lexers
+depend      python-jedi
+depend      python-matplotlib-inline
+depend      python-prompt-toolkit
+depend      python-pygments
+depend      python-stack-data
+depend      python-traitlets
+depend      python-typing-extensions
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

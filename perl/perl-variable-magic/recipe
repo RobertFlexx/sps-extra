@@ -1,0 +1,14 @@
+name        perl-variable-magic
+version     0.65
+release     1
+description perl-variable-magic: Associate user-defined magic to variables from Perl
+
+source      https://cpan.metacpan.org/authors/id/V/VP/VPIT/Variable-Magic-${version}.tar.gz
+hash        sha256:457bfb1b2369e44c0e2ef3e7b61580831107cbeebf0f5d8c4b9b02368550b91e
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

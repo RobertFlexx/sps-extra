@@ -1,0 +1,14 @@
+name        perl-config-general
+version     2.67
+release     1
+description perl-config-general: Generic Config Module
+
+source      https://cpan.metacpan.org/authors/id/T/TL/TLINDEN/Config-General-${version}.tar.gz
+hash        sha256:473d65127b23dac0e8039c01e28bc4072cb9a6e93e81a1ea4893cea08c698db0
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

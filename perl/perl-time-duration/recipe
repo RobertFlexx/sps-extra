@@ -1,0 +1,14 @@
+name        perl-time-duration
+version     1.21
+release     1
+description perl-time-duration: rounded or exact English expression of durations
+
+source      https://cpan.metacpan.org/authors/id/N/NE/NEILB/Time-Duration-${version}.tar.gz
+hash        sha256:fe340eba8765f9263694674e5dff14833443e19865e5ff427bbd79b7b5f8a9b8
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

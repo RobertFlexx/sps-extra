@@ -1,0 +1,26 @@
+name        perl-libwww-perl
+version     6.83
+release     1
+description perl-libwww-perl: The World-Wide Web library for Perl
+
+source      https://cpan.metacpan.org/authors/id/O/OA/OALDERS/libwww-perl-${version}.tar.gz
+hash        sha256:e75f0fa9d3c6f0daf5a5a72fa9f8b1c9c0d23e3a84a8522ccb4f835232b95505
+
+depend      filesystem
+depend      perl
+depend      perl-lwp-mediatypes
+depend      perl-http-message
+depend      perl-http-negotiate
+depend      perl-http-cookies
+depend      perl-encode-locale
+depend      perl-try-tiny
+depend      perl-net-http
+depend      perl-file-listing
+depend      perl-uri
+depend      perl-html-parser
+depend      perl-www-robotrules
+depend      perl-http-date
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

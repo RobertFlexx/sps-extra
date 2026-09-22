@@ -1,0 +1,25 @@
+name        python-fastapi
+version     0.141.1
+release     1
+arch        any
+description python-fastapi: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+
+source      https://files.pythonhosted.org/packages/8a/02/91e3416a8fdd715abb903a952a6bec7cdd8d14eed55d415fc8595524c319/fastapi-${version}.tar.gz
+hash        sha256:e8822fc40db1e1858054d7a949a888695bc9bdce70139178e33bd2871a453ca1
+
+depend      filesystem
+depend      python
+depend      python-starlette
+depend      python-pydantic
+depend      python-typing-extensions
+depend      python-typing-inspection
+depend      python-annotated-doc
+builddep    python-pdm-backend
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

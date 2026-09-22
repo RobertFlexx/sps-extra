@@ -1,0 +1,15 @@
+name        perl-const-fast
+version     0.014
+release     1
+description perl-const-fast: Facility for creating read-only scalars, arrays, and hashes
+
+source      https://cpan.metacpan.org/authors/id/L/LE/LEONT/Const-Fast-${version}.tar.gz
+hash        sha256:f805953a08c57846a16a4d85d7b766398afaf7c36c1465fcb1dea09e5fa394db
+
+depend      filesystem
+depend      perl
+depend      perl-sub-exporter-progressive
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

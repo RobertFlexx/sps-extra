@@ -1,0 +1,14 @@
+name        perl-time-local
+version     1.35
+release     1
+description perl-time-local: Efficiently compute time from local and GMT time
+
+source      https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Time-Local-${version}.tar.gz
+hash        sha256:1d136b71bd041cbe6f66c43180ee79e675b72ad5a3596abd6a44d211072ada29
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

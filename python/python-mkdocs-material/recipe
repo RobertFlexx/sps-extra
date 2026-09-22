@@ -1,0 +1,31 @@
+name        python-mkdocs-material
+version     9.7.7
+release     1
+arch        any
+description python-mkdocs-material: Documentation that simply works
+
+source      https://files.pythonhosted.org/packages/f1/cd/c05d3a530ba7934f144fb45f7203cd236adc25c7bdcc34673d202f4b0278/mkdocs_material-${version}.tar.gz
+hash        sha256:c0649c065b1b0512d60aad8c10f947f8e455284475239b364b610f2deb4d0855
+
+depend      filesystem
+depend      python
+depend      python-babel
+depend      python-backrefs
+depend      python-colorama
+depend      python-jinja2
+depend      python-markdown
+depend      python-mkdocs-material-extensions
+depend      python-mkdocs
+depend      python-paginate
+depend      python-pygments
+depend      python-pymdown-extensions
+depend      python-requests
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

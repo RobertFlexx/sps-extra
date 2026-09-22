@@ -1,0 +1,21 @@
+name        perl-datetime
+version     1.67
+release     1
+description perl-datetime: A date and time object for Perl
+
+source      https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/DateTime-${version}.tar.gz
+hash        sha256:ba237fe792c93e8c13879c58fead45de2d1185e53793b792db1a3c9e77dd7b55
+
+depend      filesystem
+depend      perl
+depend      perl-namespace-autoclean
+depend      perl-specio
+depend      perl-try-tiny
+depend      perl-dist-checkconflicts
+depend      perl-datetime-timezone
+depend      perl-params-validationcompiler
+depend      perl-datetime-locale
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,16 @@
+name        perl-data-optlist
+version     0.115
+release     1
+description perl-data-optlist: parse and validate simple name/value option pairs
+
+source      https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Data-OptList-${version}.tar.gz
+hash        sha256:fa0e7cdc10925db925a82f8eb9608a701f1c2bf5e88d512d9acd46977e174056
+
+depend      filesystem
+depend      perl
+depend      perl-sub-install
+depend      perl-params-someutil
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

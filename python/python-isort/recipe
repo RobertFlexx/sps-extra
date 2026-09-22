@@ -1,0 +1,21 @@
+name        python-isort
+version     9.0.1
+release     1
+arch        any
+description python-isort: A Python utility / library to sort Python imports
+
+source      https://files.pythonhosted.org/packages/e6/43/067e17bfa10b6486b408d5294105ac894149a9abb94b338568b1f53a73c9/isort-${version}.tar.gz
+hash        sha256:ba23db109e3e93ef1999f7209a651214994cd807801addd16ac485982eb4edd7
+
+depend      filesystem
+depend      python
+depend      python-mypy-extensions
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

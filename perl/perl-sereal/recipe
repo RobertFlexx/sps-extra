@@ -1,0 +1,16 @@
+name        perl-sereal
+version     5.010
+release     1
+description perl-sereal: Fast, compact, powerful binary (de-)serialization
+
+source      https://cpan.metacpan.org/authors/id/Y/YV/YVES/Sereal-${version}.tar.gz
+hash        sha256:2207c35c17cadb90a5ac2fab87e3e3c28fe55f6e72191e63e4afda02e20e337a
+
+depend      filesystem
+depend      perl
+depend      perl-sereal-encoder
+depend      perl-sereal-decoder
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,15 @@
+name        perl-http-date
+version     6.08
+release     1
+description perl-http-date: HTTP::Date - date conversion routines
+
+source      https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Date-${version}.tar.gz
+hash        sha256:b57d80ca6d821c6949ca48b27467d45aba7a9c77346562306facca781a003e44
+
+depend      filesystem
+depend      perl
+depend      perl-timedate
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,14 @@
+name        perl-text-csv_xs
+version     1.64
+release     1
+description perl-text-csv_xs: Comma-Separated Values manipulation routines
+
+source      https://cpan.metacpan.org/authors/id/H/HM/HMBRAND/Text-CSV_XS-${version}.tgz
+hash        sha256:65c5662d4fe8ef3039a1b32f641634d0aae6ab10eabbb24f740c75332f2caf30
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,14 @@
+name        perl-path-tiny
+version     0.150
+release     1
+description perl-path-tiny: File path utility
+
+source      https://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Path-Tiny-${version}.tar.gz
+hash        sha256:ff20713d1a14d257af9c78209001f40dc177e4b9d1496115cbd8726d577946c7
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

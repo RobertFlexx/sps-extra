@@ -1,0 +1,25 @@
+name        python-pre-commit
+version     4.6.2
+release     1
+arch        any
+description python-pre-commit: A framework for managing and maintaining multi-language pre-commit hooks
+
+source      https://files.pythonhosted.org/packages/74/89/1f3e8e1fc3e97de0fa963495832f581f025f29471602a309e48808244292/pre_commit-${version}.tar.gz
+hash        sha256:8f5d7bfb021ecdbcd9d49d89847082dd24172ccde534390081a679ad046e2441
+
+depend      filesystem
+depend      python
+depend      python-cfgv
+depend      python-identify
+depend      python-nodeenv
+depend      python-yaml
+depend      python-virtualenv
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

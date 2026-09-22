@@ -1,0 +1,14 @@
+name        perl-compress-raw-zlib
+version     2.224
+release     1
+description perl-compress-raw-zlib: Perl interface to zlib/zlib-ng compression libraries
+
+source      https://cpan.metacpan.org/authors/id/P/PM/PMQS/Compress-Raw-Zlib-${version}.tar.gz
+hash        sha256:c17d0fb139eba9b8ad6a1dc42942c812dae7dae96ed1337b3ca950542810d8fc
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

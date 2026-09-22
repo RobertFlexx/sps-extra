@@ -1,0 +1,16 @@
+name        perl-html-tree
+version     5.07
+release     1
+description perl-html-tree: Work with HTML in a DOM-like tree structure
+
+source      https://cpan.metacpan.org/authors/id/K/KE/KENTNL/HTML-Tree-${version}.tar.gz
+hash        sha256:f0374db84731c204b86c1d5b90975fef0d30a86bd9def919343e554e31a9dbbf
+
+depend      filesystem
+depend      perl
+depend      perl-html-parser
+depend      perl-html-tagset
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

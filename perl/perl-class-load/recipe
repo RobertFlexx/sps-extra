@@ -1,0 +1,19 @@
+name        perl-class-load
+version     0.25
+release     1
+description perl-class-load: A working (require "Class::Name") and more
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/Class-Load-${version}.tar.gz
+hash        sha256:2a48fa779b5297e56156380e8b32637c6c58decb4f4a7f3c7350523e11275f8f
+
+depend      filesystem
+depend      perl
+depend      perl-data-optlist
+depend      perl-package-stash
+depend      perl-try-tiny
+depend      perl-module-implementation
+depend      perl-module-runtime
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

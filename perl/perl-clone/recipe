@@ -1,0 +1,14 @@
+name        perl-clone
+version     0.50
+release     1
+description perl-clone: recursively copy Perl datatypes
+
+source      https://cpan.metacpan.org/authors/id/A/AT/ATOOMIC/Clone-${version}.tar.gz
+hash        sha256:f9732a4a857974db30905233589113003301b585b0cecda29a21cfba5bb014f9
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

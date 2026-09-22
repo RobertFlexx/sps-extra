@@ -1,0 +1,14 @@
+name        perl-lwp-mediatypes
+version     6.05
+release     1
+description perl-lwp-mediatypes: guess media type for a file or a URL
+
+source      https://cpan.metacpan.org/authors/id/O/OA/OALDERS/LWP-MediaTypes-${version}.tar.gz
+hash        sha256:abb2dcfbf069317fe65b098e3b2ad58c5eb33e9a839b9190cce6d371f8966cc1
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

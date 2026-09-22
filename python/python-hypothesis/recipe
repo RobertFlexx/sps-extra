@@ -1,0 +1,22 @@
+name        python-hypothesis
+version     6.168.0
+release     1
+arch        any
+description python-hypothesis: The property-based testing library for Python
+
+source      https://files.pythonhosted.org/packages/5a/ce/c0946bebffb99b62426a6a7643d4272cc6c5cf777a488b3b4d0ee724e960/hypothesis-${version}.tar.gz
+hash        sha256:72af51087b7b5ab21c49f0d502f803c20897678652835596bd2a8b169a39135e
+
+depend      filesystem
+depend      python
+depend      python-exceptiongroup
+depend      python-sortedcontainers
+builddep    python-maturin
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

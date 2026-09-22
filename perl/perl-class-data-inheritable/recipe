@@ -1,0 +1,14 @@
+name        perl-class-data-inheritable
+version     0.10
+release     1
+description perl-class-data-inheritable: Inheritable, overridable class data
+
+source      https://cpan.metacpan.org/authors/id/R/RS/RSHERER/Class-Data-Inheritable-${version}.tar.gz
+hash        sha256:aa1ae68a611357b7bfd9a2f64907cc196ddd6d047cae64ef9d0ad099d98ae54a
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

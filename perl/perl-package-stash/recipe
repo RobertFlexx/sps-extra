@@ -1,0 +1,16 @@
+name        perl-package-stash
+version     0.40
+release     1
+description perl-package-stash: Routines for manipulating stashes
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/Package-Stash-${version}.tar.gz
+hash        sha256:5a9722c6d9cb29ee133e5f7b08a5362762a0b5633ff5170642a5b0686e95e066
+
+depend      filesystem
+depend      perl
+depend      perl-dist-checkconflicts
+depend      perl-module-implementation
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

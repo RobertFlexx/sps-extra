@@ -1,0 +1,18 @@
+name        perl-xml-sax-expat
+version     0.51
+release     1
+description perl-xml-sax-expat: SAX Driver for Expat
+
+source      https://cpan.metacpan.org/authors/id/B/BJ/BJOERN/XML-SAX-Expat-${version}.tar.gz
+hash        sha256:4c016213d0ce7db2c494e30086b59917b302db8c292dcd21f39deebd9780c83f
+
+depend      filesystem
+depend      perl
+depend      perl-xml-sax
+depend      perl-xml-sax-base
+depend      perl-xml-parser
+depend      perl-xml-namespacesupport
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

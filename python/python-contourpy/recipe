@@ -1,0 +1,21 @@
+name        python-contourpy
+version     1.4.0
+release     1
+arch        any
+description python-contourpy: Python library for calculating contours of 2D quadrilateral grids
+
+source      https://files.pythonhosted.org/packages/83/5a/a55177dd22553a277388e8a1b3220e92de91bacb28356cdc73caa240121d/contourpy-${version}.tar.gz
+hash        sha256:20156f5a1ac4f8ce02656e39a61e82164a3d359796dc8026f75b062783d500e1
+
+depend      filesystem
+depend      python
+depend      python-numpy
+builddep    python-meson-python
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

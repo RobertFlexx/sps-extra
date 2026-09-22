@@ -1,0 +1,26 @@
+name        python-keyring
+version     25.7.0
+release     1
+arch        any
+description python-keyring: Store and access your passwords safely
+
+source      https://files.pythonhosted.org/packages/43/4b/674af6ef2f97d56f0ab5153bf0bfa28ccb6c3ed4d1babf4305449668807b/keyring-${version}.tar.gz
+hash        sha256:fe01bd85eb3f8fb3dd0405defdeac9a5b4f6f0439edbb3149577f244a2e8245b
+
+depend      filesystem
+depend      python
+depend      python-secretstorage
+depend      python-jeepney
+depend      python-importlib-metadata
+depend      python-jaraco-classes
+depend      python-jaraco-functools
+depend      python-jaraco-context
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

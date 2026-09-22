@@ -1,0 +1,14 @@
+name        perl-sereal-decoder
+version     5.010
+release     1
+description perl-sereal-decoder: Fast, compact, powerful binary deserialization
+
+source      https://cpan.metacpan.org/authors/id/Y/YV/YVES/Sereal-Decoder-${version}.tar.gz
+hash        sha256:b0e419b53eaabe38e6188c8afbb3b8fa86d9dd922e0f36ea53fd626973d9cb25
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

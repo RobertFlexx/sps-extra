@@ -1,0 +1,14 @@
+name        perl-termreadkey
+version     2.38
+release     1
+description perl-termreadkey: Change terminal modes, and perform non-blocking reads
+
+source      https://cpan.metacpan.org/authors/id/J/JS/JSTOWE/TermReadKey-${version}.tar.gz
+hash        sha256:5a645878dc570ac33661581fbb090ff24ebce17d43ea53fd22e105a856a47290
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

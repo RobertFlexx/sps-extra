@@ -1,0 +1,21 @@
+name        python-cerberus
+version     1.3.8
+release     1
+arch        any
+description python-cerberus: Lightweight, extensible schema and data validation tool for Pythondictionaries
+
+source      https://files.pythonhosted.org/packages/7a/cf/845d32e330e49e34f1a22dc44868750e75485d7c08c07d37795bcf0a780e/cerberus-${version}.tar.gz
+hash        sha256:579554887ffd189226774b87570f4a76db75cf0efcbaffcacd5e98b8ee877f61
+
+depend      filesystem
+depend      python
+depend      python-importlib-metadata
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

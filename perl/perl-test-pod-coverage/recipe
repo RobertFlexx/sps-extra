@@ -1,0 +1,15 @@
+name        perl-test-pod-coverage
+version     1.10
+release     1
+description perl-test-pod-coverage: Check for pod coverage in your distribution
+
+source      https://cpan.metacpan.org/authors/id/N/NE/NEILB/Test-Pod-Coverage-${version}.tar.gz
+hash        sha256:48c9cca9f7d99eee741176445b431adf09c029e1aa57c4703c9f46f7601d40d4
+
+depend      filesystem
+depend      perl
+depend      perl-pod-coverage
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

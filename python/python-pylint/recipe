@@ -1,0 +1,28 @@
+name        python-pylint
+version     4.0.8
+release     1
+arch        any
+description python-pylint: python code static checker
+
+source      https://files.pythonhosted.org/packages/5c/2e/424cbfcb3af792a6b7da6e5c640de463b98c8d3a49fbd8882f38e83d4232/pylint-${version}.tar.gz
+hash        sha256:1c1b2128bde5ff5e966801413080b6384d42a5782718d528c906dbb6beab94ed
+
+depend      filesystem
+depend      python
+depend      python-astroid
+depend      python-dill
+depend      python-isort
+depend      python-mccabe
+depend      python-platformdirs
+depend      python-tomli
+depend      python-tomlkit
+depend      python-typing-extensions
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

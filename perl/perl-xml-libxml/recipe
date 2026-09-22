@@ -1,0 +1,17 @@
+name        perl-xml-libxml
+version     2.0213
+release     1
+description perl-xml-libxml: Interface to Gnome libxml2 xml parsing and DOM library
+
+source      https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-LibXML-${version}.tar.gz
+hash        sha256:2af21c5d61ac34ea26a5fabf15ba5a5841e648f7189db3e33b6f28b5489802ab
+
+depend      filesystem
+depend      perl
+depend      perl-xml-sax
+depend      perl-xml-sax-base
+depend      perl-xml-namespacesupport
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

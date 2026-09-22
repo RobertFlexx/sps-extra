@@ -1,0 +1,14 @@
+name        perl-text-unidecode
+version     1.30
+release     1
+description perl-text-unidecode: Provide plain ASCII transliterations of Unicode text
+
+source      https://cpan.metacpan.org/authors/id/S/SB/SBURKE/Text-Unidecode-${version}.tar.gz
+hash        sha256:6c24f14ddc1d20e26161c207b73ca184eed2ef57f08b5fb2ee196e6e2e88b1c6
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

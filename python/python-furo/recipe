@@ -1,0 +1,25 @@
+name        python-furo
+version     2025.12.19
+release     1
+arch        any
+description python-furo: A clean customisable Sphinx documentation theme
+
+source      https://files.pythonhosted.org/packages/ec/20/5f5ad4da6a5a27c80f2ed2ee9aee3f9e36c66e56e21c00fde467b2f8f88f/furo-${version}.tar.gz
+hash        sha256:188d1f942037d8b37cd3985b955839fea62baa1730087dc29d157677c857e2a7
+
+depend      filesystem
+depend      python
+depend      python-beautifulsoup4
+depend      python-sphinx
+depend      python-sphinx-basic-ng
+depend      python-pygments
+depend      python-accessible-pygments
+builddep    python-sphinx-theme-builder
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

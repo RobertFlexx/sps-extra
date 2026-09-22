@@ -1,0 +1,14 @@
+name        perl-yaml
+version     1.321
+release     1
+description perl-yaml: YAML Ain't Markup Language™
+
+source      https://cpan.metacpan.org/authors/id/T/TI/TINITA/YAML-${version}.tar.gz
+hash        sha256:d461167b8b4aa9244f736a7a740830141e61dddee301e456bf642e81d3cea193
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

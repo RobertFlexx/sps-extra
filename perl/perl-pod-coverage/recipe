@@ -1,0 +1,16 @@
+name        perl-pod-coverage
+version     0.23
+release     1
+description perl-pod-coverage: Checks if the documentation of a module is comprehensive
+
+source      https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Pod-Coverage-${version}.tar.gz
+hash        sha256:30b7a0b0c942f44a7552c0d34e9b1f2e0ba0b67955c61e3b1589ec369074b107
+
+depend      filesystem
+depend      perl
+depend      perl-pod-parser
+depend      perl-devel-symdump
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

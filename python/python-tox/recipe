@@ -1,0 +1,32 @@
+name        python-tox
+version     4.63.0
+release     1
+arch        any
+description python-tox: tox is a generic virtualenv management and test command line tool
+
+source      https://files.pythonhosted.org/packages/35/93/ce52def83be73dcb86c0c5985f40808917f09828c1616d4018206c3dbba3/tox-${version}.tar.gz
+hash        sha256:fb7105ef125b371e31797cfa615e5a160de3d8ef29b86dca7fcbd9048da3a9d8
+
+depend      filesystem
+depend      python
+depend      python-cachetools
+depend      python-colorama
+depend      python-filelock
+depend      python-packaging
+depend      python-platformdirs
+depend      python-pluggy
+depend      python-pyproject-api
+depend      python-discovery
+depend      python-tomli-w
+depend      python-tomli
+depend      python-typing-extensions
+depend      python-virtualenv
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

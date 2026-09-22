@@ -1,0 +1,14 @@
+name        perl-mime-charset
+version     1.013.1
+release     1
+description perl-mime-charset: Charset Information for MIME
+
+source      https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-${version}.tar.gz
+hash        sha256:1bb7a6e0c0d251f23d6e60bf84c9adefc5b74eec58475bfee4d39107e60870f0
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

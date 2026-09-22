@@ -1,0 +1,14 @@
+name        perl-io-html
+version     1.004
+release     1
+description perl-io-html: Open an HTML file with automatic charset detection
+
+source      https://cpan.metacpan.org/authors/id/C/CJ/CJM/IO-HTML-${version}.tar.gz
+hash        sha256:c87b2df59463bbf2c39596773dfb5c03bde0f7e1051af339f963f58c1cbd8bf5
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

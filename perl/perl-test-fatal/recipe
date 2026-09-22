@@ -1,0 +1,15 @@
+name        perl-test-fatal
+version     0.019
+release     1
+description perl-test-fatal: incredibly simple helpers for testing code with exceptions
+
+source      https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Test-Fatal-${version}.tar.gz
+hash        sha256:d8f6b6c87bb399a7d60c295a94a4b741a85b23889cfd6b72f1ff62f0c55cf70b
+
+depend      filesystem
+depend      perl
+depend      perl-try-tiny
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

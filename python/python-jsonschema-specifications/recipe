@@ -1,0 +1,21 @@
+name        python-jsonschema-specifications
+version     2025.9.1
+release     1
+arch        any
+description python-jsonschema-specifications: The JSON Schema meta-schemas and vocabularies, exposed as a Registry
+
+source      https://files.pythonhosted.org/packages/19/74/a633ee74eb36c44aa6d1095e7cc5569bebf04342ee146178e2d36600708b/jsonschema_specifications-${version}.tar.gz
+hash        sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d
+
+depend      filesystem
+depend      python
+depend      python-referencing
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

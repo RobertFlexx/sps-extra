@@ -1,0 +1,14 @@
+name        perl-term-readline-gnu
+version     1.47
+release     1
+description perl-term-readline-gnu: Perl extension for the GNU Readline/History Library
+
+source      https://cpan.metacpan.org/authors/id/H/HA/HAYASHI/Term-ReadLine-Gnu-${version}.tar.gz
+hash        sha256:3b07ac8a9b494c50aa87a40dccab3f879b92eb9527ac0f2ded5d4743d166b649
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

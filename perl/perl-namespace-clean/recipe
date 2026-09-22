@@ -1,0 +1,16 @@
+name        perl-namespace-clean
+version     0.27
+release     1
+description perl-namespace-clean: Keep imports and functions out of your namespace
+
+source      https://cpan.metacpan.org/authors/id/R/RI/RIBASUSHI/namespace-clean-${version}.tar.gz
+hash        sha256:8a10a83c3e183dc78f9e7b7aa4d09b47c11fb4e7d3a33b9a12912fd22e31af9d
+
+depend      filesystem
+depend      perl
+depend      perl-b-hooks-endofscope
+depend      perl-package-stash
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

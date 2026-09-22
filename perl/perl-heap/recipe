@@ -1,0 +1,14 @@
+name        perl-heap
+version     0.80
+release     1
+description perl-heap: Perl extensions for keeping data partially sorted
+
+source      https://cpan.metacpan.org/authors/id/J/JM/JMM/Heap-${version}.tar.gz
+hash        sha256:ccda29f3c93176ad0fdfff4dd6f5e4ac90b370cba4b028386b7343bf64139bde
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

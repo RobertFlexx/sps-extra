@@ -1,0 +1,14 @@
+name        perl-html-tagset
+version     3.24
+release     1
+description perl-html-tagset: Data tables useful in parsing HTML
+
+source      https://cpan.metacpan.org/authors/id/P/PE/PETDANCE/HTML-Tagset-${version}.tar.gz
+hash        sha256:eb89e145a608ed1f8f141a57472ee5f69e67592a432dcd2e8b1dbb445f2b230b
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

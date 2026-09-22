@@ -1,0 +1,14 @@
+name        perl-sub-identify
+version     0.14
+release     1
+description perl-sub-identify: Retrieve names of code references
+
+source      https://cpan.metacpan.org/authors/id/R/RG/RGARCIA/Sub-Identify-${version}.tar.gz
+hash        sha256:068d272086514dd1e842b6a40b1bedbafee63900e5b08890ef6700039defad6f
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

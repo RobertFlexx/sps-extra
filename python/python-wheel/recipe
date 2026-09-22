@@ -1,0 +1,21 @@
+name        python-wheel
+version     0.48.0
+release     1
+arch        any
+description python-wheel: Command line tool for manipulating wheel files
+
+source      https://files.pythonhosted.org/packages/d0/20/50ed6bdf27dec98b568a8ae25dc599f35baa3d9709f9e83fd1edb56b9a90/wheel-${version}.tar.gz
+hash        sha256:94800765601e9171bf5d58d066e640662842bcedcbab982b2c90787a2c987322
+
+depend      filesystem
+depend      python
+depend      python-packaging
+builddep    python-flit-core
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

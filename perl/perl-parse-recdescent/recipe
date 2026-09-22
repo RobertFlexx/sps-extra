@@ -1,0 +1,14 @@
+name        perl-parse-recdescent
+version     1.967015
+release     1
+description perl-parse-recdescent: Generate Recursive-Descent Parsers
+
+source      https://cpan.metacpan.org/authors/id/J/JT/JTBRAUN/Parse-RecDescent-${version}.tar.gz
+hash        sha256:1943336a4cb54f1788a733f0827c0c55db4310d5eae15e542639c9dd85656e37
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

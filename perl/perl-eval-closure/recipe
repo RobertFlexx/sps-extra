@@ -1,0 +1,14 @@
+name        perl-eval-closure
+version     0.14
+release     1
+description perl-eval-closure: safely and cleanly create closures via string eval
+
+source      https://cpan.metacpan.org/authors/id/D/DO/DOY/Eval-Closure-${version}.tar.gz
+hash        sha256:ea0944f2f5ec98d895bef6d503e6e4a376fea6383a6bc64c7670d46ff2218cad
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

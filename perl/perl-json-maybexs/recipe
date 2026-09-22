@@ -1,0 +1,14 @@
+name        perl-json-maybexs
+version     1.004008
+release     1
+description perl-json-maybexs: Use Cpanel::JSON::XS with a fallback to JSON::XS and JSON::PP
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/JSON-MaybeXS-${version}.tar.gz
+hash        sha256:cd3937afa78831f80a2ad5abab6c51b9e82fca4c31e5856ea208d598db5dc867
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

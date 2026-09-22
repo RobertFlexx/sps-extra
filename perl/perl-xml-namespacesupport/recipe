@@ -1,0 +1,14 @@
+name        perl-xml-namespacesupport
+version     1.12
+release     1
+description perl-xml-namespacesupport: A simple generic namespace processor
+
+source      https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-${version}.tar.gz
+hash        sha256:47e995859f8dd0413aa3f22d350c4a62da652e854267aa0586ae544ae2bae5ef
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

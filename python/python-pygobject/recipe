@@ -1,0 +1,21 @@
+name        python-pygobject
+version     3.58.0
+release     1
+arch        any
+description python-pygobject: Python bindings for GObject Introspection
+
+source      https://files.pythonhosted.org/packages/a3/9b/473a5234ec86bce978d3583adc62441c84cc57181c4ea8a8978997c7f0c1/pygobject-${version}.tar.gz
+hash        sha256:45068697de3ffe46840ca369705f23118b34db4f7deb63f6eff079a6734ddcca
+
+depend      filesystem
+depend      python
+depend      python-pycairo
+builddep    python-meson-python
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

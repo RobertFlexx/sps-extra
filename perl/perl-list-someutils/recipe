@@ -1,0 +1,15 @@
+name        perl-list-someutils
+version     0.59
+release     1
+description perl-list-someutils: Provide the stuff missing in List::Util
+
+source      https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/List-SomeUtils-${version}.tar.gz
+hash        sha256:fab30372e4c67bf5a46062da38d1d0c8756279feada866eb439fa29571a2dc7b
+
+depend      filesystem
+depend      perl
+depend      perl-module-implementation
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

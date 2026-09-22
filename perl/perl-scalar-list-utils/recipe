@@ -1,0 +1,14 @@
+name        perl-scalar-list-utils
+version     1.70
+release     1
+description perl-scalar-list-utils: Common Scalar and List utility subroutines
+
+source      https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Scalar-List-Utils-${version}.tar.gz
+hash        sha256:e0cc03f9fe3565cdf4d6102654f87bba3bca2d8ff989da38307e857d0ae3c886
+
+depend      filesystem
+depend      perl
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

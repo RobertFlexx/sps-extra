@@ -1,0 +1,20 @@
+name        python-ruamel-yaml-clib
+version     0.2.15
+release     1
+arch        any
+description python-ruamel-yaml-clib: C version of reader, parser and emitter for ruamel.yaml derived from libyaml
+
+source      https://files.pythonhosted.org/packages/ea/97/60fda20e2fb54b83a61ae14648b0817c8f5d84a3821e40bfbdae1437026a/ruamel_yaml_clib-${version}.tar.gz
+hash        sha256:46e4cc8c43ef6a94885f72512094e482114a8a706d3c555a34ed4b0d20200600
+
+depend      filesystem
+depend      python
+builddep    python-setuptools
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi

@@ -1,0 +1,16 @@
+name        perl-b-hooks-endofscope
+version     0.28
+release     1
+description perl-b-hooks-endofscope: Execute code after a scope finished compilation
+
+source      https://cpan.metacpan.org/authors/id/E/ET/ETHER/B-Hooks-EndOfScope-${version}.tar.gz
+hash        sha256:edac77a17fc36620c8324cc194ce1fad2f02e9fcbe72d08ad0b2c47f0c7fd8ef
+
+depend      filesystem
+depend      perl
+depend      perl-sub-exporter-progressive
+depend      perl-module-implementation
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

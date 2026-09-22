@@ -1,0 +1,20 @@
+name        perl-http-message
+version     7.04
+release     1
+description perl-http-message: HTTP style message (base class)
+
+source      https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Message-${version}.tar.gz
+hash        sha256:699f3350dbb7bd8fdc9f3b013b0c91b7c059783708443e39bc395fa33352f006
+
+depend      filesystem
+depend      perl
+depend      perl-io-html
+depend      perl-uri
+depend      perl-encode-locale
+depend      perl-http-date
+depend      perl-clone
+depend      perl-lwp-mediatypes
+
+configure   perl Makefile.PL INSTALLDIRS=vendor
+build       make -j"$MAKEJOBS"
+install     make install DESTDIR="$PKG"

@@ -1,0 +1,24 @@
+name        python-mkdocs-get-deps
+version     0.2.2
+release     1
+arch        any
+description python-mkdocs-get-deps: An extra command for MkDocs that infers required PyPI packages from `plugins` in mkdocs.yml
+
+source      https://files.pythonhosted.org/packages/ce/25/b3cccb187655b9393572bde9b09261d267c3bf2f2cdabe347673be5976a6/mkdocs_get_deps-${version}.tar.gz
+hash        sha256:8ee8d5f316cdbbb2834bc1df6e69c08fe769a83e040060de26d3c19fad3599a1
+
+depend      filesystem
+depend      python
+depend      python-importlib-metadata
+depend      python-mergedeep
+depend      python-platformdirs
+depend      python-yaml
+builddep    python-hatchling
+
+install     python3 -m pip install --no-deps --no-build-isolation --no-compile --root="$PKG" --prefix=/usr .
+install     pyver=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])'); \
+            if [ -d "$PKG/usr/lib/python$pyver" ]; then \
+            mkdir -p "$PKG/usr/lib64"; \
+            cp -a "$PKG/usr/lib/python$pyver/." "$PKG/usr/lib64/python$pyver/"; \
+            rm -rf "$PKG/usr/lib/python$pyver"; \
+            rmdir "$PKG/usr/lib" 2>/dev/null || :; fi
